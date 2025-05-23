@@ -1,143 +1,113 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { Copy, Download, RefreshCw, Zap } from "lucide-react";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Separator } from "@/components/ui/separator";
 import { toast } from "@/hooks/use-toast";
+import { ArrowRight, Copy, Download, RefreshCw } from "lucide-react";
+import { Badge } from "./ui/badge";
+import { Checkbox } from "./ui/checkbox";
 
-interface CampaignResult {
-  titles: string[];
-  descriptions: string[];
-  usps: string[];
-  sitelinks: string[];
-}
+// Mock country data
+const countries = [
+  { value: "us", label: "Estados Unidos (Inglês)" },
+  { value: "br", label: "Brasil (Português)" },
+  { value: "es", label: "Espanha (Espanhol)" },
+  { value: "fr", label: "França (Francês)" },
+  { value: "de", label: "Alemanha (Alemão)" },
+  { value: "it", label: "Itália (Italiano)" },
+  { value: "jp", label: "Japão (Japonês)" },
+  { value: "cn", label: "China (Mandarim)" },
+  { value: "ru", label: "Rússia (Russo)" },
+  { value: "ar", label: "Argentina (Espanhol)" },
+];
+
+// Mock funnel strategies
+const funnelStrategies = [
+  { value: "top", label: "Topo de Funil (Awareness)" },
+  { value: "mid", label: "Meio de Funil (Consideração)" },
+  { value: "bottom", label: "Fundo de Funil (Conversão)" },
+];
 
 const Dashboard = () => {
-  const [country, setCountry] = useState('');
-  const [product, setProduct] = useState('');
-  const [price, setPrice] = useState('');
-  const [funnelStage, setFunnelStage] = useState('');
-  const [campaignResult, setCampaignResult] = useState<CampaignResult | null>(null);
+  const [country, setCountry] = useState("");
+  const [product, setProduct] = useState("");
+  const [price, setPrice] = useState("");
+  const [funnel, setFunnel] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [trialDaysLeft, setTrialDaysLeft] = useState(2);
-  const [isTrialExpired, setIsTrialExpired] = useState(false);
+  const [campaignGenerated, setCampaignGenerated] = useState(false);
+  const [activeTab, setActiveTab] = useState("titles");
+  const [remainingDays, setRemainingDays] = useState(2);
 
-  // Simulate trial countdown
-  useEffect(() => {
-    const trialStartDate = localStorage.getItem('copyfy_trial_start');
-    if (!trialStartDate) {
-      localStorage.setItem('copyfy_trial_start', new Date().toISOString());
-    } else {
-      const startDate = new Date(trialStartDate);
-      const now = new Date();
-      const diffInDays = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
-      const daysLeft = Math.max(0, 2 - diffInDays);
-      setTrialDaysLeft(daysLeft);
-      setIsTrialExpired(daysLeft === 0);
-    }
-  }, []);
-
-  const countries = [
-    { code: 'US', name: 'Estados Unidos', language: 'en' },
-    { code: 'BR', name: 'Brasil', language: 'pt' },
-    { code: 'GB', name: 'Reino Unido', language: 'en' },
-    { code: 'DE', name: 'Alemanha', language: 'de' },
-    { code: 'FR', name: 'França', language: 'fr' },
-    { code: 'ES', name: 'Espanha', language: 'es' },
-    { code: 'IT', name: 'Itália', language: 'it' },
-    { code: 'JP', name: 'Japão', language: 'ja' },
-    { code: 'AU', name: 'Austrália', language: 'en' },
-    { code: 'CA', name: 'Canadá', language: 'en' },
+  // Mock generated content
+  const titles = [
+    "Descubra o Melhor [Produto] Online",
+    "Oferta Exclusiva: [Produto] Premium",
+    "[Produto] Profissional - 50% OFF Hoje",
+    "O Segredo do [Produto] Revelado!",
+    "Economize com Nosso [Produto] Agora",
+    "[Produto] Original com Frete Grátis",
+    "Revolucione seu Dia com [Produto]",
+    "Último Lançamento: [Produto] 2023",
+    "[Produto] que Transforma Resultados",
+    "Experimente [Produto] - Satisfação Garantida",
+    "O [Produto] Favorito dos Especialistas",
+    "Promoção [Produto] por Tempo Limitado",
+    "Compare e Economize no [Produto]",
+    "[Produto] com Desconto Imperdível",
+    "[Produto] Original - Entrega Expressa",
+    "Aproveite: [Produto] com Brinde",
+    "[Produto] Premium - Qualidade Superior",
+    "Compre [Produto] Agora e Economize",
+    "[Produto] Testado e Aprovado",
+    "O Melhor [Produto] da Categoria",
   ];
 
-  const titleTemplates = {
-    topo: [
-      "Descubra {produto}",
-      "Novo {produto}",
-      "O Melhor {produto}",
-      "Oferta {produto}",
-      "Promoção {produto}",
-      "Exclusivo {produto}",
-      "Lançamento {produto}",
-      "Aproveite {produto}",
-      "Super {produto}",
-      "Top {produto}",
-      "Premium {produto}",
-      "Incrível {produto}",
-      "Especial {produto}",
-      "Único {produto}",
-      "Original {produto}",
-      "Oficial {produto}",
-      "Garantido {produto}",
-      "Testado {produto}",
-      "Aprovado {produto}",
-      "Recomendado {produto}"
-    ],
-    meio: [
-      "{produto} com {preco}% OFF",
-      "Só Hoje: {produto}",
-      "Últimas Unidades {produto}",
-      "Oferta Limitada {produto}",
-      "Desconto {produto}",
-      "Economize em {produto}",
-      "Promoção {produto}",
-      "Aproveite {produto}",
-      "Compre {produto}",
-      "Garanta {produto}",
-      "Adquira {produto}",
-      "Oportunidade {produto}",
-      "Chance Única {produto}",
-      "Não Perca {produto}",
-      "Últimas Horas {produto}",
-      "Liquidação {produto}",
-      "Super Oferta {produto}",
-      "Mega Desconto {produto}",
-      "Flash Sale {produto}",
-      "Black Friday {produto}"
-    ],
-    fundo: [
-      "Compre {produto} Agora",
-      "Peça {produto} Hoje",
-      "Garanta {produto}",
-      "Adquira {produto}",
-      "Solicite {produto}",
-      "Encomende {produto}",
-      "Reserve {produto}",
-      "Confirme {produto}",
-      "Finalize {produto}",
-      "Complete {produto}",
-      "Clique {produto}",
-      "Acesse {produto}",
-      "Visite {produto}",
-      "Experimente {produto}",
-      "Teste {produto}",
-      "Prove {produto}",
-      "Conheça {produto}",
-      "Veja {produto}",
-      "Descubra {produto}",
-      "Explore {produto}"
-    ]
-  };
+  const descriptions = [
+    "Descubra por que nosso [Produto] é o preferido. Benefícios exclusivos e garantia total de satisfação!",
+    "Economize tempo e dinheiro com nosso [Produto]. Resultados imediatos e suporte personalizado.",
+    "[Produto] premium com qualidade garantida. Entrega rápida e segura. Aproveite nossa oferta!",
+    "Transforme seus resultados com [Produto]. Usado por profissionais. Compre agora com desconto!",
+    "O [Produto] mais vendido. Avaliação 5 estrelas. Últimas unidades disponíveis com frete grátis!",
+    "Solução definitiva: [Produto] revolucionário. Tecnologia exclusiva e resultados comprovados.",
+    "[Produto] versátil e durável. Ideal para todas as necessidades. Satisfação ou seu dinheiro de volta!",
+    "Novo [Produto]: desempenho superior, preço acessível. Economize 30% na compra hoje!",
+    "Experimente o premiado [Produto]. Envio no mesmo dia para pedidos até 15h. Garantia vitalícia!",
+    "[Produto] oficial: autenticidade garantida. Parcele em até 12x sem juros. Promoção por tempo limitado!",
+  ];
 
-  const generateCampaign = () => {
-    if (isTrialExpired) {
+  const usps = [
+    "Entrega em 24h",
+    "Garantia de 2 Anos",
+    "Suporte Premium 24/7",
+  ];
+
+  const sitelinks = [
+    { title: "Ver Avaliações ⭐⭐⭐⭐⭐", description: "Mais de 10.000 clientes satisfeitos" },
+    { title: "Compre com 50% OFF", description: "Oferta por tempo limitado" },
+    { title: "Garantia de Satisfação", description: "30 dias para testar ou seu dinheiro de volta" },
+    { title: "Frete Grátis Hoje", description: "Para compras acima de R$100" },
+  ];
+
+  // Handle campaign generation
+  const handleGenerateCampaign = () => {
+    if (!country || !product || !price || !funnel) {
       toast({
-        title: "Trial Expirado",
-        description: "Seu período de teste terminou. Faça o upgrade para continuar gerando campanhas.",
+        title: "Campos incompletos",
+        description: "Por favor, preencha todos os campos para gerar a campanha.",
         variant: "destructive",
       });
       return;
     }
 
-    if (!country || !product || !price || !funnelStage) {
+    if (remainingDays <= 0) {
       toast({
-        title: "Campos obrigatórios",
-        description: "Preencha todos os campos para gerar a campanha.",
+        title: "Trial expirado",
+        description: "Seu período de teste gratuito acabou. Assine um plano para continuar.",
         variant: "destructive",
       });
       return;
@@ -145,300 +115,283 @@ const Dashboard = () => {
 
     setIsGenerating(true);
 
+    // Simulate API call
     setTimeout(() => {
-      const selectedCountry = countries.find(c => c.code === country);
-      const templates = titleTemplates[funnelStage as keyof typeof titleTemplates] || titleTemplates.topo;
-      
-      // Generate 20 unique titles
-      const titles = [];
-      const usedTitles = new Set();
-      while (titles.length < 20 && usedTitles.size < templates.length * 3) {
-        const template = templates[Math.floor(Math.random() * templates.length)];
-        let title = template
-          .replace('{produto}', product)
-          .replace('{preco}', price);
-        
-        // Add variations
-        if (Math.random() > 0.5) {
-          const variations = ['!', ' ✓', ' →', ' ⚡', ' 🔥'];
-          title += variations[Math.floor(Math.random() * variations.length)];
-        }
-        
-        if (title.length <= 30 && !usedTitles.has(title)) {
-          titles.push(title);
-          usedTitles.add(title);
-        }
-      }
-
-      // Generate 10 descriptions
-      const descriptionTemplates = [
-        `${product} com qualidade superior. Aproveite nossa oferta especial!`,
-        `Desconto exclusivo em ${product}. Não perca esta oportunidade única.`,
-        `${product} original com garantia. Entrega rápida e segura.`,
-        `Oferta limitada: ${product} com ${price}% de desconto. Compre agora!`,
-        `O melhor ${product} do mercado. Satisfação 100% garantida.`,
-        `${product} premium com preço especial. Últimas unidades disponíveis.`,
-        `Promoção imperdível: ${product} com frete grátis. Aproveite!`,
-        `${product} testado e aprovado. Milhares de clientes satisfeitos.`,
-        `Oferta relâmpago: ${product} por tempo limitado. Garante já!`,
-        `${product} exclusivo com bônus especiais. Não deixe passar!`
-      ];
-
-      const descriptions = descriptionTemplates.slice(0, 10);
-
-      // Generate 3 USPs
-      const usps = [
-        "Garantia 30 dias",
-        "Frete Grátis",
-        "Suporte 24/7"
-      ];
-
-      // Generate 4 sitelinks
-      const sitelinks = [
-        "Comprar Agora",
-        "Ver Ofertas", 
-        "Frete Grátis",
-        "Garantias"
-      ];
-
-      setCampaignResult({
-        titles: titles.slice(0, 20),
-        descriptions,
-        usps,
-        sitelinks
-      });
-
+      setCampaignGenerated(true);
       setIsGenerating(false);
-      
+      setRemainingDays(prevDays => prevDays - 1);
       toast({
-        title: "Campanha Gerada!",
-        description: `Campanha criada para ${selectedCountry?.name} com sucesso.`,
+        title: "Campanha gerada com sucesso!",
+        description: "Suas copies estão prontas para uso.",
       });
-    }, 2000);
+    }, 1500);
   };
 
+  // Copy to clipboard function
   const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text.replace("[Produto]", product));
     toast({
       title: "Copiado!",
-      description: "Texto copiado para a área de transferência.",
+      description: "Texto copiado para área de transferência.",
     });
   };
 
+  // Reset form
+  const resetForm = () => {
+    setCountry("");
+    setProduct("");
+    setPrice("");
+    setFunnel("");
+    setCampaignGenerated(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">C</span>
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50">
+      <header className="border-b bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">C</span>
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Copyfy Dashboard
-            </h1>
+            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
+              Copyfy
+            </span>
           </div>
-          <div className="text-right">
-            {!isTrialExpired ? (
-              <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                Trial: {trialDaysLeft} dias restantes
-              </Badge>
-            ) : (
-              <Badge variant="destructive">
-                Trial Expirado
-              </Badge>
-            )}
+          <div className="flex items-center space-x-4">
+            <Badge variant="outline" className="py-1.5 text-indigo-700 border-indigo-300 bg-indigo-50">
+              Trial: {remainingDays} {remainingDays === 1 ? 'dia' : 'dias'} restantes
+            </Badge>
+            <Button variant="outline" size="sm">
+              Minha Conta
+            </Button>
           </div>
         </div>
+      </header>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Input Form */}
-          <Card className="shadow-lg border-0">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-blue-600" />
-                Configurar Campanha
-              </CardTitle>
+      <div className="container mx-auto p-4 lg:p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Form Section */}
+          <Card className="lg:col-span-1 border-0 shadow-lg">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-xl font-bold">Gerador de Campanhas</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <Label htmlFor="country">País</Label>
+            <CardContent className="space-y-5">
+              <div className="space-y-2">
+                <Label htmlFor="country">País & Idioma</Label>
                 <Select value={country} onValueChange={setCountry}>
-                  <SelectTrigger>
+                  <SelectTrigger id="country" className="bg-white">
                     <SelectValue placeholder="Selecione o país" />
                   </SelectTrigger>
                   <SelectContent>
-                    {countries.map((c) => (
-                      <SelectItem key={c.code} value={c.code}>
-                        {c.name}
-                      </SelectItem>
-                    ))}
+                    <SelectGroup>
+                      <SelectLabel>Países Disponíveis</SelectLabel>
+                      {countries.map((country) => (
+                        <SelectItem key={country.value} value={country.value}>
+                          {country.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
 
-              <div>
-                <Label htmlFor="product">Produto</Label>
+              <div className="space-y-2">
+                <Label htmlFor="product">Nome do Produto</Label>
                 <Input
                   id="product"
+                  placeholder="Ex: iPhone 13 Pro"
                   value={product}
                   onChange={(e) => setProduct(e.target.value)}
-                  placeholder="Ex: Curso de Marketing Digital"
+                  className="bg-white"
                 />
               </div>
 
-              <div>
-                <Label htmlFor="price">Preço/Desconto (%)</Label>
+              <div className="space-y-2">
+                <Label htmlFor="price">Preço</Label>
                 <Input
                   id="price"
+                  placeholder="Ex: 999,90"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  placeholder="Ex: 50"
+                  className="bg-white"
                 />
               </div>
 
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="funnel">Estratégia de Funil</Label>
-                <Select value={funnelStage} onValueChange={setFunnelStage}>
-                  <SelectTrigger>
+                <Select value={funnel} onValueChange={setFunnel}>
+                  <SelectTrigger id="funnel" className="bg-white">
                     <SelectValue placeholder="Selecione a estratégia" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="topo">Topo de Funil</SelectItem>
-                    <SelectItem value="meio">Meio de Funil</SelectItem>
-                    <SelectItem value="fundo">Fundo de Funil</SelectItem>
+                    <SelectGroup>
+                      <SelectLabel>Estágios do Funil</SelectLabel>
+                      {funnelStrategies.map((strategy) => (
+                        <SelectItem key={strategy.value} value={strategy.value}>
+                          {strategy.label}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
                   </SelectContent>
                 </Select>
               </div>
 
-              <Button 
-                onClick={generateCampaign}
-                disabled={isGenerating || isTrialExpired}
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-              >
-                {isGenerating ? (
-                  <>
-                    <RefreshCw className="w-4 h-4 mr-2 animate-spin" />
-                    Gerando Campanha...
-                  </>
-                ) : (
-                  <>
-                    <Zap className="w-4 h-4 mr-2" />
-                    Gerar Campanha
-                  </>
-                )}
-              </Button>
+              <div className="pt-3 space-y-3">
+                <Button
+                  className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white"
+                  onClick={handleGenerateCampaign}
+                  disabled={isGenerating || remainingDays <= 0}
+                >
+                  {isGenerating ? (
+                    <>
+                      <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
+                      Gerando...
+                    </>
+                  ) : remainingDays <= 0 ? (
+                    <>
+                      Assinar Plano
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  ) : (
+                    <>
+                      Gerar Campanha
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </>
+                  )}
+                </Button>
 
-              {isTrialExpired && (
-                <div className="text-center p-4 bg-red-50 rounded-lg">
-                  <p className="text-red-700 font-medium">
-                    Seu trial expirou. Faça o upgrade para continuar!
-                  </p>
-                  <Button className="mt-2 bg-red-600 hover:bg-red-700">
-                    Fazer Upgrade
+                {campaignGenerated && (
+                  <Button
+                    variant="outline"
+                    className="w-full border-indigo-200 text-indigo-700"
+                    onClick={resetForm}
+                  >
+                    <RefreshCw className="mr-2 h-4 w-4" />
+                    Limpar e Gerar Novamente
                   </Button>
-                </div>
-              )}
+                )}
+
+                {remainingDays === 0 && (
+                  <p className="text-sm text-center text-red-600 mt-2">
+                    Seu período de teste gratuito acabou. Assine um plano para continuar gerando campanhas.
+                  </p>
+                )}
+              </div>
             </CardContent>
           </Card>
 
-          {/* Results */}
-          {campaignResult && (
-            <div className="space-y-6">
-              {/* Titles */}
-              <Card className="shadow-lg border-0">
-                <CardHeader>
-                  <CardTitle>Títulos (20 variações)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
-                    {campaignResult.titles.map((title, index) => (
-                      <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                        <span className="text-sm truncate flex-1">{title}</span>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => copyToClipboard(title)}
-                        >
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Descriptions */}
-              <Card className="shadow-lg border-0">
-                <CardHeader>
-                  <CardTitle>Descrições (10 variações)</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {campaignResult.descriptions.map((desc, index) => (
-                      <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                        <span className="text-sm flex-1">{desc}</span>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          onClick={() => copyToClipboard(desc)}
-                        >
-                          <Copy className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* USPs and Sitelinks */}
-              <div className="grid grid-cols-2 gap-4">
-                <Card className="shadow-lg border-0">
-                  <CardHeader>
-                    <CardTitle>USPs (3)</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      {campaignResult.usps.map((usp, index) => (
-                        <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                          <span className="text-sm">{usp}</span>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => copyToClipboard(usp)}
-                          >
-                            <Copy className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="shadow-lg border-0">
-                  <CardHeader>
-                    <CardTitle>Sitelinks (4)</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-2">
-                      {campaignResult.sitelinks.map((link, index) => (
-                        <div key={index} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                          <span className="text-sm">{link}</span>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            onClick={() => copyToClipboard(link)}
-                          >
-                            <Copy className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+          {/* Results Section */}
+          <Card className="lg:col-span-2 border-0 shadow-lg">
+            {!campaignGenerated ? (
+              <div className="flex flex-col items-center justify-center p-12 text-center h-full">
+                <div className="w-16 h-16 mb-4 bg-indigo-100 rounded-full flex items-center justify-center">
+                  <ArrowRight className="h-8 w-8 text-indigo-500" />
+                </div>
+                <h3 className="text-xl font-medium mb-2">Gerador de Campanhas Copyfy</h3>
+                <p className="text-gray-600 max-w-md">
+                  Preencha os campos ao lado e clique em "Gerar Campanha" para criar copies adaptadas para 
+                  Google Ads em mais de 100 idiomas.
+                </p>
               </div>
-            </div>
-          )}
+            ) : (
+              <>
+                <CardHeader className="pb-0">
+                  <div className="flex justify-between items-center">
+                    <CardTitle className="text-xl font-bold">Campanha para {product}</CardTitle>
+                    <Button variant="outline" size="sm" className="text-indigo-700 border-indigo-200">
+                      <Download className="mr-2 h-4 w-4" />
+                      Exportar
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-5">
+                  <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+                    <TabsList className="grid grid-cols-4 mb-2">
+                      <TabsTrigger value="titles" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
+                        Títulos
+                      </TabsTrigger>
+                      <TabsTrigger value="descriptions" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
+                        Descrições
+                      </TabsTrigger>
+                      <TabsTrigger value="usps" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
+                        USPs
+                      </TabsTrigger>
+                      <TabsTrigger value="sitelinks" className="data-[state=active]:bg-indigo-500 data-[state=active]:text-white">
+                        Sitelinks
+                      </TabsTrigger>
+                    </TabsList>
+
+                    <TabsContent value="titles" className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {titles.map((title, idx) => (
+                          <div key={idx} className="group relative bg-white p-3 rounded-md border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all">
+                            <p className="pr-8">{title.replace("[Produto]", product)}</p>
+                            <button
+                              onClick={() => copyToClipboard(title)}
+                              className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <Copy className="h-4 w-4 text-indigo-500 hover:text-indigo-700" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="descriptions" className="space-y-4">
+                      <div className="grid grid-cols-1 gap-3">
+                        {descriptions.map((desc, idx) => (
+                          <div key={idx} className="group relative bg-white p-3 rounded-md border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all">
+                            <p className="pr-8">{desc.replace("[Produto]", product)}</p>
+                            <button
+                              onClick={() => copyToClipboard(desc)}
+                              className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <Copy className="h-4 w-4 text-indigo-500 hover:text-indigo-700" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="usps" className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        {usps.map((usp, idx) => (
+                          <div key={idx} className="group relative bg-white p-3 rounded-md border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all">
+                            <p className="pr-8">{usp}</p>
+                            <button
+                              onClick={() => copyToClipboard(usp)}
+                              className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              <Copy className="h-4 w-4 text-indigo-500 hover:text-indigo-700" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="sitelinks" className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {sitelinks.map((link, idx) => (
+                          <div key={idx} className="group relative bg-white p-4 rounded-md border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all">
+                            <div className="flex justify-between">
+                              <h4 className="font-medium">{link.title}</h4>
+                              <button
+                                onClick={() => copyToClipboard(link.title)}
+                                className="opacity-0 group-hover:opacity-100 transition-opacity"
+                              >
+                                <Copy className="h-4 w-4 text-indigo-500 hover:text-indigo-700" />
+                              </button>
+                            </div>
+                            <p className="text-sm text-gray-600 mt-1">{link.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+                </CardContent>
+              </>
+            )}
+          </Card>
         </div>
       </div>
     </div>
