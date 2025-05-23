@@ -10,6 +10,7 @@ import { toast } from "@/hooks/use-toast";
 import { ArrowRight, Copy, Download, RefreshCw } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Checkbox } from "./ui/checkbox";
+import Logo from "./Logo";
 
 // Mock country data with 100 countries total
 const countries = [
@@ -351,8 +352,7 @@ const countryToLanguage = {
   bo: "es", gt: "es", sv: "es", hn: "es", ni: "es", cr: "es", pa: "es", cu: "es", do: "es", pr: "es",
   br: "pt", pt: "pt", ao: "pt", mz: "pt",
   fr: "fr", be: "fr", 
-  de: "de", at: "de", 
-  ch: "de" // Switzerland primarily uses German, but also French and Italian
+  de: "de", at: "de", ch: "de" 
 };
 
 // Default language if not found in the mapping
@@ -459,14 +459,7 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50">
       <header className="border-b bg-white shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">C</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
-              Copyfy
-            </span>
-          </div>
+          <Logo />
           <div className="flex items-center space-x-4">
             <Badge variant="outline" className="py-1.5 text-indigo-700 border-indigo-300 bg-indigo-50">
               Trial: {remainingDays} {remainingDays === 1 ? 'dia' : 'dias'} restantes
