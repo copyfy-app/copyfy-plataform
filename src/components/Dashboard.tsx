@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
 import { toast } from "@/hooks/use-toast";
 import { ArrowRight, Copy, Download, RefreshCw } from "lucide-react";
 import { Badge } from "./ui/badge";
@@ -345,7 +344,7 @@ const templateContent = {
   },
 };
 
-// Map countries to language codes - Fixed the duplicate entries
+// Map countries to language codes
 const countryToLanguage = {
   us: "en", gb: "en", ca: "en", au: "en", nz: "en", in: "en", za: "en", ie: "en", sg: "en", ph: "en",
   es: "es", mx: "es", co: "es", ar: "es", cl: "es", pe: "es", ve: "es", ec: "es", uy: "es", py: "es",
@@ -476,7 +475,7 @@ const Dashboard = () => {
           {/* Form Section */}
           <Card className="lg:col-span-1 border-0 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xl font-bold">Gerador de Campanhas</CardTitle>
+              <CardTitle className="text-xl font-display font-semibold">Gerador de Campanhas</CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
               <div className="space-y-2">
@@ -590,7 +589,7 @@ const Dashboard = () => {
                 <div className="w-16 h-16 mb-4 bg-indigo-100 rounded-full flex items-center justify-center">
                   <ArrowRight className="h-8 w-8 text-indigo-500" />
                 </div>
-                <h3 className="text-xl font-medium mb-2">Gerador de Campanhas Copyfy</h3>
+                <h3 className="text-xl font-display font-medium mb-2">Gerador de Campanhas Copyfy</h3>
                 <p className="text-gray-600 max-w-md">
                   Preencha os campos ao lado e clique em "Gerar Campanha" para criar copies adaptadas para 
                   Google Ads em mais de 100 idiomas.
@@ -600,7 +599,7 @@ const Dashboard = () => {
               <>
                 <CardHeader className="pb-0">
                   <div className="flex justify-between items-center">
-                    <CardTitle className="text-xl font-bold">Campanha para {product}</CardTitle>
+                    <CardTitle className="text-xl font-display font-semibold">Campanha para {product}</CardTitle>
                     <Button variant="outline" size="sm" className="text-indigo-700 border-indigo-200">
                       <Download className="mr-2 h-4 w-4" />
                       Exportar
