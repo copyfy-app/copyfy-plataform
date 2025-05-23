@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +13,6 @@ import { Checkbox } from "./ui/checkbox";
 
 // Mock country data with 100 countries total
 const countries = [
-  // Original 10 countries
   { value: "us", label: "Estados Unidos (Inglês)" },
   { value: "br", label: "Brasil (Português)" },
   { value: "es", label: "Espanha (Espanhol)" },
@@ -25,7 +23,6 @@ const countries = [
   { value: "cn", label: "China (Mandarim)" },
   { value: "ru", label: "Rússia (Russo)" },
   { value: "ar", label: "Argentina (Espanhol)" },
-  // Additional 90 countries
   { value: "gb", label: "Reino Unido (Inglês)" },
   { value: "ca", label: "Canadá (Inglês/Francês)" },
   { value: "au", label: "Austrália (Inglês)" },
@@ -128,6 +125,238 @@ const funnelStrategies = [
   { value: "bottom", label: "Fundo de Funil (Conversão)" },
 ];
 
+// Template content for different languages
+const templateContent = {
+  titles: {
+    en: [
+      "Discover the Best [Product] Online",
+      "Exclusive Offer: Premium [Product]",
+      "[Product] Professional - 50% OFF Today",
+      "The Secret of [Product] Revealed!",
+      "Save with Our [Product] Now",
+      "Original [Product] with Free Shipping",
+      "Revolutionize Your Day with [Product]",
+      "Latest Release: [Product] 2023",
+      "[Product] that Transforms Results",
+      "Try [Product] - Satisfaction Guaranteed",
+      "The Experts' Favorite [Product]",
+      "Limited Time [Product] Promotion",
+      "Compare and Save on [Product]",
+      "[Product] with Unmissable Discount",
+      "Original [Product] - Express Delivery",
+      "Take Advantage: [Product] with Gift",
+      "Premium [Product] - Superior Quality",
+      "Buy [Product] Now and Save",
+      "Tested and Approved [Product]",
+      "The Best [Product] in the Category",
+    ],
+    es: [
+      "Descubre el Mejor [Product] Online",
+      "Oferta Exclusiva: [Product] Premium",
+      "[Product] Profesional - 50% DESC Hoy",
+      "¡El Secreto del [Product] Revelado!",
+      "Ahorra con Nuestro [Product] Ahora",
+      "[Product] Original con Envío Gratis",
+      "Revoluciona tu Día con [Product]",
+      "Último Lanzamiento: [Product] 2023",
+      "[Product] que Transforma Resultados",
+      "Prueba [Product] - Satisfacción Garantizada",
+      "El [Product] Favorito de los Expertos",
+      "Promoción [Product] por Tiempo Limitado",
+      "Compara y Ahorra en [Product]",
+      "[Product] con Descuento Imperdible",
+      "[Product] Original - Entrega Express",
+      "Aprovecha: [Product] con Regalo",
+      "[Product] Premium - Calidad Superior",
+      "Compra [Product] Ahora y Ahorra",
+      "[Product] Probado y Aprobado",
+      "El Mejor [Product] de la Categoría",
+    ],
+    pt: [
+      "Descubra o Melhor [Product] Online",
+      "Oferta Exclusiva: [Product] Premium",
+      "[Product] Profissional - 50% OFF Hoje",
+      "O Segredo do [Product] Revelado!",
+      "Economize com Nosso [Product] Agora",
+      "[Product] Original com Frete Grátis",
+      "Revolucione seu Dia com [Product]",
+      "Último Lançamento: [Product] 2023",
+      "[Product] que Transforma Resultados",
+      "Experimente [Product] - Satisfação Garantida",
+      "O [Product] Favorito dos Especialistas",
+      "Promoção [Product] por Tempo Limitado",
+      "Compare e Economize no [Product]",
+      "[Product] com Desconto Imperdível",
+      "[Product] Original - Entrega Expressa",
+      "Aproveite: [Product] com Brinde",
+      "[Product] Premium - Qualidade Superior",
+      "Compre [Product] Agora e Economize",
+      "[Product] Testado e Aprovado",
+      "O Melhor [Product] da Categoria",
+    ],
+    fr: [
+      "Découvrez le Meilleur [Product] en Ligne",
+      "Offre Exclusive: [Product] Premium",
+      "[Product] Professionnel - 50% de Réduction",
+      "Le Secret du [Product] Révélé!",
+      "Économisez avec Notre [Product] Maintenant",
+      "[Product] Original avec Livraison Gratuite",
+      "Révolutionnez Votre Journée avec [Product]",
+      "Dernière Sortie: [Product] 2023",
+      "[Product] qui Transforme les Résultats",
+      "Essayez [Product] - Satisfaction Garantie",
+      "Le [Product] Favori des Experts",
+      "Promotion [Product] à Durée Limitée",
+      "Comparez et Économisez sur [Product]",
+      "[Product] avec Remise Immanquable",
+      "[Product] Original - Livraison Express",
+      "Profitez: [Product] avec Cadeau",
+      "[Product] Premium - Qualité Supérieure",
+      "Achetez [Product] Maintenant et Économisez",
+      "[Product] Testé et Approuvé",
+      "Le Meilleur [Product] de la Catégorie",
+    ],
+    de: [
+      "Entdecken Sie das beste [Product] Online",
+      "Exklusives Angebot: Premium [Product]",
+      "[Product] Professional - 50% Rabatt Heute",
+      "Das Geheimnis des [Product] enthüllt!",
+      "Sparen Sie mit Unserem [Product] Jetzt",
+      "Original [Product] mit Kostenlosem Versand",
+      "Revolutionieren Sie Ihren Tag mit [Product]",
+      "Neueste Veröffentlichung: [Product] 2023",
+      "[Product] das Ergebnisse Transformiert",
+      "Testen Sie [Product] - Zufriedenheit Garantiert",
+      "Das [Product] Favorit der Experten",
+      "[Product] Aktion für Begrenzte Zeit",
+      "Vergleichen und Sparen Sie beim [Product]",
+      "[Product] mit Unschlagbarem Rabatt",
+      "Original [Product] - Express-Lieferung",
+      "Nutzen Sie: [Product] mit Geschenk",
+      "Premium [Product] - Überlegene Qualität",
+      "Kaufen Sie [Product] Jetzt und Sparen Sie",
+      "Getestet und Genehmigt [Product]",
+      "Das Beste [Product] in der Kategorie",
+    ],
+  },
+  descriptions: {
+    en: [
+      "Discover why our [Product] is the preferred choice. Exclusive benefits and complete satisfaction guarantee!",
+      "Save time and money with our [Product]. Immediate results and personalized support.",
+      "Premium [Product] with guaranteed quality. Fast and secure delivery. Take advantage of our offer!",
+      "Transform your results with [Product]. Used by professionals. Buy now with discount!",
+      "The best-selling [Product]. 5-star rating. Last units available with free shipping!",
+      "Definitive solution: revolutionary [Product]. Exclusive technology and proven results.",
+      "Versatile and durable [Product]. Ideal for all needs. Satisfaction or your money back!",
+      "New [Product]: superior performance, affordable price. Save 30% on purchase today!",
+      "Try the award-winning [Product]. Same day shipping for orders until 3pm. Lifetime warranty!",
+      "Official [Product]: guaranteed authenticity. Pay in up to 12 installments without interest. Limited time promotion!",
+    ],
+    es: [
+      "Descubre por qué nuestro [Product] es el preferido. ¡Beneficios exclusivos y garantía total de satisfacción!",
+      "Ahorra tiempo y dinero con nuestro [Product]. Resultados inmediatos y soporte personalizado.",
+      "[Product] premium con calidad garantizada. Entrega rápida y segura. ¡Aprovecha nuestra oferta!",
+      "Transforma tus resultados con [Product]. Usado por profesionales. ¡Compra ahora con descuento!",
+      "El [Product] más vendido. Valoración de 5 estrellas. ¡Últimas unidades disponibles con envío gratis!",
+      "Solución definitiva: [Product] revolucionario. Tecnología exclusiva y resultados comprobados.",
+      "[Product] versátil y duradero. Ideal para todas las necesidades. ¡Satisfacción o devolución de tu dinero!",
+      "Nuevo [Product]: rendimiento superior, precio accesible. ¡Ahorra 30% en la compra hoy!",
+      "Prueba el premiado [Product]. Envío el mismo día para pedidos hasta las 15h. ¡Garantía de por vida!",
+      "[Product] oficial: autenticidad garantizada. Paga hasta en 12 cuotas sin intereses. ¡Promoción por tiempo limitado!",
+    ],
+    pt: [
+      "Descubra por que nosso [Product] é o preferido. Benefícios exclusivos e garantia total de satisfação!",
+      "Economize tempo e dinheiro com nosso [Product]. Resultados imediatos e suporte personalizado.",
+      "[Product] premium com qualidade garantida. Entrega rápida e segura. Aproveite nossa oferta!",
+      "Transforme seus resultados com [Product]. Usado por profissionais. Compre agora com desconto!",
+      "O [Product] mais vendido. Avaliação 5 estrelas. Últimas unidades disponíveis com frete grátis!",
+      "Solução definitiva: [Product] revolucionário. Tecnologia exclusiva e resultados comprovados.",
+      "[Product] versátil e durável. Ideal para todas as necessidades. Satisfação ou seu dinheiro de volta!",
+      "Novo [Product]: desempenho superior, preço acessível. Economize 30% na compra hoje!",
+      "Experimente o premiado [Product]. Envio no mesmo dia para pedidos até 15h. Garantia vitalícia!",
+      "[Product] oficial: autenticidade garantida. Parcele em até 12x sem juros. Promoção por tempo limitado!",
+    ],
+    fr: [
+      "Découvrez pourquoi notre [Product] est le préféré. Avantages exclusifs et garantie totale de satisfaction!",
+      "Économisez du temps et de l'argent avec notre [Product]. Résultats immédiats et support personnalisé.",
+      "[Product] premium avec qualité garantie. Livraison rapide et sécurisée. Profitez de notre offre!",
+      "Transformez vos résultats avec [Product]. Utilisé par les professionnels. Achetez maintenant avec remise!",
+      "Le [Product] le plus vendu. Évaluation 5 étoiles. Dernières unités disponibles avec livraison gratuite!",
+      "Solution définitive: [Product] révolutionnaire. Technologie exclusive et résultats prouvés.",
+      "[Product] polyvalent et durable. Idéal pour tous les besoins. Satisfaction ou remboursement!",
+      "Nouveau [Product]: performance supérieure, prix abordable. Économisez 30% sur l'achat aujourd'hui!",
+      "Essayez le [Product] primé. Expédition le jour même pour les commandes jusqu'à 15h. Garantie à vie!",
+      "[Product] officiel: authenticité garantie. Payez jusqu'à 12 fois sans intérêt. Promotion à durée limitée!",
+    ],
+  },
+  usps: {
+    en: [
+      "24h Delivery",
+      "2 Year Warranty",
+      "Premium 24/7 Support",
+    ],
+    es: [
+      "Entrega en 24h",
+      "Garantía de 2 Años",
+      "Soporte Premium 24/7",
+    ],
+    pt: [
+      "Entrega em 24h",
+      "Garantia de 2 Anos",
+      "Suporte Premium 24/7",
+    ],
+    fr: [
+      "Livraison en 24h",
+      "Garantie de 2 Ans",
+      "Support Premium 24/7",
+    ],
+    de: [
+      "24-Stunden-Lieferung",
+      "2 Jahre Garantie",
+      "Premium 24/7 Support",
+    ],
+  },
+  sitelinks: {
+    en: [
+      { title: "Read Reviews ⭐⭐⭐⭐⭐", description: "Over 10,000 satisfied customers" },
+      { title: "Buy with 50% OFF", description: "Limited time offer" },
+      { title: "Satisfaction Guarantee", description: "30 days to test or your money back" },
+      { title: "Free Shipping Today", description: "For purchases over $100" },
+    ],
+    es: [
+      { title: "Leer Reseñas ⭐⭐⭐⭐⭐", description: "Más de 10,000 clientes satisfechos" },
+      { title: "Compre con 50% DESCUENTO", description: "Oferta por tiempo limitado" },
+      { title: "Garantía de Satisfacción", description: "30 días para probar o devolvemos su dinero" },
+      { title: "Envío Gratis Hoy", description: "Para compras superiores a $100" },
+    ],
+    pt: [
+      { title: "Ver Avaliações ⭐⭐⭐⭐⭐", description: "Mais de 10.000 clientes satisfeitos" },
+      { title: "Compre com 50% OFF", description: "Oferta por tempo limitado" },
+      { title: "Garantia de Satisfação", description: "30 dias para testar ou seu dinheiro de volta" },
+      { title: "Frete Grátis Hoje", description: "Para compras acima de R$100" },
+    ],
+    fr: [
+      { title: "Lire les Avis ⭐⭐⭐⭐⭐", description: "Plus de 10 000 clients satisfaits" },
+      { title: "Achetez avec 50% de RÉDUCTION", description: "Offre à durée limitée" },
+      { title: "Garantie de Satisfaction", description: "30 jours pour tester ou remboursement" },
+      { title: "Livraison Gratuite Aujourd'hui", description: "Pour les achats supérieurs à 100€" },
+    ],
+  },
+};
+
+// Map countries to language codes
+const countryToLanguage = {
+  us: "en", gb: "en", ca: "en", au: "en", nz: "en", in: "en", za: "en", ie: "en", sg: "en", ph: "en",
+  es: "es", mx: "es", co: "es", ar: "es", cl: "es", pe: "es", ve: "es", ec: "es", uy: "es", py: "es",
+  bo: "es", gt: "es", sv: "es", hn: "es", ni: "es", cr: "es", pa: "es", cu: "es", do: "es", pr: "es",
+  br: "pt", pt: "pt", ao: "pt", mz: "pt",
+  fr: "fr", be: "fr", ch: "fr",
+  de: "de", at: "de", ch: "de",
+};
+
+// Default language if not found in the mapping
+const defaultLanguage = "en";
+
 const Dashboard = () => {
   const [country, setCountry] = useState("");
   const [product, setProduct] = useState("");
@@ -137,56 +366,20 @@ const Dashboard = () => {
   const [campaignGenerated, setCampaignGenerated] = useState(false);
   const [activeTab, setActiveTab] = useState("titles");
   const [remainingDays, setRemainingDays] = useState(2);
+  const [currentLanguage, setCurrentLanguage] = useState(defaultLanguage);
 
-  // Mock generated content
-  const titles = [
-    "Descubra o Melhor [Produto] Online",
-    "Oferta Exclusiva: [Produto] Premium",
-    "[Produto] Profissional - 50% OFF Hoje",
-    "O Segredo do [Produto] Revelado!",
-    "Economize com Nosso [Produto] Agora",
-    "[Produto] Original com Frete Grátis",
-    "Revolucione seu Dia com [Produto]",
-    "Último Lançamento: [Produto] 2023",
-    "[Produto] que Transforma Resultados",
-    "Experimente [Produto] - Satisfação Garantida",
-    "O [Produto] Favorito dos Especialistas",
-    "Promoção [Produto] por Tempo Limitado",
-    "Compare e Economize no [Produto]",
-    "[Produto] com Desconto Imperdível",
-    "[Produto] Original - Entrega Expressa",
-    "Aproveite: [Produto] com Brinde",
-    "[Produto] Premium - Qualidade Superior",
-    "Compre [Produto] Agora e Economize",
-    "[Produto] Testado e Aprovado",
-    "O Melhor [Produto] da Categoria",
-  ];
+  // Content states for generated campaign
+  const [titles, setTitles] = useState([]);
+  const [descriptions, setDescriptions] = useState([]);
+  const [usps, setUsps] = useState([]);
+  const [sitelinks, setSitelinks] = useState([]);
 
-  const descriptions = [
-    "Descubra por que nosso [Produto] é o preferido. Benefícios exclusivos e garantia total de satisfação!",
-    "Economize tempo e dinheiro com nosso [Produto]. Resultados imediatos e suporte personalizado.",
-    "[Produto] premium com qualidade garantida. Entrega rápida e segura. Aproveite nossa oferta!",
-    "Transforme seus resultados com [Produto]. Usado por profissionais. Compre agora com desconto!",
-    "O [Produto] mais vendido. Avaliação 5 estrelas. Últimas unidades disponíveis com frete grátis!",
-    "Solução definitiva: [Produto] revolucionário. Tecnologia exclusiva e resultados comprovados.",
-    "[Produto] versátil e durável. Ideal para todas as necessidades. Satisfação ou seu dinheiro de volta!",
-    "Novo [Produto]: desempenho superior, preço acessível. Economize 30% na compra hoje!",
-    "Experimente o premiado [Produto]. Envio no mesmo dia para pedidos até 15h. Garantia vitalícia!",
-    "[Produto] oficial: autenticidade garantida. Parcele em até 12x sem juros. Promoção por tempo limitado!",
-  ];
-
-  const usps = [
-    "Entrega em 24h",
-    "Garantia de 2 Anos",
-    "Suporte Premium 24/7",
-  ];
-
-  const sitelinks = [
-    { title: "Ver Avaliações ⭐⭐⭐⭐⭐", description: "Mais de 10.000 clientes satisfeitos" },
-    { title: "Compre com 50% OFF", description: "Oferta por tempo limitado" },
-    { title: "Garantia de Satisfação", description: "30 dias para testar ou seu dinheiro de volta" },
-    { title: "Frete Grátis Hoje", description: "Para compras acima de R$100" },
-  ];
+  // Update language when country changes
+  const handleCountryChange = (countryCode) => {
+    setCountry(countryCode);
+    const languageCode = countryToLanguage[countryCode] || defaultLanguage;
+    setCurrentLanguage(languageCode);
+  };
 
   // Handle campaign generation
   const handleGenerateCampaign = () => {
@@ -210,8 +403,24 @@ const Dashboard = () => {
 
     setIsGenerating(true);
 
+    // Get the language code based on selected country
+    const languageCode = countryToLanguage[country] || defaultLanguage;
+    setCurrentLanguage(languageCode);
+
     // Simulate API call
     setTimeout(() => {
+      // Get content in the appropriate language
+      const languageTitles = templateContent.titles[languageCode] || templateContent.titles[defaultLanguage];
+      const languageDescriptions = templateContent.descriptions[languageCode] || templateContent.descriptions[defaultLanguage];
+      const languageUSPs = templateContent.usps[languageCode] || templateContent.usps[defaultLanguage];
+      const languageSitelinks = templateContent.sitelinks[languageCode] || templateContent.sitelinks[defaultLanguage];
+
+      // Set content in the appropriate language
+      setTitles(languageTitles);
+      setDescriptions(languageDescriptions);
+      setUsps(languageUSPs);
+      setSitelinks(languageSitelinks);
+
       setCampaignGenerated(true);
       setIsGenerating(false);
       setRemainingDays(prevDays => prevDays - 1);
@@ -223,8 +432,8 @@ const Dashboard = () => {
   };
 
   // Copy to clipboard function
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text.replace("[Produto]", product));
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text.replace("[Product]", product));
     toast({
       title: "Copiado!",
       description: "Texto copiado para área de transferência.",
@@ -238,6 +447,11 @@ const Dashboard = () => {
     setPrice("");
     setFunnel("");
     setCampaignGenerated(false);
+    setTitles([]);
+    setDescriptions([]);
+    setUsps([]);
+    setSitelinks([]);
+    setCurrentLanguage(defaultLanguage);
   };
 
   return (
@@ -273,7 +487,7 @@ const Dashboard = () => {
             <CardContent className="space-y-5">
               <div className="space-y-2">
                 <Label htmlFor="country">País & Idioma</Label>
-                <Select value={country} onValueChange={setCountry}>
+                <Select value={country} onValueChange={handleCountryChange}>
                   <SelectTrigger id="country" className="bg-white">
                     <SelectValue placeholder="Selecione o país" />
                   </SelectTrigger>
@@ -420,7 +634,7 @@ const Dashboard = () => {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {titles.map((title, idx) => (
                           <div key={idx} className="group relative bg-white p-3 rounded-md border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all">
-                            <p className="pr-8">{title.replace("[Produto]", product)}</p>
+                            <p className="pr-8">{title.replace("[Product]", product)}</p>
                             <button
                               onClick={() => copyToClipboard(title)}
                               className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -436,7 +650,7 @@ const Dashboard = () => {
                       <div className="grid grid-cols-1 gap-3">
                         {descriptions.map((desc, idx) => (
                           <div key={idx} className="group relative bg-white p-3 rounded-md border border-indigo-100 hover:border-indigo-300 hover:shadow-md transition-all">
-                            <p className="pr-8">{desc.replace("[Produto]", product)}</p>
+                            <p className="pr-8">{desc.replace("[Product]", product)}</p>
                             <button
                               onClick={() => copyToClipboard(desc)}
                               className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
