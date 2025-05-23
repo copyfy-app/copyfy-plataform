@@ -274,7 +274,7 @@ const templateContent = {
       "[Product] versátil e durável. Ideal para todas as necessidades. Satisfação ou seu dinheiro de volta!",
       "Novo [Product]: desempenho superior, preço acessível. Economize 30% na compra hoje!",
       "Experimente o premiado [Product]. Envio no mesmo dia para pedidos até 15h. Garantia vitalícia!",
-      "[Product] oficial: autenticidade garantida. Parcele em até 12x sem juros. Promoção por tempo limitado!",
+      "[Product] oficial: autenticidade garantizada. Parcele em até 12x sem juros. Promoção por tempo limitado!",
     ],
     fr: [
       "Découvrez pourquoi notre [Product] est le préféré. Avantages exclusifs et garantie totale de satisfaction!",
@@ -344,14 +344,15 @@ const templateContent = {
   },
 };
 
-// Map countries to language codes
+// Map countries to language codes - Fixed the duplicate entries
 const countryToLanguage = {
   us: "en", gb: "en", ca: "en", au: "en", nz: "en", in: "en", za: "en", ie: "en", sg: "en", ph: "en",
   es: "es", mx: "es", co: "es", ar: "es", cl: "es", pe: "es", ve: "es", ec: "es", uy: "es", py: "es",
   bo: "es", gt: "es", sv: "es", hn: "es", ni: "es", cr: "es", pa: "es", cu: "es", do: "es", pr: "es",
   br: "pt", pt: "pt", ao: "pt", mz: "pt",
-  fr: "fr", be: "fr", ch: "fr",
-  de: "de", at: "de", ch: "de",
+  fr: "fr", be: "fr", 
+  de: "de", at: "de", 
+  ch: "de" // Switzerland primarily uses German, but also French and Italian
 };
 
 // Default language if not found in the mapping
