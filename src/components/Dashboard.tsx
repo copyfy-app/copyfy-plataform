@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,12 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
-import { ArrowRight, Copy, Download, RefreshCw } from "lucide-react";
+import { ArrowRight, Copy, Download, LogOut, RefreshCw } from "lucide-react";
 import { Badge } from "./ui/badge";
-import { Checkbox } from "./ui/checkbox";
 import Logo from "./Logo";
 import { countries } from "./data/Countries";
 import { generateCODCopies } from "../utils/copyGenerator";
+import { useAuth } from "@/contexts/AuthContext";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog";
 
 // Mock funnel strategies
 const funnelStrategies = [
@@ -30,8 +30,15 @@ const Dashboard = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [campaignGenerated, setCampaignGenerated] = useState(false);
   const [activeTab, setActiveTab] = useState("titles");
-  const [remainingDays, setRemainingDays] = useState(2);
   const [currentLanguage, setCurrentLanguage] = useState("pt");
+
+  // Get authentication and trial state from context
+  const { 
+    trialDaysRemaining, 
+    isTrialActive, 
+    user, 
+    signOut 
+  } = useAuth();
 
   // Content states for generated campaign
   const [titles, setTitles] = useState([]);
@@ -59,7 +66,7 @@ const Dashboard = () => {
       return;
     }
 
-    if (remainingDays <= 0) {
+    if (!isTrialActive) {
       toast({
         title: "Trial expirado",
         description: "Seu período de teste gratuito acabou. Assine um plano para continuar.",
@@ -93,7 +100,6 @@ const Dashboard = () => {
 
       setCampaignGenerated(true);
       setIsGenerating(false);
-      setRemainingDays(prevDays => prevDays - 1);
       toast({
         title: "Campanha gerada com sucesso!",
         description: "Suas copies estão prontas para uso.",
@@ -130,12 +136,55 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Logo />
           <div className="flex items-center space-x-4">
-            <Badge variant="outline" className="py-1.5 text-indigo-700 border-indigo-300 bg-indigo-50">
-              Trial: {remainingDays} {remainingDays === 1 ? 'dia' : 'dias'} restantes
+            <Badge variant={isTrialActive ? "outline" : "destructive"} className={`py-1.5 ${isTrialActive ? "text-indigo-700 border-indigo-300 bg-indigo-50" : ""}`}>
+              {isTrialActive 
+                ? `Trial: ${trialDaysRemaining} ${trialDaysRemaining === 1 ? 'dia' : 'dias'} restantes` 
+                : 'Trial expirado'}
             </Badge>
-            <Button variant="outline" size="sm">
-              Minha Conta
-            </Button>
+            
+            {user && (
+              <div className="flex items-center space-x-2">
+                <Badge variant="secondary" className="py-1.5">
+                  {user.email}
+                </Badge>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="outline" size="sm">
+                      Minha Conta
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle>Minha Conta</DialogTitle>
+                      <DialogDescription>
+                        Gerencie suas informações de conta
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 py-4">
+                      <div>
+                        <p className="font-medium">Email</p>
+                        <p className="text-sm text-gray-500">{user.email}</p>
+                      </div>
+                      <div>
+                        <p className="font-medium">Status do Trial</p>
+                        <p className="text-sm text-gray-500">
+                          {isTrialActive 
+                            ? `Ativo - ${trialDaysRemaining} dias restantes` 
+                            : 'Expirado - Assine um plano para continuar'}
+                        </p>
+                      </div>
+                      <Button 
+                        variant="destructive" 
+                        className="w-full" 
+                        onClick={signOut}
+                      >
+                        <LogOut className="mr-2 h-4 w-4" /> Sair
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </div>
+            )}
           </div>
         </div>
       </header>
@@ -212,14 +261,14 @@ const Dashboard = () => {
                 <Button
                   className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white"
                   onClick={handleGenerateCampaign}
-                  disabled={isGenerating || remainingDays <= 0}
+                  disabled={isGenerating || !isTrialActive}
                 >
                   {isGenerating ? (
                     <>
                       <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
                       Gerando...
                     </>
-                  ) : remainingDays <= 0 ? (
+                  ) : !isTrialActive ? (
                     <>
                       Assinar Plano
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -243,7 +292,7 @@ const Dashboard = () => {
                   </Button>
                 )}
 
-                {remainingDays === 0 && (
+                {!isTrialActive && (
                   <p className="text-sm text-center text-red-600 mt-2">
                     Seu período de teste gratuito acabou. Assine um plano para continuar gerando campanhas.
                   </p>

@@ -1,32 +1,32 @@
+
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useNavigate } from 'react-router-dom';
-import { toast } from "@/hooks/use-toast";
 import Logo from '@/components/Logo';
+import { useAuth } from '@/contexts/AuthContext';
+import { Loader2 } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  
+  const { signIn, signUp, loading } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
+    
+    if (!email || !password) return;
 
-    // Simulate authentication
-    setTimeout(() => {
-      toast({
-        title: isLogin ? "Login realizado!" : "Conta criada!",
-        description: isLogin ? "Bem-vindo de volta ao Copyfy." : "Sua conta foi criada com sucesso.",
-      });
-      setIsLoading(false);
-      navigate('/dashboard');
-    }, 1500);
+    if (isLogin) {
+      await signIn(email, password);
+    } else {
+      await signUp(email, password);
+    }
   };
 
   return (
@@ -73,9 +73,16 @@ const Login = () => {
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-              disabled={isLoading}
+              disabled={loading}
             >
-              {isLoading ? 'Processando...' : (isLogin ? 'Entrar' : 'Criar Conta')}
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Processando...
+                </>
+              ) : (
+                isLogin ? 'Entrar' : 'Criar Conta'
+              )}
             </Button>
           </form>
           
@@ -83,6 +90,7 @@ const Login = () => {
             <p className="text-sm text-gray-600">
               {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}
               <button
+                type="button"
                 onClick={() => setIsLogin(!isLogin)}
                 className="ml-1 text-blue-600 hover:text-blue-700 font-medium"
               >

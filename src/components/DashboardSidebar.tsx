@@ -12,10 +12,13 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { Layers, FileText, HelpCircle, Home } from "lucide-react";
+import { Layers, FileText, HelpCircle, Home, User, LogOut } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
+import { Badge } from "./ui/badge";
 
 const DashboardSidebar = () => {
   const location = useLocation();
+  const { user, trialDaysRemaining, isTrialActive, signOut } = useAuth();
   
   const isActive = useCallback(
     (path: string) => {
@@ -27,6 +30,25 @@ const DashboardSidebar = () => {
   return (
     <Sidebar>
       <SidebarContent>
+        {user && (
+          <SidebarGroup>
+            <SidebarGroupContent className="p-3">
+              <div className="flex flex-col gap-2">
+                <div className="text-sm font-medium overflow-hidden text-ellipsis">
+                  {user.email}
+                </div>
+                <Badge variant={isTrialActive ? "outline" : "destructive"} className="w-fit">
+                  {isTrialActive 
+                    ? `Trial: ${trialDaysRemaining} dia${trialDaysRemaining !== 1 ? 's' : ''}` 
+                    : 'Trial expirado'}
+                </Badge>
+              </div>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
+        
+        <SidebarSeparator />
+
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -93,6 +115,40 @@ const DashboardSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      {user && (
+        <>
+          <SidebarSeparator />
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      tooltip="Minha Conta"
+                      asChild
+                    >
+                      <Link to="/dashboard">
+                        <User />
+                        <span>Minha Conta</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton
+                      tooltip="Sair"
+                      onClick={signOut}
+                    >
+                      <LogOut />
+                      <span>Sair</span>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+        </>
+      )}
 
       <SidebarFooter className="py-2">
         <div className="px-3 text-xs text-gray-500">
