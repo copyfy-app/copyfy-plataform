@@ -1,4 +1,5 @@
-import { GeneratedContent } from './types'; // Assuming you have a types file for interfaces
+
+import { GeneratedContent } from './types';
 
 // Utility to generate unique, multilingual COD (Cash on Delivery) marketing copies
 
