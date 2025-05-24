@@ -1,12 +1,6 @@
+import { GeneratedContent } from './types'; // Assuming you have a types file for interfaces
 
 // Utility to generate unique, multilingual COD (Cash on Delivery) marketing copies
-
-interface GeneratedContent {
-  titles: string[];
-  descriptions: string[];
-  usps: string[];
-  sitelinks: { title: string; description: string; }[];
-}
 
 // Character limits
 const LIMITS = {
@@ -519,25 +513,25 @@ export function generateCODCopies(
   const templates = contentTemplates[language] || contentTemplates.en;
   
   // Shuffle templates to ensure uniqueness each time
-  const shuffledTitles = shuffleArray(templates.titles);
-  const shuffledDescriptions = shuffleArray(templates.descriptions);
-  const shuffledUSPs = shuffleArray(templates.usps);
-  const shuffledSitelinks = shuffleArray(templates.sitelinks);
+  const shuffledTitles = shuffleArray<string>(templates.titles);
+  const shuffledDescriptions = shuffleArray<string>(templates.descriptions);
+  const shuffledUSPs = shuffleArray<string>(templates.usps);
+  const shuffledSitelinks = shuffleArray<{ title: string; description: string; }>(templates.sitelinks);
   
   // Generate the copies with placeholders replaced
-  const titles = shuffledTitles.slice(0, 20).map(title => 
+  const titles = shuffledTitles.slice(0, 20).map((title: string) => 
     truncateText(replacePlaceholders(title, product, price, country), LIMITS.TITLE)
   );
   
-  const descriptions = shuffledDescriptions.slice(0, 10).map(desc => 
+  const descriptions = shuffledDescriptions.slice(0, 10).map((desc: string) => 
     truncateText(replacePlaceholders(desc, product, price, country), LIMITS.DESCRIPTION)
   );
   
-  const usps = shuffledUSPs.slice(0, 10).map(usp => 
+  const usps = shuffledUSPs.slice(0, 10).map((usp: string) => 
     truncateText(replacePlaceholders(usp, product, price, country), LIMITS.USP)
   );
   
-  const sitelinks = shuffledSitelinks.slice(0, 4).map(link => {
+  const sitelinks = shuffledSitelinks.slice(0, 4).map((link: { title: string; description: string; }) => {
     return {
       title: truncateText(replacePlaceholders(link.title, product, price, country), LIMITS.SITELINK_TITLE),
       description: truncateText(replacePlaceholders(link.description, product, price, country), LIMITS.SITELINK_DESC)
