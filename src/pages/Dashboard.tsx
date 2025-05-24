@@ -1,13 +1,24 @@
 
 import { Suspense } from 'react';
+import { SidebarProvider, SidebarInset, SidebarRail } from "@/components/ui/sidebar";
 import Dashboard from '@/components/Dashboard';
+import DashboardSidebar from '@/components/DashboardSidebar';
 import { Skeleton } from "@/components/ui/skeleton";
 
 const DashboardPage = () => {
   return (
-    <Suspense fallback={<DashboardSkeleton />}>
-      <Dashboard />
-    </Suspense>
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full">
+        <DashboardSidebar />
+        <SidebarRail />
+        
+        <SidebarInset>
+          <Suspense fallback={<DashboardSkeleton />}>
+            <Dashboard />
+          </Suspense>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 };
 
