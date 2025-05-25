@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
 import { useAuth } from '@/contexts/AuthContext';
-import { Loader2, Eye, EyeOff } from 'lucide-react';
+import { Loader2, Eye, EyeOff, AlertCircle } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -21,28 +21,28 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    console.log("Submetendo formulário:", { email, isLogin });
+    console.log("🚀 Submetendo formulário:", { email, isLogin, passwordLength: password.length });
     
     if (!email || !password) {
-      console.log("Email ou senha vazios");
+      console.log("❌ Email ou senha vazios");
       return;
     }
 
     if (password.length < 6) {
-      console.log("Senha muito curta");
+      console.log("❌ Senha muito curta");
       return;
     }
 
     try {
       if (isLogin) {
-        console.log("Tentando fazer login...");
+        console.log("🔐 Tentando fazer login...");
         await signIn(email, password);
       } else {
-        console.log("Tentando criar conta...");
+        console.log("📝 Tentando criar conta...");
         await signUp(email, password);
       }
     } catch (error) {
-      console.error("Erro no handleSubmit:", error);
+      console.error("💥 Erro no handleSubmit:", error);
     }
   };
 
@@ -73,7 +73,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
-                  console.log("Email alterado:", e.target.value);
+                  console.log("📧 Email alterado:", e.target.value);
                 }}
                 placeholder="seu@email.com"
                 required
@@ -89,7 +89,7 @@ const Login = () => {
                   value={password}
                   onChange={(e) => {
                     setPassword(e.target.value);
-                    console.log("Senha alterada, comprimento:", e.target.value.length);
+                    console.log("🔒 Senha alterada, comprimento:", e.target.value.length);
                   }}
                   placeholder="••••••••"
                   required
@@ -133,7 +133,7 @@ const Login = () => {
                 type="button"
                 onClick={() => {
                   setIsLogin(!isLogin);
-                  console.log("Alternando modo:", !isLogin ? 'login' : 'signup');
+                  console.log("🔄 Alternando modo:", !isLogin ? 'login' : 'signup');
                 }}
                 className="ml-1 text-blue-600 hover:text-blue-700 font-medium"
               >
@@ -144,11 +144,16 @@ const Login = () => {
 
           {/* Informações de teste */}
           <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-            <p className="text-xs text-blue-700 text-center">
-              <strong>Para teste:</strong><br/>
-              Se não tem conta, clique em "Criar conta"<br/>
-              Admin: inspiranegociosonline@gmail.com
-            </p>
+            <div className="flex items-start space-x-2">
+              <AlertCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+              <div className="text-xs text-blue-700">
+                <p className="font-semibold mb-1">Informações importantes:</p>
+                <p className="mb-1">• Se você já criou uma conta, use "Fazer login"</p>
+                <p className="mb-1">• Se é primeira vez, use "Criar conta"</p>
+                <p className="mb-1">• Email admin: inspiranegociosonline@gmail.com</p>
+                <p>• Verifique o console do navegador para logs detalhados</p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-4 text-center">
