@@ -7,12 +7,13 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from 'react-router-dom';
 import Logo from '@/components/Logo';
 import { useAuth } from '@/contexts/AuthContext';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   
   const { signIn, signUp, loading } = useAuth();
@@ -20,12 +21,28 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !password) return;
+    console.log("Submetendo formulário:", { email, isLogin });
+    
+    if (!email || !password) {
+      console.log("Email ou senha vazios");
+      return;
+    }
 
-    if (isLogin) {
-      await signIn(email, password);
-    } else {
-      await signUp(email, password);
+    if (password.length < 6) {
+      console.log("Senha muito curta");
+      return;
+    }
+
+    try {
+      if (isLogin) {
+        console.log("Tentando fazer login...");
+        await signIn(email, password);
+      } else {
+        console.log("Tentando criar conta...");
+        await signUp(email, password);
+      }
+    } catch (error) {
+      console.error("Erro no handleSubmit:", error);
     }
   };
 
@@ -54,31 +71,54 @@ const Login = () => {
                 id="email"
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  console.log("Email alterado:", e.target.value);
+                }}
                 placeholder="seu@email.com"
                 required
+                autoComplete="email"
               />
             </div>
             <div>
               <Label htmlFor="password">Senha</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                required
-              />
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    console.log("Senha alterada, comprimento:", e.target.value.length);
+                  }}
+                  placeholder="••••••••"
+                  required
+                  minLength={6}
+                  autoComplete={isLogin ? "current-password" : "new-password"}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+              {!isLogin && (
+                <p className="text-xs text-gray-500 mt-1">
+                  Mínimo de 6 caracteres
+                </p>
+              )}
             </div>
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-              disabled={loading}
+              disabled={loading || !email || !password || password.length < 6}
             >
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Processando...
+                  {isLogin ? 'Entrando...' : 'Criando conta...'}
                 </>
               ) : (
                 isLogin ? 'Entrar' : 'Criar Conta'
@@ -91,11 +131,23 @@ const Login = () => {
               {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}
               <button
                 type="button"
-                onClick={() => setIsLogin(!isLogin)}
+                onClick={() => {
+                  setIsLogin(!isLogin);
+                  console.log("Alternando modo:", !isLogin ? 'login' : 'signup');
+                }}
                 className="ml-1 text-blue-600 hover:text-blue-700 font-medium"
               >
                 {isLogin ? 'Criar conta' : 'Fazer login'}
               </button>
+            </p>
+          </div>
+
+          {/* Informações de teste */}
+          <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+            <p className="text-xs text-blue-700 text-center">
+              <strong>Para teste:</strong><br/>
+              Se não tem conta, clique em "Criar conta"<br/>
+              Admin: inspiranegociosonline@gmail.com
             </p>
           </div>
 
