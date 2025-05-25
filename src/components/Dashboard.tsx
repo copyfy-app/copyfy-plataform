@@ -37,7 +37,8 @@ const Dashboard = () => {
     trialDaysRemaining, 
     isTrialActive, 
     user, 
-    signOut 
+    signOut,
+    isAdmin
   } = useAuth();
 
   // Content states for generated campaign
@@ -66,7 +67,8 @@ const Dashboard = () => {
       return;
     }
 
-    if (!isTrialActive) {
+    // Admin has unlimited access
+    if (!isTrialActive && !isAdmin) {
       toast({
         title: "Trial expirado",
         description: "Seu período de teste gratuito acabou. Assine um plano para continuar.",
@@ -136,10 +138,17 @@ const Dashboard = () => {
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Logo />
           <div className="flex items-center space-x-4">
+            {isAdmin && (
+              <Badge variant="default" className="py-1.5 bg-red-600 text-white">
+                ADMIN
+              </Badge>
+            )}
             <Badge variant={isTrialActive ? "outline" : "destructive"} className={`py-1.5 ${isTrialActive ? "text-indigo-700 border-indigo-300 bg-indigo-50" : ""}`}>
-              {isTrialActive 
-                ? `Trial: ${trialDaysRemaining} ${trialDaysRemaining === 1 ? 'dia' : 'dias'} restantes` 
-                : 'Trial expirado'}
+              {isAdmin 
+                ? "Acesso Ilimitado"
+                : isTrialActive 
+                  ? `Trial: ${trialDaysRemaining} ${trialDaysRemaining === 1 ? 'dia' : 'dias'} restantes` 
+                  : 'Trial expirado'}
             </Badge>
             
             {user && (
@@ -165,12 +174,20 @@ const Dashboard = () => {
                         <p className="font-medium">Email</p>
                         <p className="text-sm text-gray-500">{user.email}</p>
                       </div>
+                      {isAdmin && (
+                        <div>
+                          <p className="font-medium">Tipo de Conta</p>
+                          <p className="text-sm text-red-600 font-semibold">Administrador</p>
+                        </div>
+                      )}
                       <div>
                         <p className="font-medium">Status do Trial</p>
                         <p className="text-sm text-gray-500">
-                          {isTrialActive 
-                            ? `Ativo - ${trialDaysRemaining} dias restantes` 
-                            : 'Expirado - Assine um plano para continuar'}
+                          {isAdmin
+                            ? "Acesso ilimitado como administrador"
+                            : isTrialActive 
+                              ? `Ativo - ${trialDaysRemaining} dias restantes` 
+                              : 'Expirado - Assine um plano para continuar'}
                         </p>
                       </div>
                       <Button 
@@ -261,14 +278,14 @@ const Dashboard = () => {
                 <Button
                   className="w-full bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white"
                   onClick={handleGenerateCampaign}
-                  disabled={isGenerating || !isTrialActive}
+                  disabled={isGenerating || (!isTrialActive && !isAdmin)}
                 >
                   {isGenerating ? (
                     <>
                       <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
                       Gerando...
                     </>
-                  ) : !isTrialActive ? (
+                  ) : (!isTrialActive && !isAdmin) ? (
                     <>
                       Assinar Plano
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -292,7 +309,7 @@ const Dashboard = () => {
                   </Button>
                 )}
 
-                {!isTrialActive && (
+                {!isTrialActive && !isAdmin && (
                   <p className="text-sm text-center text-red-600 mt-2">
                     Seu período de teste gratuito acabou. Assine um plano para continuar gerando campanhas.
                   </p>

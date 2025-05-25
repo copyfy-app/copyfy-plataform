@@ -18,7 +18,7 @@ import { Badge } from "./ui/badge";
 
 const DashboardSidebar = () => {
   const location = useLocation();
-  const { user, trialDaysRemaining, isTrialActive, signOut } = useAuth();
+  const { user, trialDaysRemaining, isTrialActive, isAdmin, signOut } = useAuth();
   
   const isActive = useCallback(
     (path: string) => {
@@ -37,10 +37,17 @@ const DashboardSidebar = () => {
                 <div className="text-sm font-medium overflow-hidden text-ellipsis">
                   {user.email}
                 </div>
+                {isAdmin && (
+                  <Badge variant="default" className="w-fit bg-red-600 text-white">
+                    ADMIN
+                  </Badge>
+                )}
                 <Badge variant={isTrialActive ? "outline" : "destructive"} className="w-fit">
-                  {isTrialActive 
-                    ? `Trial: ${trialDaysRemaining} dia${trialDaysRemaining !== 1 ? 's' : ''}` 
-                    : 'Trial expirado'}
+                  {isAdmin
+                    ? "Acesso Ilimitado"
+                    : isTrialActive 
+                      ? `Trial: ${trialDaysRemaining} dia${trialDaysRemaining !== 1 ? 's' : ''}` 
+                      : 'Trial expirado'}
                 </Badge>
               </div>
             </SidebarGroupContent>

@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,6 +14,7 @@ type AuthContextType = {
   loading: boolean;
   trialDaysRemaining: number;
   isTrialActive: boolean;
+  isAdmin: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [trialDaysRemaining, setTrialDaysRemaining] = useState(0);
   const [isTrialActive, setIsTrialActive] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
   // Função para limpar completamente o estado da autenticação
@@ -45,21 +46,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  // Carregar informações do trial do usuário
-  const loadUserTrialInfo = async (userId: string) => {
+  // Carregar informações do trial e admin do usuário
+  const loadUserInfo = async (userId: string) => {
     try {
       const { data: profile, error } = await supabase
         .from("profiles")
-        .select("trial_start, trial_used")
+        .select("trial_start, trial_used, is_admin")
         .eq("id", userId)
         .single();
 
       if (error) {
-        console.error("Erro ao buscar informações de trial:", error);
+        console.error("Erro ao buscar informações do usuário:", error);
         return;
       }
 
       if (profile) {
+        // Verificar se é admin
+        setIsAdmin(profile.is_admin || false);
+        
+        // Se for admin, dar acesso irrestrito
+        if (profile.is_admin) {
+          setTrialDaysRemaining(999); // Valor alto para admin
+          setIsTrialActive(true);
+          return;
+        }
+
+        // Para usuários normais, calcular trial
         const daysRemaining = profile.trial_start 
           ? calculateDaysRemaining(new Date(profile.trial_start)) 
           : 0;
@@ -68,7 +80,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setIsTrialActive(daysRemaining > 0);
 
         // Atualizar o status de trial_used se ainda não foi marcado e o trial expirou
-        if (daysRemaining <= 0 && !profile.trial_used) {
+        if (daysRemaining <= 0 && !profile.trial_used && !profile.is_admin) {
           await supabase
             .from("profiles")
             .update({ trial_used: true })
@@ -76,7 +88,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       }
     } catch (error) {
-      console.error("Erro ao processar informações de trial:", error);
+      console.error("Erro ao processar informações do usuário:", error);
     }
   };
 
@@ -89,8 +101,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (session?.user) {
           setTimeout(() => {
-            loadUserTrialInfo(session.user.id);
+            loadUserInfo(session.user.id);
           }, 0);
+        } else {
+          // Reset admin status when logging out
+          setIsAdmin(false);
         }
       }
     );
@@ -101,7 +116,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUser(session?.user ?? null);
 
       if (session?.user) {
-        loadUserTrialInfo(session.user.id);
+        loadUserInfo(session.user.id);
       }
       
       setLoading(false);
@@ -220,6 +235,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         loading,
         trialDaysRemaining,
         isTrialActive,
+        isAdmin,
       }}
     >
       {children}
