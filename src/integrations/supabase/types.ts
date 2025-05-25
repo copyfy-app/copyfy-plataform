@@ -13,6 +13,7 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          is_admin: boolean | null
           trial_start: string | null
           trial_used: boolean | null
           updated_at: string
@@ -20,6 +21,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id: string
+          is_admin?: boolean | null
           trial_start?: string | null
           trial_used?: boolean | null
           updated_at?: string
@@ -27,6 +29,7 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          is_admin?: boolean | null
           trial_start?: string | null
           trial_used?: boolean | null
           updated_at?: string
