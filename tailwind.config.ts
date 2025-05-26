@@ -66,6 +66,32 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Cores personalizadas para o tema
+				gold: {
+					50: '#fffdf0',
+					100: '#fffbe0',
+					200: '#fff6c2',
+					300: '#ffed85',
+					400: '#ffdd47',
+					500: '#FFD700', // Amarelo ouro principal
+					600: '#e6c200',
+					700: '#cc9900',
+					800: '#b38600',
+					900: '#996f00',
+				},
+				dark: {
+					50: '#f6f6f6',
+					100: '#e7e7e7',
+					200: '#d1d1d1',
+					300: '#b0b0b0',
+					400: '#888888',
+					500: '#6d6d6d',
+					600: '#5d5d5d',
+					700: '#4f4f4f',
+					800: '#454545',
+					900: '#111111', // Fundo escuro para inputs
+					950: '#000000', // Preto puro
 				}
 			},
 			borderRadius: {

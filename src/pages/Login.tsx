@@ -47,16 +47,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md shadow-2xl border-0">
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <Card className="w-full max-w-md shadow-2xl border border-zinc-800 bg-zinc-900">
         <CardHeader className="space-y-1">
           <div className="flex justify-center mb-4">
             <Logo />
           </div>
-          <CardTitle className="text-2xl text-center">
+          <CardTitle className="text-2xl text-center text-white">
             {isLogin ? 'Fazer Login' : 'Criar Conta'}
           </CardTitle>
-          <p className="text-center text-gray-600">
+          <p className="text-center text-zinc-400">
             {isLogin 
               ? 'Entre em sua conta para continuar'
               : 'Crie sua conta e comece seu trial gratuito'
@@ -66,7 +66,7 @@ const Login = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-white">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -78,10 +78,11 @@ const Login = () => {
                 placeholder="seu@email.com"
                 required
                 autoComplete="email"
+                className="bg-zinc-800 border-zinc-700 text-white rounded-lg focus:ring-yellow-500 focus:border-yellow-500"
               />
             </div>
             <div>
-              <Label htmlFor="password">Senha</Label>
+              <Label htmlFor="password" className="text-white">Senha</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -95,24 +96,25 @@ const Login = () => {
                   required
                   minLength={6}
                   autoComplete={isLogin ? "current-password" : "new-password"}
+                  className="bg-zinc-800 border-zinc-700 text-white rounded-lg focus:ring-yellow-500 focus:border-yellow-500 pr-10"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-yellow-500 transition-colors"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
               {!isLogin && (
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-zinc-400 mt-1">
                   Mínimo de 6 caracteres
                 </p>
               )}
             </div>
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold transition-colors"
               disabled={loading || !email || !password || password.length < 6}
             >
               {loading ? (
@@ -127,7 +129,7 @@ const Login = () => {
           </form>
           
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-zinc-400">
               {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}
               <button
                 type="button"
@@ -135,7 +137,7 @@ const Login = () => {
                   setIsLogin(!isLogin);
                   console.log("🔄 Alternando modo:", !isLogin ? 'login' : 'signup');
                 }}
-                className="ml-1 text-blue-600 hover:text-blue-700 font-medium"
+                className="ml-1 text-yellow-500 hover:text-yellow-400 font-medium transition-colors"
               >
                 {isLogin ? 'Criar conta' : 'Fazer login'}
               </button>
@@ -143,11 +145,11 @@ const Login = () => {
           </div>
 
           {/* Informações de teste */}
-          <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+          <div className="mt-4 p-3 bg-zinc-800 rounded-lg border border-zinc-700">
             <div className="flex items-start space-x-2">
-              <AlertCircle className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
-              <div className="text-xs text-blue-700">
-                <p className="font-semibold mb-1">Informações importantes:</p>
+              <AlertCircle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+              <div className="text-xs text-zinc-300">
+                <p className="font-semibold mb-1 text-yellow-500">Informações importantes:</p>
                 <p className="mb-1">• Se você já criou uma conta, use "Fazer login"</p>
                 <p className="mb-1">• Se é primeira vez, use "Criar conta"</p>
                 <p className="mb-1">• Email admin: inspiranegociosonline@gmail.com</p>
@@ -160,7 +162,7 @@ const Login = () => {
             <Button
               variant="outline"
               onClick={() => navigate('/')}
-              className="text-sm"
+              className="text-sm border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-yellow-500"
             >
               Voltar ao início
             </Button>
