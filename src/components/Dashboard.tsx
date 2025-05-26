@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
-import { ArrowRight, Copy, Download, LogOut, RefreshCw } from "lucide-react";
+import { ArrowLeft, Copy, Download, LogOut, RefreshCw } from "lucide-react";
 import { Badge } from "./ui/badge";
 import Logo from "./Logo";
 import { countries } from "./data/Countries";
@@ -152,29 +152,29 @@ const Dashboard = () => {
       <header className="border-b border-zinc-800 bg-black/90 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <Logo />
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             {isAdmin && (
-              <Badge variant="default" className="py-1.5 bg-red-600 text-white">
+              <Badge variant="default" className="py-1.5 bg-red-600 text-white text-xs md:text-sm">
                 ADMIN
               </Badge>
             )}
-            <Badge variant={isTrialActive ? "outline" : "destructive"} className={`py-1.5 ${isTrialActive ? "text-yellow-500 border-yellow-500 bg-zinc-900" : ""}`}>
+            <Badge variant={isTrialActive ? "outline" : "destructive"} className={`py-1.5 text-xs md:text-sm ${isTrialActive ? "text-yellow-500 border-yellow-500 bg-zinc-900" : ""}`}>
               {isAdmin 
                 ? "Acesso Ilimitado"
                 : isTrialActive 
-                  ? `Trial: ${trialDaysRemaining} ${trialDaysRemaining === 1 ? 'dia' : 'dias'} restantes` 
-                  : 'Trial expirado'}
+                  ? `Teste: ${trialDaysRemaining} ${trialDaysRemaining === 1 ? 'dia' : 'dias'}` 
+                  : 'Teste expirado'}
             </Badge>
             
             {user && (
               <div className="flex items-center space-x-2">
-                <Badge variant="secondary" className="py-1.5 bg-zinc-800 text-yellow-500">
+                <Badge variant="secondary" className="py-1.5 bg-zinc-800 text-yellow-500 hidden md:flex text-xs">
                   {user.email}
                 </Badge>
                 <Dialog>
                   <DialogTrigger asChild>
-                    <Button variant="outline" size="sm" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black">
-                      Minha Conta
+                    <Button variant="outline" size="sm" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black text-xs md:text-sm">
+                      Conta
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="bg-zinc-900 border-zinc-800">
@@ -196,7 +196,7 @@ const Dashboard = () => {
                         </div>
                       )}
                       <div>
-                        <p className="font-medium text-yellow-500">Status do Trial</p>
+                        <p className="font-medium text-yellow-500">Status do Teste</p>
                         <p className="text-sm text-zinc-400">
                           {isAdmin
                             ? "Acesso ilimitado como administrador"
@@ -221,25 +221,25 @@ const Dashboard = () => {
         </div>
       </header>
 
-      <div className="container mx-auto p-4 lg:p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="container mx-auto p-2 md:p-4 lg:p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* Form Section */}
           <Card className="lg:col-span-1 border-zinc-800 bg-zinc-900 shadow-lg">
             <CardHeader className="pb-3">
-              <CardTitle className="text-xl font-display font-semibold text-yellow-500">Gerador de Campanhas</CardTitle>
+              <CardTitle className="text-lg md:text-xl font-display font-semibold text-yellow-500">Gerador de Campanhas</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-5">
+            <CardContent className="space-y-4 md:space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="country" className="text-yellow-500">País & Idioma</Label>
+                <Label htmlFor="country" className="text-yellow-500 text-sm md:text-base">País & Idioma</Label>
                 <Select value={country} onValueChange={handleCountryChange}>
-                  <SelectTrigger id="country" className="bg-zinc-800 border-zinc-700 text-white">
+                  <SelectTrigger id="country" className="bg-zinc-800 border-zinc-700 text-white text-sm md:text-base">
                     <SelectValue placeholder="Selecione o país" />
                   </SelectTrigger>
-                  <SelectContent className="bg-zinc-800 border-zinc-700">
+                  <SelectContent className="bg-zinc-800 border-zinc-700 max-h-60">
                     <SelectGroup>
                       <SelectLabel className="text-yellow-500">Países Disponíveis</SelectLabel>
                       {countries.map((country) => (
-                        <SelectItem key={country.value} value={country.value} className="text-white hover:bg-zinc-700">
+                        <SelectItem key={country.value} value={country.value} className="text-white hover:bg-zinc-700 text-sm">
                           {country.label}
                         </SelectItem>
                       ))}
@@ -249,38 +249,38 @@ const Dashboard = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="product" className="text-yellow-500">Nome do Produto</Label>
+                <Label htmlFor="product" className="text-yellow-500 text-sm md:text-base">Nome do Produto</Label>
                 <Input
                   id="product"
                   placeholder="Ex: iPhone 13 Pro"
                   value={product}
                   onChange={(e) => setProduct(e.target.value)}
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-zinc-800 border-zinc-700 text-white text-sm md:text-base"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="price" className="text-yellow-500">Preço</Label>
+                <Label htmlFor="price" className="text-yellow-500 text-sm md:text-base">Preço</Label>
                 <Input
                   id="price"
                   placeholder="Ex: 999,90"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  className="bg-zinc-800 border-zinc-700 text-white"
+                  className="bg-zinc-800 border-zinc-700 text-white text-sm md:text-base"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="funnel" className="text-yellow-500">Estratégia de Marketing</Label>
+                <Label htmlFor="funnel" className="text-yellow-500 text-sm md:text-base">Estratégia de Marketing</Label>
                 <Select value={funnel} onValueChange={setFunnel}>
-                  <SelectTrigger id="funnel" className="bg-zinc-800 border-zinc-700 text-white">
+                  <SelectTrigger id="funnel" className="bg-zinc-800 border-zinc-700 text-white text-sm md:text-base">
                     <SelectValue placeholder="Selecione a estratégia" />
                   </SelectTrigger>
                   <SelectContent className="bg-zinc-800 border-zinc-700">
                     <SelectGroup>
                       <SelectLabel className="text-yellow-500">Estratégias</SelectLabel>
                       {funnelStrategies.map((strategy) => (
-                        <SelectItem key={strategy.value} value={strategy.value} className="text-white hover:bg-zinc-700">
+                        <SelectItem key={strategy.value} value={strategy.value} className="text-white hover:bg-zinc-700 text-sm">
                           {strategy.label}
                         </SelectItem>
                       ))}
@@ -291,7 +291,7 @@ const Dashboard = () => {
 
               <div className="pt-3 space-y-3">
                 <Button
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold text-sm md:text-base"
                   onClick={handleGenerateCampaign}
                   disabled={isGenerating || (!isTrialActive && !isAdmin)}
                 >
@@ -303,12 +303,12 @@ const Dashboard = () => {
                   ) : (!isTrialActive && !isAdmin) ? (
                     <>
                       Assinar Plano
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowLeft className="ml-2 h-4 w-4" />
                     </>
                   ) : (
                     <>
                       Gerar Campanha
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowLeft className="ml-2 h-4 w-4" />
                     </>
                   )}
                 </Button>
@@ -316,7 +316,7 @@ const Dashboard = () => {
                 {campaignGenerated && (
                   <Button
                     variant="outline"
-                    className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black"
+                    className="w-full border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black text-sm md:text-base"
                     onClick={resetForm}
                   >
                     <RefreshCw className="mr-2 h-4 w-4" />
@@ -325,7 +325,7 @@ const Dashboard = () => {
                 )}
 
                 {!isTrialActive && !isAdmin && (
-                  <p className="text-sm text-center text-red-400 mt-2">
+                  <p className="text-xs md:text-sm text-center text-red-400 mt-2">
                     Seu período de teste gratuito acabou. Assine um plano para continuar gerando campanhas.
                   </p>
                 )}
@@ -336,12 +336,12 @@ const Dashboard = () => {
           {/* Results Section */}
           <Card className="lg:col-span-2 border-zinc-800 bg-zinc-900 shadow-lg">
             {!campaignGenerated ? (
-              <div className="flex flex-col items-center justify-center p-12 text-center h-full">
-                <div className="w-16 h-16 mb-4 bg-yellow-500/20 rounded-full flex items-center justify-center">
-                  <ArrowRight className="h-8 w-8 text-yellow-500" />
+              <div className="flex flex-col items-center justify-center p-6 md:p-12 text-center h-full min-h-[400px]">
+                <div className="w-12 h-12 md:w-16 md:h-16 mb-4 bg-yellow-500/20 rounded-full flex items-center justify-center">
+                  <ArrowLeft className="h-6 w-6 md:h-8 md:w-8 text-yellow-500" />
                 </div>
-                <h3 className="text-xl font-display font-medium mb-2 text-yellow-500">Gerador de Campanhas Copyfy</h3>
-                <p className="text-zinc-400 max-w-md">
+                <h3 className="text-lg md:text-xl font-display font-medium mb-2 text-yellow-500">Gerador de Campanhas Copyfy</h3>
+                <p className="text-zinc-400 max-w-md text-sm md:text-base">
                   Preencha os campos ao lado e clique em "Gerar Campanha" para criar copies adaptadas para 
                   Google Ads em mais de 100 idiomas.
                 </p>
@@ -349,9 +349,9 @@ const Dashboard = () => {
             ) : (
               <>
                 <CardHeader className="pb-0">
-                  <div className="flex justify-between items-center">
-                    <CardTitle className="text-xl font-display font-semibold text-yellow-500">Campanha para {product}</CardTitle>
-                    <Button variant="outline" size="sm" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                    <CardTitle className="text-lg md:text-xl font-display font-semibold text-yellow-500">Campanha para {product}</CardTitle>
+                    <Button variant="outline" size="sm" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black text-xs md:text-sm">
                       <Download className="mr-2 h-4 w-4" />
                       Exportar
                     </Button>
@@ -359,26 +359,26 @@ const Dashboard = () => {
                 </CardHeader>
                 <CardContent className="pt-5">
                   <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-                    <TabsList className="grid grid-cols-4 mb-2 bg-zinc-800">
-                      <TabsTrigger value="titles" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400">
+                    <TabsList className="grid grid-cols-4 mb-2 bg-zinc-800 w-full">
+                      <TabsTrigger value="titles" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400 text-xs md:text-sm">
                         Títulos
                       </TabsTrigger>
-                      <TabsTrigger value="descriptions" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400">
+                      <TabsTrigger value="descriptions" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400 text-xs md:text-sm">
                         Descrições
                       </TabsTrigger>
-                      <TabsTrigger value="usps" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400">
+                      <TabsTrigger value="usps" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400 text-xs md:text-sm">
                         USPs
                       </TabsTrigger>
-                      <TabsTrigger value="sitelinks" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400">
+                      <TabsTrigger value="sitelinks" className="data-[state=active]:bg-yellow-500 data-[state=active]:text-black text-zinc-400 text-xs md:text-sm">
                         Sitelinks
                       </TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="titles" className="space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 gap-2 md:gap-3">
                         {titles.map((title, idx) => (
                           <div key={idx} className="group relative bg-zinc-800 p-3 rounded-md border border-zinc-700 hover:border-yellow-500 hover:shadow-md transition-all">
-                            <p className="pr-8 text-white">{title}</p>
+                            <p className="pr-8 text-white text-sm md:text-base">{title}</p>
                             <button
                               onClick={() => copyToClipboard(title)}
                               className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -394,7 +394,7 @@ const Dashboard = () => {
                       <div className="grid grid-cols-1 gap-3">
                         {descriptions.map((desc, idx) => (
                           <div key={idx} className="group relative bg-zinc-800 p-3 rounded-md border border-zinc-700 hover:border-yellow-500 hover:shadow-md transition-all">
-                            <p className="pr-8 text-white">{desc}</p>
+                            <p className="pr-8 text-white text-sm md:text-base">{desc}</p>
                             <button
                               onClick={() => copyToClipboard(desc)}
                               className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -407,10 +407,10 @@ const Dashboard = () => {
                     </TabsContent>
 
                     <TabsContent value="usps" className="space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                         {usps.map((usp, idx) => (
                           <div key={idx} className="group relative bg-zinc-800 p-3 rounded-md border border-zinc-700 hover:border-yellow-500 hover:shadow-md transition-all">
-                            <p className="pr-8 text-white">{usp}</p>
+                            <p className="pr-8 text-white text-sm md:text-base">{usp}</p>
                             <button
                               onClick={() => copyToClipboard(usp)}
                               className="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -423,11 +423,11 @@ const Dashboard = () => {
                     </TabsContent>
 
                     <TabsContent value="sitelinks" className="space-y-4">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {sitelinks.map((link, idx) => (
                           <div key={idx} className="group relative bg-zinc-800 p-4 rounded-md border border-zinc-700 hover:border-yellow-500 hover:shadow-md transition-all">
                             <div className="flex justify-between">
-                              <h4 className="font-medium text-yellow-500">{link.title}</h4>
+                              <h4 className="font-medium text-yellow-500 text-sm md:text-base">{link.title}</h4>
                               <button
                                 onClick={() => copyToClipboard(link.title)}
                                 className="opacity-0 group-hover:opacity-100 transition-opacity"
@@ -435,7 +435,7 @@ const Dashboard = () => {
                                 <Copy className="h-4 w-4 text-yellow-500 hover:text-yellow-400" />
                               </button>
                             </div>
-                            <p className="text-sm text-zinc-400 mt-1">{link.description}</p>
+                            <p className="text-xs md:text-sm text-zinc-400 mt-1">{link.description}</p>
                           </div>
                         ))}
                       </div>

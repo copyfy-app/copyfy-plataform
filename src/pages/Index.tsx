@@ -28,7 +28,7 @@ const Index = () => {
               onClick={() => navigate('/dashboard')} 
               className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold"
             >
-              Começar Grátis
+              Começar Teste Grátis
             </Button>
           </div>
         </div>
@@ -37,7 +37,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent leading-tight">
             Copys de Alta Conversão Para Google Ads
             <br />
             Com Tradução para Mais de 100 Países
@@ -52,7 +52,7 @@ const Index = () => {
               onClick={() => navigate('/dashboard')}
               className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-6 text-lg"
             >
-              Começar Trial Grátis <ArrowRight className="ml-2 w-5 h-5" />
+              Começar Teste Grátis <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
             <Button 
               size="lg" 
