@@ -38,9 +38,9 @@ const Index = () => {
       <section className="container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-            Campanhas de Google Ads
+            Copys de Alta Conversão Para Google Ads
             <br />
-            que Convertem Globalmente
+            Com Tradução para Mais de 100 Países
           </h1>
           <p className="text-xl text-zinc-300 mb-8 max-w-2xl mx-auto">
             Gere copies únicas e adaptadas para mais de 100 países. Títulos, descrições, USPs e sitelinks 
