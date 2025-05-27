@@ -154,14 +154,14 @@ const CopyfyPanel = () => {
         <div className="container mx-auto px-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold text-yellow-500 tracking-wide">Copyfy</h1>
-            <p className="text-xl md:text-2xl text-yellow-400 font-medium">A Copy Perfeita Para sua Campanha em Poucos Clicks</p>
+            <p className="text-xl md:text-2xl text-yellow-400 font-semibold">A Copy Perfeita Para sua Campanha em Poucos Clicks</p>
           </div>
         </div>
       </header>
 
       {/* Top Navigation Bar */}
       <nav className="bg-zinc-900 border-b border-zinc-700">
-        <div className="container mx-auto px-8 py-4 bg-black">
+        <div className="container mx-auto px-8 py-4 bg-gray-950">
           <div className="flex justify-between items-center">
             {/* User Info */}
             <div className="flex items-center gap-3">
