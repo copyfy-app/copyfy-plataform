@@ -1,58 +1,38 @@
-
 import { useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  SidebarSeparator,
-} from "@/components/ui/sidebar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarSeparator } from "@/components/ui/sidebar";
 import { Layers, FileText, HelpCircle, Home, User, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "./ui/badge";
-
 const DashboardSidebar = () => {
   const location = useLocation();
-  const { user, trialDaysRemaining, isTrialActive, isAdmin, signOut } = useAuth();
-  
-  const isActive = useCallback(
-    (path: string) => {
-      return location.pathname === path;
-    },
-    [location.pathname]
-  );
-
-  return (
-    <Sidebar>
+  const {
+    user,
+    trialDaysRemaining,
+    isTrialActive,
+    isAdmin,
+    signOut
+  } = useAuth();
+  const isActive = useCallback((path: string) => {
+    return location.pathname === path;
+  }, [location.pathname]);
+  return <Sidebar>
       <SidebarContent>
-        {user && (
-          <SidebarGroup>
+        {user && <SidebarGroup>
             <SidebarGroupContent className="p-3">
               <div className="flex flex-col gap-2">
                 <div className="text-sm font-medium overflow-hidden text-ellipsis">
                   {user.email}
                 </div>
-                {isAdmin && (
-                  <Badge variant="default" className="w-fit bg-red-600 text-white">
+                {isAdmin && <Badge variant="default" className="w-fit bg-red-600 text-white">
                     ADMIN
-                  </Badge>
-                )}
+                  </Badge>}
                 <Badge variant={isTrialActive ? "outline" : "destructive"} className="w-fit">
-                  {isAdmin
-                    ? "Acesso Ilimitado"
-                    : isTrialActive 
-                      ? `Trial: ${trialDaysRemaining} dia${trialDaysRemaining !== 1 ? 's' : ''}` 
-                      : 'Trial expirado'}
+                  {isAdmin ? "Acesso Ilimitado" : isTrialActive ? `Trial: ${trialDaysRemaining} dia${trialDaysRemaining !== 1 ? 's' : ''}` : 'Trial expirado'}
                 </Badge>
               </div>
             </SidebarGroupContent>
-          </SidebarGroup>
-        )}
+          </SidebarGroup>}
         
         <SidebarSeparator />
 
@@ -60,11 +40,7 @@ const DashboardSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton 
-                  asChild 
-                  isActive={isActive("/dashboard")}
-                  tooltip="Dashboard"
-                >
+                <SidebarMenuButton asChild isActive={isActive("/dashboard")} tooltip="Dashboard">
                   <Link to="/dashboard">
                     <Home />
                     <span>Dashboard</span>
@@ -81,11 +57,7 @@ const DashboardSidebar = () => {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton 
-                  asChild 
-                  isActive={isActive("/privacy-policy")}
-                  tooltip="Política de Privacidade"
-                >
+                <SidebarMenuButton asChild isActive={isActive("/privacy-policy")} tooltip="Política de Privacidade">
                   <Link to="/privacy-policy">
                     <FileText />
                     <span>Política de Privacidade</span>
@@ -94,11 +66,7 @@ const DashboardSidebar = () => {
               </SidebarMenuItem>
 
               <SidebarMenuItem>
-                <SidebarMenuButton 
-                  asChild 
-                  isActive={isActive("/terms-of-use")}
-                  tooltip="Termos de Uso"
-                >
+                <SidebarMenuButton asChild isActive={isActive("/terms-of-use")} tooltip="Termos de Uso">
                   <Link to="/terms-of-use">
                     <Layers />
                     <span>Termos de Uso</span>
@@ -107,11 +75,7 @@ const DashboardSidebar = () => {
               </SidebarMenuItem>
 
               <SidebarMenuItem>
-                <SidebarMenuButton 
-                  asChild 
-                  isActive={isActive("/support")}
-                  tooltip="Suporte"
-                >
+                <SidebarMenuButton asChild isActive={isActive("/support")} tooltip="Suporte">
                   <Link to="/support">
                     <HelpCircle />
                     <span>Suporte</span>
@@ -123,18 +87,14 @@ const DashboardSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      {user && (
-        <>
+      {user && <>
           <SidebarSeparator />
-          <SidebarContent>
+          <SidebarContent className="bg-zinc-950">
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
                   <SidebarMenuItem>
-                    <SidebarMenuButton
-                      tooltip="Minha Conta"
-                      asChild
-                    >
+                    <SidebarMenuButton tooltip="Minha Conta" asChild>
                       <Link to="/dashboard">
                         <User />
                         <span>Minha Conta</span>
@@ -142,10 +102,7 @@ const DashboardSidebar = () => {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton
-                      tooltip="Sair"
-                      onClick={signOut}
-                    >
+                    <SidebarMenuButton tooltip="Sair" onClick={signOut}>
                       <LogOut />
                       <span>Sair</span>
                     </SidebarMenuButton>
@@ -154,16 +111,13 @@ const DashboardSidebar = () => {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-        </>
-      )}
+        </>}
 
       <SidebarFooter className="py-2">
         <div className="px-3 text-xs text-gray-500">
           © {new Date().getFullYear()} Copyfy
         </div>
       </SidebarFooter>
-    </Sidebar>
-  );
+    </Sidebar>;
 };
-
 export default DashboardSidebar;
