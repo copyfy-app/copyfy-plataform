@@ -161,7 +161,7 @@ const CopyfyPanel = () => {
 
       {/* Top Navigation Bar */}
       <nav className="bg-zinc-900 border-b border-zinc-700">
-        <div className="container mx-auto px-8 py-4 bg-gray-950">
+        <div className="container mx-auto px-8 py-4 bg-zinc-900">
           <div className="flex justify-between items-center">
             {/* User Info */}
             <div className="flex items-center gap-3">
@@ -233,7 +233,7 @@ const CopyfyPanel = () => {
       {/* Main Content */}
       <main className="container mx-auto px-8 py-8">
         {!campaignGenerated ? <div className="max-w-4xl mx-auto">
-            <div className="rounded-lg border border-zinc-700 shadow-xl p-8 bg-gray-950">
+            <div className="rounded-lg border border-zinc-700 shadow-xl p-8 bg-zinc-900">
               <h2 className="text-2xl font-bold text-white mb-8 text-center">
                 Gere sua Campanha de Alta Conversão
               </h2>
