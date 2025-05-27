@@ -1,12 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-
 const PrivacyPolicy = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 p-4 lg:p-8">
-      <div className="container mx-auto">
+  return <div className="min-h-screen bg-gradient-to-br from-purple-50 via-indigo-50 to-blue-50 p-4 lg:p-8">
+      <div className="container mx-auto bg-stone-950">
         <div className="mb-6 flex items-center">
           <Button variant="ghost" size="sm" asChild>
             <Link to="/dashboard">
@@ -66,8 +63,6 @@ const PrivacyPolicy = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default PrivacyPolicy;
