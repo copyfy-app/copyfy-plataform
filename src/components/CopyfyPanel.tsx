@@ -161,7 +161,7 @@ const CopyfyPanel = () => {
 
       {/* Top Navigation Bar */}
       <nav className="bg-zinc-900 border-b border-zinc-700">
-        <div className="container mx-auto px-8 py-4">
+        <div className="container mx-auto px-8 py-4 bg-black">
           <div className="flex justify-between items-center">
             {/* User Info */}
             <div className="flex items-center gap-3">
@@ -240,9 +240,7 @@ const CopyfyPanel = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="country" className="text-white font-medium">
-                    Selecione o país
-                  </Label>
+                  <Label htmlFor="country" className="text-white font-medium">Selecione o País</Label>
                   <Select value={country} onValueChange={handleCountryChange}>
                     <SelectTrigger className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm">
                       <SelectValue placeholder="Escolha um país" />
@@ -275,14 +273,14 @@ const CopyfyPanel = () => {
                   <Label htmlFor="product" className="text-white font-medium">
                     Nome do Produto
                   </Label>
-                  <Input id="product" placeholder="Ex: Testoy Gel" value={product} onChange={e => setProduct(e.target.value)} className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm" />
+                  <Input id="product" placeholder="Ex: Testoy Gel" value={product} onChange={e => setProduct(e.target.value)} className="w-full p-4 rounded-lg text-black border-none text-base shadow-sm bg-zinc-50" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="price" className="text-white font-medium">
                     Preço
                   </Label>
-                  <Input id="price" placeholder="Ex: R$ 197,00" value={price} onChange={e => setPrice(e.target.value)} className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm" />
+                  <Input id="price" placeholder="Ex: R$ 197,00" value={price} onChange={e => setPrice(e.target.value)} className="w-full p-4 rounded-lg text-black border-none text-base shadow-sm bg-zinc-50" />
                 </div>
               </div>
 
