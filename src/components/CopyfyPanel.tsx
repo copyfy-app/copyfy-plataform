@@ -8,6 +8,8 @@ import { toast } from "@/hooks/use-toast";
 import { countries } from "./data/Countries";
 import { generateCODCopies } from "../utils/copyGenerator";
 import { useAuth } from "@/contexts/AuthContext";
+import { Badge } from "@/components/ui/badge";
+import { Copy, FileText, HelpCircle, LogOut, User, Award } from "lucide-react";
 
 const funnelStrategies = [
   { value: "cod", label: "COD (Pagamento na Entrega)" },
@@ -25,7 +27,7 @@ const CopyfyPanel = () => {
   const [campaignGenerated, setCampaignGenerated] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("pt");
 
-  const { signOut, isAdmin, isTrialActive } = useAuth();
+  const { user, signOut, isAdmin, isTrialActive, trialDaysRemaining } = useAuth();
 
   // Content states for generated campaign
   const [titles, setTitles] = useState<string[]>([]);
@@ -121,165 +123,244 @@ const CopyfyPanel = () => {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="bg-yellow-500 text-black text-center py-4">
-        <h1 className="text-xl md:text-2xl font-bold">COPYFY - Copys de Alta Conversão Para Google Ads Com Tradução Para +100 Países</h1>
+      <header className="bg-yellow-500 text-black text-center py-6 shadow-lg">
+        <h1 className="text-2xl md:text-3xl font-bold tracking-wide">
+          COPYFY - Copys de Alta Conversão Para Google Ads Com Tradução Para +100 Países
+        </h1>
       </header>
 
-      <div className="flex">
+      <div className="flex min-h-screen">
         {/* Sidebar */}
-        <div className="w-56 bg-zinc-900 p-5 flex flex-col gap-3 min-h-screen">
-          <a href="/terms-of-use" className="text-yellow-500 font-bold hover:text-yellow-400 transition-colors">
-            Termos de Uso
-          </a>
-          <a href="/privacy-policy" className="text-yellow-500 font-bold hover:text-yellow-400 transition-colors">
-            Política de Privacidade
-          </a>
-          <a href="mailto:inspiranegociosonline@gmail.com" className="text-yellow-500 font-bold hover:text-yellow-400 transition-colors">
-            Contato
-          </a>
-          <button 
-            onClick={signOut}
-            className="text-yellow-500 font-bold hover:text-yellow-400 transition-colors text-left"
-          >
-            Sair
-          </button>
-        </div>
+        <aside className="w-64 bg-zinc-900 shadow-xl border-r border-zinc-700">
+          {/* User Info Section */}
+          <div className="p-6 border-b border-zinc-700">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                <User className="w-5 h-5 text-black" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-white truncate">
+                  {user?.email}
+                </p>
+                <div className="flex gap-2 mt-1">
+                  {isAdmin && (
+                    <Badge variant="default" className="bg-red-600 text-white text-xs">
+                      ADMIN
+                    </Badge>
+                  )}
+                  <Badge 
+                    variant={isTrialActive ? "outline" : "destructive"} 
+                    className="text-xs"
+                  >
+                    {isAdmin
+                      ? "Ilimitado"
+                      : isTrialActive 
+                        ? `Trial: ${trialDaysRemaining}d` 
+                        : 'Expirado'}
+                  </Badge>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="p-6 space-y-4">
+            <a 
+              href="/terms-of-use" 
+              className="flex items-center gap-3 text-yellow-500 hover:text-yellow-400 transition-colors font-medium"
+            >
+              <FileText className="w-4 h-4" />
+              Termos de Uso
+            </a>
+            <a 
+              href="/privacy-policy" 
+              className="flex items-center gap-3 text-yellow-500 hover:text-yellow-400 transition-colors font-medium"
+            >
+              <Award className="w-4 h-4" />
+              Política de Privacidade
+            </a>
+            <a 
+              href="mailto:inspiranegociosonline@gmail.com" 
+              className="flex items-center gap-3 text-yellow-500 hover:text-yellow-400 transition-colors font-medium"
+            >
+              <HelpCircle className="w-4 h-4" />
+              Contato
+            </a>
+            <button 
+              onClick={signOut}
+              className="flex items-center gap-3 text-yellow-500 hover:text-yellow-400 transition-colors font-medium w-full text-left"
+            >
+              <LogOut className="w-4 h-4" />
+              Sair
+            </button>
+          </nav>
+        </aside>
 
         {/* Main Content */}
-        <div className="flex-1 p-8">
+        <main className="flex-1">
           {!campaignGenerated ? (
-            <div className="max-w-2xl space-y-5">
-              <div className="space-y-2">
-                <Label htmlFor="country" className="text-white">
-                  Selecione o país
-                </Label>
-                <Select value={country} onValueChange={handleCountryChange}>
-                  <SelectTrigger className="w-full p-3 rounded-md bg-white text-black border-none text-base">
-                    <SelectValue placeholder="Escolha um país" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white border-zinc-300 max-h-60">
-                    {countries.map((country) => (
-                      <SelectItem key={country.value} value={country.value} className="text-black hover:bg-zinc-100">
-                        {country.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+            <div className="p-8 max-w-4xl mx-auto">
+              <div className="bg-zinc-900 rounded-lg border border-zinc-700 shadow-xl p-8">
+                <h2 className="text-2xl font-bold text-white mb-8 text-center">
+                  Gere sua Campanha de Alta Conversão
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="country" className="text-white font-medium">
+                      Selecione o país
+                    </Label>
+                    <Select value={country} onValueChange={handleCountryChange}>
+                      <SelectTrigger className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm">
+                        <SelectValue placeholder="Escolha um país" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white border-zinc-300 max-h-60">
+                        {countries.map((country) => (
+                          <SelectItem key={country.value} value={country.value} className="text-black hover:bg-zinc-100">
+                            {country.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="product" className="text-white">
-                  Nome do Produto
-                </Label>
-                <Input
-                  id="product"
-                  placeholder="Ex: Testoy Gel"
-                  value={product}
-                  onChange={(e) => setProduct(e.target.value)}
-                  className="w-full p-3 rounded-md bg-white text-black border-none text-base"
-                />
-              </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="funnel" className="text-white font-medium">
+                      Estratégia de Funil
+                    </Label>
+                    <Select value={funnel} onValueChange={setFunnel}>
+                      <SelectTrigger className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm">
+                        <SelectValue placeholder="Escolha uma estratégia" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white border-zinc-300">
+                        {funnelStrategies.map((strategy) => (
+                          <SelectItem key={strategy.value} value={strategy.value} className="text-black hover:bg-zinc-100">
+                            {strategy.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="price" className="text-white">
-                  Preço
-                </Label>
-                <Input
-                  id="price"
-                  placeholder="Ex: R$ 197,00"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  className="w-full p-3 rounded-md bg-white text-black border-none text-base"
-                />
-              </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="product" className="text-white font-medium">
+                      Nome do Produto
+                    </Label>
+                    <Input
+                      id="product"
+                      placeholder="Ex: Testoy Gel"
+                      value={product}
+                      onChange={(e) => setProduct(e.target.value)}
+                      className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm"
+                    />
+                  </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="funnel" className="text-white">
-                  Estratégia de Funil
-                </Label>
-                <Select value={funnel} onValueChange={setFunnel}>
-                  <SelectTrigger className="w-full p-3 rounded-md bg-white text-black border-none text-base">
-                    <SelectValue placeholder="Escolha uma estratégia" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white border-zinc-300">
-                    {funnelStrategies.map((strategy) => (
-                      <SelectItem key={strategy.value} value={strategy.value} className="text-black hover:bg-zinc-100">
-                        {strategy.label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="price" className="text-white font-medium">
+                      Preço
+                    </Label>
+                    <Input
+                      id="price"
+                      placeholder="Ex: R$ 197,00"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm"
+                    />
+                  </div>
+                </div>
 
-              <div className="pt-4">
-                <Button
-                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-base py-3 h-auto"
-                  onClick={handleGenerateCampaign}
-                  disabled={isGenerating || (!isTrialActive && !isAdmin)}
-                >
-                  {isGenerating ? "Gerando..." : "Gerar Campanha"}
-                </Button>
+                <div className="mt-8 text-center">
+                  <Button
+                    className="w-full md:w-auto bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg py-4 px-8 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105"
+                    onClick={handleGenerateCampaign}
+                    disabled={isGenerating || (!isTrialActive && !isAdmin)}
+                  >
+                    {isGenerating ? "Gerando Campanha..." : "Gerar Campanha"}
+                  </Button>
+                </div>
               </div>
             </div>
           ) : (
-            <div className="max-w-4xl">
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-xl font-bold text-white">
+            <div className="p-8">
+              <div className="flex justify-between items-center mb-8">
+                <h2 className="text-3xl font-bold text-white">
                   Campanha para {product}
                 </h2>
                 <Button
                   onClick={() => setCampaignGenerated(false)}
-                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+                  className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg"
                 >
                   Nova Campanha
                 </Button>
               </div>
 
-              <div className="bg-zinc-900 rounded-lg p-6 space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Títulos */}
-                <div>
-                  <h3 className="text-white font-bold mb-3 text-lg">Títulos</h3>
-                  <div className="space-y-2">
+                <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-6">
+                  <h3 className="text-white font-bold mb-4 text-xl flex items-center gap-2">
+                    <Copy className="w-5 h-5 text-yellow-500" />
+                    Títulos
+                  </h3>
+                  <div className="space-y-3">
                     {titles.map((title, idx) => (
-                      <div key={idx} className="bg-black p-3 rounded border border-zinc-700 hover:border-yellow-500 transition-all cursor-pointer" onClick={() => copyToClipboard(title)}>
-                        <p className="text-white">{title}</p>
+                      <div 
+                        key={idx} 
+                        className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" 
+                        onClick={() => copyToClipboard(title)}
+                      >
+                        <p className="text-white group-hover:text-yellow-100 transition-colors">{title}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Descrições */}
-                <div>
-                  <h3 className="text-white font-bold mb-3 text-lg">Descrições</h3>
-                  <div className="space-y-2">
+                <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-6">
+                  <h3 className="text-white font-bold mb-4 text-xl flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-yellow-500" />
+                    Descrições
+                  </h3>
+                  <div className="space-y-3">
                     {descriptions.map((desc, idx) => (
-                      <div key={idx} className="bg-black p-3 rounded border border-zinc-700 hover:border-yellow-500 transition-all cursor-pointer" onClick={() => copyToClipboard(desc)}>
-                        <p className="text-white">{desc}</p>
+                      <div 
+                        key={idx} 
+                        className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" 
+                        onClick={() => copyToClipboard(desc)}
+                      >
+                        <p className="text-white group-hover:text-yellow-100 transition-colors">{desc}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Sitelinks */}
-                <div>
-                  <h3 className="text-white font-bold mb-3 text-lg">Sitelinks</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-6">
+                  <h3 className="text-white font-bold mb-4 text-xl">Sitelinks</h3>
+                  <div className="space-y-3">
                     {sitelinks.map((link, idx) => (
-                      <div key={idx} className="bg-black p-3 rounded border border-zinc-700 hover:border-yellow-500 transition-all cursor-pointer" onClick={() => copyToClipboard(`${link.title}: ${link.description}`)}>
-                        <h4 className="font-bold text-yellow-500">{link.title}</h4>
-                        <p className="text-sm text-zinc-400">{link.description}</p>
+                      <div 
+                        key={idx} 
+                        className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" 
+                        onClick={() => copyToClipboard(`${link.title}: ${link.description}`)}
+                      >
+                        <h4 className="font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors">{link.title}</h4>
+                        <p className="text-sm text-zinc-300 group-hover:text-white transition-colors">{link.description}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* USPs */}
-                <div>
-                  <h3 className="text-white font-bold mb-3 text-lg">Destaques</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-6">
+                  <h3 className="text-white font-bold mb-4 text-xl">Destaques</h3>
+                  <div className="space-y-3">
                     {usps.map((usp, idx) => (
-                      <div key={idx} className="bg-black p-3 rounded border border-zinc-700 hover:border-yellow-500 transition-all cursor-pointer" onClick={() => copyToClipboard(usp)}>
-                        <p className="text-white">{usp}</p>
+                      <div 
+                        key={idx} 
+                        className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" 
+                        onClick={() => copyToClipboard(usp)}
+                      >
+                        <p className="text-white group-hover:text-yellow-100 transition-colors">{usp}</p>
                       </div>
                     ))}
                   </div>
@@ -287,7 +368,7 @@ const CopyfyPanel = () => {
               </div>
             </div>
           )}
-        </div>
+        </main>
       </div>
     </div>
   );

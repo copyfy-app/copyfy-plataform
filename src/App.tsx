@@ -4,7 +4,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -47,7 +46,8 @@ const RedirectIfAuthenticated = () => {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Index />} />
+      {/* Redireciona diretamente para dashboard (ou login se não autenticado) */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
       
       {/* Rotas que redirecionam se já estiver autenticado */}
       <Route element={<RedirectIfAuthenticated />}>
