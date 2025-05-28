@@ -75,7 +75,7 @@ const Login = () => {
                 console.log("🔒 Senha alterada, comprimento:", e.target.value.length);
               }} placeholder="••••••••" required minLength={6} autoComplete={isLogin ? "current-password" : "new-password"} className="bg-zinc-800 border-zinc-700 text-white rounded-lg focus:ring-yellow-500 focus:border-yellow-500 pr-10" />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400 hover:text-yellow-500 transition-colors">
-                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  {showPassword ? <EyeOff size={20} className="bg-zinc-800" /> : <Eye size={20} />}
                 </button>
               </div>
               {!isLogin && <p className="text-xs text-zinc-400 mt-1">
@@ -91,7 +91,7 @@ const Login = () => {
           </form>
           
           <div className="mt-6 text-center">
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-white">
               {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}
               <button type="button" onClick={() => {
               setIsLogin(!isLogin);
