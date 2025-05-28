@@ -24,7 +24,7 @@ const DashboardSidebar = () => {
                 <div className="text-sm font-medium overflow-hidden text-ellipsis">
                   {user.email}
                 </div>
-                {isAdmin && <Badge variant="default" className="w-fit bg-red-600 text-white">
+                {isAdmin && <Badge variant="default" className="w-fit text-white bg-red-500">
                     ADMIN
                   </Badge>}
                 <Badge variant={isTrialActive ? "outline" : "destructive"} className="w-fit">
