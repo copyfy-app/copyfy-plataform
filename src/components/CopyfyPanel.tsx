@@ -173,7 +173,7 @@ const CopyfyPanel = () => {
                 {isAdmin && <Badge variant="default" className="bg-red-600 text-white text-xs">
                     ADMIN
                   </Badge>}
-                <Badge variant={isTrialActive ? "outline" : "destructive"} className="text-xs">
+                <Badge variant={isTrialActive ? "outline" : "destructive"} className="text-xs bg-yellow-500">
                   {isAdmin ? "Ilimitado" : isTrialActive ? `Trial: ${trialDaysRemaining}d` : 'Expirado'}
                 </Badge>
               </div>
