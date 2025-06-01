@@ -53,7 +53,9 @@ const CopyfyPanel = () => {
   const [usps, setUsps] = useState<string[]>([]);
   const [sitelinks, setSitelinks] = useState<{
     title: string;
-    description: string;
+    description1: string;
+    description2: string;
+    url: string;
   }[]>([]);
 
   // Update language when country changes
@@ -272,15 +274,28 @@ const CopyfyPanel = () => {
               {/* Sitelinks */}
               <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-4 md:p-6">
                 <h3 className="text-white font-bold mb-4 text-lg md:text-xl">Sitelinks</h3>
-                <div className="space-y-3">
-                  {sitelinks.map((link, idx) => <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`${link.title}: ${link.description}`)}>
-                      <h4 className="font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors text-sm md:text-base break-words">
-                        {link.title}
-                      </h4>
-                      <p className="text-sm text-zinc-300 group-hover:text-white transition-colors break-words">
-                        {link.description}
-                      </p>
-                    </div>)}
+                <div className="space-y-4">
+                  {sitelinks.map((link, idx) => (
+                    <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-yellow-500 text-sm">🔗 Sitelink {idx + 1}</span>
+                        </div>
+                        <h4 className="font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors text-sm md:text-base">
+                          Título: {link.title}
+                        </h4>
+                        <p className="text-sm text-zinc-300 group-hover:text-white transition-colors">
+                          Descrição 1: {link.description1}
+                        </p>
+                        <p className="text-sm text-zinc-300 group-hover:text-white transition-colors">
+                          Descrição 2: {link.description2}
+                        </p>
+                        <p className="text-xs text-blue-400 group-hover:text-blue-300 transition-colors">
+                          URL: {link.url}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
