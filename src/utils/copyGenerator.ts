@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 
 const generateTitles = (product: string, price: string, country: string, languageCode: string, funnel: string): string[] => {
   const titles = [];
@@ -129,7 +128,7 @@ const generateUSPs = (product: string, price: string, country: string, languageC
 
   if (languageCode === 'pt') {
     usps.push(
-      `Resultados comprovados em [número] dias`,
+      `Resultados comprovados em tempo recorde`,
       `Entrega rápida e segura em todo o Brasil`,
       `Garantia de satisfação ou seu dinheiro de volta`,
       `Suporte ao cliente 24/7`,
@@ -137,7 +136,7 @@ const generateUSPs = (product: string, price: string, country: string, languageC
     );
   } else if (languageCode === 'es') {
     usps.push(
-      `Resultados comprobados en [número] días`,
+      `Resultados comprobados en tiempo récord`,
       `Entrega rápida y segura en todo el país`,
       `Garantía de satisfacción o le devolvemos su dinero`,
       `Atención al cliente 24/7`,
@@ -145,7 +144,7 @@ const generateUSPs = (product: string, price: string, country: string, languageC
     );
   } else {
     usps.push(
-      `Proven results in [number] days`,
+      `Proven results in record time`,
       `Fast and secure delivery throughout the country`,
       `Satisfaction guarantee or your money back`,
       `24/7 customer support`,
@@ -163,25 +162,25 @@ const generateSitelinks = (product: string, price: string, country: string, lang
         title: "Compre Agora",
         description1: "Aproveite o desconto exclusivo",
         description2: "Receba em casa com rapidez",
-        url: "/compra"
+        url: "https://copyfy.shop/compra"
       },
       {
         title: "Pague na Entrega",
         description1: "Segurança total na sua compra",
         description2: "Só pague quando receber",
-        url: "/pagamento"
+        url: "https://copyfy.shop/pagamento"
       },
       {
         title: "Resultados Comprovados",
         description1: "Clientes satisfeitos no país",
         description2: "Veja os depoimentos reais",
-        url: "/resultados"
+        url: "https://copyfy.shop/resultados"
       },
       {
         title: "Produto Original",
         description1: "Garantia de autenticidade",
         description2: "Frete grátis para todo país",
-        url: "/original"
+        url: "https://copyfy.shop/original"
       }
     ],
     es: [
@@ -189,25 +188,25 @@ const generateSitelinks = (product: string, price: string, country: string, lang
         title: "Compra Ahora",
         description1: "Aprovecha el descuento exclusivo",
         description2: "Recibe en casa rápidamente",
-        url: "/compra"
+        url: "https://copyfy.shop/compra"
       },
       {
         title: "Pago Contra Entrega",
         description1: "Seguridad total en tu compra",
         description2: "Solo paga cuando recibas",
-        url: "/pago"
+        url: "https://copyfy.shop/pago"
       },
       {
         title: "Resultados Probados",
         description1: "Clientes satisfechos en el país",
         description2: "Ve testimonios reales",
-        url: "/resultados"
+        url: "https://copyfy.shop/resultados"
       },
       {
         title: "Producto Original",
         description1: "Garantía de autenticidad",
         description2: "Envío gratis a todo el país",
-        url: "/original"
+        url: "https://copyfy.shop/original"
       }
     ],
     en: [
@@ -215,25 +214,25 @@ const generateSitelinks = (product: string, price: string, country: string, lang
         title: "Buy Now",
         description1: "Take advantage of exclusive deal",
         description2: "Fast home delivery",
-        url: "/buy"
+        url: "https://copyfy.shop/buy"
       },
       {
         title: "Pay on Delivery",
         description1: "Total security in your purchase",
         description2: "Pay only when you receive",
-        url: "/payment"
+        url: "https://copyfy.shop/payment"
       },
       {
         title: "Proven Results",
         description1: "Satisfied customers nationwide",
         description2: "See real testimonials",
-        url: "/results"
+        url: "https://copyfy.shop/results"
       },
       {
         title: "Original Product",
         description1: "Authenticity guarantee",
         description2: "Free shipping nationwide",
-        url: "/original"
+        url: "https://copyfy.shop/original"
       }
     ]
   };
