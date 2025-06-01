@@ -27,7 +27,7 @@ const DashboardSidebar = () => {
                 {isAdmin && <Badge variant="default" className="w-fit text-white bg-red-500">
                     ADMIN
                   </Badge>}
-                <Badge variant={isTrialActive ? "outline" : "destructive"} className="w-fit">
+                <Badge variant={isTrialActive ? "outline" : "destructive"} className="w-fit bg-yellow-500">
                   {isAdmin ? "Acesso Ilimitado" : isTrialActive ? `Trial: ${trialDaysRemaining} dia${trialDaysRemaining !== 1 ? 's' : ''}` : 'Trial expirado'}
                 </Badge>
               </div>
@@ -43,7 +43,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuButton asChild isActive={isActive("/dashboard")} tooltip="Dashboard">
                   <Link to="/dashboard">
                     <Home />
-                    <span>Dashboard</span>
+                    <span className="text-yellow-500">Dashboard</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -60,7 +60,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuButton asChild isActive={isActive("/privacy-policy")} tooltip="Política de Privacidade">
                   <Link to="/privacy-policy">
                     <FileText />
-                    <span>Política de Privacidade</span>
+                    <span className="text-yellow-500">Política de Privacidade</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -69,7 +69,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuButton asChild isActive={isActive("/terms-of-use")} tooltip="Termos de Uso">
                   <Link to="/terms-of-use">
                     <Layers />
-                    <span>Termos de Uso</span>
+                    <span className="text-yellow-500">Termos de Uso</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -78,7 +78,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuButton asChild isActive={isActive("/support")} tooltip="Suporte">
                   <Link to="/support">
                     <HelpCircle />
-                    <span>Suporte</span>
+                    <span className="text-yellow-500">Suporte</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -97,14 +97,14 @@ const DashboardSidebar = () => {
                     <SidebarMenuButton tooltip="Minha Conta" asChild>
                       <Link to="/dashboard">
                         <User />
-                        <span>Minha Conta</span>
+                        <span className="text-yellow-500">Minha Conta</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
                     <SidebarMenuButton tooltip="Sair" onClick={signOut}>
                       <LogOut />
-                      <span>Sair</span>
+                      <span className="text-yellow-500">Sair</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>

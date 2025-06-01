@@ -156,7 +156,7 @@ const CopyfyPanel = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 tracking-wide">
               Copy<span className="text-white">fy</span>
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl text-yellow-400 font-semibold">
+            <p className="text-lg md:text-xl text-yellow-400 font-semibold lg:text-4xl">
               Gere suas campanhas em poucos cliques
             </p>
           </div>
