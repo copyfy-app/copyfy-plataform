@@ -171,7 +171,7 @@ const CopyfyPanel = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 md:px-8 py-8">
         {!campaignGenerated ? <div className="max-w-4xl mx-auto">
-            <div className="rounded-lg border border-zinc-700 shadow-xl p-6 md:p-8 bg-gray-950">
+            <div className="border border-zinc-700 shadow-xl p-6 md:p-8 bg-gray-950 rounded-3xl">
               <h2 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">
                 Gere sua Campanha de Alta Conversão
               </h2>
