@@ -243,7 +243,7 @@ const CopyfyPanel = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
               {/* Títulos */}
               <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-4 md:p-6">
-                <h3 className="text-white font-bold mb-4 text-lg md:text-xl flex items-center gap-2">
+                <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
                   <Copy className="w-5 h-5 text-yellow-500" />
                   Títulos
                 </h3>
@@ -258,7 +258,7 @@ const CopyfyPanel = () => {
 
               {/* Descrições */}
               <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-4 md:p-6">
-                <h3 className="text-white font-bold mb-4 text-lg md:text-xl flex items-center gap-2">
+                <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
                   <FileText className="w-5 h-5 text-yellow-500" />
                   Descrições
                 </h3>
@@ -273,10 +273,9 @@ const CopyfyPanel = () => {
 
               {/* Sitelinks */}
               <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-4 md:p-6">
-                <h3 className="text-white font-bold mb-4 text-lg md:text-xl">Sitelinks</h3>
+                <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Sitelinks</h3>
                 <div className="space-y-4">
-                  {sitelinks.map((link, idx) => (
-                    <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}>
+                  {sitelinks.map((link, idx) => <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}>
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-yellow-500 text-sm">🔗 Sitelink {idx + 1}</span>
@@ -294,14 +293,13 @@ const CopyfyPanel = () => {
                           URL: {link.url}
                         </p>
                       </div>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
               </div>
 
               {/* USPs */}
               <div className="bg-zinc-900 rounded-lg border border-zinc-700 p-4 md:p-6">
-                <h3 className="text-white font-bold mb-4 text-lg md:text-xl">Destaques</h3>
+                <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Frases de Destaques</h3>
                 <div className="space-y-3">
                   {usps.map((usp, idx) => <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(usp)}>
                       <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base break-words">
