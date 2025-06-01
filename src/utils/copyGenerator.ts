@@ -481,12 +481,6 @@ function replacePlaceholders(text: string, product: string, price: string, count
     .replace(/\[PAÍS\]/g, country);
 }
 
-// Function to ensure text respects character limits
-function truncateText(text: string, limit: number): string {
-  if (text.length <= limit) return text;
-  return text.substring(0, limit - 3) + "...";
-}
-
 // Function to generate random integer between min and max (inclusive)
 function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -519,23 +513,23 @@ export function generateCODCopies(
   const shuffledUSPs = shuffleArray<string>(templates.usps);
   const shuffledSitelinks = shuffleArray<{ title: string; description: string; }>(templates.sitelinks);
   
-  // Generate the copies with placeholders replaced
+  // Generate the copies with placeholders replaced - NO TRUNCATION
   const titles = shuffledTitles.slice(0, 20).map((title: string) => 
-    truncateText(replacePlaceholders(title, product, price, country), LIMITS.TITLE)
+    replacePlaceholders(title, product, price, country)
   );
   
   const descriptions = shuffledDescriptions.slice(0, 10).map((desc: string) => 
-    truncateText(replacePlaceholders(desc, product, price, country), LIMITS.DESCRIPTION)
+    replacePlaceholders(desc, product, price, country)
   );
   
   const usps = shuffledUSPs.slice(0, 10).map((usp: string) => 
-    truncateText(replacePlaceholders(usp, product, price, country), LIMITS.USP)
+    replacePlaceholders(usp, product, price, country)
   );
   
   const sitelinks = shuffledSitelinks.slice(0, 4).map((link: { title: string; description: string; }) => {
     return {
-      title: truncateText(replacePlaceholders(link.title, product, price, country), LIMITS.SITELINK_TITLE),
-      description: truncateText(replacePlaceholders(link.description, product, price, country), LIMITS.SITELINK_DESC)
+      title: replacePlaceholders(link.title, product, price, country),
+      description: replacePlaceholders(link.description, product, price, country)
     };
   });
   
