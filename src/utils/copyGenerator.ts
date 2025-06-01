@@ -156,88 +156,95 @@ const generateUSPs = (product: string, price: string, country: string, languageC
 };
 
 const generateSitelinks = (product: string, price: string, country: string, languageCode: string, funnel: string): { title: string; description1: string; description2: string; url: string; }[] => {
-  const sitelinkTemplates = {
-    pt: [
-      {
-        title: "Compre Agora",
-        description1: "Aproveite o desconto exclusivo",
-        description2: "Receba em casa com rapidez",
-        url: "https://copyfy.shop/compra"
-      },
-      {
-        title: "Pague na Entrega",
-        description1: "Segurança total na sua compra",
-        description2: "Só pague quando receber",
-        url: "https://copyfy.shop/pagamento"
-      },
-      {
-        title: "Resultados Comprovados",
-        description1: "Clientes satisfeitos no país",
-        description2: "Veja os depoimentos reais",
-        url: "https://copyfy.shop/resultados"
-      },
-      {
-        title: "Produto Original",
-        description1: "Garantia de autenticidade",
-        description2: "Frete grátis para todo país",
-        url: "https://copyfy.shop/original"
-      }
-    ],
-    es: [
-      {
-        title: "Compra Ahora",
-        description1: "Aprovecha el descuento exclusivo",
-        description2: "Recibe en casa rápidamente",
-        url: "https://copyfy.shop/compra"
-      },
-      {
-        title: "Pago Contra Entrega",
-        description1: "Seguridad total en tu compra",
-        description2: "Solo paga cuando recibas",
-        url: "https://copyfy.shop/pago"
-      },
-      {
-        title: "Resultados Probados",
-        description1: "Clientes satisfechos en el país",
-        description2: "Ve testimonios reales",
-        url: "https://copyfy.shop/resultados"
-      },
-      {
-        title: "Producto Original",
-        description1: "Garantía de autenticidad",
-        description2: "Envío gratis a todo el país",
-        url: "https://copyfy.shop/original"
-      }
-    ],
-    en: [
-      {
-        title: "Buy Now",
-        description1: "Take advantage of exclusive deal",
-        description2: "Fast home delivery",
-        url: "https://copyfy.shop/buy"
-      },
-      {
-        title: "Pay on Delivery",
-        description1: "Total security in your purchase",
-        description2: "Pay only when you receive",
-        url: "https://copyfy.shop/payment"
-      },
-      {
-        title: "Proven Results",
-        description1: "Satisfied customers nationwide",
-        description2: "See real testimonials",
-        url: "https://copyfy.shop/results"
-      },
-      {
-        title: "Original Product",
-        description1: "Authenticity guarantee",
-        description2: "Free shipping nationwide",
-        url: "https://copyfy.shop/original"
-      }
-    ]
+  const sitelinkData = {
+    pt: {
+      titles: [
+        "Compre Agora", "Entrega Garantida", "Pague ao Receber", "Resultados Reais", 
+        "Oferta Relâmpago", "Produto Original", "Desconto Exclusivo", "Frete Grátis"
+      ],
+      descriptions: [
+        `${product} com desconto especial`, `Frete grátis para todo o ${country}`, 
+        `Cliente só paga ao receber`, `Veja os depoimentos reais`, 
+        `Aproveite por ${price}`, `Garantia de autenticidade`, 
+        `Entrega rápida e segura`, `Resultados comprovados`, 
+        `${product} original`, `Suporte 24 horas`, 
+        `Satisfação garantida`, `Promoção limitada`
+      ],
+      urls: [
+        "https://copyfy.shop/compra", "https://copyfy.shop/entrega", 
+        "https://copyfy.shop/pagamento", "https://copyfy.shop/resultados",
+        "https://copyfy.shop/oferta", "https://copyfy.shop/original"
+      ]
+    },
+    es: {
+      titles: [
+        "Compra Ahora", "Entrega Garantizada", "Pago Contra Entrega", "Resultados Reales",
+        "Oferta Relámpago", "Producto Original", "Descuento Exclusivo", "Envío Gratis"
+      ],
+      descriptions: [
+        `${product} con descuento especial`, `Envío gratis a todo ${country}`,
+        `Cliente solo paga al recibir`, `Ve testimonios reales`,
+        `Aprovecha por ${price}`, `Garantía de autenticidad`,
+        `Entrega rápida y segura`, `Resultados comprobados`,
+        `${product} original`, `Soporte 24 horas`,
+        `Satisfacción garantizada`, `Promoción limitada`
+      ],
+      urls: [
+        "https://copyfy.shop/compra", "https://copyfy.shop/entrega",
+        "https://copyfy.shop/pago", "https://copyfy.shop/resultados",
+        "https://copyfy.shop/oferta", "https://copyfy.shop/original"
+      ]
+    },
+    en: {
+      titles: [
+        "Buy Now", "Guaranteed Delivery", "Pay on Delivery", "Real Results",
+        "Flash Offer", "Original Product", "Exclusive Discount", "Free Shipping"
+      ],
+      descriptions: [
+        `${product} with special discount`, `Free shipping to all ${country}`,
+        `Customer only pays on delivery`, `See real testimonials`,
+        `Get it for ${price}`, `Authenticity guarantee`,
+        `Fast and secure delivery`, `Proven results`,
+        `Original ${product}`, `24/7 support`,
+        `Satisfaction guaranteed`, `Limited promotion`
+      ],
+      urls: [
+        "https://copyfy.shop/buy", "https://copyfy.shop/delivery",
+        "https://copyfy.shop/payment", "https://copyfy.shop/results",
+        "https://copyfy.shop/offer", "https://copyfy.shop/original"
+      ]
+    }
   };
 
-  return sitelinkTemplates[languageCode] || sitelinkTemplates.pt;
+  const data = sitelinkData[languageCode] || sitelinkData.pt;
+  
+  // Função para embaralhar arrays
+  const shuffleArray = (array: string[]) => {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  // Embaralha os arrays para gerar variações
+  const shuffledTitles = shuffleArray(data.titles);
+  const shuffledDescriptions = shuffleArray(data.descriptions);
+  const shuffledUrls = shuffleArray(data.urls);
+
+  // Gera 4 sitelinks únicos
+  const sitelinks = [];
+  for (let i = 0; i < 4; i++) {
+    sitelinks.push({
+      title: shuffledTitles[i],
+      description1: shuffledDescriptions[i * 2],
+      description2: shuffledDescriptions[i * 2 + 1],
+      url: shuffledUrls[i]
+    });
+  }
+
+  return sitelinks;
 };
 
 export const generateCODCopies = (product: string, price: string, country: string, languageCode: string, funnel: string) => {
