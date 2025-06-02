@@ -1,64 +1,236 @@
-
 const generateTitles = (product: string, price: string, country: string, languageCode: string, funnel: string): string[] => {
-  const titles = [];
+  let titleBank = [];
 
-  if (funnel === 'cod') {
-    // COD Specific Titles
-    if (languageCode === 'pt') {
-      titles.push(
-        `Compre ${product} e pague ao receber!`,
-        `Aproveite! ${product} com entrega em todo o Brasil.`,
-        `${product} - Peça agora e só pague na entrega!`,
-        `Não perca! ${product} com pagamento facilitado na entrega.`,
-        `${product} - A solução que você precisa, com a facilidade do pagamento na entrega.`
-      );
-    } else if (languageCode === 'es') {
-      titles.push(
-        `¡Compra ${product} y paga al recibir!`,
-        `¡Aprovecha! ${product} con entrega en todo el país.`,
-        `${product} - ¡Pide ahora y paga al recibir!`,
-        `No pierdas! ${product} con pago facilitado al recibir.`,
-        `${product} - La solución que necesitas, con la facilidad de pago al recibir.`
-      );
+  if (languageCode === 'pt') {
+    if (funnel === 'top') {
+      // Topo de Funil - títulos curiosos, chamativos
+      titleBank = [
+        `Você sabia que ${product} pode mudar sua vida?`,
+        `Descubra o segredo por trás de ${product}`,
+        `O que ninguém te conta sobre ${product}`,
+        `Por que ${product} está fazendo tanto sucesso?`,
+        `A verdade sobre ${product} que você precisa saber`,
+        `${product}: O produto que está revolucionando tudo`,
+        `Finalmente chegou: ${product} no ${country}`,
+        `Atenção: ${product} pode ser exatamente o que você procura`,
+        `Curiosidade: Como ${product} funciona na prática?`,
+        `Surpreenda-se com os resultados de ${product}`,
+        `${product}: A novidade que todos estão falando`,
+        `Será que ${product} realmente funciona?`,
+        `Conheça ${product} antes que seja tarde demais`,
+        `${product} chegou ao ${country} e está causando`,
+        `O fenômeno ${product} finalmente explicado`,
+        `Descubra por que ${product} virou febre`,
+        `${product}: O que os especialistas não querem que você saiba`,
+        `A história por trás do sucesso de ${product}`,
+        `${product}: Mito ou realidade? Descubra agora`,
+        `Por que ${product} está mudando vidas no ${country}?`,
+        `O segredo de ${product} revelado pela primeira vez`,
+        `${product}: A descoberta que está impressionando`,
+        `Atenção ${country}: ${product} pode ser a solução`,
+        `${product} - O produto que todos querem entender`,
+        `Finalmente: a verdade sobre ${product}`,
+        `${product} no ${country}: O que você precisa saber`,
+        `Descubra como ${product} pode te ajudar`,
+        `${product}: A revolução que chegou ao ${country}`,
+        `O mistério de ${product} finalmente revelado`,
+        `Por que ${product} está conquistando o ${country}?`,
+        `${product}: A novidade que pode mudar tudo`,
+        `Conheça o poder transformador de ${product}`,
+        `${product} - A descoberta que todos esperavam`
+      ];
+    } else if (funnel === 'mid') {
+      // Meio de Funil - títulos explicativos, benefícios
+      titleBank = [
+        `${product} - Benefícios comprovados cientificamente`,
+        `Como ${product} pode melhorar sua qualidade de vida`,
+        `${product}: Resultados reais em ${country}`,
+        `Os principais benefícios de ${product} explicados`,
+        `Por que escolher ${product}? Veja as vantagens`,
+        `${product} vs concorrentes: Compare e decida`,
+        `${product}: Solução completa para suas necessidades`,
+        `Entenda como ${product} funciona passo a passo`,
+        `${product} - Tecnologia avançada ao seu alcance`,
+        `Os resultados de ${product} que você pode esperar`,
+        `${product}: Eficácia comprovada em estudos`,
+        `Como ${product} se destaca no mercado`,
+        `${product} - A ciência por trás dos resultados`,
+        `Benefícios exclusivos de ${product} no ${country}`,
+        `${product}: Qualidade e eficiência garantidas`,
+        `Por que ${product} é a escolha inteligente`,
+        `${product} - Inovação que faz a diferença`,
+        `Como ${product} pode resolver seu problema`,
+        `${product}: Resultados superiores comprovados`,
+        `A tecnologia de ${product} explicada`,
+        `${product} - Benefícios que você vai notar`,
+        `Por que ${product} supera as expectativas`,
+        `${product}: A solução que você estava procurando`,
+        `Como ${product} pode transformar sua rotina`,
+        `${product} - Eficácia testada e aprovada`,
+        `Os diferenciais únicos de ${product}`,
+        `${product}: Qualidade premium no ${country}`,
+        `Como ${product} entrega resultados reais`,
+        `${product} - A escolha dos especialistas`,
+        `Por que ${product} é considerado o melhor`,
+        `${product}: Inovação e resultados em um só produto`,
+        `Como ${product} pode ser sua solução ideal`,
+        `${product} - Benefícios que valem a pena`
+      ];
     } else {
-      titles.push(
-        `Buy ${product} and pay upon delivery!`,
-        `Enjoy! ${product} with delivery throughout the country.`,
-        `${product} - Order now and only pay on delivery!`,
-        `Don't miss out! ${product} with easy payment on delivery.`,
-        `${product} - The solution you need, with the convenience of payment on delivery.`
-      );
+      // Fundo de Funil e COD - títulos diretos, urgentes, com CTA
+      titleBank = [
+        `Compre ${product} agora e pague apenas ${price}!`,
+        `${product} - Últimas unidades por ${price}`,
+        `Aproveite! ${product} com 50% de desconto`,
+        `${product} - Oferta imperdível por ${price}`,
+        `Garante já seu ${product} por apenas ${price}`,
+        `${product} - Promoção relâmpago por ${price}`,
+        `Últimas horas: ${product} por ${price}`,
+        `${product} - Compre hoje e economize!`,
+        `Oferta especial: ${product} por ${price}`,
+        `${product} - Não perca esta oportunidade!`,
+        `Adquira ${product} agora por ${price}`,
+        `${product} - Desconto exclusivo por tempo limitado`,
+        `Peça já seu ${product} por apenas ${price}`,
+        `${product} - Oferta válida apenas hoje!`,
+        `Compre ${product} e receba em casa por ${price}`,
+        `${product} - Liquidação por ${price}`,
+        `Últimas peças: ${product} por ${price}`,
+        `${product} - Aproveite o preço promocional`,
+        `Garanta ${product} com desconto especial`,
+        `${product} - Oferta por tempo limitado!`,
+        `Compre agora: ${product} por ${price}`,
+        `${product} - Promoção exclusiva no ${country}`,
+        `Peça hoje ${product} e pague só ${price}`,
+        `${product} - Desconto imperdível!`,
+        `Aproveite: ${product} em oferta por ${price}`,
+        `${product} - Compre já e não se arrependa`,
+        `Oferta final: ${product} por ${price}`,
+        `${product} - Últimas unidades disponíveis`,
+        `Garante o seu: ${product} por ${price}`,
+        `${product} - Promoção de lançamento!`,
+        `Compre ${product} hoje e economize muito`,
+        `${product} - Oferta exclusiva para o ${country}`,
+        `Peça agora ${product} por apenas ${price}!`
+      ];
+    }
+  } else if (languageCode === 'es') {
+    if (funnel === 'top') {
+      titleBank = [
+        `¿Sabías que ${product} puede cambiar tu vida?`,
+        `Descubre el secreto detrás de ${product}`,
+        `Lo que nadie te cuenta sobre ${product}`,
+        `¿Por qué ${product} está teniendo tanto éxito?`,
+        `La verdad sobre ${product} que necesitas saber`,
+        `${product}: El producto que está revolucionando todo`,
+        `Finalmente llegó: ${product} en ${country}`,
+        `Atención: ${product} puede ser exactamente lo que buscas`,
+        `Curiosidad: ¿Cómo funciona ${product} en la práctica?`,
+        `Sorpréndete con los resultados de ${product}`,
+        `${product}: La novedad de la que todos hablan`,
+        `¿Realmente funciona ${product}?`,
+        `Conoce ${product} antes de que sea demasiado tarde`,
+        `${product} llegó a ${country} y está causando sensación`,
+        `El fenómeno ${product} finalmente explicado`
+      ];
+    } else if (funnel === 'mid') {
+      titleBank = [
+        `${product} - Benefícios comprobados científicamente`,
+        `Cómo ${product} puede mejorar tu calidad de vida`,
+        `${product}: Resultados reales en ${country}`,
+        `Los principales beneficios de ${product} explicados`,
+        `¿Por qué elegir ${product}? Ve las ventajas`,
+        `${product} vs competidores: Compara y decide`,
+        `${product}: Solución completa para tus necesidades`,
+        `Entiende cómo funciona ${product} paso a paso`,
+        `${product} - Tecnología avanzada a tu alcance`,
+        `Los resultados de ${product} que puedes esperar`,
+        `${product}: Eficacia comprobada en estudios`,
+        `Cómo ${product} se destaca en el mercado`,
+        `${product} - La ciencia detrás de los resultados`,
+        `Beneficios exclusivos de ${product} en ${country}`,
+        `${product}: Calidad y eficiencia garantizadas`
+      ];
+    } else {
+      titleBank = [
+        `¡Compra ${product} ahora y paga solo ${price}!`,
+        `${product} - Últimas unidades por ${price}`,
+        `¡Aprovecha! ${product} con 50% de descuento`,
+        `${product} - Oferta imperdible por ${price}`,
+        `Asegura ya tu ${product} por solo ${price}`,
+        `${product} - Promoción relámpago por ${price}`,
+        `Últimas horas: ${product} por ${price}`,
+        `${product} - ¡Compra hoy y ahorra!`,
+        `Oferta especial: ${product} por ${price}`,
+        `${product} - ¡No pierdas esta oportunidad!`,
+        `Adquiere ${product} ahora por ${price}`,
+        `${product} - Descuento exclusivo por tiempo limitado`,
+        `Pide ya tu ${product} por solo ${price}`,
+        `${product} - ¡Oferta válida solo hoy!`,
+        `Compra ${product} y recíbelo en casa por ${price}`
+      ];
     }
   } else {
-    // General Titles
-    if (languageCode === 'pt') {
-      titles.push(
-        `Descubra ${product} - A solução ideal para você!`,
-        `Encontre ${product} com ofertas exclusivas.`,
-        `Aproveite os benefícios de ${product} agora mesmo!`,
-        `${product} - Transforme sua vida com este produto incrível.`,
-        `Conheça ${product} e surpreenda-se com os resultados.`
-      );
-    } else if (languageCode === 'es') {
-      titles.push(
-        `Descubre ${product} - ¡La solución ideal para ti!`,
-        `Encuentra ${product} con ofertas exclusivas.`,
-        `¡Aprovecha los beneficios de ${product} ahora mismo!`,
-        `${product} - Transforma tu vida con este increíble producto.`,
-        `Conoce ${product} y sorpréndete con los resultados.`
-      );
+    if (funnel === 'top') {
+      titleBank = [
+        `Did you know ${product} can change your life?`,
+        `Discover the secret behind ${product}`,
+        `What nobody tells you about ${product}`,
+        `Why is ${product} so successful?`,
+        `The truth about ${product} you need to know`,
+        `${product}: The product that's revolutionizing everything`,
+        `Finally here: ${product} in ${country}`,
+        `Attention: ${product} might be exactly what you're looking for`,
+        `Curious: How does ${product} work in practice?`,
+        `Be amazed by ${product} results`,
+        `${product}: The novelty everyone's talking about`,
+        `Does ${product} really work?`,
+        `Get to know ${product} before it's too late`,
+        `${product} arrived in ${country} and is causing a sensation`,
+        `The ${product} phenomenon finally explained`
+      ];
+    } else if (funnel === 'mid') {
+      titleBank = [
+        `${product} - Scientifically proven benefits`,
+        `How ${product} can improve your quality of life`,
+        `${product}: Real results in ${country}`,
+        `The main benefits of ${product} explained`,
+        `Why choose ${product}? See the advantages`,
+        `${product} vs competitors: Compare and decide`,
+        `${product}: Complete solution for your needs`,
+        `Understand how ${product} works step by step`,
+        `${product} - Advanced technology within your reach`,
+        `The ${product} results you can expect`,
+        `${product}: Efficacy proven in studies`,
+        `How ${product} stands out in the market`,
+        `${product} - The science behind the results`,
+        `Exclusive benefits of ${product} in ${country}`,
+        `${product}: Quality and efficiency guaranteed`
+      ];
     } else {
-      titles.push(
-        `Discover ${product} - The ideal solution for you!`,
-        `Find ${product} with exclusive offers.`,
-        `Enjoy the benefits of ${product} right now!`,
-        `${product} - Transform your life with this amazing product.`,
-        `Get to know ${product} and be amazed by the results.`
-      );
+      titleBank = [
+        `Buy ${product} now and pay only ${price}!`,
+        `${product} - Last units for ${price}`,
+        `Take advantage! ${product} with 50% discount`,
+        `${product} - Unmissable offer for ${price}`,
+        `Secure your ${product} for only ${price}`,
+        `${product} - Flash promotion for ${price}`,
+        `Last hours: ${product} for ${price}`,
+        `${product} - Buy today and save!`,
+        `Special offer: ${product} for ${price}`,
+        `${product} - Don't miss this opportunity!`,
+        `Get ${product} now for ${price}`,
+        `${product} - Exclusive discount for limited time`,
+        `Order your ${product} for only ${price}`,
+        `${product} - Offer valid today only!`,
+        `Buy ${product} and receive at home for ${price}`
+      ];
     }
   }
 
-  return titles;
+  // Embaralha e retorna 30 títulos únicos
+  const shuffled = [...titleBank].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, Math.min(30, shuffled.length));
 };
 
 const generateDescriptions = (product: string, price: string, country: string, languageCode: string, funnel: string): string[] => {
@@ -124,35 +296,67 @@ const generateDescriptions = (product: string, price: string, country: string, l
 };
 
 const generateUSPs = (product: string, price: string, country: string, languageCode: string, funnel: string): string[] => {
-  const usps = [];
+  let uspBank = [];
 
   if (languageCode === 'pt') {
-    usps.push(
+    uspBank = [
       `Resultados comprovados em tempo recorde`,
       `Entrega rápida e segura em todo o Brasil`,
       `Garantia de satisfação ou seu dinheiro de volta`,
       `Suporte ao cliente 24/7`,
-      `Produto exclusivo com tecnologia de ponta`
-    );
+      `Produto exclusivo com tecnologia de ponta`,
+      `Aprovado por milhares de clientes satisfeitos`,
+      `Frete grátis para todo o ${country}`,
+      `Pagamento facilitado em até 12x`,
+      `Qualidade premium internacional`,
+      `Eficácia testada e comprovada`,
+      `Produto 100% original e autêntico`,
+      `Envio no mesmo dia da compra`,
+      `Atendimento especializado`,
+      `Tecnologia inovadora exclusiva`,
+      `Resultados visíveis em poucos dias`
+    ];
   } else if (languageCode === 'es') {
-    usps.push(
+    uspBank = [
       `Resultados comprobados en tiempo récord`,
       `Entrega rápida y segura en todo el país`,
       `Garantía de satisfacción o le devolvemos su dinero`,
       `Atención al cliente 24/7`,
-      `Producto exclusivo con tecnología de punta`
-    );
+      `Producto exclusivo con tecnología de punta`,
+      `Aprobado por miles de clientes satisfeitos`,
+      `Envío gratis a todo ${country}`,
+      `Pago facilitado en hasta 12 cuotas`,
+      `Calidad premium internacional`,
+      `Eficacia testada y comprobada`,
+      `Producto 100% original y auténtico`,
+      `Envío el mismo día de la compra`,
+      `Atención especializada`,
+      `Tecnología innovadora exclusiva`,
+      `Resultados visibles en pocos días`
+    ];
   } else {
-    usps.push(
+    uspBank = [
       `Proven results in record time`,
       `Fast and secure delivery throughout the country`,
       `Satisfaction guarantee or your money back`,
       `24/7 customer support`,
-      `Exclusive product with cutting-edge technology`
-    );
+      `Exclusive product with cutting-edge technology`,
+      `Approved by thousands of satisfied customers`,
+      `Free shipping throughout ${country}`,
+      `Easy payment in up to 12 installments`,
+      `International premium quality`,
+      `Tested and proven efficacy`,
+      `100% original and authentic product`,
+      `Same-day shipping`,
+      `Specialized customer service`,
+      `Exclusive innovative technology`,
+      `Visible results in just a few days`
+    ];
   }
 
-  return usps;
+  // Embaralha e retorna 10 USPs únicos
+  const shuffled = [...uspBank].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, Math.min(10, shuffled.length));
 };
 
 const generateSitelinks = (product: string, price: string, country: string, languageCode: string, funnel: string): { title: string; description1: string; description2: string; url: string; }[] => {
@@ -178,7 +382,7 @@ const generateSitelinks = (product: string, price: string, country: string, lang
     },
     es: {
       titles: [
-        "Compra Ahora", "Entrega Garantizada", "Pago Contra Entrega", "Resultados Reales",
+        "Compra Ahora", "Entrega Garantizada", "Pago Contra Entrega", "Resultados Reais",
         "Oferta Relámpago", "Producto Original", "Descuento Exclusivo", "Envío Gratis"
       ],
       descriptions: [
