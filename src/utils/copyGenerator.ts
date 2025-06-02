@@ -303,30 +303,27 @@ const languageTemplates: LanguageTemplates = {
       "✅ Kundesupport 24/7"
     ]
   },
-  // Irish (Gaeilge) - Ireland
-  ga: {
+  en: {
     titles: [
-      "{product} - Soláthróir Oifigiúil san Éirinn",
-      "Ceannaigh {product} anois - {price}",
-      "{product} - Táirge Ardchaighdeáin",
-      "Ordú {product} - Seachadadh Saor in Aisce",
-      "{product} Firinneach - Praghas Speisialta {price}"
+      "{product} - Official Distributor",
+      "Buy {product} Now - {price}",
+      "{product} - Quality Product",
+      "Order {product} - Free Shipping",
+      "{product} Original - Special Price {price}"
     ],
     descriptions: [
-      "Faigh {product} le seachadadh tapa ar fud na hÉireann. Íocaíocht ag an doras. Praghas speisialta: {price}",
-      "Ordaigh {product} anois agus faigh seachadadh saor in aisce. Íocaíocht nuair a fhaigheann tú é.",
-      "Táirge ardchaighdeáin {product} le ráthaíocht iomlán. Praghas iontach: {price}",
-      "{product} - an rogha is fearr san Éirinn. Seachadadh tapa agus íocaíocht ag an doras."
+      "Get {product} with fast delivery. Cash on delivery available. Special price: {price}",
+      "Order {product} now and get free shipping. Payment on delivery.",
+      "Quality {product} with full guarantee. Great price: {price}",
+      "{product} - the best choice. Fast delivery and cash on delivery payment."
     ],
     usps: [
-      "✅ Seachadadh saor in aisce ar fud na hÉireann",
-      "✅ Íocaíocht ag an doras - slán agus éasca",
-      "✅ Ráthaíocht iomlán ar ais",
-      "✅ Tacaíocht custaiméara 24/7"
+      "✅ Free shipping",
+      "✅ Cash on delivery - safe and easy",
+      "✅ Full money-back guarantee",
+      "✅ 24/7 customer support"
     ]
   },
-
-  // Czech - Czech Republic
   cs: {
     titles: [
       "{product} - Oficiální prodejce v ČR",
@@ -348,8 +345,6 @@ const languageTemplates: LanguageTemplates = {
       "✅ Zákaznická podpora 24/7"
     ]
   },
-
-  // Slovak - Slovakia
   sk: {
     titles: [
       "{product} - Oficiálny predajca na Slovensku",
@@ -371,8 +366,6 @@ const languageTemplates: LanguageTemplates = {
       "✅ Zákaznícka podpora 24/7"
     ]
   },
-
-  // Hungarian - Hungary
   hu: {
     titles: [
       "{product} - Hivatalos forgalmazó Magyarországon",
@@ -394,8 +387,6 @@ const languageTemplates: LanguageTemplates = {
       "✅ Ügyfélszolgálat 24/7"
     ]
   },
-
-  // Romanian - Romania
   ro: {
     titles: [
       "{product} - Distribuitor oficial în România",
@@ -417,8 +408,6 @@ const languageTemplates: LanguageTemplates = {
       "✅ Suport clienți 24/7"
     ]
   },
-
-  // Bulgarian - Bulgaria
   bg: {
     titles: [
       "{product} - Официален дистрибутор в България",
@@ -440,8 +429,6 @@ const languageTemplates: LanguageTemplates = {
       "✅ Клиентска поддръжка 24/7"
     ]
   },
-
-  // Turkish - Turkey
   tr: {
     titles: [
       "{product} - Türkiye Resmi Distribütörü",
@@ -463,8 +450,6 @@ const languageTemplates: LanguageTemplates = {
       "✅ 24/7 müşteri desteği"
     ]
   },
-
-  // Hebrew - Israel
   he: {
     titles: [
       "{product} - המפיץ הרשמי בישראל",
@@ -486,8 +471,6 @@ const languageTemplates: LanguageTemplates = {
       "✅ שירות לקוחות 24/7"
     ]
   },
-
-  // Arabic - UAE & Saudi Arabia
   ar: {
     titles: [
       "{product} - الموزع الرسمي",
@@ -513,30 +496,31 @@ const languageTemplates: LanguageTemplates = {
 
 const getLanguageForCountry = (countryName: string): string => {
   const countryLanguageMap: { [key: string]: string } = {
-    'Brazil': 'pt',
-    'Spain': 'es',
+    'Brasil': 'pt',
+    'United States': 'en',
+    'España': 'es',
     'France': 'fr',
-    'Germany': 'de',
-    'Italy': 'it',
-    'Russia': 'ru',
-    'China': 'zh',
-    'India': 'hi',
-    'Poland': 'pl',
-    'Finland': 'fi',
-    'Sweden': 'sv',
-    'Netherlands': 'nl',
-    'Denmark': 'da',
-    'Norway': 'no',
-    'Ireland': 'ga',
-    'República Tcheca': 'cs',
-    'Eslováquia': 'sk',
-    'Hungria': 'hu',
-    'Romênia': 'ro',
-    'Bulgária': 'bg',
-    'Turquia': 'tr',
-    'Israel': 'he',
-    'Emirados Árabes Unidos': 'ar',
-    'Arábia Saudita': 'ar'
+    'Deutschland': 'de',
+    'Italia': 'it',
+    'Россия': 'ru',
+    '中国': 'zh',
+    'भारत': 'hi',
+    'Polska': 'pl',
+    'Suomi': 'fi',
+    'Sverige': 'sv',
+    'Nederland': 'nl',
+    'Danmark': 'da',
+    'Norge': 'no',
+    'Ireland': 'en',
+    'Česko': 'cs',
+    'Slovensko': 'sk',
+    'Magyarország': 'hu',
+    'România': 'ro',
+    'България': 'bg',
+    'Türkiye': 'tr',
+    'ישראל': 'he',
+    'الإمارات العربية المتحدة': 'ar',
+    'المملكة العربية السعودية': 'ar'
   };
 
   return countryLanguageMap[countryName] || 'en';
