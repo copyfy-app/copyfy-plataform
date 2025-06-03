@@ -17,9 +17,9 @@ const DashboardSidebar = () => {
     return location.pathname === path;
   }, [location.pathname]);
   return <Sidebar>
-      <SidebarContent className="bg-black">
-        {user && <SidebarGroup className="bg-gray-950">
-            <SidebarGroupContent className="p-3 bg-black">
+      <SidebarContent className="bg-blue-950">
+        {user && <SidebarGroup className="bg-blue-950">
+            <SidebarGroupContent className="p-3 bg-blue-950">
               <div className="flex flex-col gap-2">
                 <div className="text-sm font-medium overflow-hidden text-ellipsis">
                   {user.email}
@@ -36,7 +36,7 @@ const DashboardSidebar = () => {
         
         <SidebarSeparator />
 
-        <SidebarGroup className="bg-gray-950">
+        <SidebarGroup className="bg-blue-950">
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem className="bg-blue-950">
@@ -53,7 +53,7 @@ const DashboardSidebar = () => {
         
         <SidebarSeparator />
 
-        <SidebarGroup className="bg-black">
+        <SidebarGroup className="bg-blue-950">
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -89,7 +89,7 @@ const DashboardSidebar = () => {
 
       {user && <>
           <SidebarSeparator />
-          <SidebarContent className="bg-black">
+          <SidebarContent className="bg-blue-950">
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>

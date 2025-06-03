@@ -150,9 +150,9 @@ const CopyfyPanel = () => {
       description: "Texto copiado para área de transferência."
     });
   };
-  return <div className="min-h-screen text-white bg-black">
+  return <div className="min-h-screen text-white bg-blue-950">
       {/* Header */}
-      <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-black">
+      <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-blue-950">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center space-y-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 tracking-wide">
