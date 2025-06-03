@@ -150,7 +150,7 @@ const CopyfyPanel = () => {
       description: "Texto copiado para área de transferência."
     });
   };
-  return <div className="min-h-screen text-white bg-blue-950">
+  return <div className="min-h-screen text-white bg-black">
       {/* Header */}
       <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-blue-950">
         <div className="container mx-auto px-4 md:px-8">
@@ -171,7 +171,7 @@ const CopyfyPanel = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 md:px-8 py-8">
         {!campaignGenerated ? <div className="max-w-4xl mx-auto">
-            <div className="border border-zinc-700 shadow-xl p-6 md:p-8 rounded-3xl bg-blue-950">
+            <div className="border border-zinc-700 shadow-xl p-6 md:p-8 rounded-3xl bg-black">
               <h2 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">
                 Gere sua Campanha de Alta Conversão
               </h2>
