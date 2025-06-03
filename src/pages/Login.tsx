@@ -47,7 +47,7 @@ const Login = () => {
   };
   return <div className="min-h-screen bg-black flex items-center justify-center p-4">
       <Card className="w-full max-w-md shadow-2xl border border-zinc-800 bg-zinc-900">
-        <CardHeader className="space-y-1">
+        <CardHeader className="space-y-1 bg-black">
           <div className="flex justify-center mb-4">
             <Logo />
           </div>
@@ -58,7 +58,7 @@ const Login = () => {
             {isLogin ? 'Entre em sua conta para continuar' : 'Crie sua conta e comece seu trial gratuito'}
           </p>
         </CardHeader>
-        <CardContent>
+        <CardContent className="bg-black">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label htmlFor="email" className="text-white">Email</Label>
