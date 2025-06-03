@@ -21,58 +21,52 @@ const DashboardHome = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Header */}
-      <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-black">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="flex justify-between items-center">
-            <div className="text-center flex-1">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 tracking-wide">
-                Copy<span className="text-white">fy</span>
-              </h1>
-            </div>
-            <Button 
-              onClick={signOut}
-              variant="outline"
-              className="text-white border-zinc-700 hover:bg-zinc-800"
-            >
-              Sair
-            </Button>
-          </div>
+    <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+      {/* Dashboard Container with Glassmorphism */}
+      <div className="relative w-full max-w-md">
+        {/* Logout Button - Top Right */}
+        <div className="absolute -top-12 right-0">
+          <Button 
+            onClick={signOut}
+            variant="outline"
+            className="text-white border-zinc-700 hover:bg-zinc-800 text-sm"
+          >
+            Sair
+          </Button>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 md:px-8 py-12 md:py-16">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+        {/* Main Dashboard Card */}
+        <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl p-8 shadow-[0_0_12px_rgba(255,255,0,0.2)] text-center">
           
-          {/* Welcome Section */}
-          <div className="space-y-4">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-              Bem-vindo à Copyfy
-            </h2>
-            <p className="text-lg md:text-xl text-yellow-500">
-              Você está logado como <span className="font-semibold">{user?.email}</span>
-            </p>
+          {/* Main Heading */}
+          <h1 className="text-3xl font-bold text-yellow-400 mb-4">
+            Bem-vindo à Copyfy
+          </h1>
+          
+          {/* Subtitle */}
+          <p className="text-base text-zinc-300 mb-8 leading-relaxed">
+            Gere campanhas de alta conversão com tradução automática para mais de 100 países.
+          </p>
+
+          {/* User Info */}
+          <div className="mb-8 text-sm text-zinc-400">
+            Logado como: <span className="font-semibold text-white">{user?.email}</span>
           </div>
 
-          {/* Main Action Button */}
-          <div className="py-8">
-            <Button
-              onClick={handleGoToCampaigns}
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg md:text-xl py-4 px-8 md:px-12 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105"
-              size="lg"
-            >
-              Ir para Geração de Campanhas
-            </Button>
-          </div>
+          {/* Primary Action Button */}
+          <Button
+            onClick={handleGoToCampaigns}
+            className="w-full bg-yellow-400 hover:bg-yellow-300 text-black font-semibold text-base py-3 mb-6 rounded-xl transition-all duration-300 hover:shadow-lg"
+          >
+            Ir para o Gerador de Copys
+          </Button>
 
           {/* Secondary Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col gap-3">
             <Button
               onClick={handlePolicyClick}
               variant="outline"
-              className="text-white border-zinc-700 hover:bg-zinc-800 hover:text-yellow-500 transition-colors"
+              className="w-full text-zinc-300 border-zinc-600 hover:bg-white/5 hover:text-yellow-400 transition-colors rounded-xl"
             >
               Política de Uso
             </Button>
@@ -80,7 +74,7 @@ const DashboardHome = () => {
             <Button
               onClick={handleSupportEmail}
               variant="outline"
-              className="text-white border-zinc-700 hover:bg-zinc-800 hover:text-yellow-500 transition-colors flex items-center gap-2"
+              className="w-full text-zinc-300 border-zinc-600 hover:bg-white/5 hover:text-yellow-400 transition-colors rounded-xl flex items-center justify-center gap-2"
             >
               <Mail className="w-4 h-4" />
               Suporte por Email
@@ -88,16 +82,7 @@ const DashboardHome = () => {
           </div>
 
         </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="mt-16 py-8 border-t border-zinc-700">
-        <div className="container mx-auto px-4 md:px-8 text-center">
-          <p className="text-zinc-400 text-sm">
-            © {new Date().getFullYear()} Copyfy - Gerador de Campanhas
-          </p>
-        </div>
-      </footer>
+      </div>
     </div>
   );
 };
