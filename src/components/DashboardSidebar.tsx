@@ -17,9 +17,9 @@ const DashboardSidebar = () => {
     return location.pathname === path;
   }, [location.pathname]);
   return <Sidebar>
-      <SidebarContent className="bg-blue-950">
+      <SidebarContent className="bg-black">
         {user && <SidebarGroup className="bg-gray-950">
-            <SidebarGroupContent className="p-3 bg-blue-950">
+            <SidebarGroupContent className="p-3 bg-black">
               <div className="flex flex-col gap-2">
                 <div className="text-sm font-medium overflow-hidden text-ellipsis">
                   {user.email}
@@ -53,14 +53,14 @@ const DashboardSidebar = () => {
         
         <SidebarSeparator />
 
-        <SidebarGroup className="bg-blue-950">
+        <SidebarGroup className="bg-black">
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild isActive={isActive("/privacy-policy")} tooltip="Política de Privacidade">
                   <Link to="/privacy-policy">
                     <FileText />
-                    <span className="text-yellow-500">Política de Privacidade</span>
+                    <span className="text-yellow-500 text-lg font-bold">Política de Privacidade</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -69,7 +69,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuButton asChild isActive={isActive("/terms-of-use")} tooltip="Termos de Uso">
                   <Link to="/terms-of-use">
                     <Layers />
-                    <span className="text-yellow-500">Termos de Uso</span>
+                    <span className="text-yellow-500 text-lg font-bold">Termos de Uso</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -78,7 +78,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuButton asChild isActive={isActive("/support")} tooltip="Suporte">
                   <Link to="/support">
                     <HelpCircle />
-                    <span className="text-yellow-500">Suporte</span>
+                    <span className="text-yellow-500 font-extrabold text-lg">Suporte</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -89,7 +89,7 @@ const DashboardSidebar = () => {
 
       {user && <>
           <SidebarSeparator />
-          <SidebarContent className="bg-blue-950">
+          <SidebarContent className="bg-black">
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
@@ -97,14 +97,14 @@ const DashboardSidebar = () => {
                     <SidebarMenuButton tooltip="Minha Conta" asChild>
                       <Link to="/dashboard">
                         <User />
-                        <span className="text-yellow-500">Minha Conta</span>
+                        <span className="text-yellow-500 text-lg font-bold">Minha Conta</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                   <SidebarMenuItem>
-                    <SidebarMenuButton tooltip="Sair" onClick={signOut}>
+                    <SidebarMenuButton tooltip="Sair" onClick={signOut} className="font-normal">
                       <LogOut />
-                      <span className="text-yellow-500">Sair</span>
+                      <span className="text-yellow-500 font-bold text-lg">Sair</span>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 </SidebarMenu>
@@ -114,7 +114,7 @@ const DashboardSidebar = () => {
         </>}
 
       <SidebarFooter className="py-2">
-        <div className="px-3 text-xs text-gray-500 bg-blue-950">
+        <div className="px-3 text-xs text-gray-500 bg-black">
           © {new Date().getFullYear()} Copyfy
         </div>
       </SidebarFooter>
