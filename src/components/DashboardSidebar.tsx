@@ -17,9 +17,9 @@ const DashboardSidebar = () => {
     return location.pathname === path;
   }, [location.pathname]);
   return <Sidebar>
-      <SidebarContent className="bg-black">
+      <SidebarContent className="bg-blue-950">
         {user && <SidebarGroup className="bg-gray-950">
-            <SidebarGroupContent className="p-3">
+            <SidebarGroupContent className="p-3 bg-blue-950">
               <div className="flex flex-col gap-2">
                 <div className="text-sm font-medium overflow-hidden text-ellipsis">
                   {user.email}
@@ -39,7 +39,7 @@ const DashboardSidebar = () => {
         <SidebarGroup className="bg-gray-950">
           <SidebarGroupContent>
             <SidebarMenu>
-              <SidebarMenuItem>
+              <SidebarMenuItem className="bg-blue-950">
                 <SidebarMenuButton asChild isActive={isActive("/dashboard")} tooltip="Dashboard">
                   <Link to="/dashboard">
                     <Home />
@@ -53,7 +53,7 @@ const DashboardSidebar = () => {
         
         <SidebarSeparator />
 
-        <SidebarGroup className="bg-gray-950">
+        <SidebarGroup className="bg-blue-950">
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
@@ -89,7 +89,7 @@ const DashboardSidebar = () => {
 
       {user && <>
           <SidebarSeparator />
-          <SidebarContent className="bg-gray-950">
+          <SidebarContent className="bg-blue-950">
             <SidebarGroup>
               <SidebarGroupContent>
                 <SidebarMenu>
@@ -114,7 +114,7 @@ const DashboardSidebar = () => {
         </>}
 
       <SidebarFooter className="py-2">
-        <div className="px-3 text-xs text-gray-500">
+        <div className="px-3 text-xs text-gray-500 bg-blue-950">
           © {new Date().getFullYear()} Copyfy
         </div>
       </SidebarFooter>
