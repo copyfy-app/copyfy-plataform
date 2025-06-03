@@ -5,7 +5,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
+import DashboardHome from "./pages/DashboardHome";
+import PainelPage from "./pages/PainelPage";
+import PolicyPage from "./pages/PolicyPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
 import Support from "./pages/Support";
@@ -56,7 +58,9 @@ const AppRoutes = () => {
       
       {/* Rotas protegidas que requerem autenticação */}
       <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<DashboardHome />} />
+        <Route path="/painel" element={<PainelPage />} />
+        <Route path="/politica" element={<PolicyPage />} />
       </Route>
       
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
