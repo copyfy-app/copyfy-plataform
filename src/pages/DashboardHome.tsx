@@ -31,7 +31,7 @@ const DashboardHome = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/10 via-yellow-800/5 to-transparent animate-pulse bg-black" />
 
       {/* Card central animado */}
-      <div className="w-full max-w-xl bg-black/60 border border-yellow-600 shadow-2xl p-8 text-white text-center space-y-6 animate-fade-in z-10 px-[32px] py-[80px] rounded-2xl">
+      <div className="w-full max-w-xl bg-black/60 border border-yellow-600 shadow-2xl p-8 text-white text-center space-y-6 animate-fade-in z-10 px-[32px] rounded-2xl py-[70px]">
         
         <h1 className="text-3xl font-bold text-yellow-500">
           COPY<span className="text-white">FY</span>
