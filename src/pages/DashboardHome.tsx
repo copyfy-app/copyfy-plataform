@@ -1,12 +1,11 @@
 
-import React, { useState } from "react";
+import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const DashboardHome = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
 
   const handleGoToCopyGenerator = () => {
     navigate("/painel");
@@ -25,9 +24,7 @@ const DashboardHome = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8" style={{
-      background: "linear-gradient(145deg, #000000, #1a1a1a)"
-    }}>
+    <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black flex items-center justify-center px-4 relative overflow-hidden">
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button 
@@ -38,9 +35,12 @@ const DashboardHome = () => {
         </button>
       </div>
 
+      {/* Animação sutil de fundo */}
+      <div className="absolute inset-0 bg-gradient-radial from-yellow-900/10 via-yellow-800/5 to-transparent" />
+
       {/* Card central com glassmorphism */}
       <div 
-        className="w-full max-w-md text-center p-8 rounded-2xl text-white"
+        className="w-full max-w-md text-center p-8 rounded-2xl text-white z-10"
         style={{
           background: "rgba(255, 255, 255, 0.05)",
           border: "1px solid rgba(255, 255, 255, 0.1)",
@@ -51,7 +51,7 @@ const DashboardHome = () => {
         }}
       >
         <h1 className="text-3xl font-bold mb-6" style={{ color: "#ffe600" }}>
-          Dashboard Copyfy
+          COPY<span className="text-white">FY</span>
         </h1>
 
         <p className="text-lg mb-6">
@@ -69,8 +69,8 @@ const DashboardHome = () => {
             backgroundColor: "#ffe600",
             color: "#000"
           }}
-          onMouseEnter={(e) => e.target.style.backgroundColor = "#fff200"}
-          onMouseLeave={(e) => e.target.style.backgroundColor = "#ffe600"}
+          onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = "#fff200"}
+          onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = "#ffe600"}
         >
           Acessar Painel de Geração
         </button>
