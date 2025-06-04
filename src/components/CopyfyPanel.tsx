@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -333,69 +332,49 @@ const CopyfyPanel = () => {
               </div>
 
               {/* Snippet Estruturado */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
-                <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
-                  <Tag className="w-5 h-5 text-yellow-500" />
-                  Snippet Estruturado
+              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+                <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => copyToClipboard(`Categoria: Benefícios\nRápido resultado · Produto original · Envio imediato`)}>
+                  📌 Snippet Estruturado
                 </h3>
-                <p className="text-zinc-400 mb-4 text-sm">Exibe categorias com valores adicionais (ex: Marcas, Tipos, Benefícios)</p>
-                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generateStructuredSnippet())}>
-                  <div className="space-y-2">
-                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                      <strong className="text-yellow-500">Categoria:</strong> Benefícios
-                    </p>
-                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                      <strong className="text-yellow-500">Valores:</strong> Rápido resultado · Produto original · Envio imediato
-                    </p>
-                  </div>
+                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`Categoria: Benefícios\nRápido resultado · Produto original · Envio imediato`)}>
+                  <p className="extensao-descricao text-sm text-zinc-400 mb-2">Categoria: <strong className="text-yellow-500">Benefícios</strong></p>
+                  <p className="extensao-itens text-sm text-white group-hover:text-yellow-100 transition-colors">Rápido resultado · Produto original · Envio imediato</p>
                 </div>
               </div>
 
               {/* Extensão de Promoção */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
-                <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
-                  <Gift className="w-5 h-5 text-yellow-500" />
-                  Extensão de Promoção
+              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+                <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
+                  🎯 Extensão de Promoção
                 </h3>
-                <p className="text-zinc-400 mb-4 text-sm">Mostra promoções ativas no anúncio</p>
-                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePromotionExtension())}>
-                  <div className="space-y-2">
-                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                      <strong className="text-yellow-500">Ocasião:</strong> Oferta por tempo limitado
-                    </p>
-                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                      <strong className="text-yellow-500">Produto:</strong> {product}
-                    </p>
-                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                      <strong className="text-yellow-500">Valor com desconto:</strong> Apenas {price}
-                    </p>
-                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                      <strong className="text-yellow-500">Cupom:</strong> PAGUECOD
-                    </p>
-                  </div>
+                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`Ocasião: Oferta por tempo limitado\nProduto: ${product}\nValor com desconto: Apenas ${price}\nCupom: PAGUECOD`)}>
+                  <ul className="extensao-lista space-y-2">
+                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Ocasião:</strong> Oferta por tempo limitado</li>
+                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Produto:</strong> {product}</li>
+                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Valor com desconto:</strong> Apenas {price}</li>
+                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Cupom:</strong> PAGUECOD</li>
+                  </ul>
                 </div>
               </div>
             </div>
 
             {/* Extensão de Preço - Full width below */}
-            <div className="mt-6 md:mt-8 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
-              <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
-                <DollarSign className="w-5 h-5 text-yellow-500" />
-                Extensão de Preço
+            <div className="mt-6 md:mt-8 extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
+                💲 Extensão de Preço
               </h3>
-              <p className="text-zinc-400 mb-4 text-sm">Lista variações com valores clicáveis</p>
-              <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePriceExtension())}>
-                <div className="space-y-3">
-                  <div className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                    <strong className="text-yellow-500">{product} 1 unidade:</strong> {price} - Entrega para todo {countries.find(c => c.value === country)?.name || ""}
-                  </div>
-                  <div className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
-                    <strong className="text-yellow-500">{product} 2 unidades:</strong> Desconto especial - Frete grátis
-                  </div>
-                  <div className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+              <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`${product} 1 unidade: ${price} – Entrega para todo ${countries.find(c => c.value === country)?.name || ""}\n${product} 2 unidades: Desconto especial – Frete grátis\n${product} Kit completo: Melhor custo-benefício`)}>
+                <ul className="extensao-lista space-y-3">
+                  <li className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                    <strong className="text-yellow-500">{product} 1 unidade:</strong> {price} – Entrega para todo {countries.find(c => c.value === country)?.name || ""}
+                  </li>
+                  <li className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                    <strong className="text-yellow-500">{product} 2 unidades:</strong> Desconto especial – Frete grátis
+                  </li>
+                  <li className="text-sm text-white group-hover:text-yellow-100 transition-colors">
                     <strong className="text-yellow-500">{product} Kit completo:</strong> Melhor custo-benefício
-                  </div>
-                </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>}
