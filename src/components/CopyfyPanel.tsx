@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,7 +11,8 @@ import { countries } from "./data/Countries";
 import { generateCODCopies } from "../utils/copyGenerator";
 import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "@/components/ui/badge";
-import { Copy, FileText, User, Mail } from "lucide-react";
+import { Copy, FileText, User, Mail, Tag, Gift, DollarSign } from "lucide-react";
+
 const funnelStrategies = [{
   value: "cod",
   label: "COD (Pagamento na Entrega)"
@@ -24,6 +26,7 @@ const funnelStrategies = [{
   value: "top",
   label: "Topo de Funil"
 }];
+
 const CopyfyPanel = () => {
   const [country, setCountry] = useState("");
   const [product, setProduct] = useState("");
@@ -150,6 +153,28 @@ const CopyfyPanel = () => {
       description: "Texto copiado para área de transferência."
     });
   };
+
+  // Generate structured snippet content
+  const generateStructuredSnippet = () => {
+    const snippet = `Categoria: Benefícios\nValores: Rápido resultado · Produto original · Envio imediato`;
+    return snippet;
+  };
+
+  // Generate promotion extension content
+  const generatePromotionExtension = () => {
+    const promotion = `Ocasião: Oferta por tempo limitado\nProduto: ${product}\nValor com desconto: Apenas ${price}\nCupom: PAGUECOD`;
+    return promotion;
+  };
+
+  // Generate price extension content
+  const generatePriceExtension = () => {
+    const countryData = countries.find(c => c.value === country);
+    const countryName = countryData ? countryData.name : "";
+    
+    const priceExtension = `${product} 1 unidade: ${price} - Entrega para todo ${countryName}\n${product} 2 unidades: Desconto especial - Frete grátis\n${product} Kit completo: Melhor custo-benefício`;
+    return priceExtension;
+  };
+
   return <div className="min-h-screen text-white bg-black">
       {/* Header */}
       <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-black">
@@ -306,9 +331,76 @@ const CopyfyPanel = () => {
                     </div>)}
                 </div>
               </div>
+
+              {/* Snippet Estruturado */}
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+                <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
+                  <Tag className="w-5 h-5 text-yellow-500" />
+                  Snippet Estruturado
+                </h3>
+                <p className="text-zinc-400 mb-4 text-sm">Exibe categorias com valores adicionais (ex: Marcas, Tipos, Benefícios)</p>
+                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generateStructuredSnippet())}>
+                  <div className="space-y-2">
+                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                      <strong className="text-yellow-500">Categoria:</strong> Benefícios
+                    </p>
+                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                      <strong className="text-yellow-500">Valores:</strong> Rápido resultado · Produto original · Envio imediato
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Extensão de Promoção */}
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+                <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
+                  <Gift className="w-5 h-5 text-yellow-500" />
+                  Extensão de Promoção
+                </h3>
+                <p className="text-zinc-400 mb-4 text-sm">Mostra promoções ativas no anúncio</p>
+                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePromotionExtension())}>
+                  <div className="space-y-2">
+                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                      <strong className="text-yellow-500">Ocasião:</strong> Oferta por tempo limitado
+                    </p>
+                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                      <strong className="text-yellow-500">Produto:</strong> {product}
+                    </p>
+                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                      <strong className="text-yellow-500">Valor com desconto:</strong> Apenas {price}
+                    </p>
+                    <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                      <strong className="text-yellow-500">Cupom:</strong> PAGUECOD
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Extensão de Preço - Full width below */}
+            <div className="mt-6 md:mt-8 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
+                <DollarSign className="w-5 h-5 text-yellow-500" />
+                Extensão de Preço
+              </h3>
+              <p className="text-zinc-400 mb-4 text-sm">Lista variações com valores clicáveis</p>
+              <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePriceExtension())}>
+                <div className="space-y-3">
+                  <div className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                    <strong className="text-yellow-500">{product} 1 unidade:</strong> {price} - Entrega para todo {countries.find(c => c.value === country)?.name || ""}
+                  </div>
+                  <div className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                    <strong className="text-yellow-500">{product} 2 unidades:</strong> Desconto especial - Frete grátis
+                  </div>
+                  <div className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base">
+                    <strong className="text-yellow-500">{product} Kit completo:</strong> Melhor custo-benefício
+                  </div>
+                </div>
+              </div>
             </div>
           </div>}
       </main>
     </div>;
 };
+
 export default CopyfyPanel;
