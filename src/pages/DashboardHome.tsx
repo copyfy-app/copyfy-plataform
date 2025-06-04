@@ -41,9 +41,7 @@ const DashboardHome = () => {
 
           <button onClick={() => navigate("/privacy-policy")} className="w-full border border-yellow-500 text-yellow-400 hover:text-yellow-500 hover:bg-yellow-400/10 py-3 rounded-xl transition-all duration-300 text-xl">Políticas de Privacidade</button>
 
-          <button onClick={() => navigate("/support")} className="w-full border border-yellow-500 text-yellow-400 hover:text-yellow-500 hover:bg-yellow-400/10 py-3 rounded-xl transition-all duration-300">
-            ✉️ Suporte
-          </button>
+          <button onClick={() => navigate("/support")} className="w-full border border-yellow-500 text-yellow-400 hover:text-yellow-500 hover:bg-yellow-400/10 py-3 rounded-xl transition-all duration-300 text-xl">Suporte</button>
         </div>
 
         <p className="pt-6 text-sm text-zinc-400">
