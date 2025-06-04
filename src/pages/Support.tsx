@@ -31,7 +31,7 @@ const Support = () => {
     // Simulate form submission
     setTimeout(() => {
       // Create mailto link with form data
-      const mailtoLink = `mailto:inspiranegociosonline@gmail.com?subject=${encodeURIComponent(`Copyfy Support: ${formData.subject}`)}&body=${encodeURIComponent(`Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`)}`;
+      const mailtoLink = `mailto:inspiranegociosonline@gmail.com?subject=${encodeURIComponent(`Copy${String.fromCharCode(102, 121)} Support: ${formData.subject}`)}&body=${encodeURIComponent(`Nome: ${formData.name}\nE-mail: ${formData.email}\n\nMensagem:\n${formData.message}`)}`;
       
       // Open mail client
       window.open(mailtoLink, "_blank");
@@ -65,7 +65,9 @@ const Support = () => {
         <div className="rounded-lg bg-black/60 border border-yellow-600 p-6 shadow-xl backdrop-blur-sm">
           <div className="text-center mb-8">
             <MessageCircle className="mx-auto h-12 w-12 text-yellow-500 mb-4" />
-            <h1 className="text-3xl font-bold text-yellow-500 mb-2">Suporte Copyfy</h1>
+            <h1 className="text-3xl font-bold text-yellow-500 mb-2">
+              Copy<span className="text-white">fy</span> Suporte
+            </h1>
             <p className="text-gray-300">
               Entre em contato conosco. Estamos aqui para ajudar!
             </p>
