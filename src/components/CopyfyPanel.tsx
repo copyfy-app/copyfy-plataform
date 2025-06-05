@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,7 +55,7 @@ const CopyfyPanel = () => {
     trialDaysRemaining
   } = useAuth();
 
-  // Content states for generated campaign
+  // Content states for generated campaign - now with 30 titles
   const [titles, setTitles] = useState<string[]>([]);
   const [descriptions, setDescriptions] = useState<string[]>([]);
   const [usps, setUsps] = useState<string[]>([]);
@@ -141,7 +142,7 @@ const CopyfyPanel = () => {
         setIsGenerating(false);
         toast({
           title: "Campanha gerada com sucesso!",
-          description: "Suas copies estão prontas para uso."
+          description: `30 títulos únicos gerados no idioma correto para ${countryName}.`
         });
       } catch (error) {
         console.error('Erro ao gerar campanha:', error);
@@ -372,15 +373,16 @@ const CopyfyPanel = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-              {/* Títulos */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              {/* Títulos - Now showing 30 titles */}
+              <div className="lg:col-span-2 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
                 <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
                   <Copy className="w-5 h-5 text-yellow-500" />
-                  Títulos
+                  Títulos da Campanha (30 variações)
                 </h3>
-                <div className="space-y-3">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {titles.map((title, idx) => <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(title)}>
-                      <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base break-words">
+                      <p className="text-white group-hover:text-yellow-100 transition-colors text-sm break-words">
+                        <span className="text-yellow-500 text-xs mr-2">#{idx + 1}</span>
                         {title}
                       </p>
                     </div>)}

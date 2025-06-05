@@ -7,12 +7,23 @@ const DashboardHome = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate("/login");
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+      // Força o logout mesmo com erro
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-zinc-900 flex items-center justify-center px-4 relative">
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button 
-          onClick={signOut}
+          onClick={handleSignOut}
           className="text-white border border-yellow-400/30 hover:bg-yellow-400/10 hover:border-yellow-400 transition-all duration-300 px-4 py-2 rounded-lg"
         >
           Sair
