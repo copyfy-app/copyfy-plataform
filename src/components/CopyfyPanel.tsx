@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { countries } from "./data/Countries";
 import { generateCODCopies } from "../utils/copyGenerator";
 import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "@/components/ui/badge";
-import { Copy, FileText, User, Mail, Tag, Gift, DollarSign } from "lucide-react";
+import { Copy, FileText, User, Mail, Tag, Gift, DollarSign, ArrowLeft, History } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const funnelStrategies = [{
   value: "cod",
@@ -27,6 +28,7 @@ const funnelStrategies = [{
 }];
 
 const CopyfyPanel = () => {
+  const navigate = useNavigate();
   const [country, setCountry] = useState("");
   const [product, setProduct] = useState("");
   const [price, setPrice] = useState("");
@@ -34,6 +36,9 @@ const CopyfyPanel = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [campaignGenerated, setCampaignGenerated] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("pt");
+  const [showHistory, setShowHistory] = useState(false);
+  const [campaignHistory, setCampaignHistory] = useState<string[]>([]);
+  const [editingCampaign, setEditingCampaign] = useState<string>("");
 
   // Contact form states
   const [contactName, setContactName] = useState("");
@@ -59,6 +64,12 @@ const CopyfyPanel = () => {
     description2: string;
     url: string;
   }[]>([]);
+
+  // Load campaign history from localStorage on component mount
+  useEffect(() => {
+    const history = JSON.parse(localStorage.getItem("historicoCampanhas") || "[]");
+    setCampaignHistory(history);
+  }, []);
 
   // Update language when country changes
   const handleCountryChange = (countryCode: string) => {
@@ -153,6 +164,78 @@ const CopyfyPanel = () => {
     });
   };
 
+  // Save campaign to history
+  const saveCampaign = () => {
+    if (!campaignGenerated) return;
+    
+    const campaignData = {
+      product,
+      price,
+      country,
+      funnel,
+      titles,
+      descriptions,
+      usps,
+      sitelinks,
+      timestamp: new Date().toISOString()
+    };
+
+    const history = JSON.parse(localStorage.getItem("historicoCampanhas") || "[]");
+    history.unshift(JSON.stringify(campaignData));
+    
+    // Keep only last 15 campaigns
+    if (history.length > 15) history.pop();
+    
+    localStorage.setItem("historicoCampanhas", JSON.stringify(history));
+    setCampaignHistory(history);
+    
+    toast({
+      title: "Campanha salva!",
+      description: "Campanha adicionada ao histórico."
+    });
+  };
+
+  // Edit campaign from history
+  const editCampaign = (campaignString: string) => {
+    try {
+      const campaignData = JSON.parse(campaignString);
+      setProduct(campaignData.product || "");
+      setPrice(campaignData.price || "");
+      setCountry(campaignData.country || "");
+      setFunnel(campaignData.funnel || "");
+      setTitles(campaignData.titles || []);
+      setDescriptions(campaignData.descriptions || []);
+      setUsps(campaignData.usps || []);
+      setSitelinks(campaignData.sitelinks || []);
+      setCampaignGenerated(true);
+      setShowHistory(false);
+      
+      toast({
+        title: "Campanha carregada!",
+        description: "Campanha do histórico carregada para edição."
+      });
+    } catch (error) {
+      toast({
+        title: "Erro",
+        description: "Erro ao carregar campanha do histórico.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  // Delete campaign from history
+  const deleteCampaign = (index: number) => {
+    const history = [...campaignHistory];
+    history.splice(index, 1);
+    localStorage.setItem("historicoCampanhas", JSON.stringify(history));
+    setCampaignHistory(history);
+    
+    toast({
+      title: "Campanha excluída",
+      description: "Campanha removida do histórico."
+    });
+  };
+
   // Generate structured snippet content
   const generateStructuredSnippet = () => {
     const snippet = `Categoria: Benefícios\nValores: Rápido resultado · Produto original · Envio imediato`;
@@ -174,9 +257,27 @@ const CopyfyPanel = () => {
     return priceExtension;
   };
 
-  return <div className="min-h-screen text-white bg-black">
+  return <div className="min-h-screen text-white bg-black relative">
+      {/* Fixed Back Button */}
+      <Button
+        onClick={() => navigate("/dashboard")}
+        className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
+      >
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Voltar para o Dashboard
+      </Button>
+
+      {/* Fixed History Button */}
+      <Button
+        onClick={() => setShowHistory(true)}
+        className="fixed top-3 right-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
+      >
+        <History className="w-4 h-4 mr-2" />
+        Histórico
+      </Button>
+
       {/* Header */}
-      <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-black">
+      <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-black pt-16">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center space-y-4">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 tracking-wide">
@@ -257,9 +358,17 @@ const CopyfyPanel = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white text-center md:text-left">
                 Campanha para {product}
               </h2>
-              <Button onClick={() => setCampaignGenerated(false)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg">
-                Nova Campanha
-              </Button>
+              <div className="flex gap-4">
+                <Button
+                  onClick={saveCampaign}
+                  className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg"
+                >
+                  Salvar Campanha
+                </Button>
+                <Button onClick={() => setCampaignGenerated(false)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg">
+                  Nova Campanha
+                </Button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
@@ -379,6 +488,72 @@ const CopyfyPanel = () => {
             </div>
           </div>}
       </main>
+
+      {/* History Modal */}
+      <Dialog open={showHistory} onOpenChange={setShowHistory}>
+        <DialogContent className="bg-zinc-900 border-zinc-700 text-white max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-yellow-500">Histórico de Campanhas</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            {campaignHistory.length === 0 ? (
+              <p className="text-zinc-400 text-center py-4">Nenhuma campanha salva ainda.</p>
+            ) : (
+              campaignHistory.map((campaign, index) => {
+                try {
+                  const campaignData = JSON.parse(campaign);
+                  return (
+                    <div key={index} className="border border-zinc-600 p-4 rounded-lg">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h3 className="text-yellow-500 font-bold">{campaignData.product}</h3>
+                          <p className="text-sm text-zinc-400">
+                            {campaignData.price} - {countries.find(c => c.value === campaignData.country)?.name}
+                          </p>
+                          <p className="text-xs text-zinc-500">
+                            {new Date(campaignData.timestamp).toLocaleDateString()}
+                          </p>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button
+                            onClick={() => editCampaign(campaign)}
+                            size="sm"
+                            className="bg-blue-500 hover:bg-blue-600 text-white"
+                          >
+                            Editar
+                          </Button>
+                          <Button
+                            onClick={() => deleteCampaign(index)}
+                            variant="destructive"
+                            size="sm"
+                          >
+                            Excluir
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                } catch (error) {
+                  return (
+                    <div key={index} className="border border-zinc-600 p-4 rounded-lg">
+                      <div className="text-sm text-zinc-300 mb-2">
+                        {campaign.substring(0, 100)}...
+                      </div>
+                      <Button
+                        onClick={() => deleteCampaign(index)}
+                        variant="destructive"
+                        size="sm"
+                      >
+                        Excluir
+                      </Button>
+                    </div>
+                  );
+                }
+              })
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>;
 };
 

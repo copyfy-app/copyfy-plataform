@@ -43,13 +43,6 @@ const DashboardHome = () => {
           >
             Ir para o Gerador de Copys
           </button>
-
-          <button
-            onClick={() => navigate("/campaign-generator")}
-            className="bg-blue-500 hover:bg-blue-600 text-white w-full text-lg py-6 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
-          >
-            Gerador de Campanhas
-          </button>
         </div>
 
         <div className="space-y-3 pt-6">
