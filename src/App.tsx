@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom
 import Login from "./pages/Login";
 import DashboardHome from "./pages/DashboardHome";
 import PainelPage from "./pages/PainelPage";
+import CampaignGeneratorPage from "./pages/CampaignGeneratorPage";
 import PolicyPage from "./pages/PolicyPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfUse from "./pages/TermsOfUse";
@@ -60,6 +61,7 @@ const AppRoutes = () => {
       <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<DashboardHome />} />
         <Route path="/painel" element={<PainelPage />} />
+        <Route path="/campaign-generator" element={<CampaignGeneratorPage />} />
         <Route path="/politica" element={<PolicyPage />} />
       </Route>
       
