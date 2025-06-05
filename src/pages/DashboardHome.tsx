@@ -2,19 +2,24 @@
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const DashboardHome = () => {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
-      await signOut();
-      navigate("/login");
+      const { error } = await supabase.auth.signOut();
+      if (!error) {
+        window.location.href = "/login";
+      } else {
+        alert("Erro ao sair. Tente novamente.");
+        console.error(error);
+      }
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
-      // Força o logout mesmo com erro
-      navigate("/login");
+      alert("Erro ao sair. Tente novamente.");
     }
   };
 
@@ -23,8 +28,9 @@ const DashboardHome = () => {
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button 
+          id="logoutBtn"
           onClick={handleSignOut}
-          className="text-white border border-yellow-400/30 hover:bg-yellow-400/10 hover:border-yellow-400 transition-all duration-300 px-4 py-2 rounded-lg"
+          className="text-yellow-400 hover:underline px-4 py-2 rounded-lg"
         >
           Logout
         </button>
