@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +10,7 @@ import { countries } from "./data/Countries";
 import { generateCODCopies } from "../utils/copyGenerator";
 import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "@/components/ui/badge";
-import { Copy, FileText, User, Mail, Tag, Gift, DollarSign, ArrowLeft, History } from "lucide-react";
+import { Copy, FileText, User, Mail, Tag, Gift, DollarSign, ArrowLeft, History, HelpCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const funnelStrategies = [{
@@ -38,6 +37,7 @@ const CopyfyPanel = () => {
   const [campaignGenerated, setCampaignGenerated] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState("pt");
   const [showHistory, setShowHistory] = useState(false);
+  const [showHelpModal, setShowHelpModal] = useState(false);
   const [campaignHistory, setCampaignHistory] = useState<string[]>([]);
   const [editingCampaign, setEditingCampaign] = useState<string>("");
 
@@ -271,10 +271,19 @@ const CopyfyPanel = () => {
       {/* Fixed History Button */}
       <Button
         onClick={() => setShowHistory(true)}
-        className="fixed top-3 right-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
+        className="fixed top-3 right-20 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
       >
         <History className="w-4 h-4 mr-2" />
         Histórico
+      </Button>
+
+      {/* Fixed Help Button */}
+      <Button
+        onClick={() => setShowHelpModal(true)}
+        className="fixed top-3 right-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
+      >
+        <HelpCircle className="w-4 h-4 mr-2" />
+        Como usar a Copyfy
       </Button>
 
       {/* Header */}
@@ -490,6 +499,59 @@ const CopyfyPanel = () => {
             </div>
           </div>}
       </main>
+
+      {/* Help Modal */}
+      <Dialog open={showHelpModal} onOpenChange={setShowHelpModal}>
+        <DialogContent className="bg-black/90 backdrop-blur-xl border border-yellow-500/30 text-white max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl shadow-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-yellow-500 text-2xl font-bold text-center mb-6">
+              📘 Como Usar a Copyfy (Passo a Passo)
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-6 p-2">
+            <div className="space-y-4">
+              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
+                <h3 className="text-yellow-500 font-bold text-lg mb-2">🌍 Escolha o País:</h3>
+                <p className="text-gray-300">Selecione o país da campanha. A copy será traduzida automaticamente.</p>
+              </div>
+
+              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
+                <h3 className="text-yellow-500 font-bold text-lg mb-2">📦 Preencha o Produto:</h3>
+                <p className="text-gray-300">Digite o nome do produto ou oferta que você está promovendo.</p>
+              </div>
+
+              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
+                <h3 className="text-yellow-500 font-bold text-lg mb-2">💰 Informe o Preço:</h3>
+                <p className="text-gray-300">Coloque o preço do produto (com símbolo local se quiser).</p>
+              </div>
+
+              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
+                <h3 className="text-yellow-500 font-bold text-lg mb-2">🎯 Escolha a Estratégia:</h3>
+                <p className="text-gray-300">Selecione o tipo de funil (Topo, Meio, Fundo ou COD).</p>
+              </div>
+
+              <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-lg p-4">
+                <h3 className="text-yellow-500 font-bold text-lg mb-2">⚡ Clique em "Gerar Campanha":</h3>
+                <p className="text-gray-300">Pronto! Receba todos os textos (título, descrição, snippets, sitelinks e muito mais), otimizados para Google Ads.</p>
+              </div>
+
+              <div className="bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 rounded-lg p-4">
+                <h3 className="text-yellow-400 font-bold text-lg mb-2">💡 Dica:</h3>
+                <p className="text-yellow-100">Copie e cole direto no Google Ads. Todas as traduções e adaptações regionais já vêm prontas para conversão.</p>
+              </div>
+            </div>
+
+            <div className="text-center pt-6">
+              <Button
+                onClick={() => setShowHelpModal(false)}
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg py-3 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
+              >
+                Fechar
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* History Modal */}
       <Dialog open={showHistory} onOpenChange={setShowHistory}>
