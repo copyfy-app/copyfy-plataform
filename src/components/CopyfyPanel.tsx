@@ -237,25 +237,148 @@ const CopyfyPanel = () => {
     });
   };
 
-  // Generate structured snippet content
+  // Generate structured snippet content with 4 values minimum
   const generateStructuredSnippet = () => {
-    const snippet = `Categoria: Benefícios\nValores: Rápido resultado · Produto original · Envio imediato`;
+    const countryData = countries.find(c => c.value === country);
+    const languageCode = countryData ? countryData.languageCode : "pt";
+    
+    let values = "";
+    switch (languageCode) {
+      case 'es':
+        values = "Gel facial, Crema nocturna, Contorno de ojos, Fórmula anti-edad";
+        break;
+      case 'en':
+        values = "Facial serum, Night gel, Eye cream, Anti-aging formula";
+        break;
+      case 'fr':
+        values = "Sérum facial, Gel de nuit, Crème contour des yeux, Formule anti-âge";
+        break;
+      case 'de':
+        values = "Gesichtsserum, Nachtgel, Augencreme, Anti-Aging-Formel";
+        break;
+      case 'it':
+        values = "Siero viso, Gel notte, Crema contorno occhi, Formula anti-età";
+        break;
+      default:
+        values = "Gel facial, Creme noturno, Creme para olhos, Fórmula anti-idade";
+    }
+    
+    const snippet = `Categoria: Benefícios\nValores: ${values}`;
     return snippet;
   };
 
-  // Generate promotion extension content
+  // Generate promotion extension content with 3 promotions minimum
   const generatePromotionExtension = () => {
-    const promotion = `Ocasião: Oferta por tempo limitado\nProduto: ${product}\nValor com desconto: Apenas ${price}\nCupom: PAGUECOD`;
-    return promotion;
+    const countryData = countries.find(c => c.value === country);
+    const languageCode = countryData ? countryData.languageCode : "pt";
+    const countryName = countryData ? countryData.name : "";
+    
+    let promotions = [];
+    
+    switch (languageCode) {
+      case 'es':
+        promotions = [
+          `Descuento del 20% en el primer pedido`,
+          `Envío gratis a toda ${countryName}`,
+          `Compra 2 y llévate 3`
+        ];
+        break;
+      case 'en':
+        promotions = [
+          `20% discount on first order`,
+          `Free shipping to all ${countryName}`,
+          `Buy 2 get 3`
+        ];
+        break;
+      case 'fr':
+        promotions = [
+          `Réduction de 20% sur la première commande`,
+          `Livraison gratuite dans toute la ${countryName}`,
+          `Achetez 2 et obtenez 3`
+        ];
+        break;
+      case 'de':
+        promotions = [
+          `20% Rabatt auf die erste Bestellung`,
+          `Kostenloser Versand nach ganz ${countryName}`,
+          `Kaufe 2 und erhalte 3`
+        ];
+        break;
+      case 'it':
+        promotions = [
+          `Sconto del 20% sul primo ordine`,
+          `Spedizione gratuita in tutta ${countryName}`,
+          `Compra 2 e prendi 3`
+        ];
+        break;
+      default:
+        promotions = [
+          `Desconto de 20% no primeiro pedido`,
+          `Frete grátis para todo o ${countryName}`,
+          `Compre 2 e leve 3`
+        ];
+    }
+    
+    return promotions.join('\n');
   };
 
-  // Generate price extension content
+  // Generate price extension content with 3 price blocks minimum
   const generatePriceExtension = () => {
     const countryData = countries.find(c => c.value === country);
     const countryName = countryData ? countryData.name : "";
+    const languageCode = countryData ? countryData.languageCode : "pt";
     
-    const priceExtension = `${product} 1 unidade: ${price} - Entrega para todo ${countryName}\n${product} 2 unidades: Desconto especial - Frete grátis\n${product} Kit completo: Melhor custo-benefício`;
-    return priceExtension;
+    // Extract numeric value from price for calculations
+    const numericPrice = parseFloat(price.replace(/[^\d.,]/g, '').replace(',', '.')) || 97;
+    const currency = price.match(/[^\d\s.,]+/)?.[0] || 'R$';
+    
+    let priceBlocks = [];
+    
+    switch (languageCode) {
+      case 'es':
+        priceBlocks = [
+          `${product} 1 unidad: ${currency}${numericPrice} - Entrega a toda ${countryName}`,
+          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Envío gratis`,
+          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Mejor oferta`
+        ];
+        break;
+      case 'en':
+        priceBlocks = [
+          `${product} 1 unit: ${currency}${numericPrice} - Delivery to all ${countryName}`,
+          `${product} 3-unit kit: ${currency}${Math.round(numericPrice * 2.1)} - Free shipping`,
+          `${product} Complete kit: ${currency}${Math.round(numericPrice * 3.1)} - Best offer`
+        ];
+        break;
+      case 'fr':
+        priceBlocks = [
+          `${product} 1 unité: ${currency}${numericPrice} - Livraison dans toute la ${countryName}`,
+          `${product} Kit 3 unités: ${currency}${Math.round(numericPrice * 2.1)} - Livraison gratuite`,
+          `${product} Kit complet: ${currency}${Math.round(numericPrice * 3.1)} - Meilleure offre`
+        ];
+        break;
+      case 'de':
+        priceBlocks = [
+          `${product} 1 Einheit: ${currency}${numericPrice} - Lieferung nach ganz ${countryName}`,
+          `${product} 3er-Kit: ${currency}${Math.round(numericPrice * 2.1)} - Kostenloser Versand`,
+          `${product} Komplettes Kit: ${currency}${Math.round(numericPrice * 3.1)} - Bestes Angebot`
+        ];
+        break;
+      case 'it':
+        priceBlocks = [
+          `${product} 1 unità: ${currency}${numericPrice} - Consegna in tutta ${countryName}`,
+          `${product} Kit 3 unità: ${currency}${Math.round(numericPrice * 2.1)} - Spedizione gratuita`,
+          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Migliore offerta`
+        ];
+        break;
+      default:
+        priceBlocks = [
+          `${product} 1 unidade: ${currency}${numericPrice} - Entrega para todo ${countryName}`,
+          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Frete grátis`,
+          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Melhor oferta`
+        ];
+    }
+    
+    return priceBlocks.join('\n');
   };
 
   return <div className="min-h-screen text-white bg-black relative">
@@ -460,50 +583,49 @@ const CopyfyPanel = () => {
                 </div>
               </div>
 
-              {/* Snippet Estruturado */}
+              {/* Snippet Estruturado - Updated with 4 values */}
               <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
-                <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => copyToClipboard(`Categoria: Benefícios\nRápido resultado · Produto original · Envio imediato`)}>
+                <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => copyToClipboard(generateStructuredSnippet())}>
                   📌 Snippet Estruturado
                 </h3>
-                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`Categoria: Benefícios\nRápido resultado · Produto original · Envio imediato`)}>
+                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generateStructuredSnippet())}>
                   <p className="extensao-descricao text-sm text-zinc-400 mb-2">Categoria: <strong className="text-yellow-500">Benefícios</strong></p>
-                  <p className="extensao-itens text-sm text-white group-hover:text-yellow-100 transition-colors">Rápido resultado · Produto original · Envio imediato</p>
+                  <p className="extensao-itens text-sm text-white group-hover:text-yellow-100 transition-colors">
+                    {generateStructuredSnippet().split('\n')[1].replace('Valores: ', '')}
+                  </p>
                 </div>
               </div>
 
-              {/* Extensão de Promoção */}
+              {/* Extensão de Promoção - Updated with 3 promotions */}
               <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
                 <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
                   🎯 Extensão de Promoção
                 </h3>
-                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`Ocasião: Oferta por tempo limitado\nProduto: ${product}\nValor com desconto: Apenas ${price}\nCupom: PAGUECOD`)}>
-                  <ul className="extensao-lista space-y-2">
-                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Ocasião:</strong> Oferta por tempo limitado</li>
-                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Produto:</strong> {product}</li>
-                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Valor com desconto:</strong> Apenas {price}</li>
-                    <li className="text-sm text-white group-hover:text-yellow-100 transition-colors"><strong className="text-yellow-500">Cupom:</strong> PAGUECOD</li>
-                  </ul>
+                <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePromotionExtension())}>
+                  <div className="extensao-lista space-y-2">
+                    {generatePromotionExtension().split('\n').map((promo, idx) => (
+                      <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                        <strong className="text-yellow-500">Promoção {idx + 1}:</strong> {promo}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Extensão de Preço - Full width below */}
+            {/* Extensão de Preço - Updated with 3 price blocks */}
             <div className="mt-6 md:mt-8 extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
               <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
                 💲 Extensão de Preço
               </h3>
-              <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`${product} 1 unidade: ${price} – Entrega para todo ${countries.find(c => c.value === country)?.name || ""}\n${product} 2 unidades: Desconto especial – Frete grátis\n${product} Kit completo: Melhor custo-benefício`)}>
-                <ul className="extensao-lista space-y-3">
-                  <li className="text-sm text-white group-hover:text-yellow-100 transition-colors">
-                    <strong className="text-yellow-500">{product} 1 unidade:</strong> {price} – Entrega para todo {countries.find(c => c.value === country)?.name || ""}
-                  </li>
-                  <li className="text-sm text-white group-hover:text-yellow-100 transition-colors">
-                    <strong className="text-yellow-500">{product} 2 unidades:</strong> Desconto especial – Frete grátis
-                  </li>
-                  <li className="text-sm text-white group-hover:text-yellow-100 transition-colors">
-                    <strong className="text-yellow-500">{product} Kit completo:</strong> Melhor custo-benefício
-                  </li>
-                </ul>
+              <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePriceExtension())}>
+                <div className="extensao-lista space-y-3">
+                  {generatePriceExtension().split('\n').map((priceBlock, idx) => (
+                    <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                      <strong className="text-yellow-500">Opção {idx + 1}:</strong> {priceBlock}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>}

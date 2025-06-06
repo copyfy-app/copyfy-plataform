@@ -12,6 +12,7 @@ const DashboardHome = () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (!error) {
+        // Force a hard redirect to login page
         window.location.href = "/login";
       } else {
         alert("Erro ao sair. Tente novamente.");
