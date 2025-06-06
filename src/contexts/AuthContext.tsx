@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -31,17 +32,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // Função para limpar completamente o estado da autenticação
   const cleanupAuthState = () => {
     console.log("🧹 Limpando estado de autenticação...");
-    localStorage.removeItem("supabase.auth.token");
-    Object.keys(localStorage).forEach((key) => {
-      if (key.startsWith("supabase.auth.") || key.includes("sb-")) {
-        localStorage.removeItem(key);
+    
+    // Limpar todos os tokens do localStorage
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && (key.startsWith("supabase.auth.") || key.includes("sb-"))) {
+        keysToRemove.push(key);
       }
-    });
-    Object.keys(sessionStorage || {}).forEach((key) => {
-      if (key.startsWith("supabase.auth.") || key.includes("sb-")) {
-        sessionStorage.removeItem(key);
+    }
+    keysToRemove.forEach(key => localStorage.removeItem(key));
+    
+    // Limpar sessionStorage também
+    if (typeof sessionStorage !== 'undefined') {
+      const sessionKeysToRemove = [];
+      for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        if (key && (key.startsWith("supabase.auth.") || key.includes("sb-"))) {
+          sessionKeysToRemove.push(key);
+        }
       }
-    });
+      sessionKeysToRemove.forEach(key => sessionStorage.removeItem(key));
+    }
   };
 
   // Carregar informações do usuário
@@ -78,11 +90,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       try {
         console.log("🚀 Inicializando autenticação...");
         
-        // Primeiro verificar se já existe uma sessão ativa
+        // Verificar se já existe uma sessão ativa
         const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession();
         
         console.log("📋 Sessão atual:", currentSession ? "existe" : "não existe");
-        console.log("📋 Erro de sessão:", sessionError);
 
         if (sessionError) {
           console.error("❌ Erro ao obter sessão:", sessionError);
@@ -95,7 +106,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
           if (currentSession?.user) {
             console.log("✅ Usuário logado encontrado:", currentSession.user.email);
-            loadUserInfo(currentSession.user.id);
+            await loadUserInfo(currentSession.user.id);
           } else {
             console.log("👤 Nenhum usuário logado encontrado");
           }
@@ -147,14 +158,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       console.log("🔐 Tentando fazer login com:", email);
-      console.log("🔐 Comprimento da senha:", password.length);
       
       // Limpar estado de autenticação existente
       cleanupAuthState();
       
       // Tentar deslogar globalmente primeiro
       try {
-        console.log("🚪 Fazendo logout global preventivo...");
         await supabase.auth.signOut({ scope: 'global' });
       } catch (err) {
         console.log("⚠️ Erro ao fazer signOut global (ignorado):", err);
@@ -168,30 +177,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         password: password,
       });
 
-      console.log("📝 Resultado completo do login:");
-      console.log("- Data:", data);
-      console.log("- Error:", error);
-      console.log("- User:", data?.user);
-      console.log("- Session:", data?.session);
-
       if (error) {
-        console.error("❌ Erro de autenticação detalhado:", {
-          message: error.message,
-          status: error.status,
-          name: error.name
-        });
-        
-        // Tratar diferentes tipos de erro
         let errorMessage = "Verifique suas credenciais e tente novamente";
         
         if (error.message.includes("Invalid login credentials")) {
           errorMessage = "Email ou senha incorretos. Verifique suas credenciais.";
         } else if (error.message.includes("Email not confirmed")) {
-          errorMessage = "Por favor, confirme seu email antes de fazer login. Verifique sua caixa de entrada.";
+          errorMessage = "Por favor, confirme seu email antes de fazer login.";
         } else if (error.message.includes("Too many requests")) {
           errorMessage = "Muitas tentativas de login. Tente novamente em alguns minutos.";
-        } else if (error.message.includes("User not found")) {
-          errorMessage = "Usuário não encontrado. Verifique o email ou crie uma nova conta.";
         }
         
         throw new Error(errorMessage);
@@ -199,25 +193,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       
       if (data.user && data.session) {
         console.log("✅ Login realizado com sucesso!");
-        console.log("- Email do usuário:", data.user.email);
-        console.log("- ID do usuário:", data.user.id);
-        console.log("- Email confirmado:", data.user.email_confirmed_at ? "Sim" : "Não");
         
         toast({
           title: "Login realizado!",
           description: "Bem-vindo de volta ao Copyfy.",
         });
         
-        // Aguardar um pouco antes de navegar sempre para dashboard
         setTimeout(() => {
           navigate("/dashboard");
         }, 500);
-      } else {
-        console.log("⚠️ Login sem dados de usuário ou sessão");
-        throw new Error("Login realizado mas dados incompletos");
       }
     } catch (error: any) {
-      console.error("💥 Erro completo no login:", error);
+      console.error("💥 Erro no login:", error);
       toast({
         title: "Erro ao fazer login",
         description: error.message || "Verifique suas credenciais e tente novamente",
@@ -233,7 +220,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       console.log("📝 Tentando criar conta com:", email);
-      console.log("📝 Comprimento da senha:", password.length);
       
       cleanupAuthState();
       
@@ -245,23 +231,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       });
 
-      console.log("📝 Resultado completo do cadastro:");
-      console.log("- Data:", data);
-      console.log("- Error:", error);
-      console.log("- User:", data?.user);
-      console.log("- Session:", data?.session);
-
       if (error) {
-        console.error("❌ Erro no cadastro:", error);
-        
         let errorMessage = "Não foi possível criar sua conta";
         
-        if (error.message.includes("already registered") || error.message.includes("already exists")) {
+        if (error.message.includes("already registered")) {
           errorMessage = "Este email já está cadastrado. Tente fazer login.";
         } else if (error.message.includes("Password should be")) {
           errorMessage = "A senha deve ter pelo menos 6 caracteres.";
-        } else if (error.message.includes("invalid email")) {
-          errorMessage = "Email inválido. Verifique o formato do email.";
         }
         
         throw new Error(errorMessage);
@@ -269,9 +245,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (data.user) {
         console.log("✅ Conta criada com sucesso!");
-        console.log("- Email do usuário:", data.user.email);
-        console.log("- ID do usuário:", data.user.id);
-        console.log("- Precisa confirmar email:", !data.session ? "Sim" : "Não");
         
         if (data.session) {
           toast({
@@ -282,12 +255,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         } else {
           toast({
             title: "Conta criada!",
-            description: "Verifique seu email para confirmar a conta antes de fazer login.",
+            description: "Verifique seu email para confirmar a conta.",
           });
         }
       }
     } catch (error: any) {
-      console.error("💥 Erro completo no cadastro:", error);
+      console.error("💥 Erro no cadastro:", error);
       toast({
         title: "Erro ao criar conta",
         description: error.message || "Não foi possível criar sua conta",
@@ -320,7 +293,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       console.log("✅ Redirecionamento para Google iniciado");
     } catch (error: any) {
-      console.error("💥 Erro completo no login com Google:", error);
+      console.error("💥 Erro no login com Google:", error);
       toast({
         title: "Erro ao fazer login com Google",
         description: error.message || "Tente novamente mais tarde",
@@ -331,12 +304,23 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Logout
+  // Logout - FUNÇÃO CORRIGIDA
   const signOut = async () => {
     setLoading(true);
     try {
       console.log("🚪 Fazendo logout...");
+      
+      // Primeiro limpar o estado local
+      setSession(null);
+      setUser(null);
+      setIsAdmin(false);
+      setTrialDaysRemaining(2);
+      setIsTrialActive(true);
+      
+      // Limpar storage
       cleanupAuthState();
+      
+      // Fazer signOut no Supabase
       await supabase.auth.signOut({ scope: 'global' });
       
       toast({
@@ -344,14 +328,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         description: "Você saiu do sistema com sucesso.",
       });
       
+      // Redirecionar para login com refresh completo
       window.location.href = '/login';
     } catch (error: any) {
       console.error("❌ Erro no logout:", error);
+      
+      // Mesmo com erro, forçar logout local
+      setSession(null);
+      setUser(null);
+      cleanupAuthState();
+      
       toast({
-        title: "Erro ao sair",
-        description: error.message || "Ocorreu um erro ao fazer logout",
-        variant: "destructive",
+        title: "Logout realizado",
+        description: "Você foi desconectado.",
       });
+      
+      window.location.href = '/login';
     } finally {
       setLoading(false);
     }

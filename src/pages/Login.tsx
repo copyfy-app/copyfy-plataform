@@ -6,17 +6,14 @@ import { Label } from "@/components/ui/label";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Loader2, Eye, EyeOff, AlertCircle } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-import { toast } from '@/hooks/use-toast';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const [googleLoading, setGoogleLoading] = useState(false);
   const navigate = useNavigate();
-  const { signIn, signUp, loading } = useAuth();
+  const { signIn, signUp, signInWithGoogle, loading } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,36 +43,11 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    setGoogleLoading(true);
     try {
-      console.log("🔐 Tentando fazer login com Google...");
-      
-      const { data, error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo: `${window.location.origin}/dashboard`
-        }
-      });
-
-      if (error) {
-        console.error("❌ Erro no login com Google:", error);
-        toast({
-          title: "Erro ao fazer login com Google",
-          description: error.message || "Tente novamente mais tarde",
-          variant: "destructive",
-        });
-      } else {
-        console.log("✅ Redirecionamento para Google iniciado");
-      }
-    } catch (error: any) {
-      console.error("💥 Erro completo no login com Google:", error);
-      toast({
-        title: "Erro ao fazer login com Google",
-        description: "Ocorreu um erro inesperado. Tente novamente.",
-        variant: "destructive",
-      });
-    } finally {
-      setGoogleLoading(false);
+      console.log("🔐 Iniciando login com Google...");
+      await signInWithGoogle();
+    } catch (error) {
+      console.error("💥 Erro no login com Google:", error);
     }
   };
 
@@ -99,10 +71,10 @@ const Login = () => {
         <div className="mb-6">
           <Button
             onClick={handleGoogleSignIn}
-            disabled={googleLoading}
+            disabled={loading}
             className="w-full bg-white hover:bg-gray-100 text-black font-semibold py-3 transition-all duration-300 transform hover:scale-105 border border-gray-300"
           >
-            {googleLoading ? (
+            {loading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Conectando...

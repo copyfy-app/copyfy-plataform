@@ -2,25 +2,16 @@
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 
 const DashboardHome = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
-      if (!error) {
-        // Force a hard redirect to login page
-        window.location.href = "/login";
-      } else {
-        alert("Erro ao sair. Tente novamente.");
-        console.error(error);
-      }
+      await signOut();
     } catch (error) {
       console.error("Erro ao fazer logout:", error);
-      alert("Erro ao sair. Tente novamente.");
     }
   };
 
@@ -31,9 +22,9 @@ const DashboardHome = () => {
         <button 
           id="logoutBtn"
           onClick={handleSignOut}
-          className="text-yellow-400 hover:underline px-4 py-2 rounded-lg"
+          className="text-yellow-400 hover:underline px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-all"
         >
-          Logout
+          Sair
         </button>
       </div>
 
