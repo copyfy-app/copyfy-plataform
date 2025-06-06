@@ -368,15 +368,24 @@ const CopyfyPanel = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white text-center md:text-left">
                 Campanha para {product}
               </h2>
-              <div className="flex gap-4">
+              <div className="flex flex-col gap-4">
+                <div className="flex gap-4">
+                  <Button
+                    onClick={saveCampaign}
+                    className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg"
+                  >
+                    Salvar Campanha
+                  </Button>
+                  <Button onClick={() => setCampaignGenerated(false)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg">
+                    Nova Campanha
+                  </Button>
+                </div>
                 <Button
-                  onClick={saveCampaign}
-                  className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg"
+                  onClick={() => setShowHistory(true)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg"
                 >
-                  Salvar Campanha
-                </Button>
-                <Button onClick={() => setCampaignGenerated(false)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg">
-                  Nova Campanha
+                  <History className="w-4 h-4 mr-2" />
+                  Histórico de Campanhas
                 </Button>
               </div>
             </div>
