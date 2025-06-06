@@ -9,6 +9,7 @@ type AuthContextType = {
   user: User | null;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   loading: boolean;
   trialDaysRemaining: number;
@@ -297,6 +298,39 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  // Login com Google
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    try {
+      console.log("🔐 Tentando fazer login com Google...");
+      
+      cleanupAuthState();
+      
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/dashboard`
+        }
+      });
+
+      if (error) {
+        console.error("❌ Erro no login com Google:", error);
+        throw new Error(error.message);
+      }
+
+      console.log("✅ Redirecionamento para Google iniciado");
+    } catch (error: any) {
+      console.error("💥 Erro completo no login com Google:", error);
+      toast({
+        title: "Erro ao fazer login com Google",
+        description: error.message || "Tente novamente mais tarde",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Logout
   const signOut = async () => {
     setLoading(true);
@@ -330,6 +364,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         user,
         signIn,
         signUp,
+        signInWithGoogle,
         signOut,
         loading,
         trialDaysRemaining,
