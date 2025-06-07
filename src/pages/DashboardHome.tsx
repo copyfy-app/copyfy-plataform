@@ -1,18 +1,17 @@
-
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const DashboardHome = () => {
-  const { user, signOut } = useAuth();
+  const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      console.error("Erro ao fazer logout:", error);
-    }
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    localStorage.clear();
+    sessionStorage.clear();
+    navigate("/login");
   };
 
   return (
@@ -21,7 +20,7 @@ const DashboardHome = () => {
       <div className="absolute top-6 right-6">
         <button 
           id="logoutBtn"
-          onClick={handleSignOut}
+          onClick={handleLogout}
           className="text-yellow-400 hover:underline px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-all"
         >
           Sair
