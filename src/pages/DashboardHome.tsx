@@ -8,10 +8,14 @@ const DashboardHome = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
-    localStorage.clear();
-    sessionStorage.clear();
-    navigate("/login");
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error('Erro ao sair:', error.message);
+    } else {
+      localStorage.clear();
+      sessionStorage.clear();
+      navigate("/login");
+    }
   };
 
   return (
