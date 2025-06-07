@@ -2,7 +2,6 @@
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import ForceLogoutTest from "@/components/ForceLogoutTest";
 
 const DashboardHome = () => {
   const { user, signOut } = useAuth();
@@ -10,22 +9,14 @@ const DashboardHome = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-zinc-900 flex items-center justify-center px-4 relative">
-      {/* Componente de teste temporário */}
-      <ForceLogoutTest />
-      
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button
           onClick={signOut}
+          className="bg-red-500 hover:bg-red-600 text-white px-5 py-3 border-none rounded-md cursor-pointer font-bold text-base transition-colors duration-200"
           style={{
-            background: '#f44336',
-            color: '#fff',
-            padding: '10px 20px',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            marginTop: '1rem',
-            zIndex: 9999 // Adicionando z-index alto para teste
+            zIndex: 10000,
+            position: 'relative'
           }}
         >
           Sair
