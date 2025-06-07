@@ -7,25 +7,31 @@ const DashboardHome = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error('Erro ao sair:', error.message);
-    } else {
-      localStorage.clear();
-      sessionStorage.clear();
-      navigate("/login");
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-zinc-900 flex items-center justify-center px-4 relative">
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
-        <button 
-          id="logoutBtn"
-          onClick={handleLogout}
-          className="text-yellow-400 hover:underline px-4 py-2 rounded-lg hover:bg-yellow-400/10 transition-all"
+        <button
+          onClick={async () => {
+            const { error } = await supabase.auth.signOut();
+            if (!error) {
+              localStorage.clear();
+              sessionStorage.clear();
+              window.location.href = '/login';
+            } else {
+              console.error('Erro ao sair:', error.message);
+              alert('Erro ao sair. Tente novamente.');
+            }
+          }}
+          style={{
+            background: '#f44336',
+            color: '#fff',
+            padding: '10px 20px',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            marginTop: '1rem'
+          }}
         >
           Sair
         </button>
