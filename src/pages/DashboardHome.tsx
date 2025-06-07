@@ -1,10 +1,9 @@
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 
 const DashboardHome = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
   return (
@@ -12,17 +11,7 @@ const DashboardHome = () => {
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button
-          onClick={async () => {
-            const { error } = await supabase.auth.signOut();
-            if (!error) {
-              localStorage.clear();
-              sessionStorage.clear();
-              window.location.href = '/login';
-            } else {
-              console.error('Erro ao sair:', error.message);
-              alert('Erro ao sair. Tente novamente.');
-            }
-          }}
+          onClick={signOut}
           style={{
             background: '#f44336',
             color: '#fff',

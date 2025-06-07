@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -296,31 +295,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Logout - REMOVIDO BYPASS E LÓGICA ESPECIAL
+  // Logout - CORRIGIDO COM LÓGICA OFICIAL SUPABASE
   const signOut = async () => {
-    setLoading(true);
     try {
       console.log("🚪 Fazendo logout...");
       
-      // Primeiro limpar o estado local
+      // Usar o método oficial do Supabase
+      await supabase.auth.signOut();
+      
+      // Limpar estado local
       setSession(null);
       setUser(null);
       setIsAdmin(false);
       setTrialDaysRemaining(2);
       setIsTrialActive(true);
       
-      // Limpar storage
-      cleanupAuthState();
-      
-      // Fazer signOut no Supabase
-      await supabase.auth.signOut({ scope: 'global' });
-      
-      toast({
-        title: "Logout realizado",
-        description: "Você saiu do sistema com sucesso.",
-      });
-      
-      // Redirecionar para login com refresh completo
+      // Redirecionar para login
       window.location.href = '/login';
     } catch (error: any) {
       console.error("❌ Erro no logout:", error);
@@ -328,16 +318,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       // Mesmo com erro, forçar logout local
       setSession(null);
       setUser(null);
-      cleanupAuthState();
-      
-      toast({
-        title: "Logout realizado",
-        description: "Você foi desconectado.",
-      });
+      setIsAdmin(false);
+      setTrialDaysRemaining(2);
+      setIsTrialActive(true);
       
       window.location.href = '/login';
-    } finally {
-      setLoading(false);
     }
   };
 
