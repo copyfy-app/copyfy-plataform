@@ -29,34 +29,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
-  // Função para limpar completamente o estado da autenticação
-  const cleanupAuthState = () => {
-    console.log("🧹 Limpando estado de autenticação...");
-    
-    // Limpar todos os tokens do localStorage
-    const keysToRemove = [];
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && (key.startsWith("supabase.auth.") || key.includes("sb-"))) {
-        keysToRemove.push(key);
-      }
-    }
-    keysToRemove.forEach(key => localStorage.removeItem(key));
-    
-    // Limpar sessionStorage também
-    if (typeof sessionStorage !== 'undefined') {
-      const sessionKeysToRemove = [];
-      for (let i = 0; i < sessionStorage.length; i++) {
-        const key = sessionStorage.key(i);
-        if (key && (key.startsWith("supabase.auth.") || key.includes("sb-"))) {
-          sessionKeysToRemove.push(key);
-        }
-      }
-      sessionKeysToRemove.forEach(key => sessionStorage.removeItem(key));
-    }
-  };
-
-  // Carregar informações do usuário - REMOVIDO BYPASS PARA ADMIN
+  // Carregar informações do usuário
   const loadUserInfo = async (userId: string) => {
     try {
       console.log("📊 Carregando informações do usuário:", userId);
@@ -89,7 +62,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         if (sessionError) {
           console.error("❌ Erro ao obter sessão:", sessionError);
-          cleanupAuthState();
         }
 
         if (mounted) {
@@ -151,19 +123,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       console.log("🔐 Tentando fazer login com:", email);
       
-      // Limpar estado de autenticação existente
-      cleanupAuthState();
-      
-      // Tentar deslogar globalmente primeiro
-      try {
-        await supabase.auth.signOut({ scope: 'global' });
-      } catch (err) {
-        console.log("⚠️ Erro ao fazer signOut global (ignorado):", err);
-      }
-      
-      // Aguardar um pouco antes de tentar login
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email.trim().toLowerCase(),
         password: password,
@@ -212,8 +171,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       console.log("📝 Tentando criar conta com:", email);
-      
-      cleanupAuthState();
       
       const { data, error } = await supabase.auth.signUp({
         email: email.trim().toLowerCase(),
@@ -268,8 +225,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       console.log("🔐 Tentando fazer login com Google...");
-      
-      cleanupAuthState();
       
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
