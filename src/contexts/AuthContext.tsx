@@ -56,21 +56,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Carregar informações do usuário
+  // Carregar informações do usuário - REMOVIDO BYPASS PARA ADMIN
   const loadUserInfo = async (userId: string) => {
     try {
       console.log("📊 Carregando informações do usuário:", userId);
       
-      // Verificar se é o e-mail admin diretamente
-      if (user?.email === 'inspiranegociosonline@gmail.com') {
-        console.log("👑 Usuário identificado como admin");
-        setIsAdmin(true);
-        setTrialDaysRemaining(999);
-        setIsTrialActive(true);
-        return;
-      }
-
-      console.log("👤 Usuário padrão configurado");
+      // Configuração padrão para todos os usuários
+      console.log("👤 Configuração padrão aplicada");
       setIsAdmin(false);
       setTrialDaysRemaining(2);
       setIsTrialActive(true);
@@ -151,7 +143,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, [user?.email]);
+  }, []);
 
   // Login com e-mail e senha
   const signIn = async (email: string, password: string) => {
@@ -304,7 +296,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Logout - FUNÇÃO CORRIGIDA
+  // Logout - REMOVIDO BYPASS E LÓGICA ESPECIAL
   const signOut = async () => {
     setLoading(true);
     try {
