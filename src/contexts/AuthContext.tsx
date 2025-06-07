@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -295,7 +296,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Logout - ATUALIZADO com redirecionamento para /login.html
+  // Logout
   const signOut = async () => {
     try {
       console.log("🚪 Fazendo logout...");
@@ -310,8 +311,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setTrialDaysRemaining(2);
       setIsTrialActive(true);
       
-      // Redirecionar para /login.html conforme solicitado
-      window.location.href = '/login.html';
+      // Redirecionar para login
+      navigate("/login");
     } catch (error: any) {
       console.error("❌ Erro no logout:", error);
       
@@ -322,7 +323,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setTrialDaysRemaining(2);
       setIsTrialActive(true);
       
-      window.location.href = '/login.html';
+      navigate("/login");
     }
   };
 
