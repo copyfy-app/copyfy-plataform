@@ -295,7 +295,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Logout - CORRIGIDO COM LÓGICA OFICIAL SUPABASE
+  // Logout - ATUALIZADO com redirecionamento para /login.html
   const signOut = async () => {
     try {
       console.log("🚪 Fazendo logout...");
@@ -310,8 +310,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setTrialDaysRemaining(2);
       setIsTrialActive(true);
       
-      // Redirecionar para login
-      window.location.href = '/login';
+      // Redirecionar para /login.html conforme solicitado
+      window.location.href = '/login.html';
     } catch (error: any) {
       console.error("❌ Erro no logout:", error);
       
@@ -322,7 +322,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setTrialDaysRemaining(2);
       setIsTrialActive(true);
       
-      window.location.href = '/login';
+      window.location.href = '/login.html';
     }
   };
 

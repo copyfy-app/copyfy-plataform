@@ -4,6 +4,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import Login from "./pages/Login";
 import DashboardHome from "./pages/DashboardHome";
 import PainelPage from "./pages/PainelPage";
@@ -19,12 +21,39 @@ const queryClient = new QueryClient();
 // Componente para proteger rotas que requerem autenticação
 const ProtectedRoute = () => {
   const { user, loading } = useAuth();
+  const [sessionChecked, setSessionChecked] = useState(false);
   
-  // Enquanto carrega, não faz nada
-  if (loading) return null;
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        console.log("🔍 Verificando sessão:", session ? "existe" : "não existe");
+        
+        if (!session) {
+          console.log("❌ Sem sessão - redirecionando para login");
+          window.location.href = '/login.html';
+          return;
+        }
+        
+        setSessionChecked(true);
+      } catch (error) {
+        console.error("💥 Erro ao verificar sessão:", error);
+        window.location.href = '/login.html';
+      }
+    };
+
+    if (!loading && !user) {
+      checkSession();
+    } else if (!loading && user) {
+      setSessionChecked(true);
+    }
+  }, [user, loading]);
   
-  // Se não houver usuário autenticado, redireciona para login
-  if (!user) return <Navigate to="/login" replace />;
+  // Enquanto carrega ou verifica sessão, não renderiza nada
+  if (loading || !sessionChecked) return null;
+  
+  // Se não houver usuário autenticado, não renderiza (redirecionamento já foi feito)
+  if (!user) return null;
   
   // Se houver usuário, permite acessar a rota
   return <Outlet />;
