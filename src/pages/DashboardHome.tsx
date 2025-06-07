@@ -1,6 +1,8 @@
+
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ForceLogoutTest from "@/components/ForceLogoutTest";
 
 const DashboardHome = () => {
   const { user, signOut } = useAuth();
@@ -8,6 +10,9 @@ const DashboardHome = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-zinc-900 flex items-center justify-center px-4 relative">
+      {/* Componente de teste temporário */}
+      <ForceLogoutTest />
+      
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button
@@ -19,7 +24,8 @@ const DashboardHome = () => {
             border: 'none',
             borderRadius: '6px',
             cursor: 'pointer',
-            marginTop: '1rem'
+            marginTop: '1rem',
+            zIndex: 9999 // Adicionando z-index alto para teste
           }}
         >
           Sair
