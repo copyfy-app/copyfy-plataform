@@ -63,9 +63,11 @@ const AppRoutes = () => {
         <Route path="/politica" element={<PolicyPage />} />
       </Route>
       
+      {/* Rotas públicas */}
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/terms-of-use" element={<TermsOfUse />} />
       <Route path="/support" element={<Support />} />
+      
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
       <Route path="*" element={<NotFound />} />
     </Routes>
