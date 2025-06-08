@@ -518,8 +518,8 @@ export const generateCODCopies = (
     }
   };
 
-  // Selecionar tradução baseada no idioma detectado
-  const selectedTranslations = translations[detectedLanguage as keyof typeof translations] || translations.en;
+  // CORREÇÃO CRÍTICA: Usar o idioma detectado corretamente
+  const selectedTranslations = translations[detectedLanguage] || translations.en;
 
   console.log('Tradução selecionada:', detectedLanguage, 'Conteúdo:', selectedTranslations);
 
