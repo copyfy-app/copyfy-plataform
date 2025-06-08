@@ -1,4 +1,3 @@
-
 import { getLanguageFromCountry, getLanguageFromCountryName } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 
@@ -11,9 +10,8 @@ export const generateCODCopies = (
 ) => {
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
-  // Usar diretamente o languageCode que vem do país selecionado
-  // Este languageCode já é determinado corretamente no hook useCampaignGeneration
-  const detectedLanguage = languageCode || 'en';
+  // Detectar idioma baseado no código do país
+  const detectedLanguage = getLanguageFromCountry(country) || languageCode || 'en';
   
   console.log('País:', country, 'Idioma detectado:', detectedLanguage);
 
