@@ -11,6 +11,10 @@ interface LanguageTemplates {
         descriptions: string[];
       };
     };
+    highlights: string[];
+    biddingStrategies: {
+      [funnel: string]: string[];
+    };
   };
 }
 
@@ -62,97 +66,209 @@ const languageTemplates: LanguageTemplates = {
       "✅ Frete grátis para todo o Brasil",
       "✅ Pagamento facilitado em até 12x",
       "✅ Satisfação garantida ou seu dinheiro de volta",
-      "✅ Atendimento ao cliente 24/7"
+      "✅ Atendimento ao cliente 24/7",
+      "✅ Resultados comprovados",
+      "✅ Produto 100% original",
+      "✅ Suporte dedicado",
+      "✅ Entrega rápida e segura",
+      "✅ Garantia de satisfação",
+      "✅ Promoções exclusivas",
+      "✅ Fácil parcelamento",
+      "✅ Qualidade premium",
+      "✅ Testado e aprovado",
+      "✅ Compra segura",
+      "✅ Atendimento personalizado",
+      "✅ Produto recomendado",
+      "✅ Garantia estendida",
+      "✅ Descontos especiais"
+    ],
+    highlights: [
+      "Compre Agora e Economize",
+      "Frete Grátis Hoje",
+      "Pagamento na Entrega",
+      "Resultado Garantido em 30 Dias",
+      "Oferta Por Tempo Limitado",
+      "Desconto Exclusivo Online",
+      "Estoque Limitado - Últimas Unidades",
+      "Aprovado por Especialistas",
+      "Satisfação 100% Garantida",
+      "Entrega Expressa em 5 Dias",
+      "Parcelamento Sem Juros",
+      "Produto Mais Vendido do Mês",
+      "Promoção Especial por Tempo Limitado",
+      "Garantia Total de Qualidade",
+      "Preço Promocional Hoje",
+      "Aproveite Antes que Acabe",
+      "Oferta Relâmpago - 24h Apenas",
+      "Compra Segura e Garantida"
     ],
     sitelinks: {
       top: {
         titles: [
-          "Como {product} Funciona?",
-          "Benefícios do {product}",
-          "Guia Completo {product}",
           "Descubra {product}",
+          "Como Funciona",
+          "Benefícios",
+          "Guia Completo",
           "O que é {product}?",
-          "Por que {product}?",
+          "Por que Escolher",
           "Tudo sobre {product}",
-          "Conhece {product}?"
+          "Conhece {product}?",
+          "Características",
+          "Vantagens",
+          "Informações",
+          "Detalhes",
+          "Explicação",
+          "Conheça Mais",
+          "Saiba Tudo"
         ],
         descriptions: [
-          "Descubra como {product} pode transformar sua vida",
-          "Conheça todos os benefícios únicos do {product}",
-          "Saiba tudo sobre {product} e seus resultados",
-          "Entenda por que {product} é a escolha certa",
-          "Veja como {product} funciona na prática",
-          "Aprenda sobre {product} e suas vantagens",
-          "Explore as características do {product}",
-          "Descubra o poder do {product}"
+          "Descubra como {product} funciona",
+          "Conheça todos os benefícios",
+          "Saiba tudo sobre {product}",
+          "Entenda as vantagens",
+          "Veja como {product} atua",
+          "Aprenda sobre {product}",
+          "Explore as características",
+          "Descubra o poder do produto",
+          "Conheça as propriedades",
+          "Entenda o funcionamento",
+          "Veja informações completas",
+          "Saiba todos os detalhes",
+          "Descubra as qualidades",
+          "Conheça mais sobre {product}",
+          "Entenda tudo sobre o produto"
         ]
       },
       mid: {
         titles: [
-          "Depoimentos {product}",
-          "Resultados Reais {product}",
-          "Avaliações {product}",
-          "Comparar {product}",
-          "Prova Social {product}",
+          "Depoimentos Reais",
+          "Resultados Comprovados",
+          "Avaliações",
           "Casos de Sucesso",
           "Opinião dos Clientes",
-          "Antes e Depois"
+          "Antes e Depois",
+          "Prova Social",
+          "Testemunhos",
+          "Experiências",
+          "Relatos",
+          "Feedback",
+          "Transformações",
+          "Histórias de Sucesso",
+          "Clientes Satisfeitos",
+          "Resultados Reais"
         ],
         descriptions: [
-          "Veja resultados reais de quem usa {product}",
-          "Leia depoimentos verdadeiros sobre {product}",
-          "Compare {product} com outros produtos",
-          "Avaliações verificadas de {product}",
-          "Casos de sucesso comprovados com {product}",
-          "Opinião real dos clientes sobre {product}",
-          "Resultados comprovados em {country}",
-          "Transformações reais com {product}"
+          "Veja resultados reais de clientes",
+          "Leia depoimentos verdadeiros",
+          "Avaliações verificadas",
+          "Casos de sucesso comprovados",
+          "Opinião real dos usuários",
+          "Transformações impressionantes",
+          "Prova social verificada",
+          "Testemunhos autênticos",
+          "Experiências positivas",
+          "Relatos de mudanças",
+          "Feedback dos clientes",
+          "Transformações reais",
+          "Histórias inspiradoras",
+          "Clientes 100% satisfeitos",
+          "Resultados documentados"
         ]
       },
       bottom: {
         titles: [
-          "Comprar {product} Agora",
-          "Oferta Especial {product}",
-          "Garantia {product}",
-          "Entrega {product}",
-          "Desconto {product}",
-          "Promoção {product}",
-          "Últimas Unidades",
+          "Compre Agora",
+          "Pague na Entrega",
+          "Oferta Limitada",
+          "Desconto Exclusivo",
+          "Estoque Quase no Fim",
+          "Frete Grátis Hoje",
+          "Resultado Garantido",
+          "Receba em 5 Dias",
+          "Veja Depoimentos Reais",
+          "Garantia Total",
+          "Promoção Especial",
+          "Oferta por Tempo Limitado",
+          "Parcelamento Sem Juros",
+          "Mais Vendidos do Mês",
           "Aproveite Agora"
         ],
         descriptions: [
-          "Compre {product} por {price} com frete grátis",
-          "Oferta especial {product} apenas {price}",
-          "Garantia total ao comprar {product}",
-          "Entrega rápida de {product} em {country}",
-          "Desconto exclusivo para {product}",
-          "Promoção limitada {product} por {price}",
-          "Últimas unidades de {product} disponíveis",
-          "Aproveite agora {product} por {price}"
+          "Compre {product} por {price}",
+          "Pague apenas na entrega",
+          "Oferta válida por tempo limitado",
+          "Desconto exclusivo para você",
+          "Últimas unidades disponíveis",
+          "Frete grátis para todo Brasil",
+          "Garantia de resultado ou dinheiro de volta",
+          "Entrega expressa em 5 dias úteis",
+          "Veja o que dizem nossos clientes",
+          "Garantia total de qualidade",
+          "Promoção especial por tempo limitado",
+          "Aproveite antes que acabe",
+          "Parcele em até 12x sem juros",
+          "Produto mais vendido este mês",
+          "Não perca esta oportunidade"
         ]
       },
       cod: {
         titles: [
-          "Pagamento na Entrega",
-          "Sem Risco {product}",
-          "Entrega Rápida {country}",
-          "Receba e Pague",
-          "Zero Antecipado",
-          "Sem Taxa de Entrega",
-          "Compra Segura",
-          "Teste sem Pagar"
+          "Compre Agora",
+          "Pague na Entrega",
+          "Oferta Limitada",
+          "Desconto Exclusivo",
+          "Estoque Quase no Fim",
+          "Frete Grátis Hoje",
+          "Resultado Garantido",
+          "Receba em 5 Dias",
+          "Veja Depoimentos Reais",
+          "Garantia Total",
+          "Promoção Especial",
+          "Oferta por Tempo Limitado",
+          "Parcelamento Sem Juros",
+          "Mais Vendidos do Mês",
+          "Aproveite Agora"
         ],
         descriptions: [
-          "Pague {product} apenas na entrega em {country}",
-          "Receba {product} primeiro, pague depois",
-          "Entrega rápida de {product} sem antecipação",
-          "Compre {product} sem risco, pague na entrega",
-          "Zero antecipado para {product} em {country}",
-          "Sem taxa de entrega para {product}",
-          "Compra 100% segura de {product}",
-          "Teste {product} antes de pagar"
+          "Compre {product} por {price}",
+          "Pague apenas na entrega",
+          "Oferta válida por tempo limitado",
+          "Desconto exclusivo para você",
+          "Últimas unidades disponíveis",
+          "Frete grátis para todo Brasil",
+          "Garantia de resultado ou dinheiro de volta",
+          "Entrega expressa em 5 dias úteis",
+          "Veja o que dizem nossos clientes",
+          "Garantia total de qualidade",
+          "Promoção especial por tempo limitado",
+          "Aproveite antes que acabe",
+          "Parcele em até 12x sem juros",
+          "Produto mais vendido este mês",
+          "Não perca esta oportunidade"
         ]
       }
+    },
+    biddingStrategies: {
+      top: [
+        "Maximize cliques - Foco em awareness",
+        "CPC manual - Controle total dos lances",
+        "Maximize impressões - Visibilidade máxima"
+      ],
+      mid: [
+        "CPA desejado - Otimização para conversões",
+        "Maximize conversões - Foco em resultados",
+        "CPC aprimorado - Ajustes automáticos"
+      ],
+      bottom: [
+        "Maximize conversões - Foco em vendas",
+        "CPA desejado - Controle de custo por aquisição",
+        "ROAS desejado - Retorno sobre investimento"
+      ],
+      cod: [
+        "Maximize conversões - Otimização para COD",
+        "CPA desejado - Controle de custo",
+        "CPC aprimorado - Lances inteligentes"
+      ]
     }
   },
   en: {
@@ -202,97 +318,209 @@ const languageTemplates: LanguageTemplates = {
       "✅ Free worldwide shipping",
       "✅ Easy payment up to 12 installments",
       "✅ Satisfaction guaranteed or money back",
-      "✅ 24/7 customer support"
+      "✅ 24/7 customer support",
+      "✅ Proven results",
+      "✅ 100% original product",
+      "✅ Dedicated support",
+      "✅ Fast and secure delivery",
+      "✅ Satisfaction guarantee",
+      "✅ Exclusive promotions",
+      "✅ Easy installment plans",
+      "✅ Premium quality",
+      "✅ Tested and approved",
+      "✅ Secure purchase",
+      "✅ Personalized service",
+      "✅ Recommended product",
+      "✅ Extended warranty",
+      "✅ Special discounts"
+    ],
+    highlights: [
+      "Buy Now and Save",
+      "Free Shipping Today",
+      "Cash on Delivery",
+      "Results Guaranteed in 30 Days",
+      "Limited Time Offer",
+      "Exclusive Online Discount",
+      "Limited Stock - Last Units",
+      "Expert Approved",
+      "100% Satisfaction Guaranteed",
+      "Express Delivery in 5 Days",
+      "Interest-Free Installments",
+      "Best Seller This Month",
+      "Special Limited Time Promotion",
+      "Total Quality Guarantee",
+      "Promotional Price Today",
+      "Get It Before It's Gone",
+      "Flash Sale - 24h Only",
+      "Safe and Guaranteed Purchase"
     ],
     sitelinks: {
       top: {
         titles: [
-          "How {product} Works?",
-          "{product} Benefits",
-          "Complete {product} Guide",
           "Discover {product}",
+          "How It Works",
+          "Benefits",
+          "Complete Guide",
           "What is {product}?",
-          "Why {product}?",
+          "Why Choose",
           "All About {product}",
-          "Know {product}?"
+          "Know {product}?",
+          "Features",
+          "Advantages",
+          "Information",
+          "Details",
+          "Explanation",
+          "Learn More",
+          "Know Everything"
         ],
         descriptions: [
-          "Discover how {product} can transform your life",
-          "Learn all the unique benefits of {product}",
-          "Know everything about {product} and its results",
-          "Understand why {product} is the right choice",
-          "See how {product} works in practice",
-          "Learn about {product} and its advantages",
-          "Explore {product} characteristics",
-          "Discover the power of {product}"
+          "Discover how {product} works",
+          "Learn all the benefits",
+          "Know everything about {product}",
+          "Understand the advantages",
+          "See how {product} acts",
+          "Learn about {product}",
+          "Explore the features",
+          "Discover the product power",
+          "Know the properties",
+          "Understand how it works",
+          "See complete information",
+          "Know all details",
+          "Discover the qualities",
+          "Learn more about {product}",
+          "Understand everything about the product"
         ]
       },
       mid: {
         titles: [
-          "{product} Testimonials",
-          "Real {product} Results",
-          "{product} Reviews",
-          "Compare {product}",
-          "{product} Social Proof",
-          "Success Stories",
+          "Real Testimonials",
+          "Proven Results",
+          "Reviews",
+          "Success Cases",
           "Customer Opinion",
-          "Before and After"
+          "Before and After",
+          "Social Proof",
+          "Testimonies",
+          "Experiences",
+          "Reports",
+          "Feedback",
+          "Transformations",
+          "Success Stories",
+          "Satisfied Customers",
+          "Real Results"
         ],
         descriptions: [
-          "See real results from {product} users",
-          "Read genuine testimonials about {product}",
-          "Compare {product} with other products",
-          "Verified reviews of {product}",
-          "Proven success cases with {product}",
-          "Real customer opinion about {product}",
-          "Proven results in {country}",
-          "Real transformations with {product}"
+          "See real customer results",
+          "Read genuine testimonials",
+          "Verified reviews",
+          "Proven success cases",
+          "Real user opinion",
+          "Amazing transformations",
+          "Verified social proof",
+          "Authentic testimonies",
+          "Positive experiences",
+          "Change reports",
+          "Customer feedback",
+          "Real transformations",
+          "Inspiring stories",
+          "100% satisfied customers",
+          "Documented results"
         ]
       },
       bottom: {
         titles: [
-          "Buy {product} Now",
-          "Special {product} Offer",
-          "{product} Guarantee",
-          "{product} Delivery",
-          "{product} Discount",
-          "{product} Promotion",
-          "Last Units",
+          "Buy Now",
+          "Cash on Delivery",
+          "Limited Offer",
+          "Exclusive Discount",
+          "Stock Almost Gone",
+          "Free Shipping Today",
+          "Guaranteed Results",
+          "Receive in 5 Days",
+          "See Real Testimonials",
+          "Total Guarantee",
+          "Special Promotion",
+          "Limited Time Offer",
+          "Interest-Free Installments",
+          "Month's Best Sellers",
           "Take Advantage Now"
         ],
         descriptions: [
-          "Buy {product} for {price} with free shipping",
-          "Special offer {product} only {price}",
-          "Full guarantee when buying {product}",
-          "Fast delivery of {product} in {country}",
-          "Exclusive discount for {product}",
-          "Limited promotion {product} for {price}",
-          "Last units of {product} available",
-          "Take advantage now {product} for {price}"
+          "Buy {product} for {price}",
+          "Pay only on delivery",
+          "Offer valid for limited time",
+          "Exclusive discount for you",
+          "Last units available",
+          "Free shipping worldwide",
+          "Result guarantee or money back",
+          "Express delivery in 5 business days",
+          "See what our customers say",
+          "Total quality guarantee",
+          "Special limited time promotion",
+          "Get it before it's gone",
+          "Pay in up to 12 interest-free installments",
+          "Best-selling product this month",
+          "Don't miss this opportunity"
         ]
       },
       cod: {
         titles: [
+          "Buy Now",
           "Cash on Delivery",
-          "No Risk {product}",
-          "Fast Delivery {country}",
-          "Receive and Pay",
-          "Zero Upfront",
-          "No Delivery Fee",
-          "Safe Purchase",
-          "Test without Paying"
+          "Limited Offer",
+          "Exclusive Discount",
+          "Stock Almost Gone",
+          "Free Shipping Today",
+          "Guaranteed Results",
+          "Receive in 5 Days",
+          "See Real Testimonials",
+          "Total Guarantee",
+          "Special Promotion",
+          "Limited Time Offer",
+          "Interest-Free Installments",
+          "Month's Best Sellers",
+          "Take Advantage Now"
         ],
         descriptions: [
-          "Pay for {product} only on delivery in {country}",
-          "Receive {product} first, pay later",
-          "Fast delivery of {product} without advance payment",
-          "Buy {product} risk-free, pay on delivery",
-          "Zero upfront for {product} in {country}",
-          "No delivery fee for {product}",
-          "100% safe purchase of {product}",
-          "Test {product} before paying"
+          "Buy {product} for {price}",
+          "Pay only on delivery",
+          "Offer valid for limited time",
+          "Exclusive discount for you",
+          "Last units available",
+          "Free shipping worldwide",
+          "Result guarantee or money back",
+          "Express delivery in 5 business days",
+          "See what our customers say",
+          "Total quality guarantee",
+          "Special limited time promotion",
+          "Get it before it's gone",
+          "Pay in up to 12 interest-free installments",
+          "Best-selling product this month",
+          "Don't miss this opportunity"
         ]
       }
+    },
+    biddingStrategies: {
+      top: [
+        "Maximize clicks - Focus on awareness",
+        "Manual CPC - Full control over bids",
+        "Maximize impressions - Maximum visibility"
+      ],
+      mid: [
+        "Target CPA - Optimize for conversions",
+        "Maximize conversions - Focus on results",
+        "Enhanced CPC - Automatic adjustments"
+      ],
+      bottom: [
+        "Maximize conversions - Focus on sales",
+        "Target CPA - Control cost per acquisition",
+        "Target ROAS - Return on ad spend"
+      ],
+      cod: [
+        "Maximize conversions - Optimize for COD",
+        "Target CPA - Cost control",
+        "Enhanced CPC - Smart bidding"
+      ]
     }
   },
   es: {
@@ -342,111 +570,223 @@ const languageTemplates: LanguageTemplates = {
       "✅ Envío gratis a toda España",
       "✅ Pago fácil hasta 12 cuotas",
       "✅ Satisfacción garantizada o dinero devuelto",
-      "✅ Atención al cliente 24/7"
+      "✅ Atención al cliente 24/7",
+      "✅ Resultados comprobados",
+      "✅ Producto 100% original",
+      "✅ Soporte dedicado",
+      "✅ Entrega rápida y segura",
+      "✅ Garantía de satisfacción",
+      "✅ Promociones exclusivas",
+      "✅ Fácil financiación",
+      "✅ Calidad premium",
+      "✅ Probado y aprobado",
+      "✅ Compra segura",
+      "✅ Atención personalizada",
+      "✅ Producto recomendado",
+      "✅ Garantía extendida",
+      "✅ Descuentos especiales"
+    ],
+    highlights: [
+      "Compra Ahora y Ahorra",
+      "Envío Gratis Hoy",
+      "Pago Contra Entrega",
+      "Resultado Garantizado en 30 Días",
+      "Oferta Por Tiempo Limitado",
+      "Descuento Exclusivo Online",
+      "Stock Limitado - Últimas Unidades",
+      "Aprobado por Expertos",
+      "Satisfacción 100% Garantizada",
+      "Entrega Express en 5 Días",
+      "Financiación Sin Intereses",
+      "Producto Más Vendido del Mes",
+      "Promoción Especial por Tiempo Limitado",
+      "Garantía Total de Calidad",
+      "Precio Promocional Hoy",
+      "Aprovecha Antes de que se Acabe",
+      "Oferta Flash - Solo 24h",
+      "Compra Segura y Garantizada"
     ],
     sitelinks: {
       top: {
         titles: [
-          "¿Cómo Funciona {product}?",
-          "Beneficios de {product}",
-          "Guía Completa {product}",
           "Descubre {product}",
+          "Cómo Funciona",
+          "Beneficios",
+          "Guía Completa",
           "¿Qué es {product}?",
-          "¿Por qué {product}?",
+          "Por qué Elegir",
           "Todo sobre {product}",
-          "¿Conoces {product}?"
+          "¿Conoces {product}?",
+          "Características",
+          "Ventajas",
+          "Información",
+          "Detalles",
+          "Explicación",
+          "Conoce Más",
+          "Sabe Todo"
         ],
         descriptions: [
-          "Descubre cómo {product} puede transformar tu vida",
-          "Conoce todos los beneficios únicos de {product}",
-          "Sabe todo sobre {product} y sus resultados",
-          "Entiende por qué {product} es la elección correcta",
-          "Ve cómo {product} funciona en la práctica",
-          "Aprende sobre {product} y sus ventajas",
-          "Explora las características de {product}",
-          "Descubre el poder de {product}"
+          "Descubre cómo funciona {product}",
+          "Conoce todos los beneficios",
+          "Sabe todo sobre {product}",
+          "Entiende las ventajas",
+          "Ve cómo actúa {product}",
+          "Aprende sobre {product}",
+          "Explora las características",
+          "Descubre el poder del producto",
+          "Conoce las propiedades",
+          "Entiende el funcionamiento",
+          "Ve información completa",
+          "Sabe todos los detalles",
+          "Descubre las cualidades",
+          "Conoce más sobre {product}",
+          "Entiende todo sobre el producto"
         ]
       },
       mid: {
         titles: [
-          "Testimonios {product}",
-          "Resultados Reales {product}",
-          "Reseñas {product}",
-          "Comparar {product}",
-          "Prueba Social {product}",
+          "Testimonios Reales",
+          "Resultados Comprobados",
+          "Reseñas",
           "Casos de Éxito",
           "Opinión de Clientes",
-          "Antes y Después"
+          "Antes y Después",
+          "Prueba Social",
+          "Testimonios",
+          "Experiencias",
+          "Relatos",
+          "Feedback",
+          "Transformaciones",
+          "Historias de Éxito",
+          "Clientes Satisfechos",
+          "Resultados Reales"
         ],
         descriptions: [
-          "Ve resultados reales de usuarios de {product}",
-          "Lee testimonios genuinos sobre {product}",
-          "Compara {product} con otros productos",
-          "Reseñas verificadas de {product}",
-          "Casos de éxito probados con {product}",
-          "Opinión real de clientes sobre {product}",
-          "Resultados probados en {country}",
-          "Transformaciones reales con {product}"
+          "Ve resultados reales de clientes",
+          "Lee testimonios genuinos",
+          "Reseñas verificadas",
+          "Casos de éxito comprobados",
+          "Opinión real de usuarios",
+          "Transformaciones impresionantes",
+          "Prueba social verificada",
+          "Testimonios auténticos",
+          "Experiencias positivas",
+          "Relatos de cambios",
+          "Feedback de clientes",
+          "Transformaciones reales",
+          "Historias inspiradoras",
+          "Clientes 100% satisfechos",
+          "Resultados documentados"
         ]
       },
       bottom: {
         titles: [
-          "Comprar {product} Ahora",
-          "Oferta Especial {product}",
-          "Garantía {product}",
-          "Entrega {product}",
-          "Descuento {product}",
-          "Promoción {product}",
-          "Últimas Unidades",
+          "Compra Ahora",
+          "Pago Contra Entrega",
+          "Oferta Limitada",
+          "Descuento Exclusivo",
+          "Stock Casi Agotado",
+          "Envío Gratis Hoy",
+          "Resultado Garantizado",
+          "Recibe en 5 Días",
+          "Ve Testimonios Reales",
+          "Garantía Total",
+          "Promoción Especial",
+          "Oferta por Tiempo Limitado",
+          "Financiación Sin Intereses",
+          "Más Vendidos del Mes",
           "Aprovecha Ahora"
         ],
         descriptions: [
-          "Compra {product} por {price} con envío gratis",
-          "Oferta especial {product} solo {price}",
-          "Garantía total al comprar {product}",
-          "Entrega rápida de {product} en {country}",
-          "Descuento exclusivo para {product}",
-          "Promoción limitada {product} por {price}",
-          "Últimas unidades de {product} disponibles",
-          "Aprovecha ahora {product} por {price}"
+          "Compra {product} por {price}",
+          "Paga solo en la entrega",
+          "Oferta válida por tiempo limitado",
+          "Descuento exclusivo para ti",
+          "Últimas unidades disponibles",
+          "Envío gratis a toda España",
+          "Garantía de resultado o dinero devuelto",
+          "Entrega express en 5 días hábiles",
+          "Ve lo que dicen nuestros clientes",
+          "Garantía total de calidad",
+          "Promoción especial por tiempo limitado",
+          "Aprovecha antes de que se acabe",
+          "Financia hasta en 12 meses sin intereses",
+          "Producto más vendido este mes",
+          "No pierdas esta oportunidad"
         ]
       },
       cod: {
         titles: [
+          "Compra Ahora",
           "Pago Contra Entrega",
-          "Sin Riesgo {product}",
-          "Entrega Rápida {country}",
-          "Recibe y Paga",
-          "Cero Anticipado",
-          "Sin Tarifa de Entrega",
-          "Compra Segura",
-          "Prueba sin Pagar"
+          "Oferta Limitada",
+          "Descuento Exclusivo",
+          "Stock Casi Agotado",
+          "Envío Gratis Hoy",
+          "Resultado Garantizado",
+          "Recibe en 5 Días",
+          "Ve Testimonios Reales",
+          "Garantía Total",
+          "Promoción Especial",
+          "Oferta por Tiempo Limitado",
+          "Financiación Sin Intereses",
+          "Más Vendidos del Mes",
+          "Aprovecha Ahora"
         ],
         descriptions: [
-          "Paga {product} solo en la entrega en {country}",
-          "Recibe {product} primero, paga después",
-          "Entrega rápida de {product} sin pago anticipado",
-          "Compra {product} sin riesgo, paga en la entrega",
-          "Cero anticipado para {product} en {country}",
-          "Sin tarifa de entrega para {product}",
-          "Compra 100% segura de {product}",
-          "Prueba {product} antes de pagar"
+          "Compra {product} por {price}",
+          "Paga solo en la entrega",
+          "Oferta válida por tiempo limitado",
+          "Descuento exclusivo para ti",
+          "Últimas unidades disponibles",
+          "Envío gratis a toda España",
+          "Garantía de resultado o dinero devuelto",
+          "Entrega express en 5 días hábiles",
+          "Ve lo que dicen nuestros clientes",
+          "Garantía total de calidad",
+          "Promoción especial por tiempo limitado",
+          "Aprovecha antes de que se acabe",
+          "Financia hasta en 12 meses sin intereses",
+          "Producto más vendido este mes",
+          "No pierdas esta oportunidad"
         ]
       }
+    },
+    biddingStrategies: {
+      top: [
+        "Maximizar clics - Enfoque en awareness",
+        "CPC manual - Control total de pujas",
+        "Maximizar impresiones - Visibilidad máxima"
+      ],
+      mid: [
+        "CPA objetivo - Optimización para conversiones",
+        "Maximizar conversiones - Enfoque en resultados",
+        "CPC mejorado - Ajustes automáticos"
+      ],
+      bottom: [
+        "Maximizar conversiones - Enfoque en ventas",
+        "CPA objetivo - Control de costo por adquisición",
+        "ROAS objetivo - Retorno de inversión publicitaria"
+      ],
+      cod: [
+        "Maximizar conversiones - Optimización para COD",
+        "CPA objetivo - Control de costos",
+        "CPC mejorado - Pujas inteligentes"
+      ]
     }
   },
   fr: {
     titles: [
       "{product} - Distributeur Officiel en France",
-      "Achetez {product} Maintenant - {price}",
+      "Acheter {product} Maintenant - {price}",
       "{product} - Produit de Qualité Supérieure",
-      "Commandez {product} - Livraison Gratuite",
+      "Commander {product} - Livraison Gratuite",
       "{product} Original - Prix Spécial {price}",
       "Offre Limitée: {product} pour {price}",
       "{product} - Meilleur Prix Garanti",
       "Vente Flash {product} - Aujourd'hui Seulement {price}",
-      "Réduction Spéciale {product} - {price}",
-      "Ne Ratez Pas: {product} avec Réduction",
+      "Remise Spéciale {product} - {price}",
+      "Ne Ratez Pas: {product} avec Remise",
       "{product} Premium - Qualité Assurée",
       "Méga Offre {product} - {price}",
       "Dernière Chance: {product} pour {price}",
@@ -454,7 +794,7 @@ const languageTemplates: LanguageTemplates = {
       "Offre Éclair: {product} {price}",
       "Achetez Maintenant: {product} - {price}",
       "{product} - Paiement à la Livraison",
-      "Super Réduction: {product} pour {price}",
+      "Super Remise: {product} pour {price}",
       "{product} - Produit de l'Année",
       "Immanquable: {product} seulement {price}",
       "{product} - Satisfaction Garantie",
@@ -462,7 +802,7 @@ const languageTemplates: LanguageTemplates = {
       "{product} - Leader des Ventes",
       "Offre Spéciale: {product} pour {price}",
       "{product} - Achetez en Confiance",
-      "Réduction Spéciale: {product} {price}",
+      "Remise Spéciale: {product} {price}",
       "{product} - Produit Approuvé",
       "Meilleure Offre: {product} seulement {price}",
       "{product} - Qualité Premium",
@@ -475,135 +815,247 @@ const languageTemplates: LanguageTemplates = {
       "Essayez {product} et transformez votre vie. Produit original avec garantie étendue.",
       "Offre limitée pour {product} à seulement {price}. Ne manquez pas cette opportunité unique!",
       "Produit {product} de qualité premium avec livraison rapide et sécurisée sur tout le territoire.",
-      "Profitez de la réduction spéciale sur {product}. Paiement facile jusqu'à 12 fois sans frais.",
+      "Profitez de la remise spéciale sur {product}. Paiement facile jusqu'à 12 fois sans frais.",
       "{product} - Le produit le plus vendu du marché. Garantie totale de qualité et d'efficacité."
     ],
     usps: [
       "✅ Livraison gratuite en France",
       "✅ Paiement facile jusqu'à 12 fois",
       "✅ Satisfaction garantie ou remboursé",
-      "✅ Support client 24/7"
+      "✅ Service client 24/7",
+      "✅ Résultats prouvés",
+      "✅ Produit 100% original",
+      "✅ Support dédié",
+      "✅ Livraison rapide et sécurisée",
+      "✅ Garantie de satisfaction",
+      "✅ Promotions exclusives",
+      "✅ Financement facile",
+      "✅ Qualité premium",
+      "✅ Testé et approuvé",
+      "✅ Achat sécurisé",
+      "✅ Service personnalisé",
+      "✅ Produit recommandé",
+      "✅ Garantie étendue",
+      "✅ Remises spéciales"
+    ],
+    highlights: [
+      "Achetez Maintenant et Économisez",
+      "Livraison Gratuite Aujourd'hui",
+      "Paiement à la Livraison",
+      "Résultat Garanti en 30 Jours",
+      "Offre à Durée Limitée",
+      "Remise Exclusive en Ligne",
+      "Stock Limité - Dernières Unités",
+      "Approuvé par les Experts",
+      "Satisfaction 100% Garantie",
+      "Livraison Express en 5 Jours",
+      "Paiement Sans Frais",
+      "Produit le Plus Vendu du Mois",
+      "Promotion Spéciale à Durée Limitée",
+      "Garantie Totale de Qualité",
+      "Prix Promotionnel Aujourd'hui",
+      "Profitez Avant Épuisement",
+      "Vente Flash - 24h Seulement",
+      "Achat Sécurisé et Garanti"
     ],
     sitelinks: {
       top: {
         titles: [
-          "Comment {product} Fonctionne?",
-          "Avantages de {product}",
-          "Guide Complet {product}",
-          "Découvrez {product}",
+          "Découvrir {product}",
+          "Comment ça Marche",
+          "Avantages",
+          "Guide Complet",
           "Qu'est-ce que {product}?",
-          "Pourquoi {product}?",
+          "Pourquoi Choisir",
           "Tout sur {product}",
-          "Connaissez {product}?"
+          "Connaissez {product}?",
+          "Caractéristiques",
+          "Bénéfices",
+          "Informations",
+          "Détails",
+          "Explication",
+          "En Savoir Plus",
+          "Tout Savoir"
         ],
         descriptions: [
-          "Découvrez comment {product} peut transformer votre vie",
-          "Apprenez tous les avantages uniques de {product}",
-          "Sachez tout sur {product} et ses résultats",
-          "Comprenez pourquoi {product} est le bon choix",
-          "Voyez comment {product} fonctionne en pratique",
-          "Apprenez sur {product} et ses avantages",
-          "Explorez les caractéristiques de {product}",
-          "Découvrez le pouvoir de {product}"
+          "Découvrez comment fonctionne {product}",
+          "Connaissez tous les avantages",
+          "Sachez tout sur {product}",
+          "Comprenez les bénéfices",
+          "Voyez comment agit {product}",
+          "Apprenez sur {product}",
+          "Explorez les caractéristiques",
+          "Découvrez le pouvoir du produit",
+          "Connaissez les propriétés",
+          "Comprenez le fonctionnement",
+          "Voyez les informations complètes",
+          "Sachez tous les détails",
+          "Découvrez les qualités",
+          "En savoir plus sur {product}",
+          "Comprenez tout sur le produit"
         ]
       },
       mid: {
         titles: [
-          "Témoignages {product}",
-          "Résultats Réels {product}",
-          "Avis {product}",
-          "Comparer {product}",
-          "Preuve Sociale {product}",
+          "Témoignages Réels",
+          "Résultats Prouvés",
+          "Avis",
           "Cas de Succès",
           "Opinion des Clients",
-          "Avant et Après"
+          "Avant et Après",
+          "Preuve Sociale",
+          "Témoignages",
+          "Expériences",
+          "Récits",
+          "Feedback",
+          "Transformations",
+          "Histoires de Succès",
+          "Clients Satisfaits",
+          "Résultats Réels"
         ],
         descriptions: [
-          "Voyez les résultats réels des utilisateurs de {product}",
-          "Lisez des témoignages authentiques sur {product}",
-          "Comparez {product} avec d'autres produits",
-          "Avis vérifiés de {product}",
-          "Cas de succès prouvés avec {product}",
-          "Opinion réelle des clients sur {product}",
-          "Résultats prouvés en {country}",
-          "Transformations réelles avec {product}"
+          "Voyez les résultats réels des clients",
+          "Lisez des témoignages authentiques",
+          "Avis vérifiés",
+          "Cas de succès prouvés",
+          "Opinion réelle des utilisateurs",
+          "Transformations impressionnantes",
+          "Preuve sociale vérifiée",
+          "Témoignages authentiques",
+          "Expériences positives",
+          "Récits de changements",
+          "Feedback des clients",
+          "Transformations réelles",
+          "Histoires inspirantes",
+          "Clients 100% satisfaits",
+          "Résultats documentés"
         ]
       },
       bottom: {
         titles: [
-          "Acheter {product} Maintenant",
-          "Offre Spéciale {product}",
-          "Garantie {product}",
-          "Livraison {product}",
-          "Réduction {product}",
-          "Promotion {product}",
-          "Dernières Unités",
+          "Acheter Maintenant",
+          "Paiement à la Livraison",
+          "Offre Limitée",
+          "Remise Exclusive",
+          "Stock Presque Épuisé",
+          "Livraison Gratuite Aujourd'hui",
+          "Résultat Garanti",
+          "Recevez en 5 Jours",
+          "Voir Témoignages Réels",
+          "Garantie Totale",
+          "Promotion Spéciale",
+          "Offre à Durée Limitée",
+          "Paiement Sans Frais",
+          "Meilleures Ventes du Mois",
           "Profitez Maintenant"
         ],
         descriptions: [
-          "Achetez {product} pour {price} avec livraison gratuite",
-          "Offre spéciale {product} seulement {price}",
-          "Garantie totale lors de l'achat de {product}",
-          "Livraison rapide de {product} en {country}",
-          "Réduction exclusive pour {product}",
-          "Promotion limitée {product} pour {price}",
-          "Dernières unités de {product} disponibles",
-          "Profitez maintenant {product} pour {price}"
+          "Achetez {product} pour {price}",
+          "Payez seulement à la livraison",
+          "Offre valable pour une durée limitée",
+          "Remise exclusive pour vous",
+          "Dernières unités disponibles",
+          "Livraison gratuite en France",
+          "Garantie de résultat ou remboursé",
+          "Livraison express en 5 jours ouvrables",
+          "Voyez ce que disent nos clients",
+          "Garantie totale de qualité",
+          "Promotion spéciale à durée limitée",
+          "Profitez avant épuisement",
+          "Payez jusqu'à 12 fois sans frais",
+          "Produit le plus vendu ce mois",
+          "Ne manquez pas cette opportunité"
         ]
       },
       cod: {
         titles: [
+          "Acheter Maintenant",
           "Paiement à la Livraison",
-          "Sans Risque {product}",
-          "Livraison Rapide {country}",
-          "Recevez et Payez",
-          "Zéro Avance",
-          "Sans Frais de Livraison",
-          "Achat Sécurisé",
-          "Testez sans Payer"
+          "Offre Limitée",
+          "Remise Exclusive",
+          "Stock Presque Épuisé",
+          "Livraison Gratuite Aujourd'hui",
+          "Résultat Garanti",
+          "Recevez en 5 Jours",
+          "Voir Témoignages Réels",
+          "Garantie Totale",
+          "Promotion Spéciale",
+          "Offre à Durée Limitée",
+          "Paiement Sans Frais",
+          "Meilleures Ventes du Mois",
+          "Profitez Maintenant"
         ],
         descriptions: [
-          "Payez {product} seulement à la livraison en {country}",
-          "Recevez {product} d'abord, payez après",
-          "Livraison rapide de {product} sans paiement anticipé",
-          "Achetez {product} sans risque, payez à la livraison",
-          "Zéro avance pour {product} en {country}",
-          "Sans frais de livraison pour {product}",
-          "Achat 100% sécurisé de {product}",
-          "Testez {product} avant de payer"
+          "Achetez {product} pour {price}",
+          "Payez seulement à la livraison",
+          "Offre valable pour une durée limitée",
+          "Remise exclusive pour vous",
+          "Dernières unités disponibles",
+          "Livraison gratuite en France",
+          "Garantie de résultat ou remboursé",
+          "Livraison express en 5 jours ouvrables",
+          "Voyez ce que disent nos clients",
+          "Garantie totale de qualité",
+          "Promotion spéciale à durée limitée",
+          "Profitez avant épuisement",
+          "Payez jusqu'à 12 fois sans frais",
+          "Produit le plus vendu ce mois",
+          "Ne manquez pas cette opportunité"
         ]
       }
+    },
+    biddingStrategies: {
+      top: [
+        "Maximiser les clics - Focus sur la notoriété",
+        "CPC manuel - Contrôle total des enchères",
+        "Maximiser les impressions - Visibilité maximale"
+      ],
+      mid: [
+        "CPA cible - Optimisation pour conversions",
+        "Maximiser les conversions - Focus sur résultats",
+        "CPC amélioré - Ajustements automatiques"
+      ],
+      bottom: [
+        "Maximiser les conversions - Focus sur ventes",
+        "CPA cible - Contrôle coût par acquisition",
+        "ROAS cible - Retour sur dépenses publicitaires"
+      ],
+      cod: [
+        "Maximiser les conversions - Optimisation COD",
+        "CPA cible - Contrôle des coûts",
+        "CPC amélioré - Enchères intelligentes"
+      ]
     }
   },
   de: {
     titles: [
       "{product} - Offizieller Händler in Deutschland",
       "Kaufen Sie {product} Jetzt - {price}",
-      "{product} - Hochwertiges Qualitätsprodukt",
+      "{product} - Premiumqualitätsprodukt",
       "Bestellen Sie {product} - Kostenloser Versand",
       "{product} Original - Sonderpreis {price}",
-      "Limitiertes Angebot: {product} für {price}",
+      "Begrenztes Angebot: {product} für {price}",
       "{product} - Bester Preis Garantiert",
       "Blitzangebot {product} - Nur Heute {price}",
       "Sonderrabatt {product} - {price}",
       "Verpassen Sie Nicht: {product} mit Rabatt",
-      "{product} Premium - Qualität Garantiert",
+      "{product} Premium - Qualität Gesichert",
       "Mega-Angebot {product} - {price}",
       "Letzte Chance: {product} für {price}",
       "{product} - Sofortige Lieferung",
-      "Blitz-Deal: {product} {price}",
+      "Blitzangebot: {product} {price}",
       "Jetzt Kaufen: {product} - {price}",
-      "{product} - Zahlung bei Lieferung",
+      "{product} - Nachnahme",
       "Super-Rabatt: {product} für {price}",
       "{product} - Produkt des Jahres",
-      "Unschlagbar: {product} nur {price}",
+      "Unübertroffen: {product} nur {price}",
       "{product} - Zufriedenheit Garantiert",
       "Exklusives Angebot: {product} {price}",
-      "{product} - Verkaufsschlager",
+      "{product} - Bestseller",
       "Sonderangebot: {product} für {price}",
-      "{product} - Vertrauensvoll Kaufen",
+      "{product} - Kaufen Sie mit Vertrauen",
       "Sonderrabatt: {product} {price}",
-      "{product} - Zugelassenes Produkt",
+      "{product} - Geprüftes Produkt",
       "Bestes Angebot: {product} nur {price}",
       "{product} - Premium-Qualität",
       "Handeln Sie Jetzt: {product} für {price}"
@@ -611,120 +1063,232 @@ const languageTemplates: LanguageTemplates = {
     descriptions: [
       "Erhalten Sie {product} mit schneller Lieferung in Deutschland. Einfache Zahlung. Sonderpreis: {price}",
       "Bestellen Sie {product} heute und genießen Sie kostenlosen Versand. Zufriedenheit garantiert oder Geld zurück.",
-      "{product} - Die perfekte Lösung für Ihre Bedürfnisse. Sichtbare Ergebnisse in wenigen Tagen. Warten Sie nicht!",
-      "Probieren Sie {product} und transformieren Sie Ihr Leben. Originalprodukt mit erweiterter Garantie.",
-      "Zeitlich begrenztes Angebot für {product} für nur {price}. Verpassen Sie nicht diese einmalige Gelegenheit!",
-      "Premium-Qualitätsprodukt {product} mit schneller und sicherer Lieferung im ganzen Land.",
-      "Nutzen Sie den Sonderrabatt auf {product}. Einfache Zahlung bis zu 12 Raten zinsfrei.",
+      "{product} - Die perfekte Lösung für Ihre Bedürfnisse. Sichtbare Ergebnisse in nur wenigen Tagen. Warten Sie nicht!",
+      "Probieren Sie {product} und verwandeln Sie Ihr Leben. Originalprodukt mit verlängerter Garantie.",
+      "Zeitlich begrenztes Angebot für {product} für nur {price}. Verpassen Sie diese einmalige Gelegenheit nicht!",
+      "Premium-Qualität {product} mit schneller und sicherer Lieferung im ganzen Land.",
+      "Nutzen Sie den Sonderrabatt auf {product}. Einfache Zahlung in bis zu 12 Raten zinsfrei.",
       "{product} - Das meistverkaufte Produkt am Markt. Vollständige Garantie für Qualität und Wirksamkeit."
     ],
     usps: [
       "✅ Kostenloser Versand nach Deutschland",
       "✅ Einfache Zahlung bis zu 12 Raten",
       "✅ Zufriedenheit garantiert oder Geld zurück",
-      "✅ 24/7 Kundensupport"
+      "✅ 24/7 Kundensupport",
+      "✅ Bewährte Ergebnisse",
+      "✅ 100% Originalprodukt",
+      "✅ Engagierter Support",
+      "✅ Schnelle und sichere Lieferung",
+      "✅ Zufriedenheitsgarantie",
+      "✅ Exklusive Aktionen",
+      "✅ Einfache Finanzierung",
+      "✅ Premiumqualität",
+      "✅ Getestet und genehmigt",
+      "✅ Sicherer Kauf",
+      "✅ Persönlicher Service",
+      "✅ Empfohlenes Produkt",
+      "✅ Erweiterte Garantie",
+      "✅ Sonderrabatte"
+    ],
+    highlights: [
+      "Jetzt Kaufen und Sparen",
+      "Kostenloser Versand Heute",
+      "Nachnahme",
+      "Ergebnis Garantiert in 30 Tagen",
+      "Zeitlich Begrenztes Angebot",
+      "Exklusiver Online-Rabatt",
+      "Begrenzter Vorrat - Letzte Einheiten",
+      "Von Experten Genehmigt",
+      "100% Zufriedenheit Garantiert",
+      "Express-Lieferung in 5 Tagen",
+      "Zinsfreie Ratenzahlung",
+      "Bestseller des Monats",
+      "Sonderaktion für Begrenzte Zeit",
+      "Vollständige Qualitätsgarantie",
+      "Aktionspreis Heute",
+      "Sichern Sie Sich Bevor Es Ausgeht",
+      "Blitzverkauf - Nur 24h",
+      "Sicherer und Garantierter Kauf"
     ],
     sitelinks: {
       top: {
         titles: [
-          "Wie {product} Funktioniert?",
-          "{product} Vorteile",
-          "Vollständiger {product} Guide",
           "Entdecken Sie {product}",
+          "Wie Es Funktioniert",
+          "Vorteile",
+          "Vollständiger Leitfaden",
           "Was ist {product}?",
-          "Warum {product}?",
+          "Warum Wählen",
           "Alles über {product}",
-          "Kennen Sie {product}?"
+          "Kennen Sie {product}?",
+          "Eigenschaften",
+          "Nutzen",
+          "Informationen",
+          "Details",
+          "Erklärung",
+          "Mehr Erfahren",
+          "Alles Wissen"
         ],
         descriptions: [
-          "Entdecken Sie, wie {product} Ihr Leben verändern kann",
-          "Lernen Sie alle einzigartigen Vorteile von {product}",
-          "Wissen Sie alles über {product} und seine Ergebnisse",
-          "Verstehen Sie, warum {product} die richtige Wahl ist",
-          "Sehen Sie, wie {product} in der Praxis funktioniert",
-          "Lernen Sie über {product} und seine Vorteile",
-          "Erkunden Sie die Eigenschaften von {product}",
-          "Entdecken Sie die Kraft von {product}"
+          "Entdecken Sie wie {product} funktioniert",
+          "Lernen Sie alle Vorteile kennen",
+          "Wissen Sie alles über {product}",
+          "Verstehen Sie die Nutzen",
+          "Sehen Sie wie {product} wirkt",
+          "Lernen Sie über {product}",
+          "Erkunden Sie die Eigenschaften",
+          "Entdecken Sie die Produktkraft",
+          "Kennen Sie die Eigenschaften",
+          "Verstehen Sie die Funktionsweise",
+          "Sehen Sie vollständige Informationen",
+          "Wissen Sie alle Details",
+          "Entdecken Sie die Qualitäten",
+          "Erfahren Sie mehr über {product}",
+          "Verstehen Sie alles über das Produkt"
         ]
       },
       mid: {
         titles: [
-          "{product} Testimonials",
-          "Echte {product} Ergebnisse",
-          "{product} Bewertungen",
-          "{product} Vergleichen",
-          "{product} Sozialer Beweis",
-          "Erfolgsgeschichten",
+          "Echte Testimonials",
+          "Bewiesene Ergebnisse",
+          "Bewertungen",
+          "Erfolgsfälle",
           "Kundenmeinung",
-          "Vorher und Nachher"
+          "Vorher und Nachher",
+          "Sozialer Beweis",
+          "Zeugnisse",
+          "Erfahrungen",
+          "Berichte",
+          "Feedback",
+          "Transformationen",
+          "Erfolgsgeschichten",
+          "Zufriedene Kunden",
+          "Echte Ergebnisse"
         ],
         descriptions: [
-          "Sehen Sie echte Ergebnisse von {product} Benutzern",
-          "Lesen Sie echte Testimonials über {product}",
-          "Vergleichen Sie {product} mit anderen Produkten",
-          "Verifizierte Bewertungen von {product}",
-          "Bewiesene Erfolgsgeschichten mit {product}",
-          "Echte Kundenmeinung über {product}",
-          "Bewiesene Ergebnisse in {country}",
-          "Echte Transformationen mit {product}"
+          "Sehen Sie echte Kundenergebnisse",
+          "Lesen Sie genuine Testimonials",
+          "Verifizierte Bewertungen",
+          "Bewiesene Erfolgsfälle",
+          "Echte Nutzermeinung",
+          "Erstaunliche Transformationen",
+          "Verifizierter sozialer Beweis",
+          "Authentische Zeugnisse",
+          "Positive Erfahrungen",
+          "Veränderungsberichte",
+          "Kundenfeedback",
+          "Echte Transformationen",
+          "Inspirierende Geschichten",
+          "100% zufriedene Kunden",
+          "Dokumentierte Ergebnisse"
         ]
       },
       bottom: {
         titles: [
-          "{product} Jetzt Kaufen",
-          "Spezialangebot {product}",
-          "{product} Garantie",
-          "{product} Lieferung",
-          "{product} Rabatt",
-          "{product} Promotion",
-          "Letzte Einheiten",
+          "Jetzt Kaufen",
+          "Nachnahme",
+          "Begrenztes Angebot",
+          "Exklusiver Rabatt",
+          "Vorrat Fast Aufgebraucht",
+          "Kostenloser Versand Heute",
+          "Garantierte Ergebnisse",
+          "Erhalten in 5 Tagen",
+          "Echte Testimonials Sehen",
+          "Vollständige Garantie",
+          "Sonderaktion",
+          "Zeitlich Begrenztes Angebot",
+          "Zinsfreie Ratenzahlung",
+          "Bestseller des Monats",
           "Jetzt Nutzen"
         ],
         descriptions: [
-          "Kaufen Sie {product} für {price} mit kostenlosem Versand",
-          "Spezialangebot {product} nur {price}",
-          "Vollständige Garantie beim Kauf von {product}",
-          "Schnelle Lieferung von {product} in {country}",
-          "Exklusiver Rabatt für {product}",
-          "Begrenzte Promotion {product} für {price}",
-          "Letzte Einheiten von {product} verfügbar",
-          "Nutzen Sie jetzt {product} für {price}"
+          "Kaufen Sie {product} für {price}",
+          "Zahlen Sie nur bei Lieferung",
+          "Angebot gültig für begrenzte Zeit",
+          "Exklusiver Rabatt für Sie",
+          "Letzte verfügbare Einheiten",
+          "Kostenloser Versand nach Deutschland",
+          "Ergebnisgarantie oder Geld zurück",
+          "Express-Lieferung in 5 Werktagen",
+          "Sehen Sie was unsere Kunden sagen",
+          "Vollständige Qualitätsgarantie",
+          "Sonderaktion für begrenzte Zeit",
+          "Sichern Sie sich bevor es ausgeht",
+          "Zahlen Sie in bis zu 12 zinsfreien Raten",
+          "Meistverkauftes Produkt diesen Monat",
+          "Verpassen Sie diese Gelegenheit nicht"
         ]
       },
       cod: {
         titles: [
-          "Zahlung bei Lieferung",
-          "Kein Risiko {product}",
-          "Schnelle Lieferung {country}",
-          "Erhalten und Zahlen",
-          "Null Vorauszahlung",
-          "Keine Liefergebühr",
-          "Sicherer Kauf",
-          "Testen ohne Zahlung"
+          "Jetzt Kaufen",
+          "Nachnahme",
+          "Begrenztes Angebot",
+          "Exklusiver Rabatt",
+          "Vorrat Fast Aufgebraucht",
+          "Kostenloser Versand Heute",
+          "Garantierte Ergebnisse",
+          "Erhalten in 5 Tagen",
+          "Echte Testimonials Sehen",
+          "Vollständige Garantie",
+          "Sonderaktion",
+          "Zeitlich Begrenztes Angebot",
+          "Zinsfreie Ratenzahlung",
+          "Bestseller des Monats",
+          "Jetzt Nutzen"
         ],
         descriptions: [
-          "Zahlen Sie {product} nur bei Lieferung in {country}",
-          "Erhalten Sie {product} zuerst, zahlen Sie später",
-          "Schnelle Lieferung von {product} ohne Vorauszahlung",
-          "Kaufen Sie {product} risikofrei, zahlen bei Lieferung",
-          "Null Vorauszahlung für {product} in {country}",
-          "Keine Liefergebühr für {product}",
-          "100% sicherer Kauf von {product}",
-          "Testen Sie {product} vor der Zahlung"
+          "Kaufen Sie {product} für {price}",
+          "Zahlen Sie nur bei Lieferung",
+          "Angebot gültig für begrenzte Zeit",
+          "Exklusiver Rabatt für Sie",
+          "Letzte verfügbare Einheiten",
+          "Kostenloser Versand nach Deutschland",
+          "Ergebnisgarantie oder Geld zurück",
+          "Express-Lieferung in 5 Werktagen",
+          "Sehen Sie was unsere Kunden sagen",
+          "Vollständige Qualitätsgarantie",
+          "Sonderaktion für begrenzte Zeit",
+          "Sichern Sie sich bevor es ausgeht",
+          "Zahlen Sie in bis zu 12 zinsfreien Raten",
+          "Meistverkauftes Produkt diesen Monat",
+          "Verpassen Sie diese Gelegenheit nicht"
         ]
       }
+    },
+    biddingStrategies: {
+      top: [
+        "Klicks maximieren - Fokus auf Bekanntheit",
+        "Manueller CPC - Vollständige Gebotskontrolle",
+        "Impressionen maximieren - Maximale Sichtbarkeit"
+      ],
+      mid: [
+        "Ziel-CPA - Optimierung für Conversions",
+        "Conversions maximieren - Fokus auf Ergebnisse",
+        "Verbesserter CPC - Automatische Anpassungen"
+      ],
+      bottom: [
+        "Conversions maximieren - Fokus auf Verkäufe",
+        "Ziel-CPA - Kosten pro Akquisition kontrollieren",
+        "Ziel-ROAS - Return on Ad Spend"
+      ],
+      cod: [
+        "Conversions maximieren - COD-Optimierung",
+        "Ziel-CPA - Kostenkontrolle",
+        "Verbesserter CPC - Intelligente Gebote"
+      ]
     }
   },
   it: {
     titles: [
       "{product} - Distributore Ufficiale in Italia",
-      "Acquista {product} Ora - {price}",
+      "Compra {product} Ora - {price}",
       "{product} - Prodotto di Qualità Superiore",
       "Ordina {product} - Spedizione Gratuita",
       "{product} Originale - Prezzo Speciale {price}",
       "Offerta Limitata: {product} per {price}",
       "{product} - Miglior Prezzo Garantito",
-      "Offerta Flash {product} - Solo Oggi {price}",
+      "Offerta Lampo {product} - Solo Oggi {price}",
       "Sconto Speciale {product} - {price}",
       "Non Perdere: {product} con Sconto",
       "{product} Premium - Qualità Assicurata",
@@ -749,704 +1313,237 @@ const languageTemplates: LanguageTemplates = {
       "Agisci Ora: {product} per {price}"
     ],
     descriptions: [
-      "Ottieni {product} con consegna veloce in Italia. Pagamento facile. Prezzo speciale: {price}",
+      "Ottieni {product} con consegna rapida in Italia. Pagamento facile. Prezzo speciale: {price}",
       "Ordina {product} oggi e goditi la spedizione gratuita. Soddisfazione garantita o rimborso.",
       "{product} - La soluzione perfetta per le tue esigenze. Risultati visibili in pochi giorni. Non aspettare!",
       "Prova {product} e trasforma la tua vita. Prodotto originale con garanzia estesa.",
       "Offerta a tempo limitato per {product} a soli {price}. Non perdere questa opportunità unica!",
-      "Prodotto {product} di qualità premium con consegna veloce e sicura in tutto il territorio.",
+      "Prodotto {product} di qualità premium con consegna rapida e sicura in tutto il territorio.",
       "Approfitta dello sconto speciale su {product}. Pagamento facile fino a 12 rate senza interessi.",
-      "{product} - Il prodotto più venduto sul mercato. Garanzia totale di qualità ed efficacia."
+      "{product} - Il prodotto più venduto del mercato. Garanzia totale di qualità ed efficacia."
     ],
     usps: [
       "✅ Spedizione gratuita in Italia",
       "✅ Pagamento facile fino a 12 rate",
       "✅ Soddisfazione garantita o rimborso",
-      "✅ Supporto clienti 24/7"
+      "✅ Assistenza clienti 24/7",
+      "✅ Risultati comprovati",
+      "✅ Prodotto 100% originale",
+      "✅ Supporto dedicato",
+      "✅ Consegna rapida e sicura",
+      "✅ Garanzia di soddisfazione",
+      "✅ Promozioni esclusive",
+      "✅ Finanziamento facile",
+      "✅ Qualità premium",
+      "✅ Testato e approvato",
+      "✅ Acquisto sicuro",
+      "✅ Servizio personalizzato",
+      "✅ Prodotto raccomandato",
+      "✅ Garanzia estesa",
+      "✅ Sconti speciali"
+    ],
+    highlights: [
+      "Compra Ora e Risparmia",
+      "Spedizione Gratuita Oggi",
+      "Pagamento alla Consegna",
+      "Risultato Garantito in 30 Giorni",
+      "Offerta a Tempo Limitato",
+      "Sconto Esclusivo Online",
+      "Stock Limitato - Ultime Unità",
+      "Approvato dagli Esperti",
+      "Soddisfazione 100% Garantita",
+      "Consegna Express in 5 Giorni",
+      "Finanziamento Senza Interessi",
+      "Prodotto Più Venduto del Mese",
+      "Promozione Speciale a Tempo Limitato",
+      "Garanzia Totale di Qualità",
+      "Prezzo Promozionale Oggi",
+      "Approfittane Prima che Finisca",
+      "Offerta Lampo - Solo 24h",
+      "Acquisto Sicuro e Garantito"
     ],
     sitelinks: {
       top: {
         titles: [
-          "Come Funziona {product}?",
-          "Vantaggi di {product}",
-          "Guida Completa {product}",
           "Scopri {product}",
+          "Come Funziona",
+          "Benefici",
+          "Guida Completa",
           "Cos'è {product}?",
-          "Perché {product}?",
+          "Perché Scegliere",
           "Tutto su {product}",
-          "Conosci {product}?"
+          "Conosci {product}?",
+          "Caratteristiche",
+          "Vantaggi",
+          "Informazioni",
+          "Dettagli",
+          "Spiegazione",
+          "Scopri di Più",
+          "Sapere Tutto"
         ],
         descriptions: [
-          "Scopri come {product} può trasformare la tua vita",
-          "Impara tutti i vantaggi unici di {product}",
-          "Sappi tutto su {product} e i suoi risultati",
-          "Capisci perché {product} è la scelta giusta",
-          "Vedi come {product} funziona in pratica",
-          "Impara su {product} e i suoi vantaggi",
-          "Esplora le caratteristiche di {product}",
-          "Scopri il potere di {product}"
+          "Scopri come funziona {product}",
+          "Conosci tutti i benefici",
+          "Sappi tutto su {product}",
+          "Comprendi i vantaggi",
+          "Vedi come agisce {product}",
+          "Impara su {product}",
+          "Esplora le caratteristiche",
+          "Scopri il potere del prodotto",
+          "Conosci le proprietà",
+          "Comprendi il funzionamento",
+          "Vedi informazioni complete",
+          "Sappi tutti i dettagli",
+          "Scopri le qualità",
+          "Scopri di più su {product}",
+          "Comprendi tutto sul prodotto"
         ]
       },
       mid: {
         titles: [
-          "Testimonianze {product}",
-          "Risultati Reali {product}",
-          "Recensioni {product}",
-          "Confronta {product}",
-          "Prova Sociale {product}",
+          "Testimonianze Reali",
+          "Risultati Comprovati",
+          "Recensioni",
           "Casi di Successo",
-          "Opinione Clienti",
-          "Prima e Dopo"
+          "Opinione dei Clienti",
+          "Prima e Dopo",
+          "Prova Sociale",
+          "Testimonianze",
+          "Esperienze",
+          "Racconti",
+          "Feedback",
+          "Trasformazioni",
+          "Storie di Successo",
+          "Clienti Soddisfatti",
+          "Risultati Reali"
         ],
         descriptions: [
-          "Vedi risultati reali degli utenti di {product}",
-          "Leggi testimonianze autentiche su {product}",
-          "Confronta {product} con altri prodotti",
-          "Recensioni verificate di {product}",
-          "Casi di successo comprovati con {product}",
-          "Opinione reale dei clienti su {product}",
-          "Risultati comprovati in {country}",
-          "Trasformazioni reali con {product}"
+          "Vedi risultati reali dei clienti",
+          "Leggi testimonianze genuine",
+          "Recensioni verificate",
+          "Casi di successo comprovati",
+          "Opinione reale degli utenti",
+          "Trasformazioni impressionanti",
+          "Prova sociale verificata",
+          "Testimonianze autentiche",
+          "Esperienze positive",
+          "Racconti di cambiamenti",
+          "Feedback dei clienti",
+          "Trasformazioni reali",
+          "Storie ispiranti",
+          "Clienti 100% soddisfatti",
+          "Risultati documentati"
         ]
       },
       bottom: {
         titles: [
-          "Acquista {product} Ora",
-          "Offerta Speciale {product}",
-          "Garanzia {product}",
-          "Consegna {product}",
-          "Sconto {product}",
-          "Promozione {product}",
-          "Ultime Unità",
+          "Compra Ora",
+          "Pagamento alla Consegna",
+          "Offerta Limitata",
+          "Sconto Esclusivo",
+          "Stock Quasi Esaurito",
+          "Spedizione Gratuita Oggi",
+          "Risultato Garantito",
+          "Ricevi in 5 Giorni",
+          "Vedi Testimonianze Reali",
+          "Garanzia Totale",
+          "Promozione Speciale",
+          "Offerta a Tempo Limitato",
+          "Finanziamento Senza Interessi",
+          "Più Venduti del Mese",
           "Approfitta Ora"
         ],
         descriptions: [
-          "Acquista {product} per {price} con spedizione gratuita",
-          "Offerta speciale {product} solo {price}",
-          "Garanzia totale nell'acquisto di {product}",
-          "Consegna veloce di {product} in {country}",
-          "Sconto esclusivo per {product}",
-          "Promozione limitata {product} per {price}",
-          "Ultime unità di {product} disponibili",
-          "Approfitta ora {product} per {price}"
+          "Compra {product} per {price}",
+          "Paga solo alla consegna",
+          "Offerta valida per tempo limitato",
+          "Sconto esclusivo per te",
+          "Ultime unità disponibili",
+          "Spedizione gratuita in Italia",
+          "Garanzia di risultato o rimborso",
+          "Consegna express in 5 giorni lavorativi",
+          "Vedi cosa dicono i nostri clienti",
+          "Garanzia totale di qualità",
+          "Promozione speciale a tempo limitato",
+          "Approfittane prima che finisca",
+          "Finanzia fino a 12 mesi senza interessi",
+          "Prodotto più venduto questo mese",
+          "Non perdere questa opportunità"
         ]
       },
       cod: {
         titles: [
+          "Compra Ora",
           "Pagamento alla Consegna",
-          "Senza Rischio {product}",
-          "Consegna Veloce {country}",
-          "Ricevi e Paga",
-          "Zero Anticipo",
-          "Senza Tassa di Consegna",
-          "Acquisto Sicuro",
-          "Prova senza Pagare"
+          "Offerta Limitata",
+          "Sconto Esclusivo",
+          "Stock Quasi Esaurito",
+          "Spedizione Gratuita Oggi",
+          "Risultato Garantito",
+          "Ricevi in 5 Giorni",
+          "Vedi Testimonianze Reali",
+          "Garanzia Totale",
+          "Promozione Speciale",
+          "Offerta a Tempo Limitato",
+          "Finanziamento Senza Interessi",
+          "Più Venduti del Mese",
+          "Approfitta Ora"
         ],
         descriptions: [
-          "Paga {product} solo alla consegna in {country}",
-          "Ricevi {product} prima, paga dopo",
-          "Consegna veloce di {product} senza pagamento anticipato",
-          "Acquista {product} senza rischio, paga alla consegna",
-          "Zero anticipo per {product} in {country}",
-          "Senza tassa di consegna per {product}",
-          "Acquisto 100% sicuro di {product}",
-          "Prova {product} prima di pagare"
+          "Compra {product} per {price}",
+          "Paga solo alla consegna",
+          "Offerta valida per tempo limitato",
+          "Sconto esclusivo per te",
+          "Ultime unità disponibili",
+          "Spedizione gratuita in Italia",
+          "Garanzia di risultato o rimborso",
+          "Consegna express in 5 giorni lavorativi",
+          "Vedi cosa dicono i nostri clienti",
+          "Garanzia totale di qualità",
+          "Promozione speciale a tempo limitato",
+          "Approfittane prima che finisca",
+          "Finanzia fino a 12 mesi senza interessi",
+          "Prodotto più venduto questo mese",
+          "Non perdere questa opportunità"
         ]
       }
-    }
-  },
-  ru: {
-    titles: [
-      "{product} - Официальный дистрибьютор в России",
-      "Купить {product} Сейчас - {price}",
-      "{product} - Качественный продукт премиум-класса",
-      "Закажите {product} - Бесплатная доставка",
-      "{product} Оригинал - Специальная цена {price}",
-      "Ограниченное предложение: {product} за {price}",
-      "{product} - Лучшая цена гарантирована",
-      "Мгновенная распродажа {product} - Только сегодня {price}",
-      "Специальная скидка {product} - {price}",
-      "Не пропустите: {product} со скидкой",
-      "{product} Премиум - Качество гарантировано",
-      "Мега предложение {product} - {price}",
-      "Последний шанс: {product} за {price}",
-      "{product} - Немедленная доставка",
-      "Молниеносная сделка: {product} {price}",
-      "Купить сейчас: {product} - {price}",
-      "{product} - Оплата при доставке",
-      "Супер скидка: {product} за {price}",
-      "{product} - Продукт года",
-      "Незаменимо: {product} только {price}",
-      "{product} - Гарантия удовлетворения",
-      "Эксклюзивное предложение: {product} {price}",
-      "{product} - Лидер продаж",
-      "Специальная сделка: {product} за {price}",
-      "{product} - Покупайте с уверенностью",
-      "Специальная скидка: {product} {price}",
-      "{product} - Одобренный продукт",
-      "Лучшее предложение: {product} только {price}",
-      "{product} - Премиум качество",
-      "Действуйте сейчас: {product} за {price}"
-    ],
-    descriptions: [
-      "Получите {product} с быстрой доставкой по России. Легкий платеж. Специальная цена: {price}",
-      "Закажите {product} сегодня и наслаждайтесь бесплатной доставкой. Гарантия удовлетворения или возврат денег.",
-      "{product} - Идеальное решение для ваших потребностей. Видимые результаты за несколько дней. Не ждите!",
-      "Попробуйте {product} и преобразите свою жизнь. Оригинальный продукт с расширенной гарантией.",
-      "Ограниченное по времени предложение {product} всего за {price}. Не упустите эту уникальную возможность!",
-      "Продукт {product} премиум-качества с быстрой и безопасной доставкой по всей территории.",
-      "Воспользуйтесь специальной скидкой на {product}. Легкий платеж до 12 платежей без процентов.",
-      "{product} - Самый продаваемый продукт на рынке. Полная гарантия качества и эффективности."
-    ],
-    usps: [
-      "✅ Бесплатная доставка по России",
-      "✅ Легкий платеж до 12 платежей",
-      "✅ Гарантия удовлетворения или возврат денег",
-      "✅ Поддержка клиентов 24/7"
-    ],
-    sitelinks: {
-      top: {
-        titles: [
-          "Как Работает {product}?",
-          "Преимущества {product}",
-          "Полное Руководство {product}",
-          "Откройте {product}",
-          "Что такое {product}?",
-          "Почему {product}?",
-          "Все о {product}",
-          "Знаете {product}?"
-        ],
-        descriptions: [
-          "Откройте, как {product} может изменить вашу жизнь",
-          "Изучите все уникальные преимущества {product}",
-          "Узнайте все о {product} и его результатах",
-          "Поймите, почему {product} - правильный выбор",
-          "Посмотрите, как {product} работает на практике",
-          "Изучите {product} и его преимущества",
-          "Исследуйте характеристики {product}",
-          "Откройте силу {product}"
-        ]
-      },
-      mid: {
-        titles: [
-          "Отзывы {product}",
-          "Реальные Результаты {product}",
-          "Обзоры {product}",
-          "Сравнить {product}",
-          "Социальное Доказательство {product}",
-          "Истории Успеха",
-          "Мнение Клиентов",
-          "До и После"
-        ],
-        descriptions: [
-          "Посмотрите реальные результаты пользователей {product}",
-          "Прочитайте подлинные отзывы о {product}",
-          "Сравните {product} с другими продуктами",
-          "Проверенные обзоры {product}",
-          "Доказанные истории успеха с {product}",
-          "Реальное мнение клиентов о {product}",
-          "Доказанные результаты в {country}",
-          "Реальные преобразования с {product}"
-        ]
-      },
-      bottom: {
-        titles: [
-          "Купить {product} Сейчас",
-          "Специальное Предложение {product}",
-          "Гарантия {product}",
-          "Доставка {product}",
-          "Скидка {product}",
-          "Акция {product}",
-          "Последние Единицы",
-          "Воспользуйтесь Сейчас"
-        ],
-        descriptions: [
-          "Купите {product} за {price} с бесплатной доставкой",
-          "Специальное предложение {product} только {price}",
-          "Полная гарантия при покупке {product}",
-          "Быстрая доставка {product} в {country}",
-          "Эксклюзивная скидка на {product}",
-          "Ограниченная акция {product} за {price}",
-          "Последние единицы {product} доступны",
-          "Воспользуйтесь сейчас {product} за {price}"
-        ]
-      },
-      cod: {
-        titles: [
-          "Оплата при Доставке",
-          "Без Риска {product}",
-          "Быстрая Доставка {country}",
-          "Получите и Заплатите",
-          "Ноль Предоплаты",
-          "Без Платы за Доставку",
-          "Безопасная Покупка",
-          "Попробуйте без Оплаты"
-        ],
-        descriptions: [
-          "Платите за {product} только при доставке в {country}",
-          "Получите {product} сначала, платите потом",
-          "Быстрая доставка {product} без предоплаты",
-          "Покупайте {product} без риска, платите при доставке",
-          "Ноль предоплаты за {product} в {country}",
-          "Без платы за доставку для {product}",
-          "100% безопасная покупка {product}",
-          "Попробуйте {product} перед оплатой"
-        ]
-      }
-    }
-  },
-  zh: {
-    titles: [
-      "{product} - 中国官方经销商",
-      "立即购买 {product} - {price}",
-      "{product} - 优质高端产品",
-      "订购 {product} - 免费送货",
-      "{product} 正品 - 特价 {price}",
-      "限时优惠：{product} 仅售 {price}",
-      "{product} - 最优价格保证",
-      "闪购 {product} - 仅限今日 {price}",
-      "特别折扣 {product} - {price}",
-      "别错过：{product} 折扣优惠",
-      "{product} 高端 - 品质保证",
-      "超值优惠 {product} - {price}",
-      "最后机会：{product} 仅售 {price}",
-      "{product} - 立即发货",
-      "限时抢购：{product} {price}",
-      "立即购买：{product} - {price}",
-      "{product} - 货到付款",
-      "超级折扣：{product} 仅售 {price}",
-      "{product} - 年度产品",
-      "不可错过：{product} 仅 {price}",
-      "{product} - 满意保证",
-      "独家优惠：{product} {price}",
-      "{product} - 销量冠军",
-      "特别优惠：{product} 仅售 {price}",
-      "{product} - 放心购买",
-      "特别折扣：{product} {price}",
-      "{product} - 认证产品",
-      "最佳优惠：{product} 仅 {price}",
-      "{product} - 高端品质",
-      "立即行动：{product} 仅售 {price}"
-    ],
-    descriptions: [
-      "购买 {product}，中国境内快速配送。便捷支付。特价：{price}",
-      "今日订购 {product}，享受免费配送。满意保证或退款。",
-      "{product} - 满足您需求的完美解决方案。几天内见效。不要等待！",
-      "试用 {product}，改变您的生活。正品，延长保修。",
-      "{product} 限时优惠价仅 {price}。不要错过这个独特的机会！",
-      "高端品质 {product}，全国快速安全配送。",
-      "享受 {product} 特别折扣。便捷支付，最多12期免息。",
-      "{product} - 市场上最畅销的产品。品质和效果全面保证。"
-    ],
-    usps: [
-      "✅ 中国境内免费配送",
-      "✅ 便捷支付最多12期",
-      "✅ 满意保证或退款",
-      "✅ 24/7客户支持"
-    ],
-    sitelinks: {
-      top: {
-        titles: [
-          "{product}如何工作？",
-          "{product}的好处",
-          "{product}完整指南",
-          "发现{product}",
-          "什么是{product}？",
-          "为什么选择{product}？",
-          "关于{product}的一切",
-          "了解{product}？"
-        ],
-        descriptions: [
-          "发现{product}如何改变您的生活",
-          "了解{product}的所有独特好处",
-          "了解{product}及其效果的一切",
-          "理解为什么{product}是正确的选择",
-          "看看{product}在实践中如何工作",
-          "了解{product}及其优势",
-          "探索{product}的特性",
-          "发现{product}的力量"
-        ]
-      },
-      mid: {
-        titles: [
-          "{product}用户见证",
-          "{product}真实效果",
-          "{product}评价",
-          "比较{product}",
-          "{product}社会证明",
-          "成功案例",
-          "客户意见",
-          "使用前后对比"
-        ],
-        descriptions: [
-          "查看{product}用户的真实效果",
-          "阅读关于{product}的真实见证",
-          "将{product}与其他产品比较",
-          "{product}的验证评价",
-          "使用{product}的成功案例证明",
-          "客户对{product}的真实意见",
-          "在{country}的验证效果",
-          "使用{product}的真实转变"
-        ]
-      },
-      bottom: {
-        titles: [
-          "立即购买{product}",
-          "{product}特别优惠",
-          "{product}保证",
-          "{product}配送",
-          "{product}折扣",
-          "{product}促销",
-          "最后库存",
-          "立即享受"
-        ],
-        descriptions: [
-          "以{price}购买{product}，免费配送",
-          "{product}特别优惠仅{price}",
-          "购买{product}的全面保证",
-          "{product}在{country}的快速配送",
-          "{product}的独家折扣",
-          "{product}限时促销价{price}",
-          "{product}最后库存可用",
-          "立即享受{product}价格{price}"
-        ]
-      },
-      cod: {
-        titles: [
-          "货到付款",
-          "无风险{product}",
-          "{country}快速配送",
-          "收货后付款",
-          "零预付",
-          "无配送费",
-          "安全购买",
-          "先试用后付款"
-        ],
-        descriptions: [
-          "在{country}收到{product}后付款",
-          "先收到{product}，后付款",
-          "{product}快速配送无需预付",
-          "无风险购买{product}，货到付款",
-          "在{country}购买{product}零预付",
-          "{product}无配送费",
-          "100%安全购买{product}",
-          "付款前试用{product}"
-        ]
-      }
-    }
-  },
-  hi: {
-    titles: [
-      "{product} - भारत में आधिकारिक वितरक",
-      "अभी {product} खरीदें - {price}",
-      "{product} - उच्च गुणवत्ता प्रीमियम उत्पाद",
-      "{product} ऑर्डर करें - मुफ्त शिपिंग",
-      "{product} मूल - विशेष मूल्य {price}",
-      "सीमित ऑफर: {product} केवल {price} में",
-      "{product} - सर्वोत्तम मूल्य गारंटी",
-      "फ्लैश सेल {product} - केवल आज {price}",
-      "विशेष छूट {product} - {price}",
-      "न चूकें: {product} छूट के साथ",
-      "{product} प्रीमियम - गुणवत्ता सुनिश्चित",
-      "मेगा ऑफर {product} - {price}",
-      "अंतिम मौका: {product} केवल {price}",
-      "{product} - तुरंत डिलीवरी",
-      "बिजली डील: {product} {price}",
-      "अभी खरीदें: {product} - {price}",
-      "{product} - डिलीवरी पर भुगतान",
-      "सुपर छूट: {product} केवल {price}",
-      "{product} - वर्ष का उत्पाद",
-      "अनमोल: {product} केवल {price}",
-      "{product} - संतुष्टि गारंटी",
-      "विशेष ऑफर: {product} {price}",
-      "{product} - बिक्री लीडर",
-      "विशेष डील: {product} केवल {price}",
-      "{product} - विश्वास के साथ खरीदें",
-      "विशेष छूट: {product} {price}",
-      "{product} - अनुमोदित उत्पाद",
-      "सर्वोत्तम ऑफर: {product} केवल {price}",
-      "{product} - प्रीमियम गुणवत्ता",
-      "अभी कार्य करें: {product} केवल {price}"
-    ],
-    descriptions: [
-      "भारत भर में तेज़ डिलीवरी के साथ {product} प्राप्त करें। आसान भुगतान। विशेष मूल्य: {price}",
-      "आज {product} ऑर्डर करें और मुफ्त शिपिंग का आनंद लें। संतुष्टि गारंटी या पैसे वापस।",
-      "{product} - आपकी आवश्यकताओं के लिए सही समाधान। कुछ दिनों में दिखने वाले परिणाम। प्रतीक्षा न करें!",
-      "{product} आज़माएं और अपना जीवन बदलें। मूल उत्पाद विस्तारित वारंटी के साथ।",
-      "{product} के लिए सीमित समय ऑफर केवल {price} में। इस अनोखे अवसर को न चूकें!",
-      "प्रीमियम गुणवत्ता {product} पूरे देश में तेज़ और सुरक्षित डिलीवरी के साथ।",
-      "{product} पर विशेष छूट का लाभ उठाएं। 12 किश्तों तक आसान भुगतान बिना ब्याज।",
-      "{product} - बाज़ार में सबसे ज्यादा बिकने वाला उत्पाद। गुणवत्ता और प्रभावशीलता की पूर्ण गारंटी।"
-    ],
-    usps: [
-      "✅ भारत भर में मुफ्त शिपिंग",
-      "✅ 12 किश्तों तक आसान भुगतान",
-      "✅ संतुष्टि गारंटी या पैसे वापस",
-      "✅ 24/7 ग्राहक सहायता"
-    ],
-    sitelinks: {
-      top: {
-        titles: [
-          "{product} कैसे काम करता है?",
-          "{product} के फायदे",
-          "पूरी {product} गाइड",
-          "{product} खोजें",
-          "{product} क्या है?",
-          "{product} क्यों?",
-          "{product} के बारे में सब कुछ",
-          "{product} जानते हैं?"
-        ],
-        descriptions: [
-          "खोजें कि {product} आपका जीवन कैसे बदल सकता है",
-          "{product} के सभी अनूठे फायदे जानें",
-          "{product} और इसके परिणामों के बारे में सब कुछ जानें",
-          "समझें कि {product} सही विकल्प क्यों है",
-          "देखें कि {product} व्यवहार में कैसे काम करता है",
-          "{product} और इसके फायदों के बारे में जानें",
-          "{product} की विशेषताओं का अन्वेषण करें",
-          "{product} की शक्ति खोजें"
-        ]
-      },
-      mid: {
-        titles: [
-          "{product} उपयोगकर्ता समीक्षा",
-          "वास्तविक {product} परिणाम",
-          "{product} रेटिंग",
-          "{product} की तुलना करें",
-          "{product} सामाजिक प्रमाण",
-          "सफलता की कहानियां",
-          "ग्राहक राय",
-          "पहले और बाद में"
-        ],
-        descriptions: [
-          "{product} उपयोगकर्ताओं के वास्तविक परिणाम देखें",
-          "{product} के बारे में वास्तविक समीक्षा पढ़ें",
-          "{product} की अन्य उत्पादों से तुलना करें",
-          "{product} की सत्यापित समीक्षाएं",
-          "{product} के साथ सिद्ध सफलता की कहानियां",
-          "{product} के बारे में वास्तविक ग्राहक राय",
-          "{country} में सिद्ध परिणाम",
-          "{product} के साथ वास्तविक बदलाव"
-        ]
-      },
-      bottom: {
-        titles: [
-          "अभी {product} खरीदें",
-          "विशेष {product} ऑफर",
-          "{product} गारंटी",
-          "{product} डिलीवरी",
-          "{product} छूट",
-          "{product} प्रमोशन",
-          "अंतिम स्टॉक",
-          "अभी फायदा उठाएं"
-        ],
-        descriptions: [
-          "मुफ्त शिपिंग के साथ {price} में {product} खरीदें",
-          "विशेष ऑफर {product} केवल {price}",
-          "{product} खरीदने पर पूर्ण गारंटी",
-          "{country} में {product} की तेज़ डिलीवरी",
-          "{product} के लिए विशेष छूट",
-          "सीमित प्रमोशन {product} {price} में",
-          "{product} के अंतिम स्टॉक उपलब्ध",
-          "अभी {product} का {price} में फायदा उठाएं"
-        ]
-      },
-      cod: {
-        titles: [
-          "डिलीवरी पर भुगतान",
-          "जोखिम मुक्त {product}",
-          "{country} तेज़ डिलीवरी",
-          "पहले प्राप्त करें फिर भुगतान",
-          "शून्य अग्रिम",
-          "कोई डिलीवरी शुल्क नहीं",
-          "सुरक्षित खरीदारी",
-          "भुगतान से पहले परीक्षण"
-        ],
-        descriptions: [
-          "{country} में डिलीवरी पर ही {product} का भुगतान करें",
-          "पहले {product} प्राप्त करें, बाद में भुगतान करें",
-          "बिना अग्रिम भुगतान {product} की तेज़ डिलीवरी",
-          "जोखिम मुक्त {product} खरीदें, डिलीवरी पर भुगतान",
-          "{country} में {product} के लिए शून्य अग्रिम",
-          "{product} के लिए कोई डिलीवरी शुल्क नहीं",
-          "{product} की 100% सुरक्षित खरीदारी",
-          "भुगतान से पहले {product} का परीक्षण करें"
-        ]
-      }
-    }
-  },
-  ja: {
-    titles: [
-      "{product} - 日本公式販売代理店",
-      "今すぐ{product}を購入 - {price}",
-      "{product} - 高品質プレミアム製品",
-      "{product}を注文 - 送料無料",
-      "{product}正規品 - 特別価格{price}",
-      "限定オファー: {product}が{price}",
-      "{product} - 最安値保証",
-      "フラッシュセール{product} - 本日限り{price}",
-      "特別割引{product} - {price}",
-      "お見逃しなく: {product}割引付き",
-      "{product}プレミアム - 品質保証",
-      "メガオファー{product} - {price}",
-      "ラストチャンス: {product}が{price}",
-      "{product} - 即日配送",
-      "電光取引: {product} {price}",
-      "今すぐ購入: {product} - {price}",
-      "{product} - 代金引換",
-      "スーパー割引: {product}が{price}",
-      "{product} - 今年の製品",
-      "見逃せない: {product}のみ{price}",
-      "{product} - 満足保証",
-      "限定オファー: {product} {price}",
-      "{product} - 売上リーダー",
-      "特別取引: {product}が{price}",
-      "{product} - 安心してお買い物",
-      "特別割引: {product} {price}",
-      "{product} - 承認済み製品",
-      "最高のオファー: {product}のみ{price}",
-      "{product} - プレミアム品質",
-      "今すぐ行動: {product}が{price}"
-    ],
-    descriptions: [
-      "日本全国への迅速配送で{product}を入手。簡単支払い。特別価格: {price}",
-      "今日{product}を注文して送料無料をお楽しみください。満足保証または返金。",
-      "{product} - あなたのニーズに最適なソリューション。数日で目に見える結果。お待ちください!",
-      "{product}を試してあなたの人生を変えてください。延長保証付き正規品。",
-      "{product}の期間限定オファーがわずか{price}。このユニークな機会をお見逃しなく!",
-      "プレミアム品質{product}全国への迅速で安全な配送付き。",
-      "{product}の特別割引をお楽しみください。最大12回まで無利息での簡単支払い。",
-      "{product} - 市場で最も売れている製品。品質と効果の完全保証。"
-    ],
-    usps: [
-      "✅ 日本全国送料無料",
-      "✅ 最大12回まで簡単支払い",
-      "✅ 満足保証または返金",
-      "✅ 24/7カスタマーサポート"
-    ],
-    sitelinks: {
-      top: {
-        titles: [
-          "{product}の仕組みは？",
-          "{product}の利点",
-          "完全な{product}ガイド",
-          "{product}を発見",
-          "{product}とは？",
-          "なぜ{product}？",
-          "{product}について全て",
-          "{product}をご存知？"
-        ],
-        descriptions: [
-          "{product}があなたの人生をどう変えるか発見",
-          "{product}のすべてのユニークな利点を学ぶ",
-          "{product}とその結果について全てを知る",
-          "なぜ{product}が正しい選択かを理解",
-          "{product}が実際にどう機能するかを見る",
-          "{product}とその利点について学ぶ",
-          "{product}の特性を探る",
-          "{product}の力を発見"
-        ]
-      },
-      mid: {
-        titles: [
-          "{product}お客様の声",
-          "実際の{product}結果",
-          "{product}レビュー",
-          "{product}を比較",
-          "{product}社会的証明",
-          "成功事例",
-          "お客様の意見",
-          "使用前後"
-        ],
-        descriptions: [
-          "{product}ユーザーの実際の結果を見る",
-          "{product}についての真のお客様の声を読む",
-          "{product}を他の製品と比較",
-          "{product}の検証済みレビュー",
-          "{product}での実証された成功事例",
-          "{product}についてのお客様の実際の意見",
-          "{country}での実証された結果",
-          "{product}での実際の変化"
-        ]
-      },
-      bottom: {
-        titles: [
-          "今すぐ{product}購入",
-          "特別{product}オファー",
-          "{product}保証",
-          "{product}配送",
-          "{product}割引",
-          "{product}プロモーション",
-          "最後の在庫",
-          "今すぐ活用"
-        ],
-        descriptions: [
-          "送料無料で{price}の{product}を購入",
-          "特別オファー{product}のみ{price}",
-          "{product}購入時の完全保証",
-          "{country}での{product}迅速配送",
-          "{product}の特別割引",
-          "限定プロモーション{product}が{price}",
-          "{product}の最後の在庫が利用可能",
-          "今すぐ{product}を{price}で活用"
-        ]
-      },
-      cod: {
-        titles: [
-          "代金引換",
-          "リスクなし{product}",
-          "{country}迅速配送",
-          "受取後支払い",
-          "前払いゼロ",
-          "配送料なし",
-          "安全な購入",
-          "支払前テスト"
-        ],
-        descriptions: [
-          "{country}での配送時に{product}の支払い",
-          "まず{product}を受け取り、後で支払い",
-          "前払いなしの{product}迅速配送",
-          "リスクなしで{product}を購入、配送時支払い",
-          "{country}での{product}前払いゼロ",
-          "{product}の配送料なし",
-          "{product}の100%安全な購入",
-          "支払い前に{product}をテスト"
-        ]
-      }
+    },
+    biddingStrategies: {
+      top: [
+        "Massimizza clic - Focus su consapevolezza",
+        "CPC manuale - Controllo totale delle offerte",
+        "Massimizza impressioni - Visibilità massima"
+      ],
+      mid: [
+        "CPA target - Ottimizzazione per conversioni",
+        "Massimizza conversioni - Focus sui risultati",
+        "CPC ottimizzato - Aggiustamenti automatici"
+      ],
+      bottom: [
+        "Massimizza conversioni - Focus sulle vendite",
+        "CPA target - Controllo costo per acquisizione",
+        "ROAS target - Ritorno sulla spesa pubblicitaria"
+      ],
+      cod: [
+        "Massimizza conversioni - Ottimizzazione COD",
+        "CPA target - Controllo dei costi",
+        "CPC ottimizzato - Offerte intelligenti"
+      ]
     }
   }
 };
 
-const countryLanguageMap: { [key: string]: string } = {
-  'Brasil': 'pt', 'Argentina': 'es', 'México': 'es', 'Chile': 'es', 'Colombia': 'es',
-  'Peru': 'es', 'Venezuela': 'es', 'Ecuador': 'es', 'Bolivia': 'es', 'Paraguay': 'es',
-  'Uruguay': 'es', 'Costa Rica': 'es', 'Panamá': 'es', 'Guatemala': 'es', 'Honduras': 'es',
-  'El Salvador': 'es', 'Nicaragua': 'es', 'República Dominicana': 'es', 'Cuba': 'es', 'España': 'es',
-  'Portugal': 'pt', 'France': 'fr', 'Deutschland': 'de', 'Italia': 'it', 'United Kingdom': 'en',
-  'Ireland': 'en', 'Netherlands': 'en', 'Belgium': 'fr', 'Switzerland': 'de', 'Austria': 'de',
-  'Россия': 'ru', 'Ukraine': 'ru', 'Belarus': 'ru', 'Kazakhstan': 'ru', 'Uzbekistan': 'ru',
-  '中国': 'zh', 'Japan': 'ja', '대한민국': 'en', 'Taiwan': 'zh', 'Hong Kong': 'zh',
-  'भारत': 'hi', 'Pakistan': 'en', 'Bangladesh': 'en', 'Sri Lanka': 'en', 'Thailand': 'en',
-  'Vietnam': 'en', 'Indonesia': 'en', 'Malaysia': 'en', 'Singapore': 'en', 'Philippines': 'en',
-  'United States': 'en', 'Canada': 'en', 'Australia': 'en', 'New Zealand': 'en', 'South Africa': 'en',
-  'Nigeria': 'en', 'Kenya': 'en', 'Ghana': 'en', 'Morocco': 'en', 'Egypt': 'en',
-  'Turkey': 'en', 'Israel': 'en', 'Saudi Arabia': 'en', 'UAE': 'en', 'Iran': 'en',
-  'Iraq': 'en', 'Jordan': 'en', 'Lebanon': 'en', 'Syria': 'en', 'Yemen': 'en',
-  'Poland': 'en', 'Czech Republic': 'en', 'Slovakia': 'en', 'Hungary': 'en', 'Romania': 'en',
-  'Bulgaria': 'en', 'Croatia': 'en', 'Serbia': 'en', 'Bosnia': 'en', 'Montenegro': 'en',
-  'Albania': 'en', 'Macedonia': 'en', 'Slovenia': 'en', 'Estonia': 'en', 'Latvia': 'en',
-  'Lithuania': 'en', 'Finland': 'en', 'Sweden': 'en', 'Norway': 'en', 'Denmark': 'en',
-  'Iceland': 'en', 'Greece': 'en', 'Cyprus': 'en', 'Malta': 'en', 'Luxembourg': 'en'
-};
-
-const getLanguageForCountry = (countryName: string): string => {
-  return countryLanguageMap[countryName] || 'en';
-};
-
-export const generateCODCopies = (product: string, price: string, countryName: string, languageCode: string, funnel: string) => {
-  const language = getLanguageForCountry(countryName);
-  const templates = languageTemplates[language] || languageTemplates['en'];
-
+export function generateCODCopies(
+  product: string,
+  price: string,
+  countryName: string,
+  languageCode: string,
+  funnel: string
+) {
+  console.log('generateCODCopies called with:', { product, price, countryName, languageCode, funnel });
+  
+  const templates = languageTemplates[languageCode] || languageTemplates['pt'];
+  
   // Generate 30 different titles by shuffling and extending the template array
   const allTitles = [...templates.titles];
   const shuffledTitles = allTitles.sort(() => Math.random() - 0.5);
@@ -1458,7 +1555,9 @@ export const generateCODCopies = (product: string, price: string, countryName: s
     description.replace('{product}', product).replace('{price}', price)
   );
   
-  const usps = templates.usps.map(usp => usp);
+  // Generate random highlights (varying each time)
+  const shuffledHighlights = [...templates.highlights].sort(() => Math.random() - 0.5);
+  const usps = shuffledHighlights.slice(0, 4);
 
   // Generate dynamic sitelinks based on funnel strategy
   const sitelinkTemplates = templates.sitelinks[funnel] || templates.sitelinks['cod'];
@@ -1480,8 +1579,150 @@ export const generateCODCopies = (product: string, price: string, countryName: s
       .replace('{product}', product)
       .replace('{price}', price)
       .replace('{country}', countryName),
-    url: faker.internet.url()
+    url: `https://example.com/${product.toLowerCase().replace(/\s+/g, '-')}`
   }));
 
-  return { titles, descriptions, usps, sitelinks };
-};
+  // Generate bidding strategy recommendation
+  const biddingStrategies = templates.biddingStrategies[funnel] || templates.biddingStrategies['cod'];
+  const selectedBiddingStrategy = biddingStrategies[Math.floor(Math.random() * biddingStrategies.length)];
+
+  return {
+    titles,
+    descriptions,
+    usps,
+    sitelinks,
+    biddingStrategy: selectedBiddingStrategy
+  };
+}
+
+export function generateStructuredSnippet(product: string, languageCode: string) {
+  const templates = languageTemplates[languageCode] || languageTemplates['pt'];
+  
+  let values = "";
+  switch (languageCode) {
+    case 'es':
+      values = "Gel facial, Crema nocturna, Contorno de ojos, Fórmula anti-edad";
+      break;
+    case 'en':
+      values = "Facial serum, Night gel, Eye cream, Anti-aging formula";
+      break;
+    case 'fr':
+      values = "Sérum facial, Gel de nuit, Crème contour des yeux, Formule anti-âge";
+      break;
+    case 'de':
+      values = "Gesichtsserum, Nachtgel, Augencreme, Anti-Aging-Formel";
+      break;
+    case 'it':
+      values = "Siero viso, Gel notte, Crema contorno occhi, Formula anti-età";
+      break;
+    default:
+      values = "Gel facial, Creme noturno, Creme para olhos, Fórmula anti-idade";
+  }
+  
+  const snippet = `Categoria: Benefícios\nValores: ${values}`;
+  return snippet;
+}
+
+export function generatePromotionExtension(product: string, price: string, countryName: string, languageCode: string) {
+  let promotions = [];
+  
+  switch (languageCode) {
+    case 'es':
+      promotions = [
+        `Descuento del 20% en el primer pedido`,
+        `Envío gratis a toda ${countryName}`,
+        `Compra 2 y llévate 3`
+      ];
+      break;
+    case 'en':
+      promotions = [
+        `20% discount on first order`,
+        `Free shipping to all ${countryName}`,
+        `Buy 2 get 3`
+      ];
+      break;
+    case 'fr':
+      promotions = [
+        `Réduction de 20% sur la première commande`,
+        `Livraison gratuite dans toute la ${countryName}`,
+        `Achetez 2 et obtenez 3`
+      ];
+      break;
+    case 'de':
+      promotions = [
+        `20% Rabatt auf die erste Bestellung`,
+        `Kostenloser Versand nach ganz ${countryName}`,
+        `Kaufe 2 und erhalte 3`
+      ];
+      break;
+    case 'it':
+      promotions = [
+        `Sconto del 20% sul primo ordine`,
+        `Spedizione gratuita in tutta ${countryName}`,
+        `Compra 2 e prendi 3`
+      ];
+      break;
+    default:
+      promotions = [
+        `Desconto de 20% no primeiro pedido`,
+        `Frete grátis para todo o ${countryName}`,
+        `Compre 2 e leve 3`
+      ];
+  }
+  
+  return promotions.join('\n');
+}
+
+export function generatePriceExtension(product: string, price: string, countryName: string, languageCode: string) {
+  // Extract numeric value from price for calculations
+  const numericPrice = parseFloat(price.replace(/[^\d.,]/g, '').replace(',', '.')) || 97;
+  const currency = price.match(/[^\d\s.,]+/)?.[0] || 'R$';
+  
+  let priceBlocks = [];
+  
+  switch (languageCode) {
+    case 'es':
+      priceBlocks = [
+        `${product} 1 unidad: ${currency}${numericPrice} - Entrega a toda ${countryName}`,
+        `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Envío gratis`,
+        `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Mejor oferta`
+      ];
+      break;
+    case 'en':
+      priceBlocks = [
+        `${product} 1 unit: ${currency}${numericPrice} - Delivery to all ${countryName}`,
+        `${product} 3-unit kit: ${currency}${Math.round(numericPrice * 2.1)} - Free shipping`,
+        `${product} Complete kit: ${currency}${Math.round(numericPrice * 3.1)} - Best offer`
+      ];
+      break;
+    case 'fr':
+      priceBlocks = [
+        `${product} 1 unité: ${currency}${numericPrice} - Livraison dans toute la ${countryName}`,
+        `${product} Kit 3 unités: ${currency}${Math.round(numericPrice * 2.1)} - Livraison gratuite`,
+        `${product} Kit complet: ${currency}${Math.round(numericPrice * 3.1)} - Meilleure offre`
+      ];
+      break;
+    case 'de':
+      priceBlocks = [
+        `${product} 1 Einheit: ${currency}${numericPrice} - Lieferung nach ganz ${countryName}`,
+        `${product} 3er-Kit: ${currency}${Math.round(numericPrice * 2.1)} - Kostenloser Versand`,
+        `${product} Komplettes Kit: ${currency}${Math.round(numericPrice * 3.1)} - Bestes Angebot`
+      ];
+      break;
+    case 'it':
+      priceBlocks = [
+        `${product} 1 unità: ${currency}${numericPrice} - Consegna in tutta ${countryName}`,
+        `${product} Kit 3 unità: ${currency}${Math.round(numericPrice * 2.1)} - Spedizione gratuita`,
+        `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Migliore offerta`
+      ];
+      break;
+    default:
+      priceBlocks = [
+        `${product} 1 unidade: ${currency}${numericPrice} - Entrega para todo ${countryName}`,
+        `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Frete grátis`,
+        `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Melhor oferta`
+      ];
+  }
+  
+  return priceBlocks.join('\n');
+}

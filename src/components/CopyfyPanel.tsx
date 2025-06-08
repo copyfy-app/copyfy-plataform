@@ -10,7 +10,7 @@ import { countries } from "./data/Countries";
 import { generateCODCopies } from "../utils/copyGenerator";
 import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "@/components/ui/badge";
-import { Copy, FileText, User, Mail, Tag, Gift, DollarSign, ArrowLeft, History, HelpCircle } from "lucide-react";
+import { Copy, FileText, User, Mail, Tag, Gift, DollarSign, ArrowLeft, History, HelpCircle, Target } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const funnelStrategies = [{
@@ -55,7 +55,7 @@ const CopyfyPanel = () => {
     trialDaysRemaining
   } = useAuth();
 
-  // Content states for generated campaign - now with 30 titles
+  // Content states for generated campaign - now with 30 titles and bidding strategy
   const [titles, setTitles] = useState<string[]>([]);
   const [descriptions, setDescriptions] = useState<string[]>([]);
   const [usps, setUsps] = useState<string[]>([]);
@@ -65,6 +65,7 @@ const CopyfyPanel = () => {
     description2: string;
     url: string;
   }[]>([]);
+  const [biddingStrategy, setBiddingStrategy] = useState<string>("");
 
   // Load campaign history from localStorage on component mount
   useEffect(() => {
@@ -138,6 +139,7 @@ const CopyfyPanel = () => {
         setDescriptions(generatedContent.descriptions);
         setUsps(generatedContent.usps);
         setSitelinks(generatedContent.sitelinks);
+        setBiddingStrategy(generatedContent.biddingStrategy);
         setCampaignGenerated(true);
         setIsGenerating(false);
         toast({
@@ -178,6 +180,7 @@ const CopyfyPanel = () => {
       descriptions,
       usps,
       sitelinks,
+      biddingStrategy,
       timestamp: new Date().toISOString()
     };
 
@@ -208,6 +211,7 @@ const CopyfyPanel = () => {
       setDescriptions(campaignData.descriptions || []);
       setUsps(campaignData.usps || []);
       setSitelinks(campaignData.sitelinks || []);
+      setBiddingStrategy(campaignData.biddingStrategy || "");
       setCampaignGenerated(true);
       setShowHistory(false);
       
@@ -510,6 +514,19 @@ const CopyfyPanel = () => {
                   <History className="w-4 h-4 mr-2" />
                   Histórico de Campanhas
                 </Button>
+              </div>
+            </div>
+
+            {/* Bidding Strategy Section - NEW */}
+            <div className="mb-6 md:mb-8 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
+                <Target className="w-5 h-5 text-yellow-500" />
+                Estratégia de Lance Recomendada
+              </h3>
+              <div className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(biddingStrategy)}>
+                <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base break-words">
+                  <span className="text-yellow-500 font-semibold">Recomendação:</span> {biddingStrategy}
+                </p>
               </div>
             </div>
 
