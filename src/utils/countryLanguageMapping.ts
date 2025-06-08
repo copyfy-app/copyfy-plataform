@@ -10,8 +10,8 @@ export const countryToLanguage: { [key: string]: string } = {
   'CR': 'es', 'PA': 'es', 'UY': 'es', 'GQ': 'es',
   
   // Inglês
-  'US': 'en', 'GB': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en', 'ZA': 'en', 'IN': 'en', 'SG': 'en',
-  'MY': 'en', 'PH': 'en', 'NG': 'en', 'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en', 'ZM': 'en',
+  'US': 'en', 'GB': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en', 'ZA': 'en', 'SG': 'en',
+  'PH': 'en', 'NG': 'en', 'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en', 'ZM': 'en',
   'ZW': 'en', 'BW': 'en', 'MW': 'en', 'MT': 'en', 'CY': 'en', 'JM': 'en', 'TT': 'en', 'BB': 'en',
   'BS': 'en', 'BZ': 'en', 'GY': 'en', 'LR': 'en', 'SL': 'en', 'GM': 'en', 'FJ': 'en',
   
@@ -44,7 +44,7 @@ export const countryToLanguage: { [key: string]: string } = {
   'QA': 'ar', 'BH': 'ar', 'OM': 'ar', 'YE': 'ar', 'LY': 'ar', 'TN': 'ar', 'DZ': 'ar', 'MA': 'ar',
   'SD': 'ar', 'SO': 'ar',
   
-  // Hindi
+  // Hindi (Índia tem múltiplos idiomas, mas Hindi é predominante)
   'IN': 'hi',
   
   // Indonésio
@@ -132,7 +132,7 @@ export const countryToLanguage: { [key: string]: string } = {
   'MY': 'ms', 'BN': 'ms',
   
   // Swahili
-  'KE': 'sw', 'TZ': 'sw', 'UG': 'sw',
+  'SW': 'sw',
   
   // Países multilíngues - priorizando idioma principal
   'CA': 'en', // Canadá - inglês como principal

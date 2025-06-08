@@ -37,10 +37,12 @@ export const generateCODCopies = (
     formatTemplate(desc, product, country)
   );
 
-  // Formatar sitelinks
+  // Formatar sitelinks (adicionando URL padrão já que não existe na estrutura)
   const formattedSitelinks = selectedTranslations.sitelinks.map(sitelink => ({
-    ...sitelink,
-    url: sitelink.url || "https://exemplo.com/comprar"
+    title: sitelink.title,
+    description1: sitelink.description1,
+    description2: sitelink.description2,
+    url: "https://exemplo.com/comprar" // URL padrão adicionada
   }));
 
   // Selecionar variações aleatórias para evitar repetição
@@ -62,6 +64,6 @@ export const generateCODCopies = (
     descriptions: randomDescriptions,
     usps: randomUsps,
     sitelinks: randomSitelinks,
-    biddingStrategy: selectedTranslations.biddingStrategy || "Para campanhas COD, recomendamos usar 'Maximizar conversões' com lance manual apropriado para o país, focando em conversões de alta intenção de compra."
+    biddingStrategy: "Para campanhas COD, recomendamos usar 'Maximizar conversões' com lance manual apropriado para o país, focando em conversões de alta intenção de compra."
   };
 };
