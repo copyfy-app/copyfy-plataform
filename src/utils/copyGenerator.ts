@@ -1,3 +1,4 @@
+
 import { getLanguageFromCountry, getLanguageFromCountryName } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 
@@ -10,8 +11,8 @@ export const generateCODCopies = (
 ) => {
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
-  // Detectar idioma baseado no código do país
-  const detectedLanguage = getLanguageFromCountry(country) || languageCode || 'en';
+  // Detectar idioma baseado no código do país - CONVERTENDO PARA MAIÚSCULO
+  const detectedLanguage = getLanguageFromCountry(country.toUpperCase()) || languageCode || 'en';
   
   console.log('País:', country, 'Idioma detectado:', detectedLanguage);
 
