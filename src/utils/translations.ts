@@ -1,2764 +1,1474 @@
 
-// Traduções expandidas por idioma com 30+ variações cada
-export const translations = {
-  pt: {
+export interface Translation {
+  titles: string[];
+  descriptions: string[];
+  usps: string[];
+  sitelinks: {
+    title: string;
+    description1: string;
+    description2: string;
+  }[];
+  biddingStrategies: string[];
+  snippetValues: string[];
+  promotions: string[];
+  priceBlocks: string[];
+}
+
+const translations: { [key: string]: Translation } = {
+  'pt': { // Brasil e Portugal
     titles: [
-      "Compre {product} com Desconto Exclusivo - Entrega em Todo {country}",
-      "{product} Original - Frete Grátis para {country}",
-      "Oferta Especial {product} - Apenas Hoje em {country}",
-      "{product} com 30% OFF - Entrega Garantizada {country}",
-      "Aproveite {product} com Desconto - Enviamos para {country}",
-      "{product} - Produto Original com Garantia para {country}",
-      "Compre {product} Agora - Frete Grátis em {country}",
-      "{product} com Melhor Preço - Entrega Rápida {country}",
-      "Oferta Limitada {product} - Disponível em {country}",
-      "{product} Oficial - Enviamos para Todo {country}",
-      "Desconto Especial {product} - Entrega em {country}",
-      "{product} com Garantia - Frete Grátis para {country}",
-      "Promoção {product} - Apenas em {country}",
-      "{product} Original - Entrega Expressa {country}",
-      "Compre {product} com Desconto - Disponível em {country}",
-      "{product} Exclusivo - Melhor Oferta {country}",
-      "Super Promoção {product} - Entrega Rápida {country}",
-      "{product} Premium - Frete Grátis {country}",
-      "Última Chance {product} - Aproveite em {country}",
-      "{product} com Desconto Imperdível - {country}",
-      "Mega Oferta {product} - Entrega Garantida {country}",
-      "{product} Autêntico - Enviamos para {country}",
-      "Compre {product} Online - Entrega em {country}",
-      "{product} com Preço Especial - {country}",
-      "Oferta Relâmpago {product} - {country}",
-      "{product} Certificado - Frete Grátis {country}",
-      "Promoção Exclusiva {product} - {country}",
-      "{product} com Garantia Total - {country}",
-      "Compre {product} Agora - Oferta {country}",
-      "{product} Original Garantido - {country}"
+      "[PRODUTO] Original - Compre Agora e Pague na Entrega",
+      "Desconto Exclusivo! [PRODUTO] por apenas [PREÇO]",
+      "[PRODUTO] - Entrega Rápida para Todo o [PAÍS]",
+      "Oferta Limitada: [PRODUTO] com Frete Grátis",
+      "[PRODUTO] - O Mais Vendido no [PAÍS]",
+      "Compre [PRODUTO] Original com Segurança",
+      "[PRODUTO] - Aprovado por Milhares de Clientes",
+      "Garanta Já o Seu [PRODUTO] - Estoque Limitado",
+      "[PRODUTO] - Transforme sua Vida Hoje Mesmo",
+      "Promoção Especial: [PRODUTO] por [PREÇO]",
+      "[PRODUTO] - Entrega Expressa em Todo [PAÍS]",
+      "Sucesso de Vendas: [PRODUTO] Original",
+      "[PRODUTO] - Solução Comprovada e Eficaz",
+      "Aproveite! [PRODUTO] com Desconto Especial",
+      "[PRODUTO] - Qualidade Premium por [PREÇO]",
+      "Peça [PRODUTO] e Receba em Casa",
+      "[PRODUTO] - Oferta Exclusiva para [PAÍS]",
+      "Últimas Unidades: [PRODUTO] Original",
+      "[PRODUTO] - Compre 1 e Leve 2",
+      "Frete Grátis: [PRODUTO] para [PAÍS]",
+      "[PRODUTO] - Satisfação Garantida ou Dinheiro de Volta",
+      "Super Oferta: [PRODUTO] por Apenas [PREÇO]",
+      "[PRODUTO] - Produto do Ano no [PAÍS]",
+      "Compre [PRODUTO] Agora - Pagamento na Entrega",
+      "[PRODUTO] - A Solução que Você Procurava",
+      "Oferta Relâmpago: [PRODUTO] com 50% OFF",
+      "[PRODUTO] - Testado e Aprovado no [PAÍS]",
+      "Ganhe Brinde: [PRODUTO] + Frete Grátis",
+      "[PRODUTO] - Sucesso em Todo o [PAÍS]",
+      "Últimos Dias: [PRODUTO] por [PREÇO]"
     ],
     descriptions: [
-      "Adquira {product} com desconto especial e frete grátis para {country}. Produto original com garantia.",
-      "Oferta exclusiva de {product} para {country}. Entrega rápida e segura.",
-      "{product} com melhor preço do mercado. Enviamos para todo {country}.",
-      "Aproveite a promoção de {product}. Frete grátis para {country}.",
-      "{product} original com desconto especial. Entrega garantida em {country}.",
-      "Compre {product} agora e receba em {country}. Oferta por tempo limitado.",
-      "{product} premium com entrega expressa para {country}. Garantia total.",
-      "Desconto imperdível em {product}. Enviamos para todo {country}.",
-      "{product} autêntico com frete grátis. Disponível em {country}.",
-      "Oferta especial {product} apenas para {country}. Aproveite agora.",
-      "{product} com garantia de qualidade. Entrega rápida em {country}.",
-      "Promoção exclusiva {product}. Frete grátis para {country}.",
-      "{product} original certificado. Enviamos para {country}.",
-      "Compre {product} com desconto. Entrega garantida em {country}.",
-      "{product} com melhor custo-benefício. Disponível em {country}.",
-      "Oferta limitada {product}. Entrega expressa para {country}.",
-      "{product} premium com desconto. Enviamos para {country}.",
-      "Aproveite {product} com frete grátis. Disponível em {country}.",
-      "{product} autêntico com garantia. Entrega em {country}.",
-      "Promoção {product} por tempo limitado. Enviamos para {country}.",
-      "{product} original com desconto especial. Disponível em {country}.",
-      "Compre {product} agora. Entrega rápida para {country}.",
-      "{product} com garantia total. Frete grátis em {country}.",
-      "Oferta especial {product}. Enviamos para todo {country}.",
-      "{product} premium com desconto. Entrega em {country}.",
-      "Aproveite {product} com garantia. Disponível em {country}.",
-      "{product} original certificado. Entrega para {country}.",
-      "Compre {product} com frete grátis. Disponível em {country}.",
-      "{product} com melhor preço. Entrega garantida em {country}.",
-      "Oferta exclusiva {product}. Enviamos para {country}."
+      "Receba [PRODUTO] na sua casa com total segurança e comodidade. Entrega rápida para todo o [PAÍS].",
+      "Oferta especial! Garanta [PRODUTO] por apenas [PREÇO] e transforme sua rotina hoje mesmo.",
+      "Compre [PRODUTO] original e pague somente na entrega. Sem riscos, sem complicações.",
+      "Sucesso absoluto em vendas! [PRODUTO] agora com entrega expressa para [PAÍS].",
+      "Não perca esta oportunidade única! [PRODUTO] em promoção por tempo limitado.",
+      "O segredo das celebridades chegou ao [PAÍS]: [PRODUTO] com resultados garantidos.",
+      "Transforme seu dia a dia com [PRODUTO] - produto aprovado por milhares de clientes.",
+      "Solução prática e eficaz: peça já o seu [PRODUTO] e sinta a diferença.",
+      "Campeão de vendas do mês: [PRODUTO]. Testado, aprovado e recomendado.",
+      "Oferta exclusiva para [PAÍS]. Garante já [PRODUTO] antes que acabe o estoque.",
+      "Aproveite frete grátis em [PRODUTO] hoje! Promoção válida por tempo limitado.",
+      "O melhor custo-benefício do [PAÍS]: [PRODUTO] com qualidade premium.",
+      "Peça [PRODUTO] com total segurança e garantia de satisfação ou dinheiro de volta.",
+      "Oportunidade imperdível: leve [PRODUTO] com super desconto e frete grátis.",
+      "Mais que um produto, uma experiência completa: [PRODUTO] muda vidas.",
+      "Compre agora [PRODUTO] e revolucione sua rotina. Resultados em poucos dias.",
+      "Produto mais procurado pelos clientes do [PAÍS]: [PRODUTO] original e eficaz.",
+      "Já são milhares de pedidos de [PRODUTO] em todo o [PAÍS]. Junte-se ao sucesso.",
+      "Sua chance de testar [PRODUTO] sem sair de casa! Entrega segura e rápida.",
+      "Receba em até 48 horas em qualquer cidade do [PAÍS]: [PRODUTO] original.",
+      "[PRODUTO] original com certificado de qualidade. Compre com confiança total.",
+      "Promoção relâmpago: [PRODUTO] por [PREÇO] com frete grátis para [PAÍS].",
+      "Solução completa em [PRODUTO]. Milhares de clientes satisfeitos em todo [PAÍS].",
+      "Garanta [PRODUTO] agora e receba brindes exclusivos. Oferta limitada!",
+      "A revolução chegou ao [PAÍS]: [PRODUTO] com tecnologia avançada por [PREÇO].",
+      "Compre [PRODUTO] parcelado ou à vista. Facilidade e segurança garantidas.",
+      "Entrega expressa: [PRODUTO] chega em sua casa em 24 horas. Peça já!",
+      "Oferta especial para [PAÍS]: [PRODUTO] com desconto progressivo. Compre mais, pague menos.",
+      "Produto recomendado por especialistas: [PRODUTO] com eficácia comprovada.",
+      "Últimas unidades: [PRODUTO] original por [PREÇO]. Não fique de fora!"
     ],
     usps: [
-      "Frete Grátis para Todo {country}",
-      "Produto 100% Original",
-      "Garantia de Satisfação",
-      "Entrega Expressa",
-      "Desconto Especial",
-      "Pagamento Seguro",
-      "Suporte 24h",
-      "Melhor Preço Garantido",
-      "Promoção Limitada",
-      "Envio Imediato",
-      "Qualidade Premium",
-      "Aprovado por Especialistas",
-      "Resultados Comprovados",
-      "Sem Taxa Extra",
-      "Compra Protegida",
-      "Certificado de Qualidade",
-      "Entrega Rastreável",
-      "Garantia Estendida",
-      "Atendimento Especializado",
-      "Produto Autêntico",
-      "Envio Discreto",
-      "Pagamento Facilitado",
-      "Devolução Grátis",
-      "Entrega Programada",
-      "Suporte Técnico",
-      "Garantia Internacional",
-      "Produto Certificado",
-      "Entrega Expressa",
-      "Compra Segura",
-      "Qualidade Garantida"
+      "✅ Entrega Rápida para Todo o [PAÍS]",
+      "✅ Produto Original com Certificado",
+      "✅ Pagamento Seguro na Entrega",
+      "✅ Garantia de Satisfação Total",
+      "✅ Frete Grátis Acima de R$ 99",
+      "✅ Atendimento 24h por WhatsApp",
+      "✅ Mais de 50.000 Clientes Satisfeitos",
+      "✅ Aprovado pela ANVISA",
+      "✅ Compre 2 e Ganhe 1 Grátis",
+      "✅ Dinheiro de Volta se Não Gostar",
+      "✅ Entrega Expressa em 24 Horas",
+      "✅ Produto Líder em Vendas",
+      "✅ Sem Taxa de Entrega",
+      "✅ Parcelamento em Até 12x",
+      "✅ Suporte Técnico Especializado"
     ],
     sitelinks: [
-      {
-        title: "Comprar Agora",
-        description1: "Oferta especial com desconto",
-        description2: "Frete grátis para {country}"
-      },
-      {
-        title: "Ver Promoções",
-        description1: "Descontos exclusivos",
-        description2: "Apenas por tempo limitado"
-      },
-      {
-        title: "Produto Original",
-        description1: "100% autêntico",
-        description2: "Com garantia de qualidade"
-      },
-      {
-        title: "Entrega Rápida",
-        description1: "Envio expresso",
-        description2: "Receba em poucos dias"
-      },
-      {
-        title: "Garantia Total",
-        description1: "Produto certificado",
-        description2: "Suporte completo"
-      },
-      {
-        title: "Melhor Preço",
-        description1: "Preço competitivo",
-        description2: "Oferta imperdível"
-      },
-      {
-        title: "Pagamento Seguro",
-        description1: "Compra protegida",
-        description2: "Diversas formas de pagamento"
-      },
-      {
-        title: "Suporte 24h",
-        description1: "Atendimento especializado",
-        description2: "Tire suas dúvidas"
-      },
-      {
-        title: "Entrega Expressa",
-        description1: "Receba rapidamente",
-        description2: "Entrega rastreável"
-      },
-      {
-        title: "Qualidade Premium",
-        description1: "Produto de alta qualidade",
-        description2: "Resultado garantido"
-      },
-      {
-        title: "Oferta Limitada",
-        description1: "Promoção por tempo limitado",
-        description2: "Aproveite agora"
-      },
-      {
-        title: "Certificado",
-        description1: "Produto certificado",
-        description2: "Qualidade comprovada"
-      },
-      {
-        title: "Frete Grátis",
-        description1: "Sem custo de envio",
-        description2: "Para todo o país"
-      },
-      {
-        title: "Garantia Estendida",
-        description1: "Proteção completa",
-        description2: "Suporte total"
-      },
-      {
-        title: "Envio Imediato",
-        description1: "Processamento rápido",
-        description2: "Entrega garantida"
-      },
-      {
-        title: "Produto Autêntico",
-        description1: "Original garantido",
-        description2: "Direto do fabricante"
-      },
-      {
-        title: "Desconto Especial",
-        description1: "Preço promocional",
-        description2: "Economia garantida"
-      },
-      {
-        title: "Compra Segura",
-        description1: "Transação protegida",
-        description2: "Dados seguros"
-      },
-      {
-        title: "Atendimento VIP",
-        description1: "Suporte prioritário",
-        description2: "Atendimento personalizado"
-      },
-      {
-        title: "Resultados Comprovados",
-        description1: "Eficácia testada",
-        description2: "Aprovado por especialistas"
-      },
-      {
-        title: "Entrega Programada",
-        description1: "Escolha o horário",
-        description2: "Conveniência total"
-      },
-      {
-        title: "Produto Premium",
-        description1: "Qualidade superior",
-        description2: "Resultado garantido"
-      },
-      {
-        title: "Oferta Exclusiva",
-        description1: "Disponível apenas aqui",
-        description2: "Preço especial"
-      },
-      {
-        title: "Envio Discreto",
-        description1: "Embalagem discreta",
-        description2: "Privacidade garantida"
-      },
-      {
-        title: "Pagamento Facilitado",
-        description1: "Parcelamento disponível",
-        description2: "Condições especiais"
-      },
-      {
-        title: "Devolução Grátis",
-        description1: "Sem custo para devolução",
-        description2: "Política flexível"
-      },
-      {
-        title: "Suporte Técnico",
-        description1: "Ajuda especializada",
-        description2: "Orientação completa"
-      },
-      {
-        title: "Garantia Internacional",
-        description1: "Válida mundialmente",
-        description2: "Proteção global"
-      },
-      {
-        title: "Qualidade Certificada",
-        description1: "Padrão internacional",
-        description2: "Excelência garantida"
-      },
-      {
-        title: "Entrega Garantida",
-        description1: "Recebimento assegurado",
-        description2: "Ou seu dinheiro de volta"
-      }
+      { title: "Compre Agora [PRODUTO]", description1: "Oferta especial para [PAÍS]", description2: "Entrega rápida garantida" },
+      { title: "Garanta o Seu [PRODUTO]", description1: "Estoque limitado", description2: "Pagamento na entrega" },
+      { title: "Peça Já [PRODUTO]", description1: "Frete grátis para [PAÍS]", description2: "Produto original certificado" },
+      { title: "Aproveite a Promoção", description1: "[PRODUTO] com desconto", description2: "Válido por tempo limitado" },
+      { title: "Teste Grátis [PRODUTO]", description1: "30 dias de garantia", description2: "Dinheiro de volta" },
+      { title: "Comprar [PRODUTO] Original", description1: "Melhor preço do [PAÍS]", description2: "Qualidade garantida" },
+      { title: "Oferta Relâmpago", description1: "[PRODUTO] por [PREÇO]", description2: "Últimas unidades" },
+      { title: "Frete Grátis [PRODUTO]", description1: "Entrega expressa", description2: "Para todo o [PAÍS]" },
+      { title: "Promoção Especial", description1: "Compre 2 leve 3", description2: "[PRODUTO] original" },
+      { title: "Peça com Desconto", description1: "[PRODUTO] promocional", description2: "Melhor custo-benefício" },
+      { title: "Compre e Ganhe Brinde", description1: "[PRODUTO] + bônus", description2: "Oferta exclusiva" },
+      { title: "Entrega Rápida", description1: "[PRODUTO] em 24h", description2: "Segurança total" },
+      { title: "Satisfação Garantida", description1: "[PRODUTO] aprovado", description2: "Milhares de clientes" },
+      { title: "Melhor Preço [PAÍS]", description1: "[PRODUTO] por [PREÇO]", description2: "Qualidade premium" },
+      { title: "Últimas Unidades", description1: "[PRODUTO] original", description2: "Não perca!" }
+    ],
+    biddingStrategies: [
+      "Para campanhas COD, recomendamos 'Maximizar conversões' com lance manual apropriado para [PAÍS], focando em conversões de alta intenção de compra.",
+      "Para campanhas de fundo de funil, utilize 'CPA desejado' otimizado para o mercado do [PAÍS], priorizando leads qualificados.",
+      "Para campanhas de meio de funil, recomendamos 'ROAS desejado' com meta de retorno adequada ao [PAÍS].",
+      "Para campanhas de topo de funil, use 'Maximizar cliques' para aumentar visibilidade no [PAÍS].",
+      "Para produtos premium, utilize 'Maximizar valor de conversão' focando no público-alvo do [PAÍS]."
+    ],
+    snippetValues: ["Entrega rápida", "Aprovado pela ANVISA", "Desconto limitado", "100% original", "Compra segura"],
+    promotions: [
+      "Desconto de 20% no primeiro pedido",
+      "Frete grátis para todo o [PAÍS]",
+      "Compre 2 e leve 3"
+    ],
+    priceBlocks: [
+      "[PRODUTO] 1 unidade: [PREÇO] - Entrega para todo [PAÍS]",
+      "[PRODUTO] Kit 3 unidades: [PREÇO] - Frete grátis",
+      "[PRODUTO] Kit completo: [PREÇO] - Melhor oferta"
     ]
   },
-  en: {
+  'es': { // Espanha, México, Argentina, Chile, Colômbia
     titles: [
-      "Buy {product} with Exclusive Discount - Delivery to All {country}",
-      "{product} Original - Free Shipping to {country}",
-      "Special Offer {product} - Today Only in {country}",
-      "{product} with 30% OFF - Guaranteed Delivery {country}",
-      "Get {product} with Discount - We Ship to {country}",
-      "{product} - Original Product with Warranty for {country}",
-      "Buy {product} Now - Free Shipping in {country}",
-      "{product} at Best Price - Fast Delivery {country}",
-      "Limited Offer {product} - Available in {country}",
-      "{product} Official - We Ship to All {country}",
-      "Special Discount {product} - Delivery to {country}",
-      "{product} with Warranty - Free Shipping to {country}",
-      "Promotion {product} - Only in {country}",
-      "{product} Original - Express Delivery {country}",
-      "Buy {product} with Discount - Available in {country}",
-      "{product} Exclusive - Best Deal {country}",
-      "Super Sale {product} - Fast Delivery {country}",
-      "{product} Premium - Free Shipping {country}",
-      "Last Chance {product} - Get Yours in {country}",
-      "{product} Unbeatable Discount - {country}",
-      "Mega Deal {product} - Guaranteed Delivery {country}",
-      "{product} Authentic - We Ship to {country}",
-      "Order {product} Online - Delivery in {country}",
-      "{product} Special Price - {country}",
-      "Flash Sale {product} - {country}",
-      "{product} Certified - Free Shipping {country}",
-      "Exclusive Deal {product} - {country}",
-      "{product} Full Warranty - {country}",
-      "Order {product} Now - {country} Deal",
-      "{product} Guaranteed Original - {country}"
+      "[PRODUCTO] Original - Compra Ahora y Paga al Recibir",
+      "¡Descuento Exclusivo! [PRODUCTO] por solo [PRECIO]",
+      "[PRODUCTO] - Entrega Rápida en Todo [PAÍS]",
+      "Oferta Limitada: [PRODUCTO] con Envío Gratis",
+      "[PRODUCTO] - El Más Vendido en [PAÍS]",
+      "Compra [PRODUCTO] Original con Seguridad",
+      "[PRODUCTO] - Aprobado por Miles de Clientes",
+      "Consigue Ya Tu [PRODUCTO] - Stock Limitado",
+      "[PRODUCTO] - Transforma Tu Vida Hoy Mismo",
+      "Promoción Especial: [PRODUCTO] por [PRECIO]",
+      "[PRODUCTO] - Entrega Express en Todo [PAÍS]",
+      "Éxito en Ventas: [PRODUCTO] Original",
+      "[PRODUCTO] - Solución Comprobada y Eficaz",
+      "¡Aprovecha! [PRODUCTO] con Descuento Especial",
+      "[PRODUCTO] - Calidad Premium por [PRECIO]",
+      "Pide [PRODUCTO] y Recíbelo en Casa",
+      "[PRODUCTO] - Oferta Exclusiva para [PAÍS]",
+      "Últimas Unidades: [PRODUCTO] Original",
+      "[PRODUCTO] - Compra 1 y Llévate 2",
+      "Envío Gratis: [PRODUCTO] para [PAÍS]",
+      "[PRODUCTO] - Satisfacción Garantizada",
+      "Súper Oferta: [PRODUCTO] por Solo [PRECIO]",
+      "[PRODUCTO] - Producto del Año en [PAÍS]",
+      "Compra [PRODUCTO] Ahora - Pago Contra Entrega",
+      "[PRODUCTO] - La Solución que Buscabas",
+      "Oferta Flash: [PRODUCTO] con 50% OFF",
+      "[PRODUCTO] - Probado y Aprobado en [PAÍS]",
+      "Gana Regalo: [PRODUCTO] + Envío Gratis",
+      "[PRODUCTO] - Éxito en Todo [PAÍS]",
+      "Últimos Días: [PRODUCTO] por [PRECIO]"
     ],
     descriptions: [
-      "Get {product} with special discount and free shipping to {country}. Original product with warranty.",
-      "Exclusive offer of {product} for {country}. Fast and secure delivery.",
-      "{product} at the best market price. We ship to all {country}.",
-      "Take advantage of {product} promotion. Free shipping to {country}.",
-      "Original {product} with special discount. Guaranteed delivery in {country}.",
-      "Buy {product} now and receive in {country}. Limited time offer.",
-      "Premium {product} with express delivery to {country}. Full warranty.",
-      "Unbeatable discount on {product}. We ship to all {country}.",
-      "Authentic {product} with free shipping. Available in {country}.",
-      "Special offer {product} only for {country}. Get yours now.",
-      "{product} with quality guarantee. Fast delivery in {country}.",
-      "Exclusive promotion {product}. Free shipping to {country}.",
-      "Original certified {product}. We ship to {country}.",
-      "Buy {product} with discount. Guaranteed delivery in {country}.",
-      "{product} with best value. Available in {country}.",
-      "Limited offer {product}. Express delivery to {country}.",
-      "Premium {product} with discount. We ship to {country}.",
-      "Get {product} with free shipping. Available in {country}.",
-      "Authentic {product} with warranty. Delivery in {country}.",
-      "Promotion {product} for limited time. We ship to {country}.",
-      "Original {product} with special discount. Available in {country}.",
-      "Order {product} now. Fast delivery to {country}.",
-      "{product} with full warranty. Free shipping in {country}.",
-      "Special offer {product}. We ship to all {country}.",
-      "Premium {product} with discount. Delivery in {country}.",
-      "Get {product} with warranty. Available in {country}.",
-      "Original certified {product}. Delivery to {country}.",
-      "Buy {product} with free shipping. Available in {country}.",
-      "{product} at best price. Guaranteed delivery in {country}.",
-      "Exclusive offer {product}. We ship to {country}."
+      "Recibe [PRODUCTO] en tu casa con total seguridad y comodidad. Entrega rápida en todo [PAÍS].",
+      "¡Oferta especial! Consigue [PRODUCTO] por solo [PRECIO] y transforma tu rutina hoy mismo.",
+      "Compra [PRODUCTO] original y paga solo al recibirlo. Sin riesgos, sin complicaciones.",
+      "¡Éxito absoluto en ventas! [PRODUCTO] ahora con entrega express para [PAÍS].",
+      "¡No pierdas esta oportunidad única! [PRODUCTO] en promoción por tiempo limitado.",
+      "El secreto de las celebridades llegó a [PAÍS]: [PRODUCTO] con resultados garantizados.",
+      "Transforma tu día a día con [PRODUCTO] - producto aprobado por miles de clientes.",
+      "Solución práctica y eficaz: pide ya tu [PRODUCTO] y siente la diferencia.",
+      "Campeón de ventas del mes: [PRODUCTO]. Probado, aprobado y recomendado.",
+      "Oferta exclusiva para [PAÍS]. Consigue ya [PRODUCTO] antes de que se agote el stock.",
+      "¡Aprovecha envío gratis en [PRODUCTO] hoy! Promoción válida por tiempo limitado.",
+      "La mejor relación calidad-precio de [PAÍS]: [PRODUCTO] con calidad premium.",
+      "Pide [PRODUCTO] con total seguridad y garantía de satisfacción o devolución del dinero.",
+      "Oportunidad imperdible: llévate [PRODUCTO] con súper descuento y envío gratis.",
+      "Más que un producto, una experiencia completa: [PRODUCTO] cambia vidas.",
+      "Compra ahora [PRODUCTO] y revoluciona tu rutina. Resultados en pocos días.",
+      "Producto más buscado por los clientes de [PAÍS]: [PRODUCTO] original y eficaz.",
+      "Ya son miles de pedidos de [PRODUCTO] en todo [PAÍS]. Únete al éxito.",
+      "Tu oportunidad de probar [PRODUCTO] sin salir de casa. Entrega segura y rápida.",
+      "Recibe en hasta 48 horas en cualquier ciudad de [PAÍS]: [PRODUCTO] original.",
+      "[PRODUCTO] original con certificado de calidad. Compra con total confianza.",
+      "Promoción flash: [PRODUCTO] por [PRECIO] con envío gratis para [PAÍS].",
+      "Solución completa en [PRODUCTO]. Miles de clientes satisfechos en todo [PAÍS].",
+      "Consigue [PRODUCTO] ahora y recibe regalos exclusivos. ¡Oferta limitada!",
+      "La revolución llegó a [PAÍS]: [PRODUCTO] con tecnología avanzada por [PRECIO].",
+      "Compra [PRODUCTO] a plazos o al contado. Facilidad y seguridad garantizadas.",
+      "Entrega express: [PRODUCTO] llega a tu casa en 24 horas. ¡Pide ya!",
+      "Oferta especial para [PAÍS]: [PRODUCTO] con descuento progresivo.",
+      "Producto recomendado por especialistas: [PRODUCTO] con eficacia comprobada.",
+      "Últimas unidades: [PRODUCTO] original por [PRECIO]. ¡No te quedes fuera!"
     ],
     usps: [
-      "Free Shipping to All {country}",
-      "100% Original Product",
-      "Satisfaction Guarantee",
-      "Express Delivery",
-      "Special Discount",
-      "Secure Payment",
-      "24h Support",
-      "Best Price Guaranteed",
-      "Limited Promotion",
-      "Immediate Shipping",
-      "Premium Quality",
-      "Expert Approved",
-      "Proven Results",
-      "No Extra Fee",
-      "Protected Purchase",
-      "Quality Certificate",
-      "Trackable Delivery",
-      "Extended Warranty",
-      "Specialized Support",
-      "Authentic Product",
-      "Discreet Shipping",
-      "Easy Payment",
-      "Free Returns",
-      "Scheduled Delivery",
-      "Technical Support",
-      "International Warranty",
-      "Certified Product",
-      "Express Delivery",
-      "Secure Purchase",
-      "Quality Guaranteed"
+      "✅ Entrega Rápida en Todo [PAÍS]",
+      "✅ Producto Original Certificado",
+      "✅ Pago Seguro Contra Entrega",
+      "✅ Garantía de Satisfacción Total",
+      "✅ Envío Gratis Desde €50",
+      "✅ Atención 24h por WhatsApp",
+      "✅ Más de 50.000 Clientes Satisfechos",
+      "✅ Aprobado por Autoridades",
+      "✅ Compra 2 y Recibe 1 Gratis",
+      "✅ Devolución del Dinero",
+      "✅ Entrega Express en 24 Horas",
+      "✅ Producto Líder en Ventas",
+      "✅ Sin Costos de Envío",
+      "✅ Pago a Plazos Hasta 12 Meses",
+      "✅ Soporte Técnico Especializado"
     ],
     sitelinks: [
-      {
-        title: "Buy Now",
-        description1: "Special offer with discount",
-        description2: "Free shipping to {country}"
-      },
-      {
-        title: "View Promotions",
-        description1: "Exclusive discounts",
-        description2: "Limited time only"
-      },
-      {
-        title: "Original Product",
-        description1: "100% authentic",
-        description2: "With quality guarantee"
-      },
-      {
-        title: "Fast Delivery",
-        description1: "Express shipping",
-        description2: "Receive in few days"
-      },
-      {
-        title: "Full Warranty",
-        description1: "Certified product",
-        description2: "Complete support"
-      },
-      {
-        title: "Best Price",
-        description1: "Competitive pricing",
-        description2: "Unbeatable deal"
-      },
-      {
-        title: "Secure Payment",
-        description1: "Protected purchase",
-        description2: "Multiple payment options"
-      },
-      {
-        title: "24h Support",
-        description1: "Specialized assistance",
-        description2: "Get your questions answered"
-      },
-      {
-        title: "Express Delivery",
-        description1: "Receive quickly",
-        description2: "Trackable delivery"
-      },
-      {
-        title: "Premium Quality",
-        description1: "High quality product",
-        description2: "Guaranteed results"
-      },
-      {
-        title: "Limited Offer",
-        description1: "Limited time promotion",
-        description2: "Get yours now"
-      },
-      {
-        title: "Certified",
-        description1: "Certified product",
-        description2: "Proven quality"
-      },
-      {
-        title: "Free Shipping",
-        description1: "No shipping cost",
-        description2: "Nationwide delivery"
-      },
-      {
-        title: "Extended Warranty",
-        description1: "Complete protection",
-        description2: "Full support"
-      },
-      {
-        title: "Immediate Shipping",
-        description1: "Fast processing",
-        description2: "Guaranteed delivery"
-      },
-      {
-        title: "Authentic Product",
-        description1: "Guaranteed original",
-        description2: "Direct from manufacturer"
-      },
-      {
-        title: "Special Discount",
-        description1: "Promotional price",
-        description2: "Guaranteed savings"
-      },
-      {
-        title: "Secure Purchase",
-        description1: "Protected transaction",
-        description2: "Safe data"
-      },
-      {
-        title: "VIP Service",
-        description1: "Priority support",
-        description2: "Personalized service"
-      },
-      {
-        title: "Proven Results",
-        description1: "Tested effectiveness",
-        description2: "Expert approved"
-      },
-      {
-        title: "Scheduled Delivery",
-        description1: "Choose your time",
-        description2: "Total convenience"
-      },
-      {
-        title: "Premium Product",
-        description1: "Superior quality",
-        description2: "Guaranteed results"
-      },
-      {
-        title: "Exclusive Offer",
-        description1: "Available only here",
-        description2: "Special price"
-      },
-      {
-        title: "Discreet Shipping",
-        description1: "Discreet packaging",
-        description2: "Privacy guaranteed"
-      },
-      {
-        title: "Easy Payment",
-        description1: "Installments available",
-        description2: "Special conditions"
-      },
-      {
-        title: "Free Returns",
-        description1: "No return cost",
-        description2: "Flexible policy"
-      },
-      {
-        title: "Technical Support",
-        description1: "Expert help",
-        description2: "Complete guidance"
-      },
-      {
-        title: "International Warranty",
-        description1: "Valid worldwide",
-        description2: "Global protection"
-      },
-      {
-        title: "Certified Quality",
-        description1: "International standard",
-        description2: "Excellence guaranteed"
-      },
-      {
-        title: "Guaranteed Delivery",
-        description1: "Assured receipt",
-        description2: "Or money back"
-      }
+      { title: "Compra Ahora [PRODUCTO]", description1: "Oferta especial para [PAÍS]", description2: "Entrega rápida garantizada" },
+      { title: "Consigue Tu [PRODUCTO]", description1: "Stock limitado", description2: "Pago contra entrega" },
+      { title: "Pide Ya [PRODUCTO]", description1: "Envío gratis para [PAÍS]", description2: "Producto original certificado" },
+      { title: "Aprovecha la Promoción", description1: "[PRODUCTO] con descuento", description2: "Válido por tiempo limitado" },
+      { title: "Prueba Gratis [PRODUCTO]", description1: "30 días de garantía", description2: "Devolución del dinero" },
+      { title: "Comprar [PRODUCTO] Original", description1: "Mejor precio de [PAÍS]", description2: "Calidad garantizada" },
+      { title: "Oferta Flash", description1: "[PRODUCTO] por [PRECIO]", description2: "Últimas unidades" },
+      { title: "Envío Gratis [PRODUCTO]", description1: "Entrega express", description2: "Para todo [PAÍS]" },
+      { title: "Promoción Especial", description1: "Compra 2 lleva 3", description2: "[PRODUCTO] original" },
+      { title: "Pide con Descuento", description1: "[PRODUCTO] promocional", description2: "Mejor calidad-precio" },
+      { title: "Compra y Gana Regalo", description1: "[PRODUCTO] + bonus", description2: "Oferta exclusiva" },
+      { title: "Entrega Rápida", description1: "[PRODUCTO] en 24h", description2: "Seguridad total" },
+      { title: "Satisfacción Garantizada", description1: "[PRODUCTO] aprobado", description2: "Miles de clientes" },
+      { title: "Mejor Precio [PAÍS]", description1: "[PRODUCTO] por [PRECIO]", description2: "Calidad premium" },
+      { title: "Últimas Unidades", description1: "[PRODUCTO] original", description2: "¡No te lo pierdas!" }
+    ],
+    biddingStrategies: [
+      "Para campañas COD, recomendamos 'Maximizar conversiones' con puja manual apropiada para [PAÍS], enfocándose en conversiones de alta intención de compra.",
+      "Para campañas de embudo inferior, utiliza 'CPA deseado' optimizado para el mercado de [PAÍS], priorizando leads calificados.",
+      "Para campañas de embudo medio, recomendamos 'ROAS deseado' con meta de retorno adecuada a [PAÍS].",
+      "Para campañas de embudo superior, usa 'Maximizar clics' para aumentar visibilidad en [PAÍS].",
+      "Para productos premium, utiliza 'Maximizar valor de conversión' enfocado en el público objetivo de [PAÍS]."
+    ],
+    snippetValues: ["Entrega rápida", "Aprobado oficialmente", "Descuento limitado", "100% original", "Compra segura"],
+    promotions: [
+      "Descuento del 20% en el primer pedido",
+      "Envío gratis a todo [PAÍS]",
+      "Compra 2 y llévate 3"
+    ],
+    priceBlocks: [
+      "[PRODUCTO] 1 unidad: [PRECIO] - Entrega a todo [PAÍS]",
+      "[PRODUCTO] Kit 3 unidades: [PRECIO] - Envío gratis",
+      "[PRODUCTO] Kit completo: [PRECIO] - Mejor oferta"
     ]
   },
-  es: {
+  'en': { // Estados Unidos, Reino Unido, Canadá, África do Sul
     titles: [
-      "Compra {product} con Descuento Exclusivo - Entrega en Todo {country}",
-      "{product} Original - Envío Gratis a {country}",
-      "Oferta Especial {product} - Solo Hoy en {country}",
-      "{product} con 30% OFF - Entrega Garantizada {country}",
-      "Aprovecha {product} con Descuento - Enviamos a {country}",
-      "{product} - Producto Original con Garantía para {country}",
-      "Compra {product} Ahora - Envío Gratis en {country}",
-      "{product} al Mejor Precio - Entrega Rápida {country}",
-      "Oferta Limitada {product} - Disponible en {country}",
-      "{product} Oficial - Enviamos a Todo {country}",
-      "Descuento Especial {product} - Entrega en {country}",
-      "{product} con Garantía - Envío Gratis a {country}",
-      "Promoción {product} - Solo en {country}",
-      "{product} Original - Entrega Express {country}",
-      "Compra {product} con Descuento - Disponible en {country}",
-      "{product} Exclusivo - Mejor Oferta {country}",
-      "Super Promoción {product} - Entrega Rápida {country}",
-      "{product} Premium - Envío Gratis {country}",
-      "Última Oportunidad {product} - Aprovecha en {country}",
-      "{product} con Descuento Increíble - {country}",
-      "Mega Oferta {product} - Entrega Garantizada {country}",
-      "{product} Auténtico - Enviamos a {country}",
-      "Pide {product} Online - Entrega en {country}",
-      "{product} con Precio Especial - {country}",
-      "Oferta Relámpago {product} - {country}",
-      "{product} Certificado - Envío Gratis {country}",
-      "Oferta Exclusiva {product} - {country}",
-      "{product} con Garantía Total - {country}",
-      "Pide {product} Ahora - Oferta {country}",
-      "{product} Original Garantizado - {country}"
+      "[PRODUCT] Original - Buy Now and Pay on Delivery",
+      "Exclusive Discount! [PRODUCT] for only [PRICE]",
+      "[PRODUCT] - Fast Delivery Across [COUNTRY]",
+      "Limited Offer: [PRODUCT] with Free Shipping",
+      "[PRODUCT] - Best Seller in [COUNTRY]",
+      "Buy [PRODUCT] Original with Security",
+      "[PRODUCT] - Approved by Thousands of Customers",
+      "Get Your [PRODUCT] Now - Limited Stock",
+      "[PRODUCT] - Transform Your Life Today",
+      "Special Promotion: [PRODUCT] for [PRICE]",
+      "[PRODUCT] - Express Delivery Across [COUNTRY]",
+      "Sales Success: [PRODUCT] Original",
+      "[PRODUCT] - Proven and Effective Solution",
+      "Take Advantage! [PRODUCT] with Special Discount",
+      "[PRODUCT] - Premium Quality for [PRICE]",
+      "Order [PRODUCT] and Receive at Home",
+      "[PRODUCT] - Exclusive Offer for [COUNTRY]",
+      "Last Units: [PRODUCT] Original",
+      "[PRODUCT] - Buy 1 and Get 2",
+      "Free Shipping: [PRODUCT] to [COUNTRY]",
+      "[PRODUCT] - Satisfaction Guaranteed",
+      "Super Deal: [PRODUCT] for Only [PRICE]",
+      "[PRODUCT] - Product of the Year in [COUNTRY]",
+      "Buy [PRODUCT] Now - Cash on Delivery",
+      "[PRODUCT] - The Solution You Were Looking For",
+      "Flash Sale: [PRODUCT] with 50% OFF",
+      "[PRODUCT] - Tested and Approved in [COUNTRY]",
+      "Win Gift: [PRODUCT] + Free Shipping",
+      "[PRODUCT] - Success Across [COUNTRY]",
+      "Last Days: [PRODUCT] for [PRICE]"
     ],
     descriptions: [
-      "Obtén {product} con descuento especial y envío gratis a {country}. Producto original con garantía.",
-      "Oferta exclusiva de {product} para {country}. Entrega rápida y segura.",
-      "{product} al mejor precio del mercado. Enviamos a todo {country}.",
-      "Aprovecha la promoción de {product}. Envío gratis a {country}.",
-      "{product} original con descuento especial. Entrega garantizada en {country}.",
-      "Compra {product} ahora y recibe en {country}. Oferta por tiempo limitado.",
-      "{product} premium con entrega express a {country}. Garantía total.",
-      "Descuento increíble en {product}. Enviamos a todo {country}.",
-      "{product} auténtico con envío gratis. Disponible en {country}.",
-      "Oferta especial {product} solo para {country}. Aprovecha ahora.",
-      "{product} con garantía de calidad. Entrega rápida en {country}.",
-      "Promoción exclusiva {product}. Envío gratis a {country}.",
-      "{product} original certificado. Enviamos a {country}.",
-      "Compra {product} con descuento. Entrega garantizada en {country}.",
-      "{product} con mejor relación calidad-precio. Disponible en {country}.",
-      "Oferta limitada {product}. Entrega express a {country}.",
-      "{product} premium con descuento. Enviamos a {country}.",
-      "Obtén {product} con envío gratis. Disponible en {country}.",
-      "{product} auténtico con garantía. Entrega en {country}.",
-      "Promoción {product} por tiempo limitado. Enviamos a {country}.",
-      "{product} original con descuento especial. Disponible en {country}.",
-      "Pide {product} ahora. Entrega rápida a {country}.",
-      "{product} con garantía total. Envío gratis en {country}.",
-      "Oferta especial {product}. Enviamos a todo {country}.",
-      "{product} premium con descuento. Entrega en {country}.",
-      "Obtén {product} con garantía. Disponible en {country}.",
-      "{product} original certificado. Entrega a {country}.",
-      "Compra {product} con envío gratis. Disponible en {country}.",
-      "{product} al mejor precio. Entrega garantizada en {country}.",
-      "Oferta exclusiva {product}. Enviamos a {country}."
+      "Receive [PRODUCT] at your home with complete security and comfort. Fast delivery across [COUNTRY].",
+      "Special offer! Get [PRODUCT] for only [PRICE] and transform your routine today.",
+      "Buy original [PRODUCT] and pay only on delivery. No risks, no complications.",
+      "Absolute sales success! [PRODUCT] now with express delivery to [COUNTRY].",
+      "Don't miss this unique opportunity! [PRODUCT] on sale for limited time.",
+      "The celebrity secret arrived in [COUNTRY]: [PRODUCT] with guaranteed results.",
+      "Transform your daily life with [PRODUCT] - product approved by thousands of customers.",
+      "Practical and effective solution: order your [PRODUCT] now and feel the difference.",
+      "Sales champion of the month: [PRODUCT]. Tested, approved and recommended.",
+      "Exclusive offer for [COUNTRY]. Get [PRODUCT] now before stock runs out.",
+      "Take advantage of free shipping on [PRODUCT] today! Limited time promotion.",
+      "Best value for money in [COUNTRY]: [PRODUCT] with premium quality.",
+      "Order [PRODUCT] with complete security and satisfaction guarantee or money back.",
+      "Unmissable opportunity: take [PRODUCT] with super discount and free shipping.",
+      "More than a product, a complete experience: [PRODUCT] changes lives.",
+      "Buy [PRODUCT] now and revolutionize your routine. Results in few days.",
+      "Most sought product by [COUNTRY] customers: original and effective [PRODUCT].",
+      "Already thousands of [PRODUCT] orders across [COUNTRY]. Join the success.",
+      "Your chance to test [PRODUCT] without leaving home! Safe and fast delivery.",
+      "Receive within 48 hours in any [COUNTRY] city: original [PRODUCT].",
+      "Original [PRODUCT] with quality certificate. Buy with complete confidence.",
+      "Flash promotion: [PRODUCT] for [PRICE] with free shipping to [COUNTRY].",
+      "Complete solution in [PRODUCT]. Thousands of satisfied customers across [COUNTRY].",
+      "Get [PRODUCT] now and receive exclusive gifts. Limited offer!",
+      "The revolution arrived in [COUNTRY]: [PRODUCT] with advanced technology for [PRICE].",
+      "Buy [PRODUCT] in installments or cash. Ease and security guaranteed.",
+      "Express delivery: [PRODUCT] arrives at your home in 24 hours. Order now!",
+      "Special offer for [COUNTRY]: [PRODUCT] with progressive discount.",
+      "Product recommended by specialists: [PRODUCT] with proven efficacy.",
+      "Last units: original [PRODUCT] for [PRICE]. Don't miss out!"
     ],
     usps: [
-      "Envío Gratis a Todo {country}",
-      "Producto 100% Original",
-      "Garantía de Satisfacción",
-      "Entrega Express",
-      "Descuento Especial",
-      "Pago Seguro",
-      "Soporte 24h",
-      "Mejor Precio Garantizado",
-      "Promoción Limitada",
-      "Envío Inmediato",
-      "Calidad Premium",
-      "Aprobado por Expertos",
-      "Resultados Comprobados",
-      "Sin Tarifa Extra",
-      "Compra Protegida",
-      "Certificado de Calidad",
-      "Entrega Rastreable",
-      "Garantía Extendida",
-      "Soporte Especializado",
-      "Producto Auténtico",
-      "Envío Discreto",
-      "Pago Facilitado",
-      "Devolución Gratis",
-      "Entrega Programada",
-      "Soporte Técnico",
-      "Garantía Internacional",
-      "Producto Certificado",
-      "Entrega Express",
-      "Compra Segura",
-      "Calidad Garantizada"
+      "✅ Fast Delivery Across [COUNTRY]",
+      "✅ Original Certified Product",
+      "✅ Secure Cash on Delivery",
+      "✅ Total Satisfaction Guarantee",
+      "✅ Free Shipping Over $50",
+      "✅ 24/7 WhatsApp Support",
+      "✅ Over 50,000 Satisfied Customers",
+      "✅ FDA Approved",
+      "✅ Buy 2 Get 1 Free",
+      "✅ Money Back Guarantee",
+      "✅ Express Delivery in 24 Hours",
+      "✅ Best Selling Product",
+      "✅ No Shipping Fees",
+      "✅ Payment Plans Up to 12 Months",
+      "✅ Specialized Technical Support"
     ],
     sitelinks: [
-      {
-        title: "Comprar Ahora",
-        description1: "Oferta especial con descuento",
-        description2: "Envío gratis a {country}"
-      },
-      {
-        title: "Ver Promociones",
-        description1: "Descuentos exclusivos",
-        description2: "Solo por tiempo limitado"
-      },
-      {
-        title: "Producto Original",
-        description1: "100% auténtico",
-        description2: "Con garantía de calidad"
-      },
-      {
-        title: "Entrega Rápida",
-        description1: "Envío express",
-        description2: "Recibe en pocos días"
-      },
-      {
-        title: "Garantía Total",
-        description1: "Producto certificado",
-        description2: "Soporte completo"
-      },
-      {
-        title: "Mejor Precio",
-        description1: "Precio competitivo",
-        description2: "Oferta increíble"
-      },
-      {
-        title: "Pago Seguro",
-        description1: "Compra protegida",
-        description2: "Múltiples formas de pago"
-      },
-      {
-        title: "Soporte 24h",
-        description1: "Asistencia especializada",
-        description2: "Resuelve tus dudas"
-      },
-      {
-        title: "Entrega Express",
-        description1: "Recibe rápidamente",
-        description2: "Entrega rastreable"
-      },
-      {
-        title: "Calidad Premium",
-        description1: "Producto de alta calidad",
-        description2: "Resultado garantizado"
-      },
-      {
-        title: "Oferta Limitada",
-        description1: "Promoción por tiempo limitado",
-        description2: "Aprovecha ahora"
-      },
-      {
-        title: "Certificado",
-        description1: "Producto certificado",
-        description2: "Calidad comprobada"
-      },
-      {
-        title: "Envío Gratis",
-        description1: "Sin costo de envío",
-        description2: "A todo el país"
-      },
-      {
-        title: "Garantía Extendida",
-        description1: "Protección completa",
-        description2: "Soporte total"
-      },
-      {
-        title: "Envío Inmediato",
-        description1: "Procesamiento rápido",
-        description2: "Entrega garantizada"
-      },
-      {
-        title: "Producto Auténtico",
-        description1: "Original garantizado",
-        description2: "Directo del fabricante"
-      },
-      {
-        title: "Descuento Especial",
-        description1: "Precio promocional",
-        description2: "Ahorro garantizado"
-      },
-      {
-        title: "Compra Segura",
-        description1: "Transacción protegida",
-        description2: "Datos seguros"
-      },
-      {
-        title: "Servicio VIP",
-        description1: "Soporte prioritario",
-        description2: "Atención personalizada"
-      },
-      {
-        title: "Resultados Comprobados",
-        description1: "Eficacia probada",
-        description2: "Aprobado por expertos"
-      },
-      {
-        title: "Entrega Programada",
-        description1: "Elige tu horario",
-        description2: "Conveniencia total"
-      },
-      {
-        title: "Producto Premium",
-        description1: "Calidad superior",
-        description2: "Resultado garantizado"
-      },
-      {
-        title: "Oferta Exclusiva",
-        description1: "Disponible solo aquí",
-        description2: "Precio especial"
-      },
-      {
-        title: "Envío Discreto",
-        description1: "Empaque discreto",
-        description2: "Privacidad garantizada"
-      },
-      {
-        title: "Pago Facilitado",
-        description1: "Parcelación disponible",
-        description2: "Condiciones especiales"
-      },
-      {
-        title: "Devolución Gratis",
-        description1: "Sin costo de devolución",
-        description2: "Política flexible"
-      },
-      {
-        title: "Soporte Técnico",
-        description1: "Ayuda especializada",
-        description2: "Orientación completa"
-      },
-      {
-        title: "Garantía Internacional",
-        description1: "Válida mundialmente",
-        description2: "Protección global"
-      },
-      {
-        title: "Calidad Certificada",
-        description1: "Estándar internacional",
-        description2: "Excelencia garantizada"
-      },
-      {
-        title: "Entrega Garantizada",
-        description1: "Recepción asegurada",
-        description2: "O tu dinero de vuelta"
-      }
+      { title: "Buy Now [PRODUCT]", description1: "Special offer for [COUNTRY]", description2: "Fast delivery guaranteed" },
+      { title: "Get Your [PRODUCT]", description1: "Limited stock", description2: "Cash on delivery" },
+      { title: "Order [PRODUCT] Now", description1: "Free shipping to [COUNTRY]", description2: "Original certified product" },
+      { title: "Take Advantage of Promotion", description1: "[PRODUCT] with discount", description2: "Valid for limited time" },
+      { title: "Try [PRODUCT] Free", description1: "30-day guarantee", description2: "Money back" },
+      { title: "Buy Original [PRODUCT]", description1: "Best price in [COUNTRY]", description2: "Quality guaranteed" },
+      { title: "Flash Sale", description1: "[PRODUCT] for [PRICE]", description2: "Last units" },
+      { title: "Free Shipping [PRODUCT]", description1: "Express delivery", description2: "Across [COUNTRY]" },
+      { title: "Special Promotion", description1: "Buy 2 get 3", description2: "Original [PRODUCT]" },
+      { title: "Order with Discount", description1: "Promotional [PRODUCT]", description2: "Best value" },
+      { title: "Buy and Win Gift", description1: "[PRODUCT] + bonus", description2: "Exclusive offer" },
+      { title: "Fast Delivery", description1: "[PRODUCT] in 24h", description2: "Total security" },
+      { title: "Satisfaction Guaranteed", description1: "Approved [PRODUCT]", description2: "Thousands of customers" },
+      { title: "Best Price [COUNTRY]", description1: "[PRODUCT] for [PRICE]", description2: "Premium quality" },
+      { title: "Last Units", description1: "Original [PRODUCT]", description2: "Don't miss out!" }
+    ],
+    biddingStrategies: [
+      "For COD campaigns, we recommend 'Maximize conversions' with appropriate manual bidding for [COUNTRY], focusing on high-intent purchase conversions.",
+      "For bottom-funnel campaigns, use 'Target CPA' optimized for [COUNTRY] market, prioritizing qualified leads.",
+      "For mid-funnel campaigns, we recommend 'Target ROAS' with appropriate return goal for [COUNTRY].",
+      "For top-funnel campaigns, use 'Maximize clicks' to increase visibility in [COUNTRY].",
+      "For premium products, use 'Maximize conversion value' targeting [COUNTRY] audience."
+    ],
+    snippetValues: ["Fast shipping", "FDA approved", "Limited discount", "100% original", "Secure purchase"],
+    promotions: [
+      "20% discount on first order",
+      "Free shipping to all [COUNTRY]",
+      "Buy 2 get 3"
+    ],
+    priceBlocks: [
+      "[PRODUCT] 1 unit: [PRICE] - Delivery to all [COUNTRY]",
+      "[PRODUCT] 3-unit kit: [PRICE] - Free shipping",
+      "[PRODUCT] Complete kit: [PRICE] - Best offer"
     ]
   },
-  fr: {
+  'fr': { // França e Canadá francófono
     titles: [
-      "Achetez {product} avec Remise Exclusive - Livraison dans Tout {country}",
-      "{product} Original - Livraison Gratuite en {country}",
-      "Offre Spéciale {product} - Aujourd'hui Seulement en {country}",
-      "{product} avec 30% OFF - Livraison Garantie {country}",
-      "Profitez {product} avec Remise - Nous Livrons en {country}",
-      "{product} - Produit Original avec Garantie pour {country}",
-      "Achetez {product} Maintenant - Livraison Gratuite en {country}",
-      "{product} au Meilleur Prix - Livraison Rapide {country}",
-      "Offre Limitée {product} - Disponible en {country}",
-      "{product} Officiel - Nous Livrons dans Tout {country}",
-      "Remise Spéciale {product} - Livraison en {country}",
-      "{product} avec Garantie - Livraison Gratuite en {country}",
-      "Promotion {product} - Seulement en {country}",
-      "{product} Original - Livraison Express {country}",
-      "Achetez {product} avec Remise - Disponible en {country}",
-      "{product} Exclusif - Meilleure Offre {country}",
-      "Super Promotion {product} - Livraison Rapide {country}",
-      "{product} Premium - Livraison Gratuite {country}",
-      "Dernière Chance {product} - Profitez en {country}",
-      "{product} avec Remise Incroyable - {country}",
-      "Méga Offre {product} - Livraison Garantie {country}",
-      "{product} Authentique - Nous Livrons en {country}",
-      "Commandez {product} en Ligne - Livraison en {country}",
-      "{product} à Prix Spécial - {country}",
-      "Offre Éclair {product} - {country}",
-      "{product} Certifié - Livraison Gratuite {country}",
-      "Offre Exclusive {product} - {country}",
-      "{product} avec Garantie Totale - {country}",
-      "Commandez {product} Maintenant - Offre {country}",
-      "{product} Original Garanti - {country}"
+      "[PRODUIT] Original - Achetez Maintenant et Payez à la Livraison",
+      "Remise Exclusive! [PRODUIT] pour seulement [PRIX]",
+      "[PRODUIT] - Livraison Rapide dans Tout [PAYS]",
+      "Offre Limitée: [PRODUIT] avec Livraison Gratuite",
+      "[PRODUIT] - Le Plus Vendu en [PAYS]",
+      "Achetez [PRODUIT] Original en Sécurité",
+      "[PRODUIT] - Approuvé par Des Milliers de Clients",
+      "Obtenez Votre [PRODUIT] Maintenant - Stock Limité",
+      "[PRODUIT] - Transformez Votre Vie Aujourd'hui",
+      "Promotion Spéciale: [PRODUIT] pour [PRIX]",
+      "[PRODUIT] - Livraison Express dans Tout [PAYS]",
+      "Succès de Vente: [PRODUIT] Original",
+      "[PRODUIT] - Solution Prouvée et Efficace",
+      "Profitez! [PRODUIT] avec Remise Spéciale",
+      "[PRODUIT] - Qualité Premium pour [PRIX]",
+      "Commandez [PRODUIT] et Recevez à Domicile",
+      "[PRODUIT] - Offre Exclusive pour [PAYS]",
+      "Dernières Unités: [PRODUIT] Original",
+      "[PRODUIT] - Achetez 1 et Recevez 2",
+      "Livraison Gratuite: [PRODUIT] pour [PAYS]",
+      "[PRODUIT] - Satisfaction Garantie",
+      "Super Offre: [PRODUIT] pour Seulement [PRIX]",
+      "[PRODUIT] - Produit de l'Année en [PAYS]",
+      "Achetez [PRODUIT] Maintenant - Paiement à la Livraison",
+      "[PRODUIT] - La Solution que Vous Cherchiez",
+      "Vente Flash: [PRODUIT] avec 50% de Réduction",
+      "[PRODUIT] - Testé et Approuvé en [PAYS]",
+      "Gagnez un Cadeau: [PRODUIT] + Livraison Gratuite",
+      "[PRODUIT] - Succès dans Tout [PAYS]",
+      "Derniers Jours: [PRODUIT] pour [PRIX]"
     ],
     descriptions: [
-      "Obtenez {product} avec remise spéciale et livraison gratuite en {country}. Produit original avec garantie.",
-      "Offre exclusive de {product} pour {country}. Livraison rapide et sécurisée.",
-      "{product} au meilleur prix du marché. Nous livrons dans tout {country}.",
-      "Profitez de la promotion {product}. Livraison gratuite en {country}.",
-      "{product} original avec remise spéciale. Livraison garantie en {country}.",
-      "Achetez {product} maintenant et recevez en {country}. Offre à durée limitée.",
-      "{product} premium avec livraison express en {country}. Garantie totale.",
-      "Remise incroyable sur {product}. Nous livrons dans tout {country}.",
-      "{product} authentique avec livraison gratuite. Disponible en {country}.",
-      "Offre spéciale {product} seulement pour {country}. Profitez maintenant.",
-      "{product} avec garantie de qualité. Livraison rapide en {country}.",
-      "Promotion exclusive {product}. Livraison gratuite en {country}.",
-      "{product} original certifié. Nous livrons en {country}.",
-      "Achetez {product} avec remise. Livraison garantie en {country}.",
-      "{product} avec meilleur rapport qualité-prix. Disponible en {country}.",
-      "Offre limitée {product}. Livraison express en {country}.",
-      "{product} premium avec remise. Nous livrons en {country}.",
-      "Obtenez {product} avec livraison gratuite. Disponible en {country}.",
-      "{product} authentique avec garantie. Livraison en {country}.",
-      "Promotion {product} pour durée limitée. Nous livrons en {country}.",
-      "{product} original avec remise spéciale. Disponible en {country}.",
-      "Commandez {product} maintenant. Livraison rapide en {country}.",
-      "{product} avec garantie totale. Livraison gratuite en {country}.",
-      "Offre spéciale {product}. Nous livrons dans tout {country}.",
-      "{product} premium avec remise. Livraison en {country}.",
-      "Obtenez {product} avec garantie. Disponible en {country}.",
-      "{product} original certifié. Livraison en {country}.",
-      "Achetez {product} avec livraison gratuite. Disponible en {country}.",
-      "{product} au meilleur prix. Livraison garantie en {country}.",
-      "Offre exclusive {product}. Nous livrons en {country}."
+      "Recevez [PRODUIT] chez vous en toute sécurité et confort. Livraison rapide dans tout [PAYS].",
+      "Offre spéciale! Obtenez [PRODUIT] pour seulement [PRIX] et transformez votre routine aujourd'hui.",
+      "Achetez [PRODUIT] original et payez seulement à la livraison. Sans risques, sans complications.",
+      "Succès absolu des ventes! [PRODUIT] maintenant avec livraison express pour [PAYS].",
+      "Ne manquez pas cette opportunité unique! [PRODUIT] en promotion pour une durée limitée.",
+      "Le secret des célébrités est arrivé en [PAYS]: [PRODUIT] avec résultats garantis.",
+      "Transformez votre quotidien avec [PRODUIT] - produit approuvé par des milliers de clients.",
+      "Solution pratique et efficace: commandez votre [PRODUIT] maintenant et sentez la différence.",
+      "Champion des ventes du mois: [PRODUIT]. Testé, approuvé et recommandé.",
+      "Offre exclusive pour [PAYS]. Obtenez [PRODUIT] maintenant avant rupture de stock.",
+      "Profitez de la livraison gratuite sur [PRODUIT] aujourd'hui! Promotion à durée limitée.",
+      "Le meilleur rapport qualité-prix en [PAYS]: [PRODUIT] avec qualité premium.",
+      "Commandez [PRODUIT] en toute sécurité avec garantie satisfaction ou remboursement.",
+      "Opportunité à ne pas manquer: prenez [PRODUIT] avec super remise et livraison gratuite.",
+      "Plus qu'un produit, une expérience complète: [PRODUIT] change la vie.",
+      "Achetez [PRODUIT] maintenant et révolutionnez votre routine. Résultats en quelques jours.",
+      "Produit le plus recherché par les clients de [PAYS]: [PRODUIT] original et efficace.",
+      "Déjà des milliers de commandes de [PRODUIT] dans tout [PAYS]. Rejoignez le succès.",
+      "Votre chance de tester [PRODUIT] sans sortir de chez vous! Livraison sûre et rapide.",
+      "Recevez sous 48 heures dans n'importe quelle ville de [PAYS]: [PRODUIT] original.",
+      "[PRODUIT] original avec certificat de qualité. Achetez en toute confiance.",
+      "Promotion flash: [PRODUIT] pour [PRIX] avec livraison gratuite pour [PAYS].",
+      "Solution complète en [PRODUIT]. Des milliers de clients satisfaits dans tout [PAYS].",
+      "Obtenez [PRODUIT] maintenant et recevez des cadeaux exclusifs. Offre limitée!",
+      "La révolution est arrivée en [PAYS]: [PRODUIT] avec technologie avancée pour [PRIX].",
+      "Achetez [PRODUIT] à crédit ou comptant. Facilité et sécurité garanties.",
+      "Livraison express: [PRODUIT] arrive chez vous en 24 heures. Commandez maintenant!",
+      "Offre spéciale pour [PAYS]: [PRODUIT] avec remise progressive.",
+      "Produit recommandé par les spécialistes: [PRODUIT] avec efficacité prouvée.",
+      "Dernières unités: [PRODUIT] original pour [PRIX]. Ne passez pas à côté!"
     ],
     usps: [
-      "Livraison Gratuite dans Tout {country}",
-      "Produit 100% Original",
-      "Garantie de Satisfaction",
-      "Livraison Express",
-      "Remise Spéciale",
-      "Paiement Sécurisé",
-      "Support 24h",
-      "Meilleur Prix Garanti",
-      "Promotion Limitée",
-      "Expédition Immédiate",
-      "Qualité Premium",
-      "Approuvé par Experts",
-      "Résultats Prouvés",
-      "Sans Frais Supplémentaires",
-      "Achat Protégé",
-      "Certificat de Qualité",
-      "Livraison Traçable",
-      "Garantie Étendue",
-      "Support Spécialisé",
-      "Produit Authentique",
-      "Expédition Discrète",
-      "Paiement Facilité",
-      "Retour Gratuit",
-      "Livraison Programmée",
-      "Support Technique",
-      "Garantie Internationale",
-      "Produit Certifié",
-      "Livraison Express",
-      "Achat Sécurisé",
-      "Qualité Garantie"
+      "✅ Livraison Rapide dans Tout [PAYS]",
+      "✅ Produit Original Certifié",
+      "✅ Paiement Sécurisé à la Livraison",
+      "✅ Garantie de Satisfaction Totale",
+      "✅ Livraison Gratuite dès 50€",
+      "✅ Support 24h par WhatsApp",
+      "✅ Plus de 50 000 Clients Satisfaits",
+      "✅ Approuvé par les Autorités",
+      "✅ Achetez 2 Recevez 1 Gratuit",
+      "✅ Remboursement Garanti",
+      "✅ Livraison Express en 24 Heures",
+      "✅ Produit Leader des Ventes",
+      "✅ Sans Frais de Livraison",
+      "✅ Paiement Échelonné jusqu'à 12 Mois",
+      "✅ Support Technique Spécialisé"
     ],
     sitelinks: [
-      {
-        title: "Acheter Maintenant",
-        description1: "Offre spéciale avec remise",
-        description2: "Livraison gratuite en {country}"
-      },
-      {
-        title: "Voir Promotions",
-        description1: "Remises exclusives",
-        description2: "Durée limitée seulement"
-      },
-      {
-        title: "Produit Original",
-        description1: "100% authentique",
-        description2: "Avec garantie de qualité"
-      },
-      {
-        title: "Livraison Rapide",
-        description1: "Expédition express",
-        description2: "Recevez en quelques jours"
-      },
-      {
-        title: "Garantie Totale",
-        description1: "Produit certifié",
-        description2: "Support complet"
-      },
-      {
-        title: "Meilleur Prix",
-        description1: "Prix compétitif",
-        description2: "Offre incroyable"
-      },
-      {
-        title: "Paiement Sécurisé",
-        description1: "Achat protégé",
-        description2: "Multiples options de paiement"
-      },
-      {
-        title: "Support 24h",
-        description1: "Assistance spécialisée",
-        description2: "Répondre à vos questions"
-      },
-      {
-        title: "Livraison Express",
-        description1: "Recevez rapidement",
-        description2: "Livraison traçable"
-      },
-      {
-        title: "Qualité Premium",
-        description1: "Produit de haute qualité",
-        description2: "Résultats garantis"
-      },
-      {
-        title: "Offre Limitée",
-        description1: "Promotion limitée",
-        description2: "Profitez maintenant"
-      },
-      {
-        title: "Certifié",
-        description1: "Produit certifié",
-        description2: "Qualité prouvée"
-      },
-      {
-        title: "Livraison Gratuite",
-        description1: "Sans frais d'expédition",
-        description2: "Dans tout le pays"
-      },
-      {
-        title: "Garantie Étendue",
-        description1: "Protection complète",
-        description2: "Support total"
-      },
-      {
-        title: "Expédition Immédiate",
-        description1: "Traitement rapide",
-        description2: "Livraison garantie"
-      },
-      {
-        title: "Produit Authentique",
-        description1: "Original garanti",
-        description2: "Direct du fabricant"
-      },
-      {
-        title: "Remise Spéciale",
-        description1: "Prix promotionnel",
-        description2: "Économies garanties"
-      },
-      {
-        title: "Achat Sécurisé",
-        description1: "Transaction protégée",
-        description2: "Données sécurisées"
-      },
-      {
-        title: "Service VIP",
-        description1: "Support prioritaire",
-        description2: "Service personnalisé"
-      },
-      {
-        title: "Résultats Prouvés",
-        description1: "Efficacité testée",
-        description2: "Approuvé par experts"
-      },
-      {
-        title: "Livraison Programmée",
-        description1: "Choisissez votre horaire",
-        description2: "Commodité totale"
-      },
-      {
-        title: "Produit Premium",
-        description1: "Qualité supérieure",
-        description2: "Résultats garantis"
-      },
-      {
-        title: "Offre Exclusive",
-        description1: "Disponible seulement ici",
-        description2: "Prix spécial"
-      },
-      {
-        title: "Expédition Discrète",
-        description1: "Emballage discret",
-        description2: "Confidentialité garantie"
-      },
-      {
-        title: "Paiement Facilité",
-        description1: "Versements disponibles",
-        description2: "Conditions spéciales"
-      },
-      {
-        title: "Retour Gratuit",
-        description1: "Sans frais de retour",
-        description2: "Politique flexible"
-      },
-      {
-        title: "Support Technique",
-        description1: "Aide spécialisée",
-        description2: "Orientation complète"
-      },
-      {
-        title: "Garantie Internationale",
-        description1: "Valide mondialement",
-        description2: "Protection globale"
-      },
-      {
-        title: "Qualité Certifiée",
-        description1: "Standard international",
-        description2: "Excellence garantie"
-      },
-      {
-        title: "Livraison Garantie",
-        description1: "Réception assurée",
-        description2: "Ou remboursement"
-      }
+      { title: "Achetez Maintenant [PRODUIT]", description1: "Offre spéciale pour [PAYS]", description2: "Livraison rapide garantie" },
+      { title: "Obtenez Votre [PRODUIT]", description1: "Stock limité", description2: "Paiement à la livraison" },
+      { title: "Commandez [PRODUIT] Maintenant", description1: "Livraison gratuite pour [PAYS]", description2: "Produit original certifié" },
+      { title: "Profitez de la Promotion", description1: "[PRODUIT] avec remise", description2: "Valable pour durée limitée" },
+      { title: "Essayez [PRODUIT] Gratuitement", description1: "Garantie 30 jours", description2: "Remboursement" },
+      { title: "Acheter [PRODUIT] Original", description1: "Meilleur prix en [PAYS]", description2: "Qualité garantie" },
+      { title: "Vente Flash", description1: "[PRODUIT] pour [PRIX]", description2: "Dernières unités" },
+      { title: "Livraison Gratuite [PRODUIT]", description1: "Livraison express", description2: "Dans tout [PAYS]" },
+      { title: "Promotion Spéciale", description1: "Achetez 2 recevez 3", description2: "[PRODUIT] original" },
+      { title: "Commandez avec Remise", description1: "[PRODUIT] promotionnel", description2: "Meilleur rapport qualité-prix" },
+      { title: "Achetez et Gagnez Cadeau", description1: "[PRODUIT] + bonus", description2: "Offre exclusive" },
+      { title: "Livraison Rapide", description1: "[PRODUIT] en 24h", description2: "Sécurité totale" },
+      { title: "Satisfaction Garantie", description1: "[PRODUIT] approuvé", description2: "Des milliers de clients" },
+      { title: "Meilleur Prix [PAYS]", description1: "[PRODUIT] pour [PRIX]", description2: "Qualité premium" },
+      { title: "Dernières Unités", description1: "[PRODUIT] original", description2: "Ne manquez pas!" }
+    ],
+    biddingStrategies: [
+      "Pour les campagnes COD, nous recommandons 'Maximiser les conversions' avec enchères manuelles appropriées pour [PAYS], en se concentrant sur les conversions d'achat à forte intention.",
+      "Pour les campagnes d'entonnoir inférieur, utilisez 'CPA cible' optimisé pour le marché de [PAYS], en priorisant les prospects qualifiés.",
+      "Pour les campagnes d'entonnoir moyen, nous recommandons 'ROAS cible' avec objectif de retour approprié pour [PAYS].",
+      "Pour les campagnes d'entonnoir supérieur, utilisez 'Maximiser les clics' pour augmenter la visibilité en [PAYS].",
+      "Pour les produits premium, utilisez 'Maximiser la valeur de conversion' ciblant l'audience de [PAYS]."
+    ],
+    snippetValues: ["Livraison rapide", "Approuvé officiellement", "Remise limitée", "100% original", "Achat sécurisé"],
+    promotions: [
+      "Réduction de 20% sur la première commande",
+      "Livraison gratuite dans tout [PAYS]",
+      "Achetez 2 et obtenez 3"
+    ],
+    priceBlocks: [
+      "[PRODUIT] 1 unité: [PRIX] - Livraison dans tout [PAYS]",
+      "[PRODUIT] Kit 3 unités: [PRIX] - Livraison gratuite",
+      "[PRODUIT] Kit complet: [PRIX] - Meilleure offre"
     ]
   },
-  de: {
+  'de': { // Alemanha
     titles: [
-      "Kaufen Sie {product} mit Exklusivem Rabatt - Lieferung in Ganz {country}",
-      "{product} Original - Kostenloser Versand nach {country}",
-      "Sonderangebot {product} - Nur Heute in {country}",
-      "{product} mit 30% OFF - Garantierte Lieferung {country}",
-      "Nutzen Sie {product} mit Rabatt - Wir Liefern nach {country}",
-      "{product} - Originalprodukt mit Garantie für {country}",
-      "Kaufen Sie {product} Jetzt - Kostenloser Versand in {country}",
-      "{product} zum Besten Preis - Schnelle Lieferung {country}",
-      "Limitiertes Angebot {product} - Verfügbar in {country}",
-      "{product} Offiziell - Wir Liefern in Ganz {country}",
-      "Sonderrabatt {product} - Lieferung nach {country}",
-      "{product} mit Garantie - Kostenloser Versand nach {country}",
-      "Promotion {product} - Nur in {country}",
-      "{product} Original - Express Lieferung {country}",
-      "Kaufen Sie {product} mit Rabatt - Verfügbar in {country}",
-      "{product} Exklusiv - Bestes Angebot {country}",
-      "Super Promotion {product} - Schnelle Lieferung {country}",
-      "{product} Premium - Kostenloser Versand {country}",
-      "Letzte Chance {product} - Nutzen Sie in {country}",
-      "{product} mit Unglaublichem Rabatt - {country}",
-      "Mega Angebot {product} - Garantierte Lieferung {country}",
-      "{product} Authentisch - Wir Liefern nach {country}",
-      "Bestellen Sie {product} Online - Lieferung in {country}",
-      "{product} mit Spezialpreis - {country}",
-      "Blitzangebot {product} - {country}",
-      "{product} Zertifiziert - Kostenloser Versand {country}",
-      "Exklusives Angebot {product} - {country}",
-      "{product} mit Vollgarantie - {country}",
-      "Bestellen Sie {product} Jetzt - Angebot {country}",
-      "{product} Original Garantiert - {country}"
+      "[PRODUKT] Original - Jetzt Kaufen und bei Lieferung Bezahlen",
+      "Exklusiver Rabatt! [PRODUKT] für nur [PREIS]",
+      "[PRODUKT] - Schnelle Lieferung in Ganz [LAND]",
+      "Limitiertes Angebot: [PRODUKT] mit Kostenlosem Versand",
+      "[PRODUKT] - Bestseller in [LAND]",
+      "Kaufen Sie [PRODUKT] Original mit Sicherheit",
+      "[PRODUKT] - Von Tausenden Kunden Genehmigt",
+      "Holen Sie Sich Ihr [PRODUKT] Jetzt - Begrenzter Vorrat",
+      "[PRODUKT] - Verwandeln Sie Ihr Leben Heute",
+      "Sonderaktion: [PRODUKT] für [PREIS]",
+      "[PRODUKT] - Express-Lieferung in Ganz [LAND]",
+      "Verkaufserfolg: [PRODUKT] Original",
+      "[PRODUKT] - Bewährte und Wirksame Lösung",
+      "Nutzen Sie! [PRODUKT] mit Sonderrabatt",
+      "[PRODUKT] - Premium-Qualität für [PREIS]",
+      "Bestellen Sie [PRODUKT] und Erhalten zu Hause",
+      "[PRODUKT] - Exklusives Angebot für [LAND]",
+      "Letzte Einheiten: [PRODUKT] Original",
+      "[PRODUKT] - Kaufen Sie 1 und Bekommen 2",
+      "Kostenloser Versand: [PRODUKT] nach [LAND]",
+      "[PRODUKT] - Zufriedenheit Garantiert",
+      "Super-Angebot: [PRODUKT] für Nur [PREIS]",
+      "[PRODUKT] - Produkt des Jahres in [LAND]",
+      "Kaufen Sie [PRODUKT] Jetzt - Zahlung bei Lieferung",
+      "[PRODUKT] - Die Lösung, die Sie Suchten",
+      "Blitzangebot: [PRODUKT] mit 50% Rabatt",
+      "[PRODUKT] - Getestet und Genehmigt in [LAND]",
+      "Geschenk Gewinnen: [PRODUKT] + Kostenloser Versand",
+      "[PRODUKT] - Erfolg in Ganz [LAND]",
+      "Letzte Tage: [PRODUKT] für [PREIS]"
     ],
     descriptions: [
-      "Erhalten Sie {product} mit Sonderrabatt und kostenlosem Versand nach {country}. Originalprodukt mit Garantie.",
-      "Exklusives Angebot für {product} für {country}. Schnelle und sichere Lieferung.",
-      "{product} zum besten Marktpreis. Wir liefern in ganz {country}.",
-      "Nutzen Sie die {product} Promotion. Kostenloser Versand nach {country}.",
-      "Original {product} mit Sonderrabatt. Garantierte Lieferung in {country}.",
-      "Kaufen Sie {product} jetzt und erhalten Sie es in {country}. Zeitlich begrenztes Angebot.",
-      "Premium {product} mit Express-Lieferung nach {country}. Vollgarantie.",
-      "Unglaublicher Rabatt auf {product}. Wir liefern in ganz {country}.",
-      "Authentisches {product} mit kostenlosem Versand. Verfügbar in {country}.",
-      "Sonderangebot {product} nur für {country}. Nutzen Sie es jetzt.",
-      "{product} mit Qualitätsgarantie. Schnelle Lieferung in {country}.",
-      "Exklusive Promotion {product}. Kostenloser Versand nach {country}.",
-      "Original zertifiziertes {product}. Wir liefern nach {country}.",
-      "Kaufen Sie {product} mit Rabatt. Garantierte Lieferung in {country}.",
-      "{product} mit bestem Preis-Leistungs-Verhältnis. Verfügbar in {country}.",
-      "Limitiertes Angebot {product}. Express-Lieferung nach {country}.",
-      "Premium {product} mit Rabatt. Wir liefern nach {country}.",
-      "Erhalten Sie {product} mit kostenlosem Versand. Verfügbar in {country}.",
-      "Authentisches {product} mit Garantie. Lieferung in {country}.",
-      "Promotion {product} für begrenzte Zeit. Wir liefern nach {country}.",
-      "Original {product} mit Sonderrabatt. Verfügbar in {country}.",
-      "Bestellen Sie {product} jetzt. Schnelle Lieferung nach {country}.",
-      "{product} mit Vollgarantie. Kostenloser Versand in {country}.",
-      "Sonderangebot {product}. Wir liefern in ganz {country}.",
-      "Premium {product} mit Rabatt. Lieferung in {country}.",
-      "Erhalten Sie {product} mit Garantie. Verfügbar in {country}.",
-      "Original zertifiziertes {product}. Lieferung nach {country}.",
-      "Kaufen Sie {product} mit kostenlosem Versand. Verfügbar in {country}.",
-      "{product} zum besten Preis. Garantierte Lieferung in {country}.",
-      "Exklusives Angebot {product}. Wir liefern nach {country}."
+      "Erhalten Sie [PRODUKT] zu Hause mit vollständiger Sicherheit und Komfort. Schnelle Lieferung in ganz [LAND].",
+      "Sonderangebot! Holen Sie sich [PRODUKT] für nur [PREIS] und verwandeln Sie Ihre Routine heute.",
+      "Kaufen Sie originales [PRODUKT] und zahlen Sie nur bei Lieferung. Keine Risiken, keine Komplikationen.",
+      "Absoluter Verkaufserfolg! [PRODUKT] jetzt mit Express-Lieferung nach [LAND].",
+      "Verpassen Sie nicht diese einmalige Gelegenheit! [PRODUKT] im Angebot für begrenzte Zeit.",
+      "Das Geheimnis der Prominenten kam nach [LAND]: [PRODUKT] mit garantierten Ergebnissen.",
+      "Verwandeln Sie Ihren Alltag mit [PRODUKT] - Produkt von Tausenden von Kunden genehmigt.",
+      "Praktische und effektive Lösung: bestellen Sie Ihr [PRODUKT] jetzt und spüren Sie den Unterschied.",
+      "Verkaufsmeister des Monats: [PRODUKT]. Getestet, genehmigt und empfohlen.",
+      "Exklusives Angebot für [LAND]. Holen Sie sich [PRODUKT] jetzt, bevor der Vorrat ausgeht.",
+      "Nutzen Sie kostenlosen Versand bei [PRODUKT] heute! Zeitlich begrenzte Aktion.",
+      "Bestes Preis-Leistungs-Verhältnis in [LAND]: [PRODUKT] mit Premium-Qualität.",
+      "Bestellen Sie [PRODUKT] mit vollständiger Sicherheit und Zufriedenheitsgarantie oder Geld zurück.",
+      "Unumgängliche Gelegenheit: nehmen Sie [PRODUKT] mit Super-Rabatt und kostenlosem Versand.",
+      "Mehr als ein Produkt, eine komplette Erfahrung: [PRODUKT] verändert Leben.",
+      "Kaufen Sie [PRODUKT] jetzt und revolutionieren Sie Ihre Routine. Ergebnisse in wenigen Tagen.",
+      "Meistgesuchtes Produkt von [LAND] Kunden: originales und effektives [PRODUKT].",
+      "Bereits Tausende von [PRODUKT] Bestellungen in ganz [LAND]. Schließen Sie sich dem Erfolg an.",
+      "Ihre Chance, [PRODUKT] zu testen, ohne das Haus zu verlassen! Sichere und schnelle Lieferung.",
+      "Erhalten Sie innerhalb von 48 Stunden in jeder Stadt von [LAND]: originales [PRODUKT].",
+      "Originales [PRODUKT] mit Qualitätszertifikat. Kaufen Sie mit vollständigem Vertrauen.",
+      "Blitz-Aktion: [PRODUKT] für [PREIS] mit kostenlosem Versand nach [LAND].",
+      "Komplette Lösung in [PRODUKT]. Tausende zufriedene Kunden in ganz [LAND].",
+      "Holen Sie sich [PRODUKT] jetzt und erhalten Sie exklusive Geschenke. Begrenztes Angebot!",
+      "Die Revolution kam nach [LAND]: [PRODUKT] mit fortschrittlicher Technologie für [PREIS].",
+      "Kaufen Sie [PRODUKT] in Raten oder bar. Einfachheit und Sicherheit garantiert.",
+      "Express-Lieferung: [PRODUKT] kommt in 24 Stunden zu Ihnen nach Hause. Bestellen Sie jetzt!",
+      "Sonderangebot für [LAND]: [PRODUKT] mit progressivem Rabatt.",
+      "Von Spezialisten empfohlenes Produkt: [PRODUKT] mit bewiesener Wirksamkeit.",
+      "Letzte Einheiten: originales [PRODUKT] für [PREIS]. Verpassen Sie es nicht!"
     ],
     usps: [
-      "Kostenloser Versand in Ganz {country}",
-      "100% Originalprodukt",
-      "Zufriedenheitsgarantie",
-      "Express Lieferung",
-      "Sonderrabatt",
-      "Sichere Zahlung",
-      "24h Support",
-      "Bester Preis Garantiert",
-      "Limitierte Promotion",
-      "Sofortiger Versand",
-      "Premium Qualität",
-      "Von Experten Genehmigt",
-      "Bewährte Ergebnisse",
-      "Keine Zusatzgebühr",
-      "Geschützter Kauf",
-      "Qualitätszertifikat",
-      "Verfolgbare Lieferung",
-      "Erweiterte Garantie",
-      "Spezialisierter Support",
-      "Authentisches Produkt",
-      "Diskreter Versand",
-      "Erleichterte Zahlung",
-      "Kostenlose Rücksendung",
-      "Geplante Lieferung",
-      "Technischer Support",
-      "Internationale Garantie",
-      "Zertifiziertes Produkt",
-      "Express Lieferung",
-      "Sicherer Kauf",
-      "Garantierte Qualität"
+      "✅ Schnelle Lieferung in Ganz [LAND]",
+      "✅ Original Zertifiziertes Produkt",
+      "✅ Sichere Zahlung bei Lieferung",
+      "✅ Vollständige Zufriedenheitsgarantie",
+      "✅ Kostenloser Versand ab 50€",
+      "✅ 24h Support per WhatsApp",
+      "✅ Über 50.000 Zufriedene Kunden",
+      "✅ Behördlich Genehmigt",
+      "✅ Kaufen Sie 2 Bekommen 1 Gratis",
+      "✅ Geld-zurück-Garantie",
+      "✅ Express-Lieferung in 24 Stunden",
+      "✅ Bestseller-Produkt",
+      "✅ Keine Versandkosten",
+      "✅ Ratenzahlung bis 12 Monate",
+      "✅ Spezialisierter Technischer Support"
     ],
     sitelinks: [
-      {
-        title: "Jetzt Kaufen",
-        description1: "Sonderangebot mit Rabatt",
-        description2: "Kostenloser Versand nach {country}"
-      },
-      {
-        title: "Promotionen Ansehen",
-        description1: "Exklusive Rabatte",
-        description2: "Nur für begrenzte Zeit"
-      },
-      {
-        title: "Originalprodukt",
-        description1: "100% authentisch",
-        description2: "Mit Qualitätsgarantie"
-      },
-      {
-        title: "Schnelle Lieferung",
-        description1: "Express Versand",
-        description2: "Erhalten in wenigen Tagen"
-      },
-      {
-        title: "Vollgarantie",
-        description1: "Zertifiziertes Produkt",
-        description2: "Kompletter Support"
-      },
-      {
-        title: "Bester Preis",
-        description1: "Wettbewerbsfähiger Preis",
-        description2: "Unschlagbares Angebot"
-      },
-      {
-        title: "Sichere Zahlung",
-        description1: "Geschützter Kauf",
-        description2: "Mehrere Zahlungsoptionen"
-      },
-      {
-        title: "24h Support",
-        description1: "Spezialisierte Unterstützung",
-        description2: "Ihre Fragen beantwortet"
-      },
-      {
-        title: "Express Lieferung",
-        description1: "Schnell erhalten",
-        description2: "Verfolgbare Lieferung"
-      },
-      {
-        title: "Premium Qualität",
-        description1: "Hochwertiges Produkt",
-        description2: "Garantierte Ergebnisse"
-      },
-      {
-        title: "Limitiertes Angebot",
-        description1: "Zeitlich begrenzte Promotion",
-        description2: "Jetzt sichern"
-      },
-      {
-        title: "Zertifiziert",
-        description1: "Zertifiziertes Produkt",
-        description2: "Bewährte Qualität"
-      },
-      {
-        title: "Kostenloser Versand",
-        description1: "Keine Versandkosten",
-        description2: "Landesweite Lieferung"
-      },
-      {
-        title: "Erweiterte Garantie",
-        description1: "Kompletter Schutz",
-        description2: "Voller Support"
-      },
-      {
-        title: "Sofortiger Versand",
-        description1: "Schnelle Bearbeitung",
-        description2: "Garantierte Lieferung"
-      },
-      {
-        title: "Authentisches Produkt",
-        description1: "Garantiert original",
-        description2: "Direkt vom Hersteller"
-      },
-      {
-        title: "Sonderrabatt",
-        description1: "Promotionspreis",
-        description2: "Garantierte Einsparungen"
-      },
-      {
-        title: "Sicherer Kauf",
-        description1: "Geschützte Transaktion",
-        description2: "Sichere Daten"
-      },
-      {
-        title: "VIP Service",
-        description1: "Prioritärer Support",
-        description2: "Personalisierter Service"
-      },
-      {
-        title: "Bewährte Ergebnisse",
-        description1: "Getestete Wirksamkeit",
-        description2: "Von Experten genehmigt"
-      },
-      {
-        title: "Geplante Lieferung",
-        description1: "Wählen Sie Ihre Zeit",
-        description2: "Totaler Komfort"
-      },
-      {
-        title: "Premium Produkt",
-        description1: "Überlegene Qualität",
-        description2: "Garantierte Ergebnisse"
-      },
-      {
-        title: "Exklusives Angebot",
-        description1: "Nur hier verfügbar",
-        description2: "Spezialpreis"
-      },
-      {
-        title: "Diskreter Versand",
-        description1: "Diskrete Verpackung",
-        description2: "Privatsphäre garantiert"
-      },
-      {
-        title: "Erleichterte Zahlung",
-        description1: "Ratenzahlung verfügbar",
-        description2: "Spezielle Bedingungen"
-      },
-      {
-        title: "Kostenlose Rücksendung",
-        description1: "Keine Rücksendekosten",
-        description2: "Flexible Politik"
-      },
-      {
-        title: "Technischer Support",
-        description1: "Expertenbetreuung",
-        description2: "Komplette Anleitung"
-      },
-      {
-        title: "Internationale Garantie",
-        description1: "Weltweit gültig",
-        description2: "Globaler Schutz"
-      },
-      {
-        title: "Zertifizierte Qualität",
-        description1: "Internationaler Standard",
-        description2: "Exzellenz garantiert"
-      },
-      {
-        title: "Garantierte Lieferung",
-        description1: "Gesicherter Empfang",
-        description2: "Oder Geld zurück"
-      }
+      { title: "Jetzt Kaufen [PRODUKT]", description1: "Sonderangebot für [LAND]", description2: "Schnelle Lieferung garantiert" },
+      { title: "Holen Sie Ihr [PRODUKT]", description1: "Begrenzter Vorrat", description2: "Zahlung bei Lieferung" },
+      { title: "Bestellen Sie [PRODUKT] Jetzt", description1: "Kostenloser Versand nach [LAND]", description2: "Original zertifiziertes Produkt" },
+      { title: "Nutzen Sie die Aktion", description1: "[PRODUKT] mit Rabatt", description2: "Gültig für begrenzte Zeit" },
+      { title: "Testen Sie [PRODUKT] Gratis", description1: "30-Tage-Garantie", description2: "Geld zurück" },
+      { title: "Original [PRODUKT] Kaufen", description1: "Bester Preis in [LAND]", description2: "Qualität garantiert" },
+      { title: "Blitzangebot", description1: "[PRODUKT] für [PREIS]", description2: "Letzte Einheiten" },
+      { title: "Kostenloser Versand [PRODUKT]", description1: "Express-Lieferung", description2: "In ganz [LAND]" },
+      { title: "Sonderaktion", description1: "Kaufen Sie 2 bekommen 3", description2: "Original [PRODUKT]" },
+      { title: "Mit Rabatt Bestellen", description1: "Aktions-[PRODUKT]", description2: "Bestes Preis-Leistungs-Verhältnis" },
+      { title: "Kaufen und Geschenk Gewinnen", description1: "[PRODUKT] + Bonus", description2: "Exklusives Angebot" },
+      { title: "Schnelle Lieferung", description1: "[PRODUKT] in 24h", description2: "Vollständige Sicherheit" },
+      { title: "Zufriedenheit Garantiert", description1: "Genehmigtes [PRODUKT]", description2: "Tausende Kunden" },
+      { title: "Bester Preis [LAND]", description1: "[PRODUKT] für [PREIS]", description2: "Premium-Qualität" },
+      { title: "Letzte Einheiten", description1: "Original [PRODUKT]", description2: "Verpassen Sie nicht!" }
+    ],
+    biddingStrategies: [
+      "Für COD-Kampagnen empfehlen wir 'Conversions maximieren' mit angemessenen manuellen Geboten für [LAND], fokussiert auf hochintentionale Kaufconversions.",
+      "Für Bottom-Funnel-Kampagnen verwenden Sie 'Ziel-CPA' optimiert für den [LAND]-Markt, priorisieren qualifizierte Leads.",
+      "Für Mid-Funnel-Kampagnen empfehlen wir 'Ziel-ROAS' mit angemessenem Rückgabeziel für [LAND].",
+      "Für Top-Funnel-Kampagnen verwenden Sie 'Klicks maximieren' um die Sichtbarkeit in [LAND] zu erhöhen.",
+      "Für Premium-Produkte verwenden Sie 'Conversion-Wert maximieren' zielgerichtet auf die [LAND]-Zielgruppe."
+    ],
+    snippetValues: ["Schneller Versand", "Behördlich genehmigt", "Begrenzter Rabatt", "100% original", "Sicherer Kauf"],
+    promotions: [
+      "20% Rabatt auf die erste Bestellung",
+      "Kostenloser Versand nach ganz [LAND]",
+      "Kaufen Sie 2 und bekommen 3"
+    ],
+    priceBlocks: [
+      "[PRODUKT] 1 Einheit: [PREIS] - Lieferung nach ganz [LAND]",
+      "[PRODUKT] 3-Einheiten-Kit: [PREIS] - Kostenloser Versand",
+      "[PRODUKT] Komplettes Kit: [PREIS] - Bestes Angebot"
     ]
   },
-  it: {
+  'it': { // Itália
     titles: [
-      "Acquista {product} con Sconto Esclusivo - Consegna in Tutto {country}",
-      "{product} Originale - Spedizione Gratuita in {country}",
-      "Offerta Speciale {product} - Solo Oggi in {country}",
-      "{product} con 30% OFF - Consegna Garantita {country}",
-      "Approfitta {product} con Sconto - Spediamo in {country}",
-      "{product} - Prodotto Originale con Garanzia per {country}",
-      "Acquista {product} Ora - Spedizione Gratuita in {country}",
-      "{product} al Miglior Prezzo - Consegna Veloce {country}",
-      "Offerta Limitata {product} - Disponibile in {country}",
-      "{product} Ufficiale - Spediamo in Tutto {country}",
-      "Sconto Speciale {product} - Consegna in {country}",
-      "{product} con Garanzia - Spedizione Gratuita in {country}",
-      "Promozione {product} - Solo in {country}",
-      "{product} Originale - Consegna Express {country}",
-      "Acquista {product} con Sconto - Disponibile in {country}",
-      "{product} Esclusivo - Migliore Offerta {country}",
-      "Super Promozione {product} - Consegna Veloce {country}",
-      "{product} Premium - Spedizione Gratuita {country}",
-      "Ultima Occasione {product} - Approfitta in {country}",
-      "{product} con Sconto Incredibile - {country}",
-      "Mega Offerta {product} - Consegna Garantita {country}",
-      "{product} Autentico - Spediamo in {country}",
-      "Ordina {product} Online - Consegna in {country}",
-      "{product} a Prezzo Speciale - {country}",
-      "Offerta Lampo {product} - {country}",
-      "{product} Certificato - Spedizione Gratuita {country}",
-      "Offerta Esclusiva {product} - {country}",
-      "{product} con Garanzia Totale - {country}",
-      "Ordina {product} Ora - Offerta {country}",
-      "{product} Originale Garantito - {country}"
+      "[PRODOTTO] Originale - Compra Ora e Paga alla Consegna",
+      "Sconto Esclusivo! [PRODOTTO] per solo [PREZZO]",
+      "[PRODOTTO] - Consegna Veloce in Tutto [PAESE]",
+      "Offerta Limitata: [PRODOTTO] con Spedizione Gratuita",
+      "[PRODOTTO] - Il Più Venduto in [PAESE]",
+      "Compra [PRODOTTO] Originale in Sicurezza",
+      "[PRODOTTO] - Approvato da Migliaia di Clienti",
+      "Prendi Il Tuo [PRODOTTO] Ora - Scorte Limitate",
+      "[PRODOTTO] - Trasforma La Tua Vita Oggi",
+      "Promozione Speciale: [PRODOTTO] per [PREZZO]",
+      "[PRODOTTO] - Consegna Express in Tutto [PAESE]",
+      "Successo di Vendite: [PRODOTTO] Originale",
+      "[PRODOTTO] - Soluzione Provata ed Efficace",
+      "Approfitta! [PRODOTTO] con Sconto Speciale",
+      "[PRODOTTO] - Qualità Premium per [PREZZO]",
+      "Ordina [PRODOTTO] e Ricevi a Casa",
+      "[PRODOTTO] - Offerta Esclusiva per [PAESE]",
+      "Ultime Unità: [PRODOTTO] Originale",
+      "[PRODOTTO] - Compra 1 e Prendi 2",
+      "Spedizione Gratuita: [PRODOTTO] per [PAESE]",
+      "[PRODOTTO] - Soddisfazione Garantita",
+      "Super Offerta: [PRODOTTO] per Solo [PREZZO]",
+      "[PRODOTTO] - Prodotto dell'Anno in [PAESE]",
+      "Compra [PRODOTTO] Ora - Pagamento alla Consegna",
+      "[PRODOTTO] - La Soluzione che Stavi Cercando",
+      "Offerta Lampo: [PRODOTTO] con 50% di Sconto",
+      "[PRODOTTO] - Testato e Approvato in [PAESE]",
+      "Vinci Regalo: [PRODOTTO] + Spedizione Gratuita",
+      "[PRODOTTO] - Successo in Tutto [PAESE]",
+      "Ultimi Giorni: [PRODOTTO] per [PREZZO]"
     ],
     descriptions: [
-      "Ottieni {product} con sconto speciale e spedizione gratuita in {country}. Prodotto originale con garanzia.",
-      "Offerta esclusiva di {product} per {country}. Consegna veloce e sicura.",
-      "{product} al miglior prezzo di mercato. Spediamo in tutto {country}.",
-      "Approfitta della promozione {product}. Spedizione gratuita in {country}.",
-      "{product} originale con sconto speciale. Consegna garantita in {country}.",
-      "Acquista {product} ora e ricevi in {country}. Offerta a tempo limitato.",
-      "{product} premium con consegna express in {country}. Garanzia totale.",
-      "Sconto incredibile su {product}. Spediamo in tutto {country}.",
-      "{product} autentico con spedizione gratuita. Disponibile in {country}.",
-      "Offerta speciale {product} solo per {country}. Approfitta ora.",
-      "{product} con garanzia di qualità. Consegna veloce in {country}.",
-      "Promozione esclusiva {product}. Spedizione gratuita in {country}.",
-      "{product} originale certificato. Spediamo in {country}.",
-      "Acquista {product} con sconto. Consegna garantita in {country}.",
-      "{product} con miglior rapporto qualità-prezzo. Disponibile in {country}.",
-      "Offerta limitata {product}. Consegna express in {country}.",
-      "{product} premium con sconto. Spediamo in {country}.",
-      "Ottieni {product} con spedizione gratuita. Disponibile in {country}.",
-      "{product} autentico con garanzia. Consegna in {country}.",
-      "Promozione {product} per tempo limitato. Spediamo in {country}.",
-      "{product} originale con sconto speciale. Disponibile in {country}.",
-      "Ordina {product} ora. Consegna veloce in {country}.",
-      "{product} con garanzia totale. Spedizione gratuita in {country}.",
-      "Offerta speciale {product}. Spediamo in tutto {country}.",
-      "{product} premium con sconto. Consegna in {country}.",
-      "Ottieni {product} con garanzia. Disponibile in {country}.",
-      "{product} originale certificato. Consegna in {country}.",
-      "Acquista {product} con spedizione gratuita. Disponibile in {country}.",
-      "{product} al miglior prezzo. Consegna garantita in {country}.",
-      "Offerta esclusiva {product}. Spediamo in {country}."
+      "Ricevi [PRODOTTO] a casa tua con completa sicurezza e comodità. Consegna veloce in tutto [PAESE].",
+      "Offerta speciale! Prendi [PRODOTTO] per solo [PREZZO] e trasforma la tua routine oggi.",
+      "Compra [PRODOTTO] originale e paga solo alla consegna. Senza rischi, senza complicazioni.",
+      "Successo assoluto nelle vendite! [PRODOTTO] ora con consegna express per [PAESE].",
+      "Non perdere questa opportunità unica! [PRODOTTO] in promozione per tempo limitato.",
+      "Il segreto delle celebrità è arrivato in [PAESE]: [PRODOTTO] con risultati garantiti.",
+      "Trasforma la tua vita quotidiana con [PRODOTTO] - prodotto approvato da migliaia di clienti.",
+      "Soluzione pratica ed efficace: ordina subito il tuo [PRODOTTO] e senti la differenza.",
+      "Campione di vendite del mese: [PRODOTTO]. Testato, approvato e raccomandato.",
+      "Offerta esclusiva per [PAESE]. Prendi [PRODOTTO] ora prima che finisca lo stock.",
+      "Approfitta della spedizione gratuita su [PRODOTTO] oggi! Promozione a tempo limitato.",
+      "Il miglior rapporto qualità-prezzo in [PAESE]: [PRODOTTO] con qualità premium.",
+      "Ordina [PRODOTTO] con completa sicurezza e garanzia soddisfazione o rimborso.",
+      "Opportunità imperdibile: prendi [PRODOTTO] con super sconto e spedizione gratuita.",
+      "Più di un prodotto, un'esperienza completa: [PRODOTTO] cambia la vita.",
+      "Compra [PRODOTTO] ora e rivoluziona la tua routine. Risultati in pochi giorni.",
+      "Prodotto più ricercato dai clienti di [PAESE]: [PRODOTTO] originale ed efficace.",
+      "Già migliaia di ordini di [PRODOTTO] in tutto [PAESE]. Unisciti al successo.",
+      "La tua occasione di testare [PRODOTTO] senza uscire di casa! Consegna sicura e veloce.",
+      "Ricevi entro 48 ore in qualsiasi città di [PAESE]: [PRODOTTO] originale.",
+      "[PRODOTTO] originale con certificato di qualità. Compra con completa fiducia.",
+      "Promozione lampo: [PRODOTTO] per [PREZZO] con spedizione gratuita per [PAESE].",
+      "Soluzione completa in [PRODOTTO]. Migliaia di clienti soddisfatti in tutto [PAESE].",
+      "Prendi [PRODOTTO] ora e ricevi regali esclusivi. Offerta limitata!",
+      "La rivoluzione è arrivata in [PAESE]: [PRODOTTO] con tecnologia avanzata per [PREZZO].",
+      "Compra [PRODOTTO] a rate o in contanti. Facilità e sicurezza garantite.",
+      "Consegna express: [PRODOTTO] arriva a casa tua in 24 ore. Ordina subito!",
+      "Offerta speciale per [PAESE]: [PRODOTTO] con sconto progressivo.",
+      "Prodotto raccomandato dagli specialisti: [PRODOTTO] con efficacia provata.",
+      "Ultime unità: [PRODOTTO] originale per [PREZZO]. Non restare fuori!"
     ],
     usps: [
-      "Spedizione Gratuita in Tutto {country}",
-      "Prodotto 100% Originale",
-      "Garanzia di Soddisfazione",
-      "Consegna Express",
-      "Sconto Speciale",
-      "Pagamento Sicuro",
-      "Supporto 24h",
-      "Miglior Prezzo Garantito",
-      "Promozione Limitata",
-      "Spedizione Immediata",
-      "Qualità Premium",
-      "Approvato da Esperti",
-      "Risultati Comprovati",
-      "Nessuna Tassa Extra",
-      "Acquisto Protetto",
-      "Certificato di Qualità",
-      "Consegna Tracciabile",
-      "Garanzia Estesa",
-      "Supporto Specializzato",
-      "Prodotto Autentico",
-      "Spedizione Discreta",
-      "Pagamento Facilitato",
-      "Reso Gratuito",
-      "Consegna Programmata",
-      "Supporto Tecnico",
-      "Garanzia Internazionale",
-      "Prodotto Certificato",
-      "Consegna Express",
-      "Acquisto Sicuro",
-      "Qualità Garantita"
+      "✅ Consegna Veloce in Tutto [PAESE]",
+      "✅ Prodotto Originale Certificato",
+      "✅ Pagamento Sicuro alla Consegna",
+      "✅ Garanzia di Soddisfazione Totale",
+      "✅ Spedizione Gratuita da 50€",
+      "✅ Supporto 24h su WhatsApp",
+      "✅ Oltre 50.000 Clienti Soddisfatti",
+      "✅ Approvato dalle Autorità",
+      "✅ Compra 2 Ricevi 1 Gratis",
+      "✅ Garanzia Rimborso",
+      "✅ Consegna Express in 24 Ore",
+      "✅ Prodotto Leader nelle Vendite",
+      "✅ Senza Costi di Spedizione",
+      "✅ Pagamento Rateale fino a 12 Mesi",
+      "✅ Supporto Tecnico Specializzato"
     ],
     sitelinks: [
-      {
-        title: "Acquista Ora",
-        description1: "Offerta speciale con sconto",
-        description2: "Spedizione gratuita in {country}"
-      },
-      {
-        title: "Vedi Promozioni",
-        description1: "Sconti esclusivi",
-        description2: "Solo per tempo limitato"
-      },
-      {
-        title: "Prodotto Originale",
-        description1: "100% autentico",
-        description2: "Con garanzia di qualità"
-      },
-      {
-        title: "Consegna Veloce",
-        description1: "Spedizione express",
-        description2: "Ricevi in pochi giorni"
-      },
-      {
-        title: "Garanzia Totale",
-        description1: "Prodotto certificato",
-        description2: "Supporto completo"
-      },
-      {
-        title: "Miglior Prezzo",
-        description1: "Prezzo competitivo",
-        description2: "Offerta incredibile"
-      },
-      {
-        title: "Pagamento Sicuro",
-        description1: "Acquisto protetto",
-        description2: "Multiple opzioni di pagamento"
-      },
-      {
-        title: "Supporto 24h",
-        description1: "Assistenza specializzata",
-        description2: "Rispondi alle tue domande"
-      },
-      {
-        title: "Consegna Express",
-        description1: "Ricevi velocemente",
-        description2: "Consegna tracciabile"
-      },
-      {
-        title: "Qualità Premium",
-        description1: "Prodotto di alta qualità",
-        description2: "Risultati garantiti"
-      },
-      {
-        title: "Offerta Limitata",
-        description1: "Promozione a tempo limitato",
-        description2: "Approfitta ora"
-      },
-      {
-        title: "Certificato",
-        description1: "Prodotto certificato",
-        description2: "Qualità comprovata"
-      },
-      {
-        title: "Spedizione Gratuita",
-        description1: "Nessun costo di spedizione",
-        description2: "In tutto il paese"
-      },
-      {
-        title: "Garanzia Estesa",
-        description1: "Protezione completa",
-        description2: "Supporto totale"
-      },
-      {
-        title: "Spedizione Immediata",
-        description1: "Elaborazione veloce",
-        description2: "Consegna garantita"
-      },
-      {
-        title: "Prodotto Autentico",
-        description1: "Originale garantito",
-        description2: "Diretto dal produttore"
-      },
-      {
-        title: "Sconto Speciale",
-        description1: "Prezzo promozionale",
-        description2: "Risparmi garantiti"
-      },
-      {
-        title: "Acquisto Sicuro",
-        description1: "Transazione protetta",
-        description2: "Dati sicuri"
-      },
-      {
-        title: "Servizio VIP",
-        description1: "Supporto prioritario",
-        description2: "Servizio personalizzato"
-      },
-      {
-        title: "Risultati Comprovati",
-        description1: "Efficacia testata",
-        description2: "Approvato da esperti"
-      },
-      {
-        title: "Consegna Programmata",
-        description1: "Scegli il tuo orario",
-        description2: "Convenienza totale"
-      },
-      {
-        title: "Prodotto Premium",
-        description1: "Qualità superiore",
-        description2: "Risultati garantiti"
-      },
-      {
-        title: "Offerta Esclusiva",
-        description1: "Disponibile solo qui",
-        description2: "Prezzo speciale"
-      },
-      {
-        title: "Spedizione Discreta",
-        description1: "Imballaggio discreto",
-        description2: "Privacy garantita"
-      },
-      {
-        title: "Pagamento Facilitato",
-        description1: "Rate disponibili",
-        description2: "Condizioni speciali"
-      },
-      {
-        title: "Reso Gratuito",
-        description1: "Nessun costo di reso",
-        description2: "Politica flessibile"
-      },
-      {
-        title: "Supporto Tecnico",
-        description1: "Aiuto specializzato",
-        description2: "Orientamento completo"
-      },
-      {
-        title: "Garanzia Internazionale",
-        description1: "Valida mondialmente",
-        description2: "Protezione globale"
-      },
-      {
-        title: "Qualità Certificata",
-        description1: "Standard internazionale",
-        description2: "Eccellenza garantita"
-      },
-      {
-        title: "Consegna Garantita",
-        description1: "Ricezione assicurata",
-        description2: "O rimborso"
-      }
-    ]
-  },
-  ja: {
-    titles: [
-      "{product}を特別割引で購入 - {country}全国配送",
-      "{product}正規品 - {country}送料無料",
-      "{product}特別オファー - {country}本日限定",
-      "{product} 30%OFF - {country}配送保証",
-      "{product}割引でお得 - {country}配送可能",
-      "{product} - {country}向け正規品保証付き",
-      "{product}今すぐ購入 - {country}送料無料",
-      "{product}最安値 - {country}迅速配送",
-      "{product}限定オファー - {country}で利用可能",
-      "{product}公式 - {country}全国配送",
-      "{product}特別割引 - {country}配送",
-      "{product}保証付き - {country}送料無料",
-      "{product}プロモーション - {country}限定",
-      "{product}正規品 - {country}特急配送",
-      "{product}割引購入 - {country}で利用可能",
-      "{product}独占商品 - {country}最優秀価格",
-      "{product}スーパーセール - {country}迅速配送",
-      "{product}プレミアム - {country}送料無料",
-      "{product}最後のチャンス - {country}でご利用を",
-      "{product}信じられない割引 - {country}",
-      "{product}メガディール - {country}配送保証",
-      "{product}本物保証 - {country}配送対応",
-      "{product}オンライン注文 - {country}配送",
-      "{product}特別価格 - {country}",
-      "{product}フラッシュセール - {country}",
-      "{product}認定品 - {country}送料無料",
-      "{product}独占オファー - {country}",
-      "{product}完全保証 - {country}",
-      "{product}今すぐ注文 - {country}セール",
-      "{product}正規品保証 - {country}"
+      { title: "Compra Ora [PRODOTTO]", description1: "Offerta speciale per [PAESE]", description2: "Consegna veloce garantita" },
+      { title: "Prendi Il Tuo [PRODOTTO]", description1: "Scorte limitate", description2: "Pagamento alla consegna" },
+      { title: "Ordina [PRODOTTO] Ora", description1: "Spedizione gratuita per [PAESE]", description2: "Prodotto originale certificato" },
+      { title: "Approfitta della Promozione", description1: "[PRODOTTO] con sconto", description2: "Valido per tempo limitato" },
+      { title: "Prova [PRODOTTO] Gratis", description1: "Garanzia 30 giorni", description2: "Rimborso" },
+      { title: "Comprare [PRODOTTO] Originale", description1: "Miglior prezzo in [PAESE]", description2: "Qualità garantita" },
+      { title: "Offerta Lampo", description1: "[PRODOTTO] per [PREZZO]", description2: "Ultime unità" },
+      { title: "Spedizione Gratuita [PRODOTTO]", description1: "Consegna express", description2: "In tutto [PAESE]" },
+      { title: "Promozione Speciale", description1: "Compra 2 ricevi 3", description2: "[PRODOTTO] originale" },
+      { title: "Ordina con Sconto", description1: "[PRODOTTO] promozionale", description2: "Miglior rapporto qualità-prezzo" },
+      { title: "Compra e Vinci Regalo", description1: "[PRODOTTO] + bonus", description2: "Offerta esclusiva" },
+      { title: "Consegna Veloce", description1: "[PRODOTTO] in 24h", description2: "Sicurezza totale" },
+      { title: "Soddisfazione Garantita", description1: "[PRODOTTO] approvato", description2: "Migliaia di clienti" },
+      { title: "Miglior Prezzo [PAESE]", description1: "[PRODOTTO] per [PREZZO]", description2: "Qualità premium" },
+      { title: "Ultime Unità", description1: "[PRODOTTO] originale", description2: "Non perdere!" }
     ],
-    descriptions: [
-      "{country}向け{product}を特別割引と送料無料でお届け。正規品保証付き。",
-      "{country}限定{product}オファー。迅速で安全な配送。",
-      "{product}を市場最安値で。{country}全国配送対応。",
-      "{product}プロモーションをご利用ください。{country}送料無料。",
-      "正規品{product}を特別割引で。{country}配送保証。",
-      "{product}を今すぐ購入して{country}でお受け取り。期間限定オファー。",
-      "プレミアム{product}を{country}特急配送で。完全保証。",
-      "{product}の信じられない割引。{country}全国配送。",
-      "本物の{product}を送料無料で。{country}で利用可能。",
-      "{country}限定{product}特別オファー。今すぐご利用を。",
-      "品質保証付き{product}。{country}迅速配送。",
-      "{product}独占プロモーション。{country}送料無料。",
-      "認定正規品{product}。{country}配送対応。",
-      "割引価格で{product}をご購入。{country}配送保証。",
-      "最高のコストパフォーマンス{product}。{country}で利用可能。",
-      "限定オファー{product}。{country}特急配送。",
-      "プレミアム{product}を割引価格で。{country}配送。",
-      "送料無料で{product}をお得に。{country}で利用可能。",
-      "保証付き本物の{product}。{country}配送。",
-      "期間限定{product}プロモーション。{country}配送対応。",
-      "特別割引の正規品{product}。{country}で利用可能。",
-      "今すぐ{product}をご注文。{country}迅速配送。",
-      "完全保証付き{product}。{country}送料無料。",
-      "特別オファー{product}。{country}全国配送。",
-      "割引価格のプレミアム{product}。{country}配送。",
-      "保証付き{product}をお得に。{country}で利用可能。",
-      "認定正規品{product}。{country}配送。",
-      "送料無料で{product}をご購入。{country}で利用可能。",
-      "最安値の{product}。{country}配送保証。",
-      "独占オファー{product}。{country}配送対応。"
+    biddingStrategies: [
+      "Per le campagne COD, raccomandiamo 'Massimizza conversioni' con offerte manuali appropriate per [PAESE], concentrandosi su conversioni di acquisto ad alta intenzione.",
+      "Per le campagne bottom-funnel, usa 'CPA target' ottimizzato per il mercato di [PAESE], prioritizzando lead qualificati.",
+      "Per le campagne mid-funnel, raccomandiamo 'ROAS target' con obiettivo di ritorno appropriato per [PAESE].",
+      "Per le campagne top-funnel, usa 'Massimizza clic' per aumentare la visibilità in [PAESE].",
+      "Per prodotti premium, usa 'Massimizza valore conversione' targeting l'audience di [PAESE]."
     ],
-    usps: [
-      "{country}全国送料無料",
-      "100%正規品",
-      "満足保証",
-      "特急配送",
-      "特別割引",
-      "安全決済",
-      "24時間サポート",
-      "最安値保証",
-      "限定プロモーション",
-      "即日発送",
-      "プレミアム品質",
-      "専門家認定",
-      "実証済み効果",
-      "追加料金なし",
-      "購入保護",
-      "品質証明書",
-      "追跡可能配送",
-      "延長保証",
-      "専門サポート",
-      "本物製品",
-      "機密配送",
-      "簡単決済",
-      "無料返品",
-      "予約配送",
-      "技術サポート",
-      "国際保証",
-      "認定製品",
-      "特急配送",
-      "安全購入",
-      "品質保証"
+    snippetValues: ["Spedizione veloce", "Approvato ufficialmente", "Sconto limitato", "100% originale", "Acquisto sicuro"],
+    promotions: [
+      "Sconto del 20% sul primo ordine",
+      "Spedizione gratuita in tutto [PAESE]",
+      "Compra 2 e prendi 3"
     ],
-    sitelinks: [
-      {
-        title: "今すぐ購入",
-        description1: "特別割引オファー",
-        description2: "{country}送料無料"
-      },
-      {
-        title: "プロモーション",
-        description1: "限定割引",
-        description2: "期間限定のみ"
-      },
-      {
-        title: "正規品",
-        description1: "100%本物",
-        description2: "品質保証付き"
-      },
-      {
-        title: "迅速配送",
-        description1: "特急便",
-        description2: "数日でお届け"
-      },
-      {
-        title: "完全保証",
-        description1: "認定製品",
-        description2: "完全サポート"
-      },
-      {
-        title: "最安値",
-        description1: "競争力のある価格",
-        description2: "信じられないお得情報"
-      },
-      {
-        title: "安全決済",
-        description1: "保護された購入",
-        description2: "複数の決済オプション"
-      },
-      {
-        title: "24時間サポート",
-        description1: "専門アシスタンス",
-        description2: "ご質問にお答えします"
-      },
-      {
-        title: "特急配送",
-        description1: "迅速にお届け",
-        description2: "追跡可能配送"
-      },
-      {
-        title: "プレミアム品質",
-        description1: "高品質製品",
-        description2: "結果保証"
-      },
-      {
-        title: "限定オファー",
-        description1: "期間限定プロモーション",
-        description2: "今すぐご利用を"
-      },
-      {
-        title: "認定品",
-        description1: "認定製品",
-        description2: "実証済み品質"
-      },
-      {
-        title: "送料無料",
-        description1: "配送料なし",
-        description2: "全国配送"
-      },
-      {
-        title: "延長保証",
-        description1: "完全保護",
-        description2: "フルサポート"
-      },
-      {
-        title: "即日発送",
-        description1: "迅速処理",
-        description2: "配送保証"
-      },
-      {
-        title: "本物製品",
-        description1: "正規品保証",
-        description2: "メーカー直送"
-      },
-      {
-        title: "特別割引",
-        description1: "プロモーション価格",
-        description2: "節約保証"
-      },
-      {
-        title: "安全購入",
-        description1: "保護された取引",
-        description2: "安全なデータ"
-      },
-      {
-        title: "VIPサービス",
-        description1: "優先サポート",
-        description2: "パーソナライズドサービス"
-      },
-      {
-        title: "実証済み結果",
-        description1: "テスト済み効果",
-        description2: "専門家承認"
-      },
-      {
-        title: "予約配送",
-        description1: "時間選択",
-        description2: "完全な利便性"
-      },
-      {
-        title: "プレミアム製品",
-        description1: "優秀な品質",
-        description2: "結果保証"
-      },
-      {
-        title: "独占オファー",
-        description1: "ここでのみ利用可能",
-        description2: "特別価格"
-      },
-      {
-        title: "機密配送",
-        description1: "機密パッケージ",
-        description2: "プライバシー保証"
-      },
-      {
-        title: "簡単決済",
-        description1: "分割払い可能",
-        description2: "特別条件"
-      },
-      {
-        title: "無料返品",
-        description1: "返品料金なし",
-        description2: "柔軟な方針"
-      },
-      {
-        title: "技術サポート",
-        description1: "専門的ヘルプ",
-        description2: "完全ガイダンス"
-      },
-      {
-        title: "国際保証",
-        description1: "世界的に有効",
-        description2: "グローバル保護"
-      },
-      {
-        title: "認定品質",
-        description1: "国際基準",
-        description2: "優秀性保証"
-      },
-      {
-        title: "配送保証",
-        description1: "受取保証",
-        description2: "または返金"
-      }
-    ]
-  },
-  zh: {
-    titles: [
-      "购买{product}享受独家折扣 - {country}全国配送",
-      "{product}正品 - {country}免费配送",
-      "{product}特别优惠 - {country}仅限今日",
-      "{product} 30%折扣 - {country}保证配送",
-      "享受{product}折扣 - 配送至{country}",
-      "{product} - {country}正品保证",
-      "立即购买{product} - {country}免费配送",
-      "{product}最优价格 - {country}快速配送",
-      "{product}限时优惠 - {country}可购买",
-      "{product}官方 - {country}全国配送",
-      "{product}特别折扣 - 配送至{country}",
-      "{product}带保证 - {country}免费配送",
-      "{product}促销活动 - {country}专享",
-      "{product}正品 - {country}快递配送",
-      "购买{product}享折扣 - {country}可购买",
-      "{product}独家 - {country}最佳优惠",
-      "{product}超级促销 - {country}快速配送",
-      "{product}高级 - {country}免费配送",
-      "{product}最后机会 - {country}享受",
-      "{product}难以置信的折扣 - {country}",
-      "{product}超值优惠 - {country}保证配送",
-      "{product}正宗 - 配送至{country}",
-      "在线订购{product} - {country}配送",
-      "{product}特价 - {country}",
-      "{product}闪购 - {country}",
-      "{product}认证 - {country}免费配送",
-      "{product}独家优惠 - {country}",
-      "{product}全面保证 - {country}",
-      "立即订购{product} - {country}优惠",
-      "{product}正品保证 - {country}"
-    ],
-    descriptions: [
-      "获得{product}特别折扣和{country}免费配送。正品保证。",
-      "{country}独家{product}优惠。快速安全配送。",
-      "{product}市场最优价格。配送至{country}全国。",
-      "享受{product}促销。{country}免费配送。",
-      "正品{product}特别折扣。{country}保证配送。",
-      "立即购买{product}并在{country}收货。限时优惠。",
-      "高级{product}在{country}快递配送。全面保证。",
-      "{product}难以置信的折扣。配送至{country}全国。",
-      "正宗{product}免费配送。{country}可购买。",
-      "{country}专享{product}特别优惠。立即享受。",
-      "品质保证{product}。{country}快速配送。",
-      "{product}独家促销。{country}免费配送。",
-      "认证正品{product}。配送至{country}。",
-      "折扣购买{product}。{country}保证配送。",
-      "最佳性价比{product}。{country}可购买。",
-      "限时优惠{product}。{country}快递配送。",
-      "高级{product}折扣价。配送至{country}。",
-      "免费配送获得{product}。{country}可购买。",
-      "保证正宗{product}。{country}配送。",
-      "限时{product}促销。配送至{country}。",
-      "特别折扣正品{product}。{country}可购买。",
-      "立即订购{product}。{country}快速配送。",
-      "全面保证{product}。{country}免费配送。",
-      "特别优惠{product}。配送至{country}全国。",
-      "折扣高级{product}。{country}配送。",
-      "保证获得{product}。{country}可购买。",
-      "认证正品{product}。配送至{country}。",
-      "免费配送购买{product}。{country}可购买。",
-      "最优价格{product}。{country}保证配送。",
-      "独家优惠{product}。配送至{country}。"
-    ],
-    usps: [
-      "{country}全国免费配送",
-      "100%正品",
-      "满意保证",
-      "快递配送",
-      "特别折扣",
-      "安全支付",
-      "24小时客服",
-      "最优价格保证",
-      "限时促销",
-      "即时发货",
-      "优质品质",
-      "专家认证",
-      "效果验证",
-      "无额外费用",
-      "购买保护",
-      "质量证书",
-      "可追踪配送",
-      "延长保修",
-      "专业支持",
-      "正宗产品",
-      "隐私配送",
-      "便利支付",
-      "免费退货",
-      "预约配送",
-      "技术支持",
-      "国际保修",
-      "认证产品",
-      "快递配送",
-      "安全购买",
-      "质量保证"
-    ],
-    sitelinks: [
-      {
-        title: "立即购买",
-        description1: "特别折扣优惠",
-        description2: "{country}免费配送"
-      },
-      {
-        title: "查看促销",
-        description1: "独家折扣",
-        description2: "仅限时间"
-      },
-      {
-        title: "正品保证",
-        description1: "100%正品",
-        description2: "质量保证"
-      },
-      {
-        title: "快速配送",
-        description1: "快递服务",
-        description2: "几天内收货"
-      },
-      {
-        title: "全面保证",
-        description1: "认证产品",
-        description2: "完整支持"
-      },
-      {
-        title: "最优价格",
-        description1: "竞争价格",
-        description2: "难以置信的优惠"
-      },
-      {
-        title: "安全支付",
-        description1: "受保护购买",
-        description2: "多种支付选项"
-      },
-      {
-        title: "24小时支持",
-        description1: "专业协助",
-        description2: "回答您的问题"
-      },
-      {
-        title: "快递配送",
-        description1: "快速接收",
-        description2: "可追踪配送"
-      },
-      {
-        title: "优质品质",
-        description1: "高质量产品",
-        description2: "保证结果"
-      },
-      {
-        title: "限时优惠",
-        description1: "限时促销",
-        description2: "立即享受"
-      },
-      {
-        title: "认证",
-        description1: "认证产品",
-        description2: "验证质量"
-      },
-      {
-        title: "免费配送",
-        description1: "无配送费用",
-        description2: "全国配送"
-      },
-      {
-        title: "延长保修",
-        description1: "完整保护",
-        description2: "全面支持"
-      },
-      {
-        title: "即时发货",
-        description1: "快速处理",
-        description2: "保证配送"
-      },
-      {
-        title: "正宗产品",
-        description1: "保证正品",
-        description2: "直接来自制造商"
-      },
-      {
-        title: "特别折扣",
-        description1: "促销价格",
-        description2: "保证节省"
-      },
-      {
-        title: "安全购买",
-        description1: "受保护交易",
-        description2: "安全数据"
-      },
-      {
-        title: "VIP服务",
-        description1: "优先支持",
-        description2: "个性化服务"
-      },
-      {
-        title: "验证结果",
-        description1: "测试效果",
-        description2: "专家认可"
-      },
-      {
-        title: "预约配送",
-        description1: "选择时间",
-        description2: "完全便利"
-      },
-      {
-        title: "高级产品",
-        description1: "优质品质",
-        description2: "保证结果"
-      },
-      {
-        title: "独家优惠",
-        description1: "仅在此处可用",
-        description2: "特别价格"
-      },
-      {
-        title: "隐私配送",
-        description1: "隐私包装",
-        description2: "保证隐私"
-      },
-      {
-        title: "便利支付",
-        description1: "分期付款可用",
-        description2: "特殊条件"
-      },
-      {
-        title: "免费退货",
-        description1: "无退货费用",
-        description2: "灵活政策"
-      },
-      {
-        title: "技术支持",
-        description1: "专家帮助",
-        description2: "完整指导"
-      },
-      {
-        title: "国际保修",
-        description1: "全球有效",
-        description2: "全球保护"
-      },
-      {
-        title: "认证质量",
-        description1: "国际标准",
-        description2: "保证卓越"
-      },
-      {
-        title: "保证配送",
-        description1: "确保接收",
-        description2: "或退款"
-      }
-    ]
-  },
-  ko: {
-    titles: [
-      "{product} 독점 할인으로 구매 - {country} 전국 배송",
-      "{product} 정품 - {country} 무료 배송",
-      "{product} 특별 혜택 - {country} 오늘만",
-      "{product} 30% 할인 - {country} 배송 보장",
-      "{product} 할인 혜택 - {country} 배송 가능",
-      "{product} - {country} 정품 보증",
-      "{product} 지금 구매 - {country} 무료 배송",
-      "{product} 최저가 - {country} 빠른 배송",
-      "{product} 한정 혜택 - {country} 이용 가능",
-      "{product} 공식 - {country} 전국 배송",
-      "{product} 특별 할인 - {country} 배송",
-      "{product} 보증 포함 - {country} 무료 배송",
-      "{product} 프로모션 - {country} 전용",
-      "{product} 정품 - {country} 특급 배송",
-      "{product} 할인 구매 - {country} 이용 가능",
-      "{product} 독점상품 - {country} 최고 혜택",
-      "{product} 슈퍼 세일 - {country} 빠른 배송",
-      "{product} 프리미엄 - {country} 무료 배송",
-      "{product} 마지막 기회 - {country} 놓치지 마세요",
-      "{product} 믿을 수 없는 할인 - {country}",
-      "{product} 메가 딜 - {country} 배송 보장",
-      "{product} 정품 인증 - {country} 배송 가능",
-      "{product} 온라인 주문 - {country} 배송",
-      "{product} 특가 - {country}",
-      "{product} 플래시 세일 - {country}",
-      "{product} 인증 제품 - {country} 무료 배송",
-      "{product} 독점 혜택 - {country}",
-      "{product} 완전 보증 - {country}",
-      "{product} 지금 주문 - {country} 세일",
-      "{product} 정품 보장 - {country}"
-    ],
-    descriptions: [
-      "{country}에서 {product}를 특별 할인과 무료 배송으로 받으세요. 정품 보증.",
-      "{country} 독점 {product} 혜택. 빠르고 안전한 배송.",
-      "{product} 시장 최저가. {country} 전국 배송 가능.",
-      "{product} 프로모션을 이용하세요. {country} 무료 배송.",
-      "정품 {product} 특별 할인. {country} 배송 보장.",
-      "{product}를 지금 구매하고 {country}에서 받으세요. 기간 한정 혜택.",
-      "프리미엄 {product}를 {country} 특급 배송으로. 완전 보증.",
-      "{product} 믿을 수 없는 할인. {country} 전국 배송.",
-      "정품 {product} 무료 배송. {country} 이용 가능.",
-      "{country} 전용 {product} 특별 혜택. 지금 이용하세요.",
-      "품질 보증 {product}. {country} 빠른 배송.",
-      "{product} 독점 프로모션. {country} 무료 배송.",
-      "인증 정품 {product}. {country} 배송 가능.",
-      "할인가로 {product} 구매. {country} 배송 보장.",
-      "최고 가성비 {product}. {country} 이용 가능.",
-      "한정 혜택 {product}. {country} 특급 배송.",
-      "프리미엄 {product} 할인가. {country} 배송.",
-      "무료 배송으로 {product} 받기. {country} 이용 가능.",
-      "보증 정품 {product}. {country} 배송.",
-      "기간 한정 {product} 프로모션. {country} 배송 가능.",
-      "특별 할인 정품 {product}. {country} 이용 가능.",
-      "지금 {product} 주문. {country} 빠른 배송.",
-      "완전 보증 {product}. {country} 무료 배송.",
-      "특별 혜택 {product}. {country} 전국 배송.",
-      "할인 프리미엄 {product}. {country} 배송.",
-      "보증으로 {product} 받기. {country} 이용 가능.",
-      "인증 정품 {product}. {country} 배송.",
-      "무료 배송으로 {product} 구매. {country} 이용 가능.",
-      "최저가 {product}. {country} 배송 보장.",
-      "독점 혜택 {product}. {country} 배송 가능."
-    ],
-    usps: [
-      "{country} 전국 무료 배송",
-      "100% 정품",
-      "만족 보장",
-      "특급 배송",
-      "특별 할인",
-      "안전 결제",
-      "24시간 지원",
-      "최저가 보장",
-      "한정 프로모션",
-      "즉시 발송",
-      "프리미엄 품질",
-      "전문가 인증",
-      "검증된 효과",
-      "추가 수수료 없음",
-      "구매 보호",
-      "품질 증명서",
-      "추적 가능 배송",
-      "연장 보증",
-      "전문 지원",
-      "정품 제품",
-      "기밀 배송",
-      "간편 결제",
-      "무료 반품",
-      "예약 배송",
-      "기술 지원",
-      "국제 보증",
-      "인증 제품",
-      "특급 배송",
-      "안전 구매",
-      "품질 보장"
-    ],
-    sitelinks: [
-      {
-        title: "지금 구매",
-        description1: "특별 할인 혜택",
-        description2: "{country} 무료 배송"
-      },
-      {
-        title: "프로모션 보기",
-        description1: "독점 할인",
-        description2: "기간 한정"
-      },
-      {
-        title: "정품 보증",
-        description1: "100% 정품",
-        description2: "품질 보장"
-      },
-      {
-        title: "빠른 배송",
-        description1: "특급 배송",
-        description2: "며칠 내 배송"
-      },
-      {
-        title: "완전 보증",
-        description1: "인증 제품",
-        description2: "완전 지원"
-      },
-      {
-        title: "최저가",
-        description1: "경쟁력 있는 가격",
-        description2: "믿을 수 없는 혜택"
-      },
-      {
-        title: "안전 결제",
-        description1: "보호된 구매",
-        description2: "다양한 결제 옵션"
-      },
-      {
-        title: "24시간 지원",
-        description1: "전문 지원",
-        description2: "질문에 답변"
-      },
-      {
-        title: "특급 배송",
-        description1: "빠른 수령",
-        description2: "추적 가능 배송"
-      },
-      {
-        title: "프리미엄 품질",
-        description1: "고품질 제품",
-        description2: "결과 보장"
-      },
-      {
-        title: "한정 혜택",
-        description1: "기간 한정 프로모션",
-        description2: "지금 이용하세요"
-      },
-      {
-        title: "인증",
-        description1: "인증 제품",
-        description2: "검증된 품질"
-      },
-      {
-        title: "무료 배송",
-        description1: "배송비 없음",
-        description2: "전국 배송"
-      },
-      {
-        title: "연장 보증",
-        description1: "완전 보호",
-        description2: "전체 지원"
-      },
-      {
-        title: "즉시 발송",
-        description1: "빠른 처리",
-        description2: "보장 배송"
-      },
-      {
-        title: "정품 제품",
-        description1: "정품 보장",
-        description2: "제조사 직송"
-      },
-      {
-        title: "특별 할인",
-        description1: "프로모션 가격",
-        description2: "절약 보장"
-      },
-      {
-        title: "안전 구매",
-        description1: "보호된 거래",
-        description2: "안전한 데이터"
-      },
-      {
-        title: "VIP 서비스",
-        description1: "우선 지원",
-        description2: "개인화된 서비스"
-      },
-      {
-        title: "검증된 결과",
-        description1: "테스트된 효과",
-        description2: "전문가 승인"
-      },
-      {
-        title: "예약 배송",
-        description1: "시간 선택",
-        description2: "완전한 편의"
-      },
-      {
-        title: "프리미엄 제품",
-        description1: "우수한 품질",
-        description2: "결과 보장"
-      },
-      {
-        title: "독점 혜택",
-        description1: "여기서만 이용 가능",
-        description2: "특별 가격"
-      },
-      {
-        title: "기밀 배송",
-        description1: "기밀 포장",
-        description2: "프라이버시 보장"
-      },
-      {
-        title: "간편 결제",
-        description1: "할부 가능",
-        description2: "특별 조건"
-      },
-      {
-        title: "무료 반품",
-        description1: "반품비 없음",
-        description2: "유연한 정책"
-      },
-      {
-        title: "기술 지원",
-        description1: "전문 도움",
-        description2: "완전한 안내"
-      },
-      {
-        title: "국제 보증",
-        description1: "전 세계 유효",
-        description2: "글로벌 보호"
-      },
-      {
-        title: "인증 품질",
-        description1: "국제 표준",
-        description2: "우수성 보장"
-      },
-      {
-        title: "보장 배송",
-        description1: "수령 보장",
-        description2: "또는 환불"
-      }
-    ]
-  },
-  ar: {
-    titles: [
-      "اشتري {product} بخصم حصري - توصيل في جميع أنحاء {country}",
-      "{product} الأصلي - شحن مجاني إلى {country}",
-      "عرض خاص {product} - اليوم فقط في {country}",
-      "{product} بخصم 30% - توصيل مضمون {country}",
-      "احصل على {product} بخصم - نوصل إلى {country}",
-      "{product} - منتج أصلي مع ضمان لـ {country}",
-      "اشتري {product} الآن - شحن مجاني في {country}",
-      "{product} بأفضل سعر - توصيل سريع {country}",
-      "عرض محدود {product} - متوفر في {country}",
-      "{product} الرسمي - نوصل لجميع أنحاء {country}",
-      "خصم خاص {product} - توصيل إلى {country}",
-      "{product} مع ضمان - شحن مجاني إلى {country}",
-      "ترويج {product} - فقط في {country}",
-      "{product} الأصلي - توصيل سريع {country}",
-      "اشتري {product} بخصم - متوفر في {country}",
-      "{product} الحصري - أفضل عرض {country}",
-      "عرض فائق {product} - توصيل سريع {country}",
-      "{product} المميز - شحن مجاني {country}",
-      "الفرصة الأخيرة {product} - استفد في {country}",
-      "{product} بخصم لا يصدق - {country}",
-      "عرض ضخم {product} - توصيل مضمون {country}",
-      "{product} الأصلي - نوصل إلى {country}",
-      "اطلب {product} أونلاين - توصيل في {country}",
-      "{product} بسعر خاص - {country}",
-      "عرض برق {product} - {country}",
-      "{product} المعتمد - شحن مجاني {country}",
-      "عرض حصري {product} - {country}",
-      "{product} مع ضمان كامل - {country}",
-      "اطلب {product} الآن - عرض {country}",
-      "{product} الأصلي المضمون - {country}"
-    ],
-    descriptions: [
-      "احصل على {product} بخصم خاص وشحن مجاني إلى {country}. منتج أصلي مع ضمان.",
-      "عرض حصري لـ {product} لـ {country}. توصيل سريع وآمن.",
-      "{product} بأفضل سعر في السوق. نوصل لجميع أنحاء {country}.",
-      "استفد من ترويج {product}. شحن مجاني إلى {country}.",
-      "{product} الأصلي بخصم خاص. توصيل مضمون في {country}.",
-      "اشتري {product} الآن واستلم في {country}. عرض لفترة محدودة.",
-      "{product} المميز مع توصيل سريع إلى {country}. ضمان كامل.",
-      "خصم لا يصدق على {product}. نوصل لجميع أنحاء {country}.",
-      "{product} الأصلي مع شحن مجاني. متوفر في {country}.",
-      "عرض خاص {product} فقط لـ {country}. استفد الآن.",
-      "{product} مع ضمان الجودة. توصيل سريع في {country}.",
-      "ترويج حصري {product}. شحن مجاني إلى {country}.",
-      "{product} الأصلي المعتمد. نوصل إلى {country}.",
-      "اشتري {product} بخصم. توصيل مضمون في {country}.",
-      "{product} بأفضل قيمة. متوفر في {country}.",
-      "عرض محدود {product}. توصيل سريع إلى {country}.",
-      "{product} المميز بخصم. نوصل إلى {country}.",
-      "احصل على {product} بشحن مجاني. متوفر في {country}.",
-      "{product} الأصلي مع ضمان. توصيل في {country}.",
-      "ترويج {product} لفترة محدودة. نوصل إلى {country}.",
-      "{product} الأصلي بخصم خاص. متوفر في {country}.",
-      "اطلب {product} الآن. توصيل سريع إلى {country}.",
-      "{product} مع ضمان كامل. شحن مجاني في {country}.",
-      "عرض خاص {product}. نوصل لجميع أنحاء {country}.",
-      "{product} المميز بخصم. توصيل في {country}.",
-      "احصل على {product} مع ضمان. متوفر في {country}.",
-      "{product} الأصلي المعتمد. توصيل إلى {country}.",
-      "اشتري {product} بشحن مجاني. متوفر في {country}.",
-      "{product} بأفضل سعر. توصيل مضمون في {country}.",
-      "عرض حصري {product}. نوصل إلى {country}."
-    ],
-    usps: [
-      "شحن مجاني لجميع أنحاء {country}",
-      "منتج 100% أصلي",
-      "ضمان الرضا",
-      "توصيل سريع",
-      "خصم خاص",
-      "دفع آمن",
-      "دعم 24 ساعة",
-      "أفضل سعر مضمون",
-      "ترويج محدود",
-      "شحن فوري",
-      "جودة مميزة",
-      "معتمد من الخبراء",
-      "نتائج مثبتة",
-      "بدون رسوم إضافية",
-      "شراء محمي",
-      "شهادة جودة",
-      "توصيل قابل للتتبع",
-      "ضمان ممدد",
-      "دعم متخصص",
-      "منتج أصلي",
-      "شحن سري",
-      "دفع مبسط",
-      "إرجاع مجاني",
-      "توصيل مجدول",
-      "دعم تقني",
-      "ضمان دولي",
-      "منتج معتمد",
-      "توصيل سريع",
-      "شراء آمن",
-      "جودة مضمونة"
-    ],
-    sitelinks: [
-      {
-        title: "اشتري الآن",
-        description1: "عرض خاص بخصم",
-        description2: "شحن مجاني إلى {country}"
-      },
-      {
-        title: "عرض العروض",
-        description1: "خصومات حصرية",
-        description2: "لفترة محدودة فقط"
-      },
-      {
-        title: "منتج أصلي",
-        description1: "100% أصلي",
-        description2: "مع ضمان الجودة"
-      },
-      {
-        title: "توصيل سريع",
-        description1: "شحن سريع",
-        description2: "استلم خلال أيام قليلة"
-      },
-      {
-        title: "ضمان كامل",
-        description1: "منتج معتمد",
-        description2: "دعم كامل"
-      },
-      {
-        title: "أفضل سعر",
-        description1: "سعر تنافسي",
-        description2: "عرض لا يصدق"
-      },
-      {
-        title: "دفع آمن",
-        description1: "شراء محمي",
-        description2: "خيارات دفع متعددة"
-      },
-      {
-        title: "دعم 24 ساعة",
-        description1: "مساعدة متخصصة",
-        description2: "الإجابة على أسئلتك"
-      },
-      {
-        title: "توصيل سريع",
-        description1: "استلام سريع",
-        description2: "توصيل قابل للتتبع"
-      },
-      {
-        title: "جودة مميزة",
-        description1: "منتج عالي الجودة",
-        description2: "نتائج مضمونة"
-      },
-      {
-        title: "عرض محدود",
-        description1: "ترويج لفترة محدودة",
-        description2: "استفد الآن"
-      },
-      {
-        title: "معتمد",
-        description1: "منتج معتمد",
-        description2: "جودة مثبتة"
-      },
-      {
-        title: "شحن مجاني",
-        description1: "بدون تكلفة شحن",
-        description2: "توصيل على مستوى البلاد"
-      },
-      {
-        title: "ضمان ممدد",
-        description1: "حماية كاملة",
-        description2: "دعم كامل"
-      },
-      {
-        title: "شحن فوري",
-        description1: "معالجة سريعة",
-        description2: "توصيل مضمون"
-      },
-      {
-        title: "منتج أصلي",
-        description1: "أصلي مضمون",
-        description2: "مباشرة من الشركة المصنعة"
-      },
-      {
-        title: "خصم خاص",
-        description1: "سعر ترويجي",
-        description2: "توفير مضمون"
-      },
-      {
-        title: "شراء آمن",
-        description1: "معاملة محمية",
-        description2: "بيانات آمنة"
-      },
-      {
-        title: "خدمة VIP",
-        description1: "دعم أولوية",
-        description2: "خدمة شخصية"
-      },
-      {
-        title: "نتائج مثبتة",
-        description1: "فعالية مختبرة",
-        description2: "معتمد من الخبراء"
-      },
-      {
-        title: "توصيل مجدول",
-        description1: "اختر وقتك",
-        description2: "راحة كاملة"
-      },
-      {
-        title: "منتج مميز",
-        description1: "جودة عالية",
-        description2: "نتائج مضمونة"
-      },
-      {
-        title: "عرض حصري",
-        description1: "متوفر هنا فقط",
-        description2: "سعر خاص"
-      },
-      {
-        title: "شحن سري",
-        description1: "تعبئة سرية",
-        description2: "خصوصية مضمونة"
-      },
-      {
-        title: "دفع مبسط",
-        description1: "أقساط متاحة",
-        description2: "شروط خاصة"
-      },
-      {
-        title: "إرجاع مجاني",
-        description1: "بدون تكلفة إرجاع",
-        description2: "سياسة مرنة"
-      },
-      {
-        title: "دعم تقني",
-        description1: "مساعدة متخصصة",
-        description2: "إرشاد كامل"
-      },
-      {
-        title: "ضمان دولي",
-        description1: "ساري عالمياً",
-        description2: "حماية عالمية"
-      },
-      {
-        title: "جودة معتمدة",
-        description1: "معيار دولي",
-        description2: "امتياز مضمون"
-      },
-      {
-        title: "توصيل مضمون",
-        description1: "استلام مؤكد",
-        description2: "أو استرداد الأموال"
-      }
-    ]
-  },
-  hi: {
-    titles: [
-      "{product} विशेष छूट के साथ खरीदें - {country} में डिलीवरी",
-      "{product} मूल उत्पाद - {country} में मुफ्त शिपिंग",
-      "{product} विशेष ऑफर - {country} में केवल आज",
-      "{product} 30% छूट के साथ - {country} गारंटीड डिलीवरी",
-      "{product} छूट का लाभ उठाएं - {country} में भेजते हैं",
-      "{product} - {country} के लिए मूल उत्पाद गारंटी के साथ",
-      "{product} अभी खरीदें - {country} में मुफ्त शिपिंग",
-      "{product} सबसे अच्छी कीमत - {country} तेज़ डिलीवरी",
-      "{product} सीमित ऑफर - {country} में उपलब्ध",
-      "{product} आधिकारिक - पूरे {country} में भेजते हैं",
-      "{product} विशेष छूट - {country} में डिलीवरी",
-      "{product} गारंटी के साथ - {country} में मुफ्त शिपिंग",
-      "{product} प्रमोशन - केवल {country} में",
-      "{product} मूल - {country} एक्सप्रेस डिलीवरी",
-      "{product} छूट के साथ खरीदें - {country} में उपलब्ध",
-      "{product} एक्सक्लूसिव - {country} सबसे अच्छा डील",
-      "{product} सुपर सेल - {country} तेज़ डिलीवरी",
-      "{product} प्रीमियम - {country} मुफ्त शिपिंग",
-      "{product} अंतिम मौका - {country} में लाभ उठाएं",
-      "{product} अविश्वसनीय छूट - {country}",
-      "{product} मेगा डील - {country} गारंटीड डिलीवरी",
-      "{product} प्रामाणिक - {country} में भेजते हैं",
-      "{product} ऑनलाइन ऑर्डर - {country} में डिलीवरी",
-      "{product} विशेष कीमत - {country}",
-      "{product} फ्लैश सेल - {country}",
-      "{product} प्रमाणित - {country} मुफ्त शिपिंग",
-      "{product} एक्सक्लूसिव ऑफर - {country}",
-      "{product} पूर्ण गारंटी के साथ - {country}",
-      "{product} अभी ऑर्डर करें - {country} ऑफर",
-      "{product} मूल गारंटीशुदा - {country}"
-    ],
-    descriptions: [
-      "{country} में {product} को विशेष छूट और मुफ्त शिपिंग के साथ प्राप्त करें। मूल उत्पाد गारंटी के साथ।",
-      "{country} के लिए {product} का विशेष ऑफर। तेज़ और सुरक्षित डिलीवरी।",
-      "{product} बाजार की सबसे अच्छी कीमत पर। पूरे {country} में भेजते हैं।",
-      "{product} प्रमोशन का लाभ उठाएं। {country} में मुफ्त शिपिंग।",
-      "मूल {product} विशेष छूट के साथ। {country} में गारंटीड डिलीवरी।",
-      "{product} अभी खरीदें और {country} में प्राप्त करें। सीमित समय ऑफर।",
-      "प्रीमियम {product} {country} में एक्सप्रेस डिलीवरी के साथ। पूर्ण गारंटी।",
-      "{product} पर अविश्वसनीय छूट। पूरे {country} में भेजते हैं।",
-      "प्रामाणिक {product} मुफ्त शिपिंग के साथ। {country} में उपलब्ध।",
-      "{country} के लिए विशेष {product} ऑफर। अभी लाभ उठाएं।",
-      "गुणवत्ता गारंटी के साथ {product}। {country} में तेज़ डिलीवरी।",
-      "{product} एक्सक्लूसिव प्रमोशन। {country} में मुफ्त शिपिंग।",
-      "मूल प्रमाणित {product}। {country} में भेजते हैं।",
-      "छूट के साथ {product} खरीदें। {country} में गारंटीड डिलीवरी।",
-      "सबसे अच्छी वैल्यू के साथ {product}। {country} में उपलब्ध।",
-      "सीमित ऑफर {product}। {country} में एक्सप्रेस डिलीवरी।",
-      "छूट के साथ प्रीमियम {product}। {country} में भेजते हैं।",
-      "मुफ्त शिपिंग के साथ {product} प्राप्त करें। {country} में उपलब्ध।",
-      "गारंटी के साथ प्रामाणिक {product}। {country} में डिलीवरी।",
-      "सीमित समय के लिए {product} प्रमोशन। {country} में भेजते हैं।",
-      "विशेष छूट के साथ मूल {product}। {country} में उपलब्ध।",
-      "अभी {product} ऑर्डर करें। {country} में तेज़ डिलीवरी।",
-      "पूर्ण गारंटी के साथ {product}। {country} में मुफ्त शिपिंग।",
-      "विशेष ऑफर {product}। पूरे {country} में भेजते हैं।",
-      "छूट के साथ प्रीमियम {product}। {country} में डिलीवरी।",
-      "गारंटी के साथ {product} प्राप्त करें। {country} में उपलब्ध।",
-      "मूल प्रमाणित {product}। {country} में डिलीवरी।",
-      "मुफ्त शिपिंग के साथ {product} खरीदें। {country} में उपलब्ध।",
-      "सबसे अच्छी कीमत पर {product}। {country} में गारंटीड डिलीवरी।",
-      "एक्सक्लूसिव ऑफर {product}। {country} में भेजते हैं।"
-    ],
-    usps: [
-      "पूरे {country} में मुफ्त शिपिंग",
-      "100% मूल उत्पाद",
-      "संतुष्टि गारंटी",
-      "एक्सप्रेस डिलीवरी",
-      "विशेष छूट",
-      "सुरक्षित भुगतान",
-      "24 घंटे सहायता",
-      "सबसे अच्छी कीमत गारंटी",
-      "सीमित प्रमोशन",
-      "तुरंत शिपिंग",
-      "प्रीमियम गुणवत्ता",
-      "विशेषज्ञों द्वारा अनुमोदित",
-      "सिद्ध परिणाम",
-      "कोई अतिरिक्त शुल्क नहीं",
-      "सुरक्षित खरीदारी",
-      "गुणवत्ता प्रमाणपत्र",
-      "ट्रैक करने योग्य डिलीवरी",
-      "विस्तारित वारंटी",
-      "विशेषज्ञ सहायता",
-      "प्रामाणिक उत्पाद",
-      "गुप्त शिपिंग",
-      "आसान भुगतान",
-      "मुफ्त रिटर्न",
-      "निर्धारित डिलीवरी",
-      "तकनीकी सहायता",
-      "अंतर्राष्ट्रीय वारंटी",
-      "प्रमाणित उत्पाद",
-      "एक्सप्रेस डिलीवरी",
-      "सुरक्षित खरीदारी",
-      "गुणवत्ता गारंटी"
-    ],
-    sitelinks: [
-      {
-        title: "अभी खरीदें",
-        description1: "छूट के साथ विशेष ऑफर",
-        description2: "{country} में मुफ्त शिपिंग"
-      },
-      {
-        title: "प्रमोशन देखें",
-        description1: "विशेष छूट",
-        description2: "केवल सीमित समय"
-      },
-      {
-        title: "मूल उत्पाद",
-        description1: "100% प्रामाणिक",
-        description2: "गुणवत्ता गारंटी के साथ"
-      },
-      {
-        title: "तेज़ डिलीवरी",
-        description1: "एक्सप्रेस शिपिंग",
-        description2: "कुछ दिनों में प्राप्त करें"
-      },
-      {
-        title: "पूर्ण गारंटी",
-        description1: "प्रमाणित उत्पाद",
-        description2: "पूर्ण सहायता"
-      },
-      {
-        title: "सबसे अच्छी कीमत",
-        description1: "प्रतिस्पर्धी कीमत",
-        description2: "अविश्वसनीय डील"
-      },
-      {
-        title: "सुरक्षित भुगतान",
-        description1: "सुरक्षित खरीदारी",
-        description2: "कई भुगतान विकल्प"
-      },
-      {
-        title: "24 घंटे सहायता",
-        description1: "विशेषज्ञ सहायता",
-        description2: "आपके प्रश्नों का उत्तर"
-      },
-      {
-        title: "एक्सप्रेस डिलीवरी",
-        description1: "जल्दी प्राप्त करें",
-        description2: "ट्रैक करने योग्य डिलीवरी"
-      },
-      {
-        title: "प्रीमियम गुणवत्ता",
-        description1: "उच्च गुणवत्ता उत्पाद",
-        description2: "गारंटीशुदा परिणाम"
-      },
-      {
-        title: "सीमित ऑफर",
-        description1: "सीमित समय प्रमोशन",
-        description2: "अभी लाभ उठाएं"
-      },
-      {
-        title: "प्रमाणित",
-        description1: "प्रमाणित उत्पाद",
-        description2: "सिद्ध गुणवत्ता"
-      },
-      {
-        title: "मुफ्त शिपिंग",
-        description1: "कोई शिपिंग लागत नहीं",
-        description2: "देशव्यापी डिलीवरी"
-      },
-      {
-        title: "विस्तारित वारंटी",
-        description1: "पूर्ण सुरक्षा",
-        description2: "पूर्ण सहायता"
-      },
-      {
-        title: "तुरंत शिपिंग",
-        description1: "तेज़ प्रसंस्करण",
-        description2: "गारंटीड डिलीवरी"
-      },
-      {
-        title: "प्रामाणिक उत्पाद",
-        description1: "गारंटीशुदा मूल",
-        description2: "निर्माता से सीधे"
-      },
-      {
-        title: "विशेष छूट",
-        description1: "प्रमोशनल कीमत",
-        description2: "गारंटीशुदा बचत"
-      },
-      {
-        title: "सुरक्षित खरीदारी",
-        description1: "सुरक्षित लेनदेन",
-        description2: "सुरक्षित डेटा"
-      },
-      {
-        title: "VIP सेवा",
-        description1: "प्राथमिकता सहायता",
-        description2: "व्यक्तिगत सेवा"
-      },
-      {
-        title: "सिद्ध परिणाम",
-        description1: "परीक्षित प्रभावशीलता",
-        description2: "विशेषज्ञ अनुमोदित"
-      },
-      {
-        title: "निर्धारित डिलीवरी",
-        description1: "अपना समय चुनें",
-        description2: "पूर्ण सुविधा"
-      },
-      {
-        title: "प्रीमियम उत्पाद",
-        description1: "उत्कृष्ट गुणवत्ता",
-        description2: "गारंटीशुदा परिणाम"
-      },
-      {
-        title: "एक्सक्लूसिव ऑफर",
-        description1: "केवल यहाँ उपलब्ध",
-        description2: "विशेष कीमत"
-      },
-      {
-        title: "गुप्त शिपिंग",
-        description1: "गुप्त पैकेजिंग",
-        description2: "गोपनीयता गारंटी"
-      },
-      {
-        title: "आसान भुगतान",
-        description1: "किस्तें उपलब्ध",
-        description2: "विशेष शर्तें"
-      },
-      {
-        title: "मुफ्त रिटर्न",
-        description1: "कोई रिटर्न लागत नहीं",
-        description2: "लचीली नीति"
-      },
-      {
-        title: "तकनीकी सहायता",
-        description1: "विशेषज्ञ सहायता",
-        description2: "पूर्ण मार्गदर्शन"
-      },
-      {
-        title: "अंतर्राष्ट्रीय वारंटी",
-        description1: "विश्वव्यापी वैध",
-        description2: "वैश्विक सुरक्षा"
-      },
-      {
-        title: "प्रमाणित गुणवत्ता",
-        description1: "अंतर्राष्ट्रीय मानक",
-        description2: "उत्कृष्टता गारंटी"
-      },
-      {
-        title: "गारंटीड डिलीवरी",
-        description1: "सुनिश्चित प्राप्ति",
-        description2: "या पैसे वापस"
-      }
+    priceBlocks: [
+      "[PRODOTTO] 1 unità: [PREZZO] - Consegna in tutto [PAESE]",
+      "[PRODOTTO] Kit 3 unità: [PREZZO] - Spedizione gratuita",
+      "[PRODOTTO] Kit completo: [PREZZO] - Migliore offerta"
     ]
   }
 };
 
-export const getTranslation = (languageCode: string) => {
-  return translations[languageCode as keyof typeof translations] || translations.en;
+// Adicionar traduções para os idiomas restantes com estrutura similar...
+// ja (Japonês), ko (Coreano), tr (Turco), id (Indonésio), hi (Hindi), ar (Árabe)
+
+translations['ja'] = { // Japão
+  titles: [
+    "[製品]オリジナル - 今すぐ購入、代金引換",
+    "限定割引！[製品]がたった[価格]",
+    "[製品] - [国]全国への迅速配送",
+    "期間限定オファー：[製品]送料無料",
+    "[製品] - [国]でのベストセラー",
+    "[製品]オリジナルを安全に購入",
+    "[製品] - 数千人の顧客に承認済み",
+    "今すぐ[製品]をゲット - 在庫限定",
+    "[製品] - 今日あなたの人生を変える",
+    "特別プロモーション：[製品]が[価格]",
+    "[製品] - [国]全国へ特急便",
+    "売上成功：[製品]オリジナル",
+    "[製品] - 実証済みで効果的なソリューション",
+    "お得！[製品]特別割引付き",
+    "[製品] - [価格]でプレミアム品質",
+    "[製品]を注文して自宅で受取",
+    "[製品] - [国]限定オファー",
+    "最後の在庫：[製品]オリジナル",
+    "[製品] - 1個買うと2個もらえる",
+    "送料無料：[製品]を[国]へ",
+    "[製品] - 満足保証",
+    "スーパーオファー：[製品]がたった[価格]",
+    "[製品] - [国]の年間商品",
+    "今すぐ[製品]を購入 - 代金引換",
+    "[製品] - あなたが探していたソリューション",
+    "フラッシュセール：[製品]50%オフ",
+    "[製品] - [国]でテスト・承認済み",
+    "プレゼント獲得：[製品] + 送料無料",
+    "[製品] - [国]全体で成功",
+    "最終日：[製品]が[価格]"
+  ],
+  descriptions: [
+    "[製品]を完全な安全性と快適さでご自宅にお届けします。[国]全国への迅速配送。",
+    "特別オファー！[製品]をたった[価格]で手に入れ、今日あなたのルーティンを変えましょう。",
+    "オリジナル[製品]を購入し、配達時のみお支払い。リスクなし、複雑さなし。",
+    "絶対的な売上成功！[製品]は[国]への特急便で利用可能。",
+    "このユニークな機会をお見逃しなく！[製品]が期間限定プロモーション中。",
+    "セレブの秘密が[国]に到着：[製品]で結果保証。",
+    "[製品]で日常を変える - 数千人の顧客に承認された製品。",
+    "実用的で効果的なソリューション：今すぐ[製品]を注文し、違いを感じてください。",
+    "今月の売上チャンピオン：[製品]。テスト済み、承認済み、推奨済み。",
+    "[国]限定オファー。在庫がなくなる前に[製品]を今すぐ手に入れましょう。",
+    "今日[製品]の送料無料をご利用ください！期間限定プロモーション。",
+    "[国]で最高のコストパフォーマンス：プレミアム品質の[製品]。",
+    "完全な安全性と満足保証または返金保証で[製品]を注文してください。",
+    "見逃せない機会：スーパー割引と送料無料で[製品]をお持ち帰り。",
+    "製品以上の完全な体験：[製品]が人生を変える。",
+    "今すぐ[製品]を購入し、あなたのルーティンを革命化。数日で結果。",
+    "[国]の顧客に最も求められている製品：オリジナルで効果的な[製品]。",
+    "[国]全体ですでに[製品]の数千件の注文。成功に参加しましょう。",
+    "家を出ることなく[製品]をテストするチャンス！安全で迅速な配送。",
+    "[国]のどの都市でも48時間以内に受取：オリジナル[製品]。",
+    "品質証明書付きオリジナル[製品]。完全な信頼でご購入ください。",
+    "フラッシュプロモーション：[国]への送料無料で[製品]が[価格]。",
+    "[製品]での完全なソリューション。[国]全体で数千人の満足顧客。",
+    "今すぐ[製品]を手に入れ、限定ギフトを受け取りましょう。期間限定オファー！",
+    "革命が[国]に到着：[価格]で先進技術の[製品]。",
+    "[製品]を分割払いまたは現金で購入。利便性と安全性を保証。",
+    "特急便：[製品]が24時間であなたの家に到着。今すぐ注文！",
+    "[国]特別オファー：累進割引付き[製品]。",
+    "専門家推奨製品：実証済み効果の[製品]。",
+    "最後の在庫：[価格]でオリジナル[製品]。お見逃しなく！"
+  ],
+  usps: [
+    "✅ [国]全国への迅速配送",
+    "✅ オリジナル認定製品",
+    "✅ 代金引換での安全支払い",
+    "✅ 完全満足保証",
+    "✅ 5000円以上で送料無料",
+    "✅ WhatsAppで24時間サポート",
+    "✅ 50,000人以上の満足顧客",
+    "✅ 当局承認済み",
+    "✅ 2個購入で1個無料",
+    "✅ 返金保証",
+    "✅ 24時間特急便",
+    "✅ 売上リーダー製品",
+    "✅ 配送料無料",
+    "✅ 最大12ヶ月分割払い",
+    "✅ 専門技術サポート"
+  ],
+  sitelinks: [
+    { title: "今すぐ[製品]を購入", description1: "[国]特別オファー", description2: "迅速配送保証" },
+    { title: "[製品]を手に入れる", description1: "在庫限定", description2: "代金引換" },
+    { title: "今すぐ[製品]を注文", description1: "[国]への送料無料", description2: "オリジナル認定製品" },
+    { title: "プロモーションを利用", description1: "割引付き[製品]", description2: "期間限定有効" },
+    { title: "[製品]を無料でお試し", description1: "30日間保証", description2: "返金" },
+    { title: "オリジナル[製品]を購入", description1: "[国]最安値", description2: "品質保証" },
+    { title: "フラッシュセール", description1: "[価格]で[製品]", description2: "最後の在庫" },
+    { title: "[製品]送料無料", description1: "特急便", description2: "[国]全国へ" },
+    { title: "特別プロモーション", description1: "2個買うと3個", description2: "オリジナル[製品]" },
+    { title: "割引で注文", description1: "プロモーション[製品]", description2: "最高コスパ" },
+    { title: "購入してギフト獲得", description1: "[製品] + ボーナス", description2: "限定オファー" },
+    { title: "迅速配送", description1: "24時間で[製品]", description2: "完全安全" },
+    { title: "満足保証", description1: "承認済み[製品]", description2: "数千人の顧客" },
+    { title: "[国]最安値", description1: "[価格]で[製品]", description2: "プレミアム品質" },
+    { title: "最後の在庫", description1: "オリジナル[製品]", description2: "お見逃しなく！" }
+  ],
+  biddingStrategies: [
+    "CODキャンペーンでは、[国]に適した手動入札で「コンバージョンを最大化」を推奨し、購入意図の高いコンバージョンに焦点を当てます。",
+    "ボトムファネルキャンペーンでは、[国]市場に最適化された「目標CPA」を使用し、質の高いリードを優先します。",
+    "ミッドファネルキャンペーンでは、[国]に適した収益目標で「目標ROAS」を推奨します。",
+    "トップファネルキャンペーンでは、[国]での視認性を高めるために「クリック数を最大化」を使用します。",
+    "プレミアム製品では、[国]オーディエンスをターゲットにした「コンバージョン価値を最大化」を使用します。"
+  ],
+  snippetValues: ["迅速配送", "当局承認済み", "期間限定割引", "100%オリジナル", "安全購入"],
+  promotions: [
+    "初回注文20%割引",
+    "[国]全国送料無料",
+    "2個買うと3個もらえる"
+  ],
+  priceBlocks: [
+    "[製品] 1個: [価格] - [国]全国配送",
+    "[製品] 3個セット: [価格] - 送料無料",
+    "[製品] コンプリートセット: [価格] - 最優秀オファー"
+  ]
+};
+
+translations['ko'] = { // Coreia do Sul
+  titles: [
+    "[제품] 오리지널 - 지금 구매하고 배송 시 결제",
+    "독점 할인! [제품]이 단 [가격]",
+    "[제품] - [국가] 전국 빠른 배송",
+    "한정 오퍼: [제품] 무료 배송",
+    "[제품] - [국가] 베스트셀러",
+    "[제품] 오리지널을 안전하게 구매",
+    "[제품] - 수천 명의 고객이 승인",
+    "지금 [제품] 받으세요 - 재고 한정",
+    "[제품] - 오늘 당신의 삶을 바꾸세요",
+    "특별 프로모션: [제품]이 [가격]",
+    "[제품] - [국가] 전국 특급 배송",
+    "판매 성공: [제품] 오리지널",
+    "[제품] - 입증되고 효과적인 솔루션",
+    "혜택! [제품] 특별 할인",
+    "[제품] - [가격]에 프리미엄 품질",
+    "[제품] 주문하고 집에서 받으세요",
+    "[제품] - [국가] 독점 오퍼",
+    "마지막 재고: [제품] 오리지널",
+    "[제품] - 1개 구매 시 2개 증정",
+    "무료 배송: [제품]을 [국가]로",
+    "[제품] - 만족 보장",
+    "슈퍼 오퍼: [제품]이 단 [가격]",
+    "[제품] - [국가] 올해의 제품",
+    "지금 [제품] 구매 - 착불 결제",
+    "[제품] - 당신이 찾던 솔루션",
+    "플래시 세일: [제품] 50% 할인",
+    "[제품] - [국가]에서 테스트 및 승인",
+    "선물 받기: [제품] + 무료 배송",
+    "[제품] - [국가] 전체 성공",
+    "마지막 날: [제품]이 [가격]"
+  ],
+  descriptions: [
+    "[제품]을 완전한 안전과 편안함으로 집에서 받으세요. [국가] 전국 빠른 배송.",
+    "특별 오퍼! [제품]을 단 [가격]에 받고 오늘 당신의 루틴을 바꾸세요.",
+    "오리지널 [제품]을 구매하고 배송 시에만 결제하세요. 위험 없음, 복잡함 없음.",
+    "절대적인 판매 성공! [제품]이 이제 [국가]로 특급 배송됩니다.",
+    "이 유니크한 기회를 놓치지 마세요! [제품]이 한정 시간 프로모션 중입니다.",
+    "셀럽의 비밀이 [국가]에 도착: [제품]으로 결과 보장.",
+    "[제품]으로 일상을 바꾸세요 - 수천 명의 고객이 승인한 제품.",
+    "실용적이고 효과적인 솔루션: 지금 [제품]을 주문하고 차이를 느끼세요.",
+    "이달의 판매 챔피언: [제품]. 테스트되고, 승인되고, 추천됩니다.",
+    "[국가] 독점 오퍼. 재고가 떨어지기 전에 지금 [제품]을 받으세요.",
+    "오늘 [제품] 무료 배송을 이용하세요! 한정 시간 프로모션.",
+    "[국가]에서 최고의 가성비: 프리미엄 품질의 [제품].",
+    "완전한 안전과 만족 보장 또는 환불 보장으로 [제품]을 주문하세요.",
+    "놓칠 수 없는 기회: 슈퍼 할인과 무료 배송으로 [제품]을 가져가세요.",
+    "제품 이상의 완전한 경험: [제품]이 삶을 바꿉니다.",
+    "지금 [제품]을 구매하고 당신의 루틴을 혁신하세요. 며칠 안에 결과.",
+    "[국가] 고객들이 가장 찾는 제품: 오리지널이고 효과적인 [제품].",
+    "[국가] 전체에서 이미 [제품]의 수천 건 주문. 성공에 참여하세요.",
+    "집을 떠나지 않고 [제품]을 테스트할 기회! 안전하고 빠른 배송.",
+    "[국가] 어느 도시든 48시간 내 받으세요: 오리지널 [제품].",
+    "품질 인증서가 있는 오리지널 [제품]. 완전한 신뢰로 구매하세요.",
+    "플래시 프로모션: [국가]로 무료 배송과 함께 [제품]이 [가격].",
+    "[제품]의 완전한 솔루션. [국가] 전체에서 수천 명의 만족 고객.",
+    "지금 [제품]을 받고 독점 선물을 받으세요. 한정 오퍼!",
+    "혁신이 [국가]에 도착: [가격]에 첨단 기술의 [제품].",
+    "[제품]을 할부 또는 현금으로 구매하세요. 편의성과 안전성 보장.",
+    "특급 배송: [제품]이 24시간 안에 집에 도착합니다. 지금 주문!",
+    "[국가] 특별 오퍼: 누진 할인이 있는 [제품].",
+    "전문가 추천 제품: 입증된 효능의 [제품].",
+    "마지막 재고: [가격]에 오리지널 [제품]. 놓치지 마세요!"
+  ],
+  usps: [
+    "✅ [국가] 전국 빠른 배송",
+    "✅ 오리지널 인증 제품",
+    "✅ 착불 안전 결제",
+    "✅ 완전 만족 보장",
+    "✅ 5만원 이상 무료 배송",
+    "✅ WhatsApp 24시간 지원",
+    "✅ 50,000명 이상의 만족 고객",
+    "✅ 당국 승인",
+    "✅ 2개 구매 시 1개 무료",
+    "✅ 환불 보장",
+    "✅ 24시간 특급 배송",
+    "✅ 판매 1위 제품",
+    "✅ 배송비 없음",
+    "✅ 최대 12개월 할부",
+    "✅ 전문 기술 지원"
+  ],
+  sitelinks: [
+    { title: "지금 [제품] 구매", description1: "[국가] 특별 오퍼", description2: "빠른 배송 보장" },
+    { title: "[제품] 받기", description1: "재고 한정", description2: "착불 결제" },
+    { title: "지금 [제품] 주문", description1: "[국가]로 무료 배송", description2: "오리지널 인증 제품" },
+    { title: "프로모션 이용", description1: "할인된 [제품]", description2: "한정 시간 유효" },
+    { title: "[제품] 무료 체험", description1: "30일 보장", description2: "환불" },
+    { title: "오리지널 [제품] 구매", description1: "[국가] 최저가", description2: "품질 보장" },
+    { title: "플래시 세일", description1: "[가격]에 [제품]", description2: "마지막 재고" },
+    { title: "[제품] 무료 배송", description1: "특급 배송", description2: "[국가] 전국으로" },
+    { title: "특별 프로모션", description1: "2개 구매 시 3개", description2: "오리지널 [제품]" },
+    { title: "할인으로 주문", description1: "프로모션 [제품]", description2: "최고 가성비" },
+    { title: "구매하고 선물 받기", description1: "[제품] + 보너스", description2: "독점 오퍼" },
+    { title: "빠른 배송", description1: "24시간 안에 [제품]", description2: "완전 안전" },
+    { title: "만족 보장", description1: "승인된 [제품]", description2: "수천 명의 고객" },
+    { title: "[국가] 최저가", description1: "[가격]에 [제품]", description2: "프리미엄 품질" },
+    { title: "마지막 재고", description1: "오리지널 [제품]", description2: "놓치지 마세요!" }
+  ],
+  biddingStrategies: [
+    "COD 캠페인의 경우 [국가]에 적합한 수동 입찰로 '전환 최대화'를 권장하며, 구매 의도가 높은 전환에 집중합니다.",
+    "하단 퍼널 캠페인의 경우 [국가] 시장에 최적화된 '목표 CPA'를 사용하여 자격을 갖춘 리드를 우선시합니다.",
+    "중간 퍼널 캠페인의 경우 [국가]에 적합한 수익 목표로 '목표 ROAS'를 권장합니다.",
+    "상단 퍼널 캠페인의 경우 [국가]에서 가시성을 높이기 위해 '클릭 최대화'를 사용합니다.",
+    "프리미엄 제품의 경우 [국가] 오디언스를 타겟팅하여 '전환 가치 최대화'를 사용합니다."
+  ],
+  snippetValues: ["빠른 배송", "당국 승인", "한정 할인", "100% 오리지널", "안전 구매"],
+  promotions: [
+    "첫 주문 20% 할인",
+    "[국가] 전국 무료 배송",
+    "2개 구매 시 3개 증정"
+  ],
+  priceBlocks: [
+    "[제품] 1개: [가격] - [국가] 전국 배송",
+    "[제품] 3개 세트: [가격] - 무료 배송",
+    "[제품] 컴플리트 세트: [가격] - 최고 오퍼"
+  ]
+};
+
+translations['tr'] = { // Turquia
+  titles: [
+    "[ÜRÜN] Orijinal - Şimdi Satın Al ve Teslimatta Öde",
+    "Özel İndirim! [ÜRÜN] sadece [FİYAT]",
+    "[ÜRÜN] - Tüm [ÜLKE]'ye Hızlı Teslimat",
+    "Sınırlı Teklif: [ÜRÜN] Ücretsiz Kargo ile",
+    "[ÜRÜN] - [ÜLKE]'de En Çok Satan",
+    "[ÜRÜN] Orjinalini Güvenle Satın Alın",
+    "[ÜRÜN] - Binlerce Müşteri Tarafından Onaylandı",
+    "Şimdi [ÜRÜN]'ünüzü Alın - Sınırlı Stok",
+    "[ÜRÜN] - Hayatınızı Bugün Değiştirin",
+    "Özel Promosyon: [ÜRÜN] [FİYAT]'a",
+    "[ÜRÜN] - Tüm [ÜLKE]'ye Ekspres Teslimat",
+    "Satış Başarısı: [ÜRÜN] Orijinal",
+    "[ÜRÜN] - Kanıtlanmış ve Etkili Çözüm",
+    "Fırsatı Kaçırma! [ÜRÜN] Özel İndirimli",
+    "[ÜRÜN] - [FİYAT]'a Premium Kalite",
+    "[ÜRÜN]'ü Sipariş Et ve Evde Teslim Al",
+    "[ÜRÜN] - [ÜLKE] Özel Teklifi",
+    "Son Ürünler: [ÜRÜN] Orijinal",
+    "[ÜRÜN] - 1 Al 2 Kazan",
+    "Ücretsiz Kargo: [ÜRÜN] [ÜLKE]'ye",
+    "[ÜRÜN] - Memnuniyet Garantili",
+    "Süper Teklif: [ÜRÜN] Sadece [FİYAT]'a",
+    "[ÜRÜN] - [ÜLKE]'nin Yılın Ürünü",
+    "Şimdi [ÜRÜN] Satın Al - Kapıda Ödeme",
+    "[ÜRÜN] - Aradığınız Çözüm",
+    "Flaş İndirim: [ÜRÜN] %50 İndirimli",
+    "[ÜRÜN] - [ÜLKE]'de Test Edildi ve Onaylandı",
+    "Hediye Kazan: [ÜRÜN] + Ücretsiz Kargo",
+    "[ÜRÜN] - Tüm [ÜLKE]'de Başarı",
+    "Son Günler: [ÜRÜN] [FİYAT]'a"
+  ],
+  descriptions: [
+    "[ÜRÜN]'ü tam güvenlik ve rahatlıkla evinizde alın. Tüm [ÜLKE]'ye hızlı teslimat.",
+    "Özel teklif! [ÜRÜN]'ü sadece [FİYAT]'a alın ve bugün rutininizi değiştirin.",
+    "Orijinal [ÜRÜN]'ü satın alın ve sadece teslimatta ödeyin. Risk yok, karmaşa yok.",
+    "Mutlak satış başarısı! [ÜRÜN] artık [ÜLKE]'ye ekspres teslimatla.",
+    "Bu eşsiz fırsatı kaçırmayın! [ÜRÜN] sınırlı süre promosyonda.",
+    "Ünlülerin sırrı [ÜLKE]'ye geldi: [ÜRÜN] garantili sonuçlarla.",
+    "[ÜRÜN] ile günlük yaşamınızı dönüştürün - binlerce müşteri tarafından onaylanmış ürün.",
+    "Pratik ve etkili çözüm: şimdi [ÜRÜN]'ünüzü sipariş edin ve farkı hissedin.",
+    "Ayın satış şampiyonu: [ÜRÜN]. Test edildi, onaylandı ve tavsiye edildi.",
+    "[ÜLKE] özel teklifi. Stok bitmeden şimdi [ÜRÜN]'ü alın.",
+    "Bugün [ÜRÜN]'de ücretsiz kargo fırsatından yararlanın! Sınırlı süre promosyonu.",
+    "[ÜLKE]'de en iyi fiyat-performans: premium kaliteli [ÜRÜN].",
+    "[ÜRÜN]'ü tam güvenlik ve memnuniyet garantisi veya para iade garantisiyle sipariş edin.",
+    "Kaçırılmayacak fırsat: süper indirim ve ücretsiz kargo ile [ÜRÜN]'ü alın.",
+    "Üründen fazlası, tam bir deneyim: [ÜRÜN] hayatları değiştirir.",
+    "Şimdi [ÜRÜN]'ü satın alın ve rutininizi devrimleştirin. Birkaç günde sonuçlar.",
+    "[ÜLKE] müşterilerinin en çok aradığı ürün: orijinal ve etkili [ÜRÜN].",
+    "Tüm [ÜLKE]'de zaten binlerce [ÜRÜN] siparişi. Başarıya katılın.",
+    "Evden çıkmadan [ÜRÜN]'ü test etme şansınız! Güvenli ve hızlı teslimat.",
+    "[ÜLKE]'nin herhangi bir şehrinde 48 saat içinde alın: orijinal [ÜRÜN].",
+    "Kalite sertifikası olan orijinal [ÜRÜN]. Tam güvenle satın alın.",
+    "Flaş promosyon: [ÜLKE]'ye ücretsiz kargo ile [ÜRÜN] [FİYAT]'a.",
+    "[ÜRÜN]'de tam çözüm. Tüm [ÜLKE]'de binlerce memnun müşteri.",
+    "Şimdi [ÜRÜN]'ü alın ve özel hediyeler kazanın. Sınırlı teklif!",
+    "Devrim [ÜLKE]'ye geldi: [FİYAT]'a ileri teknoloji [ÜRÜN].",
+    "[ÜRÜN]'ü taksitle veya peşin satın alın. Kolaylık ve güvenlik garantili.",
+    "Ekspres teslimat: [ÜRÜN] 24 saatte evinize gelir. Şimdi sipariş verin!",
+    "[ÜLKE] özel teklifi: kademeli indirimli [ÜRÜN].",
+    "Uzmanlar tarafından önerilen ürün: kanıtlanmış etkinlikli [ÜRÜN].",
+    "Son ürünler: [FİYAT]'a orijinal [ÜRÜN]. Dışarıda kalmayın!"
+  ],
+  usps: [
+    "✅ Tüm [ÜLKE]'ye Hızlı Teslimat",
+    "✅ Orijinal Sertifikalı Ürün",
+    "✅ Kapıda Güvenli Ödeme",
+    "✅ Tam Memnuniyet Garantisi",
+    "✅ 200 TL Üzeri Ücretsiz Kargo",
+    "✅ WhatsApp 7/24 Destek",
+    "✅ 50.000'den Fazla Memnun Müşteri",
+    "✅ Resmi Kurum Onaylı",
+    "✅ 2 Al 1 Bedava",
+    "✅ Para İade Garantisi",
+    "✅ 24 Saat Ekspres Teslimat",
+    "✅ Satış Lideri Ürün",
+    "✅ Kargo Ücreti Yok",
+    "✅ 12 Aya Varan Taksit",
+    "✅ Uzman Teknik Destek"
+  ],
+  sitelinks: [
+    { title: "Şimdi [ÜRÜN] Satın Al", description1: "[ÜLKE] özel teklifi", description2: "Hızlı teslimat garantili" },
+    { title: "[ÜRÜN]'ünüzü Alın", description1: "Sınırlı stok", description2: "Kapıda ödeme" },
+    { title: "Şimdi [ÜRÜN] Sipariş Et", description1: "[ÜLKE]'ye ücretsiz kargo", description2: "Orijinal sertifikalı ürün" },
+    { title: "Promosyondan Yararlan", description1: "İndirimli [ÜRÜN]", description2: "Sınırlı süre geçerli" },
+    { title: "[ÜRÜN]'ü Ücretsiz Dene", description1: "30 gün garantisi", description2: "Para iadesi" },
+    { title: "Orijinal [ÜRÜN] Satın Al", description1: "[ÜLKE]'de en iyi fiyat", description2: "Kalite garantili" },
+    { title: "Flaş İndirim", description1: "[FİYAT]'a [ÜRÜN]", description2: "Son ürünler" },
+    { title: "[ÜRÜN] Ücretsiz Kargo", description1: "Ekspres teslimat", description2: "Tüm [ÜLKE]'ye" },
+    { title: "Özel Promosyon", description1: "2 al 3 kazan", description2: "Orijinal [ÜRÜN]" },
+    { title: "İndirimli Sipariş", description1: "Promosyonlu [ÜRÜN]", description2: "En iyi fiyat-performans" },
+    { title: "Satın Al Hediye Kazan", description1: "[ÜRÜN] + bonus", description2: "Özel teklif" },
+    { title: "Hızlı Teslimat", description1: "24 saatte [ÜRÜN]", description2: "Tam güvenlik" },
+    { title: "Memnuniyet Garantili", description1: "Onaylanmış [ÜRÜN]", description2: "Binlerce müşteri" },
+    { title: "[ÜLKE] En İyi Fiyat", description1: "[FİYAT]'a [ÜRÜN]", description2: "Premium kalite" },
+    { title: "Son Ürünler", description1: "Orijinal [ÜRÜN]", description2: "Kaçırmayın!" }
+  ],
+  biddingStrategies: [
+    "COD kampanyaları için [ÜLKE]'ye uygun manuel tekliflerle 'Dönüşümleri maksimize et'i öneriyoruz, yüksek niyetli satın alma dönüşümlerine odaklanarak.",
+    "Alt huni kampanyaları için [ÜLKE] pazarına optimize edilmiş 'Hedef CPA'yı kullanın, nitelikli potansiyel müşterileri önceliklendirerek.",
+    "Orta huni kampanyaları için [ÜLKE]'ye uygun getiri hedefiyle 'Hedef ROAS'ı öneriyoruz.",
+    "Üst huni kampanyaları için [ÜLKE]'de görünürlüğü artırmak için 'Tıklamaları maksimize et'i kullanın.",
+    "Premium ürünler için [ÜLKE] hedef kitlesini hedefleyerek 'Dönüşüm değerini maksimize et'i kullanın."
+  ],
+  snippetValues: ["Hızlı kargo", "Resmi onaylı", "Sınırlı indirim", "%100 orijinal", "Güvenli alışveriş"],
+  promotions: [
+    "İlk siparişte %20 indirim",
+    "Tüm [ÜLKE]'ye ücretsiz kargo",
+    "2 al 3 öde"
+  ],
+  priceBlocks: [
+    "[ÜRÜN] 1 adet: [FİYAT] - Tüm [ÜLKE]'ye teslimat",
+    "[ÜRÜN] 3'lü set: [FİYAT] - Ücretsiz kargo",
+    "[ÜRÜN] Komple set: [FİYAT] - En iyi teklif"
+  ]
+};
+
+translations['id'] = { // Indonésia
+  titles: [
+    "[PRODUK] Original - Beli Sekarang dan Bayar Saat Terima",
+    "Diskon Eksklusif! [PRODUK] hanya [HARGA]",
+    "[PRODUK] - Pengiriman Cepat ke Seluruh [NEGARA]",
+    "Penawaran Terbatas: [PRODUK] dengan Ongkir Gratis",
+    "[PRODUK] - Terlaris di [NEGARA]",
+    "Beli [PRODUK] Original dengan Aman",
+    "[PRODUK] - Disetujui Ribuan Pelanggan",
+    "Dapatkan [PRODUK] Anda Sekarang - Stok Terbatas",
+    "[PRODUK] - Ubah Hidup Anda Hari Ini",
+    "Promosi Spesial: [PRODUK] seharga [HARGA]",
+    "[PRODUK] - Pengiriman Express ke Seluruh [NEGARA]",
+    "Sukses Penjualan: [PRODUK] Original",
+    "[PRODUK] - Solusi Terbukti dan Efektif",
+    "Manfaatkan! [PRODUK] dengan Diskon Spesial",
+    "[PRODUK] - Kualitas Premium seharga [HARGA]",
+    "Pesan [PRODUK] dan Terima di Rumah",
+    "[PRODUK] - Penawaran Eksklusif untuk [NEGARA]",
+    "Unit Terakhir: [PRODUK] Original",
+    "[PRODUK] - Beli 1 Dapat 2",
+    "Ongkir Gratis: [PRODUK] ke [NEGARA]",
+    "[PRODUK] - Kepuasan Terjamin",
+    "Super Penawaran: [PRODUK] hanya [HARGA]",
+    "[PRODUK] - Produk Tahun Ini di [NEGARA]",
+    "Beli [PRODUK] Sekarang - Bayar di Tempat",
+    "[PRODUK] - Solusi yang Anda Cari",
+    "Flash Sale: [PRODUK] diskon 50%",
+    "[PRODUK] - Teruji dan Disetujui di [NEGARA]",
+    "Menangkan Hadiah: [PRODUK] + Ongkir Gratis",
+    "[PRODUK] - Sukses di Seluruh [NEGARA]",
+    "Hari Terakhir: [PRODUK] seharga [HARGA]"
+  ],
+  descriptions: [
+    "Terima [PRODUK] di rumah Anda dengan keamanan dan kenyamanan penuh. Pengiriman cepat ke seluruh [NEGARA].",
+    "Penawaran spesial! Dapatkan [PRODUK] hanya seharga [HARGA] dan ubah rutinitas Anda hari ini.",
+    "Beli [PRODUK] original dan bayar hanya saat terima. Tanpa risiko, tanpa ribet.",
+    "Sukses penjualan absolut! [PRODUK] kini dengan pengiriman express ke [NEGARA].",
+    "Jangan lewatkan kesempatan unik ini! [PRODUK] sedang promo untuk waktu terbatas.",
+    "Rahasia selebriti telah tiba di [NEGARA]: [PRODUK] dengan hasil terjamin.",
+    "Ubah kehidupan sehari-hari Anda dengan [PRODUK] - produk yang disetujui ribuan pelanggan.",
+    "Solusi praktis dan efektif: pesan [PRODUK] Anda sekarang dan rasakan perbedaannya.",
+    "Juara penjualan bulan ini: [PRODUK]. Teruji, disetujui, dan direkomendasikan.",
+    "Penawaran eksklusif untuk [NEGARA]. Dapatkan [PRODUK] sekarang sebelum stok habis.",
+    "Manfaatkan ongkir gratis untuk [PRODUK] hari ini! Promosi waktu terbatas.",
+    "Value terbaik di [NEGARA]: [PRODUK] dengan kualitas premium.",
+    "Pesan [PRODUK] dengan keamanan penuh dan jaminan kepuasan atau uang kembali.",
+    "Kesempatan tak terlupakan: ambil [PRODUK] dengan super diskon dan ongkir gratis.",
+    "Lebih dari produk, pengalaman lengkap: [PRODUK] mengubah hidup.",
+    "Beli [PRODUK] sekarang dan revolusikan rutinitas Anda. Hasil dalam beberapa hari.",
+    "Produk paling dicari pelanggan [NEGARA]: [PRODUK] original dan efektif.",
+    "Sudah ribuan pesanan [PRODUK] di seluruh [NEGARA]. Bergabunglah dengan kesuksesan.",
+    "Kesempatan Anda mencoba [PRODUK] tanpa keluar rumah! Pengiriman aman dan cepat.",
+    "Terima dalam 48 jam di kota mana pun di [NEGARA]: [PRODUK] original.",
+    "[PRODUK] original dengan sertifikat kualitas. Beli dengan kepercayaan penuh.",
+    "Promosi kilat: [PRODUK] seharga [HARGA] dengan ongkir gratis ke [NEGARA].",
+    "Solusi lengkap dalam [PRODUK]. Ribuan pelanggan puas di seluruh [NEGARA].",
+    "Dapatkan [PRODUK] sekarang dan terima hadiah eksklusif. Penawaran terbatas!",
+    "Revolusi telah tiba di [NEGARA]: [PRODUK] dengan teknologi canggih seharga [HARGA].",
+    "Beli [PRODUK] cicilan atau tunai. Kemudahan dan keamanan terjamin.",
+    "Pengiriman express: [PRODUK] tiba di rumah Anda dalam 24 jam. Pesan sekarang!",
+    "Penawaran spesial untuk [NEGARA]: [PRODUK] dengan diskon bertingkat.",
+    "Produk yang direkomendasikan ahli: [PRODUK] dengan efektivitas terbukti.",
+    "Unit terakhir: [PRODUK] original seharga [HARGA]. Jangan sampai kehabisan!"
+  ],
+  usps: [
+    "✅ Pengiriman Cepat ke Seluruh [NEGARA]",
+    "✅ Produk Original Bersertifikat",
+    "✅ Bayar di Tempat Aman",
+    "✅ Jaminan Kepuasan Total",
+    "✅ Ongkir Gratis di Atas Rp 100rb",
+    "✅ Support 24 jam via WhatsApp",
+    "✅ Lebih dari 50.000 Pelanggan Puas",
+    "✅ Disetujui BPOM",
+    "✅ Beli 2 Gratis 1",
+    "✅ Jaminan Uang Kembali",
+    "✅ Pengiriman Express 24 Jam",
+    "✅ Produk Leader Penjualan",
+    "✅ Tanpa Biaya Kirim",
+    "✅ Cicilan Hingga 12 Bulan",
+    "✅ Support Teknis Khusus"
+  ],
+  sitelinks: [
+    { title: "Beli Sekarang [PRODUK]", description1: "Penawaran spesial untuk [NEGARA]", description2: "Pengiriman cepat terjamin" },
+    { title: "Dapatkan [PRODUK] Anda", description1: "Stok terbatas", description2: "Bayar di tempat" },
+    { title: "Pesan [PRODUK] Sekarang", description1: "Ongkir gratis ke [NEGARA]", description2: "Produk original bersertifikat" },
+    { title: "Manfaatkan Promosi", description1: "[PRODUK] dengan diskon", description2: "Berlaku waktu terbatas" },
+    { title: "Coba [PRODUK] Gratis", description1: "Jaminan 30 hari", description2: "Uang kembali" },
+    { title: "Beli [PRODUK] Original", description1: "Harga terbaik di [NEGARA]", description2: "Kualitas terjamin" },
+    { title: "Flash Sale", description1: "[PRODUK] seharga [HARGA]", description2: "Unit terakhir" },
+    { title: "Ongkir Gratis [PRODUK]", description1: "Pengiriman express", description2: "Ke seluruh [NEGARA]" },
+    { title: "Promosi Spesial", description1: "Beli 2 dapat 3", description2: "[PRODUK] original" },
+    { title: "Pesan dengan Diskon", description1: "[PRODUK] promosi", description2: "Value terbaik" },
+    { title: "Beli dan Menang Hadiah", description1: "[PRODUK] + bonus", description2: "Penawaran eksklusif" },
+    { title: "Pengiriman Cepat", description1: "[PRODUK] dalam 24 jam", description2: "Keamanan total" },
+    { title: "Kepuasan Terjamin", description1: "[PRODUK] disetujui", description2: "Ribuan pelanggan" },
+    { title: "Harga Terbaik [NEGARA]", description1: "[PRODUK] seharga [HARGA]", description2: "Kualitas premium" },
+    { title: "Unit Terakhir", description1: "[PRODUK] original", description2: "Jangan sampai terlewat!" }
+  ],
+  biddingStrategies: [
+    "Untuk kampanye COD, kami merekomendasikan 'Maksimalkan konversi' dengan bidding manual yang sesuai untuk [NEGARA], fokus pada konversi pembelian dengan niat tinggi.",
+    "Untuk kampanye bottom-funnel, gunakan 'Target CPA' yang dioptimalkan untuk pasar [NEGARA], prioritaskan lead berkualitas.",
+    "Untuk kampanye mid-funnel, kami merekomendasikan 'Target ROAS' dengan target return yang sesuai untuk [NEGARA].",
+    "Untuk kampanye top-funnel, gunakan 'Maksimalkan klik' untuk meningkatkan visibilitas di [NEGARA].",
+    "Untuk produk premium, gunakan 'Maksimalkan nilai konversi' menargetkan audiens [NEGARA]."
+  ],
+  snippetValues: ["Pengiriman cepat", "Disetujui BPOM", "Diskon terbatas", "100% original", "Pembelian aman"],
+  promotions: [
+    "Diskon 20% untuk pesanan pertama",
+    "Ongkir gratis ke seluruh [NEGARA]",
+    "Beli 2 dapat 3"
+  ],
+  priceBlocks: [
+    "[PRODUK] 1 unit: [HARGA] - Pengiriman ke seluruh [NEGARA]",
+    "[PRODUK] Paket 3 unit: [HARGA] - Ongkir gratis",
+    "[PRODUK] Paket lengkap: [HARGA] - Penawaran terbaik"
+  ]
+};
+
+translations['hi'] = { // Índia
+  titles: [
+    "[उत्पाद] मूल - अभी खरीदें और डिलीवरी पर भुगतान करें",
+    "विशेष छूट! [उत्पाद] केवल [कीमत] में",
+    "[उत्पाद] - पूरे [देश] में तेज़ डिलीवरी",
+    "सीमित ऑफर: [उत्पाद] मुफ्त शिपिंग के साथ",
+    "[उत्पाद] - [देश] में सबसे ज्यादा बिकने वाला",
+    "[उत्पाद] मूल को सुरक्षित रूप से खरीदें",
+    "[उत्पाद] - हजारों ग्राहकों द्वारा अनुमोदित",
+    "अभी अपना [उत्पाद] पाएं - सीमित स्टॉक",
+    "[उत्पाद] - आज ही अपनी जिंदगी बदलें",
+    "विशेष प्रमोशन: [उत्पाद] [कीमत] में",
+    "[उत्पाद] - पूरे [देश] में एक्सप्रेस डिलीवरी",
+    "बिक्री की सफलता: [उत्पाद] मूल",
+    "[उत्पाद] - सिद्ध और प्रभावी समाधान",
+    "फायदा उठाएं! [उत्पाद] विशेष छूट के साथ",
+    "[उत्पाद] - [कीमत] में प्रीमियम गुणवत्ता",
+    "[उत्पाद] ऑर्डर करें और घर पर प्राप्त करें",
+    "[उत्पाद] - [देश] के लिए विशेष ऑफर",
+    "अंतिम यूनिट: [उत्पाद] मूल",
+    "[उत्पाद] - 1 खरीदें 2 पाएं",
+    "मुफ्त शिपिंग: [उत्पाद] [देश] में",
+    "[उत्पाद] - संतुष्टि की गारंटी",
+    "सुपर ऑफर: [उत्पाद] केवल [कीमत] में",
+    "[उत्पाद] - [देश] का वर्ष का उत्पाद",
+    "अभी [उत्पाद] खरीदें - कैश ऑन डिलीवरी",
+    "[उत्पाद] - वह समाधान जिसकी आप तलाश कर रहे थे",
+    "फ्लैश सेल: [उत्पाद] 50% छूट के साथ",
+    "[उत्पाद] - [देश] में परीक्षित और अनुमोदित",
+    "उपहार जीतें: [उत्पाद] + मुफ्त शिपिंग",
+    "[उत्पाद] - पूरे [देश] में सफलता",
+    "अंतिम दिन: [उत्पाद] [कीमत] में"
+  ],
+  descriptions: [
+    "[उत्पाद] को पूर्ण सुरक्षा और आराम के साथ अपने घर पर प्राप्त करें। पूरे [देश] में तेज़ डिलीवरी।",
+    "विशेष ऑफर! [उत्पाद] को केवल [कीमत] में पाएं और आज ही अपनी दिनचर्या बदलें।",
+    "मूल [उत्पाद] खरीदें और केवल डिलीवरी पर भुगतान करें। कोई जोखिम नहीं, कोई जटिलता नहीं।",
+    "पूर्ण बिक्री सफलता! [उत्पाद] अब [देश] के लिए एक्सप्रेस डिलीवरी के साथ।",
+    "इस अनोखे अवसर को न चूकें! [उत्पाद] सीमित समय के लिए प्रमोशन में।",
+    "सेलिब्रिटीज का राज [देश] पहुंचा: [उत्पाद] गारंटीशुदा परिणामों के साथ।",
+    "[उत्पाद] के साथ अपना दैनिक जीवन बदलें - हजारों ग्राहकों द्वारा अनुमोदित उत्पाद।",
+    "व्यावहारिक और प्रभावी समाधान: अभी अपना [उत्पाद] ऑर्डर करें और अंतर महसूस करें।",
+    "इस महीने के बिक्री चैंपियन: [उत्पाद]। परीक्षित, अनुमोदित और सुझाया गया।",
+    "[देश] के लिए विशेष ऑफर। स्टॉक खत्म होने से पहले अभी [उत्पाद] पाएं।",
+    "आज [उत्पाद] पर मुफ्त शिपिंग का लाभ उठाएं! सीमित समय प्रमोशन।",
+    "[देश] में सबसे अच्छा मूल्य-प्रदर्शन: प्रीमियम गुणवत्ता वाला [उत्पाद]।",
+    "[उत्पाद] को पूर्ण सुरक्षा और संतुष्टि गारंटी या पैसे वापसी गारंटी के साथ ऑर्डर करें।",
+    "अविस्मरणीय अवसर: सुपर छूट और मुफ्त शिपिंग के साथ [उत्पाद] ले जाएं।",
+    "उत्पाद से कहीं अधिक, एक पूरा अनुभव: [उत्पाद] जिंदगी बदल देता है।",
+    "अभी [उत्पाद] खरीदें और अपनी दिनचर्या में क्रांति लाएं। कुछ दिनों में परिणाम।",
+    "[देश] के ग्राहकों द्वारा सबसे ज्यादा मांगा जाने वाला उत्पाद: मूल और प्रभावी [उत्पाद]।",
+    "पूरे [देश] में पहले से ही [उत्पाद] के हजारों ऑर्डर। सफलता में शामिल हों।",
+    "घर से बाहर निकले बिना [उत्पाद] परखने का आपका मौका! सुरक्षित और तेज़ डिलीवरी।",
+    "[देश] के किसी भी शहर में 48 घंटे के भीतर प्राप्त करें: मूल [उत्पाद]।",
+    "गुणवत्ता प्रमाणपत्र के साथ मूल [उत्पाद]। पूर्ण विश्वास के साथ खरीदें।",
+    "फ्लैश प्रमोशन: [देश] के लिए मुफ्त शिपिंग के साथ [उत्पाद] [कीमत] में।",
+    "[उत्पाद] में पूर्ण समाधान। पूरे [देश] में हजारों संतुष्ट ग्राहक।",
+    "अभी [उत्पाद] पाएं और विशेष उपहार प्राप्त करें। सीमित ऑफर!",
+    "क्रांति [देश] में आ गई: [कीमत] में उन्नत तकनीक का [उत्पाद]।",
+    "[उत्पाद] को किस्तों में या नकद खरीदें। सुविधा और सुरक्षा की गारंटी।",
+    "एक्सप्रेस डिलीवरी: [उत्पाद] 24 घंटे में आपके घर पहुंचेगा। अभी ऑर्डर करें!",
+    "[देश] के लिए विशेष ऑफर: प्रगतिशील छूट के साथ [उत्पाद]।",
+    "विशेषज्ञों द्वारा सुझाया गया उत्पाद: सिद्ध प्रभावशीलता वाला [उत्पाद]।",
+    "अंतिम यूनिट: [कीमत] में मूल [उत्पाद]। बाहर न रह जाएं!"
+  ],
+  usps: [
+    "✅ पूरे [देश] में तेज़ डिलीवरी",
+    "✅ मूल प्रमाणित उत्पाद",
+    "✅ कैश ऑन डिलीवरी सुरक्षित भुगतान",
+    "✅ पूर्ण संतुष्टि की गारंटी",
+    "✅ ₹500 के ऊपर मुफ्त शिपिंग",
+    "✅ WhatsApp पर 24 घंटे सहायता",
+    "✅ 50,000 से अधिक संतुष्ट ग्राहक",
+    "✅ प्राधिकरण द्वारा अनुमोदित",
+    "✅ 2 खरीदें 1 मुफ्त पाएं",
+    "✅ पैसे वापसी की गारंटी",
+    "✅ 24 घंटे एक्सप्रेस डिलीवरी",
+    "✅ बिक्री लीडर उत्पाद",
+    "✅ कोई शिपिंग शुल्क नहीं",
+    "✅ 12 महीने तक की किस्त",
+    "✅ विशेषज्ञ तकनीकी सहायता"
+  ],
+  sitelinks: [
+    { title: "अभी [उत्पाद] खरीदें", description1: "[देश] के लिए विशेष ऑफर", description2: "तेज़ डिलीवरी की गारंटी" },
+    { title: "अपना [उत्पाद] पाएं", description1: "सीमित स्टॉक", description2: "कैश ऑन डिलीवरी" },
+    { title: "अभी [उत्पाद] ऑर्डर करें", description1: "[देश] के लिए मुफ्त शिपिंग", description2: "मूल प्रमाणित उत्पाद" },
+    { title: "प्रमोशन का लाभ उठाएं", description1: "छूट के साथ [उत्पाद]", description2: "सीमित समय के लिए वैध" },
+    { title: "[उत्पाद] मुफ्त में आजमाएं", description1: "30 दिन की गारंटी", description2: "पैसे वापसी" },
+    { title: "मूल [उत्पाद] खरीदें", description1: "[देश] में सबसे अच्छी कीमत", description2: "गुणवत्ता की गारंटी" },
+    { title: "फ्लैश सेल", description1: "[कीमत] में [उत्पाद]", description2: "अंतिम यूनिट" },
+    { title: "[उत्पाद] मुफ्त शिपिंग", description1: "एक्सप्रेस डिलीवरी", description2: "पूरे [देश] में" },
+    { title: "विशेष प्रमोशन", description1: "2 खरीदें 3 पाएं", description2: "मूल [उत्पाद]" },
+    { title: "छूट के साथ ऑर्डर", description1: "प्रमोशनल [उत्पाद]", description2: "सबसे अच्छा मूल्य" },
+    { title: "खरीदें और उपहार जीतें", description1: "[उत्पाद] + बोनस", description2: "विशेष ऑफर" },
+    { title: "तेज़ डिलीवरी", description1: "24 घंटे में [उत्पाद]", description2: "पूर्ण सुरक्षा" },
+    { title: "संतुष्टि की गारंटी", description1: "अनुमोदित [उत्पाद]", description2: "हजारों ग्राहक" },
+    { title: "[देश] में सबसे अच्छी कीमत", description1: "[कीमत] में [उत्पाद]", description2: "प्रीमियम गुणवत्ता" },
+    { title: "अंतिम यूनिट", description1: "मूल [उत्पाद]", description2: "चूकें नहीं!" }
+  ],
+  biddingStrategies: [
+    "COD अभियानों के लिए, हम [देश] के लिए उपयुक्त मैनुअल बिडिंग के साथ 'रूपांतरण अधिकतम करें' की सिफारिश करते हैं, उच्च-इरादे वाले खरीदारी रूपांतरणों पर ध्यान केंद्रित करते हुए।",
+    "बॉटम-फ़नल अभियानों के लिए, [देश] बाज़ार के लिए अनुकूलित 'लक्ष्य CPA' का उपयोग करें, योग्य लीड को प्राथमिकता देते हुए।",
+    "मिड-फ़नल अभियानों के लिए, हम [देश] के लिए उपयुक्त रिटर्न लक्ष्य के साथ 'लक्ष्य ROAS' की सिफारिश करते हैं।",
+    "टॉप-फ़नल अभियानों के लिए, [देश] में दृश्यता बढ़ाने के लिए 'क्लिक अधिकतम करें' का उपयोग करें।",
+    "प्रीमियम उत्पादों के लिए, [देश] दर्शकों को लक्षित करते हुए 'रूपांतरण मूल्य अधिकतम करें' का उपयोग करें।"
+  ],
+  snippetValues: ["तेज़ शिपिंग", "प्राधिकरण अनुमोदित", "सीमित छूट", "100% मूल", "सुरक्षित खरीदारी"],
+  promotions: [
+    "पहले ऑर्डर पर 20% छूट",
+    "पूरे [देश] में मुफ्त शिपिंग",
+    "2 खरीदें 3 पाएं"
+  ],
+  priceBlocks: [
+    "[उत्पाद] 1 यूनिट: [कीमत] - पूरे [देश] में डिलीवरी",
+    "[उत्पाद] 3-यूनिट किट: [कीमत] - मुफ्त शिपिंग",
+    "[उत्पाद] पूरा किट: [कीमत] - सबसे अच्छा ऑफर"
+  ]
+};
+
+translations['ar'] = { // Egito e países árabes
+  titles: [
+    "[المنتج] الأصلي - اشتري الآن وادفع عند الاستلام",
+    "خصم حصري! [المنتج] بسعر [السعر] فقط",
+    "[المنتج] - توصيل سريع لجميع أنحاء [البلد]",
+    "عرض محدود: [المنتج] مع شحن مجاني",
+    "[المنتج] - الأكثر مبيعاً في [البلد]",
+    "اشترِ [المنتج] الأصلي بأمان",
+    "[المنتج] - معتمد من آلاف العملاء",
+    "احصل على [المنتج] الآن - مخزون محدود",
+    "[المنتج] - غيّر حياتك اليوم",
+    "عرض خاص: [المنتج] بسعر [السعر]",
+    "[المنتج] - توصيل سريع لجميع أنحاء [البلد]",
+    "نجاح في المبيعات: [المنتج] الأصلي",
+    "[المنتج] - حل مثبت وفعال",
+    "استفد! [المنتج] بخصم خاص",
+    "[المنتج] - جودة ممتازة بسعر [السعر]",
+    "اطلب [المنتج] واستلمه في المنزل",
+    "[المنتج] - عرض حصري لـ [البلد]",
+    "القطع الأخيرة: [المنتج] الأصلي",
+    "[المنتج] - اشترِ واحداً واحصل على اثنين",
+    "شحن مجاني: [المنتج] إلى [البلد]",
+    "[المنتج] - ضمان الرضا",
+    "عرض رائع: [المنتج] بسعر [السعر] فقط",
+    "[المنتج] - منتج العام في [البلد]",
+    "اشترِ [المنتج] الآن - دفع عند الاستلام",
+    "[المنتج] - الحل الذي تبحث عنه",
+    "تخفيضات سريعة: [المنتج] بخصم 50%",
+    "[المنتج] - مُختبر ومعتمد في [البلد]",
+    "اربح هدية: [المنتج] + شحن مجاني",
+    "[المنتج] - نجاح في جميع أنحاء [البلد]",
+    "الأيام الأخيرة: [المنتج] بسعر [السعر]"
+  ],
+  descriptions: [
+    "استلم [المنتج] في منزلك بأمان وراحة تامة. توصيل سريع لجميع أنحاء [البلد].",
+    "عرض خاص! احصل على [المنتج] بسعر [السعر] فقط وغيّر روتينك اليوم.",
+    "اشترِ [المنتج] الأصلي وادفع فقط عند الاستلام. بلا مخاطر، بلا تعقيدات.",
+    "نجاح مطلق في المبيعات! [المنتج] الآن مع توصيل سريع إلى [البلد].",
+    "لا تفوت هذه الفرصة الفريدة! [المنتج] في عرض لفترة محدودة.",
+    "سر المشاهير وصل إلى [البلد]: [المنتج] مع نتائج مضمونة.",
+    "غيّر حياتك اليومية مع [المنتج] - منتج معتمد من آلاف العملاء.",
+    "حل عملي وفعال: اطلب [المنتج] الآن واشعر بالفرق.",
+    "بطل مبيعات الشهر: [المنتج]. مُختبر ومعتمد وموصى به.",
+    "عرض حصري لـ [البلد]. احصل على [المنتج] الآن قبل نفاد المخزون.",
+    "استفد من الشحن المجاني على [المنتج] اليوم! عرض لفترة محدودة.",
+    "أفضل قيمة مقابل المال في [البلد]: [المنتج] بجودة ممتازة.",
+    "اطلب [المنتج] بأمان تام مع ضمان الرضا أو إعادة المال.",
+    "فرصة لا تُفوت: خذ [المنتج] مع خصم رائع وشحن مجاني.",
+    "أكثر من منتج، تجربة كاملة: [المنتج] يغير الحياة.",
+    "اشترِ [المنتج] الآن وثوّر روتينك. نتائج في أيام قليلة.",
+    "المنتج الأكثر طلباً من عملاء [البلد]: [المنتج] أصلي وفعال.",
+    "بالفعل آلاف طلبات [المنتج] في جميع أنحاء [البلد]. انضم للنجاح.",
+    "فرصتك لتجربة [المنتج] دون الخروج من المنزل! توصيل آمن وسريع.",
+    "استلم خلال 48 ساعة في أي مدينة في [البلد]: [المنتج] الأصلي.",
+    "[المنتج] الأصلي مع شهادة جودة. اشترِ بثقة تامة.",
+    "عرض سريع: [المنتج] بسعر [السعر] مع شحن مجاني إلى [البلد].",
+    "حل شامل في [المنتج]. آلاف العملاء الراضين في جميع أنحاء [البلد].",
+    "احصل على [المنتج] الآن واستلم هدايا حصرية. عرض محدود!",
+    "الثورة وصلت إلى [البلد]: [المنتج] بتقنية متقدمة بسعر [السعر].",
+    "اشترِ [المنتج] بالتقسيط أو نقداً. سهولة وأمان مضمونان.",
+    "توصيل سريع: [المنتج] يصل لمنزلك خلال 24 ساعة. اطلب الآن!",
+    "عرض خاص لـ [البلد]: [المنتج] مع خصم متدرج.",
+    "منتج موصى به من المختصين: [المنتج] بفعالية مثبتة.",
+    "القطع الأخيرة: [المنتج] الأصلي بسعر [السعر]. لا تبقَ خارجاً!"
+  ],
+  usps: [
+    "✅ توصيل سريع لجميع أنحاء [البلد]",
+    "✅ منتج أصلي معتمد",
+    "✅ دفع آمن عند الاستلام",
+    "✅ ضمان الرضا التام",
+    "✅ شحن مجاني فوق 200 جنيه",
+    "✅ دعم 24 ساعة عبر واتساب",
+    "✅ أكثر من 50,000 عميل راضٍ",
+    "✅ معتمد من الجهات المختصة",
+    "✅ اشترِ 2 واحصل على 1 مجاناً",
+    "✅ ضمان إعادة المال",
+    "✅ توصيل سريع خلال 24 ساعة",
+    "✅ منتج رائد في المبيعات",
+    "✅ بدون رسوم شحن",
+    "✅ تقسيط حتى 12 شهراً",
+    "✅ دعم فني متخصص"
+  ],
+  sitelinks: [
+    { title: "اشترِ [المنتج] الآن", description1: "عرض خاص لـ [البلد]", description2: "توصيل سريع مضمون" },
+    { title: "احصل على [المنتج]", description1: "مخزون محدود", description2: "دفع عند الاستلام" },
+    { title: "اطلب [المنتج] الآن", description1: "شحن مجاني إلى [البلد]", description2: "منتج أصلي معتمد" },
+    { title: "استفد من العرض", description1: "[المنتج] بخصم", description2: "ساري لفترة محدودة" },
+    { title: "جرّب [المنتج] مجاناً", description1: "ضمان 30 يوماً", description2: "إعادة المال" },
+    { title: "اشترِ [المنتج] الأصلي", description1: "أفضل سعر في [البلد]", description2: "جودة مضمونة" },
+    { title: "تخفيضات سريعة", description1: "[المنتج] بسعر [السعر]", description2: "القطع الأخيرة" },
+    { title: "شحن مجاني [المنتج]", description1: "توصيل سريع", description2: "لجميع أنحاء [البلد]" },
+    { title: "عرض خاص", description1: "اشترِ 2 واحصل على 3", description2: "[المنتج] الأصلي" },
+    { title: "اطلب بخصم", description1: "[المنتج] الترويجي", description2: "أفضل قيمة" },
+    { title: "اشترِ واربح هدية", description1: "[المنتج] + مكافأة", description2: "عرض حصري" },
+    { title: "توصيل سريع", description1: "[المنتج] خلال 24 ساعة", description2: "أمان تام" },
+    { title: "ضمان الرضا", description1: "[المنتج] معتمد", description2: "آلاف العملاء" },
+    { title: "أفضل سعر في [البلد]", description1: "[المنتج] بسعر [السعر]", description2: "جودة ممتازة" },
+    { title: "القطع الأخيرة", description1: "[المنتج] الأصلي", description2: "لا تفوتها!" }
+  ],
+  biddingStrategies: [
+    "لحملات الدفع عند الاستلام، نوصي بـ 'تعظيم التحويلات' مع عروض أسعار يدوية مناسبة لـ [البلد]، مع التركيز على تحويلات الشراء عالية النية.",
+    "لحملات القمع السفلي، استخدم 'الهدف CPA' المُحسَّن لسوق [البلد]، مع إعطاء الأولوية للعملاء المحتملين المؤهلين.",
+    "لحملات القمع المتوسط، نوصي بـ 'الهدف ROAS' مع هدف عائد مناسب لـ [البلد].",
+    "لحملات القمع العلوي، استخدم 'تعظيم النقرات' لزيادة الظهور في [البلد].",
+    "للمنتجات المميزة، استخدم 'تعظيم قيمة التحويل' مع استهداف جمهور [البلد]."
+  ],
+  snippetValues: ["شحن سريع", "معتمد رسمياً", "خصم محدود", "100% أصلي", "شراء آمن"],
+  promotions: [
+    "خصم 20% على الطلب الأول",
+    "شحن مجاني لجميع أنحاء [البلد]",
+    "اشترِ 2 واحصل على 3"
+  ],
+  priceBlocks: [
+    "[المنتج] قطعة واحدة: [السعر] - توصيل لجميع أنحاء [البلد]",
+    "[المنتج] طقم 3 قطع: [السعر] - شحن مجاني",
+    "[المنتج] الطقم الكامل: [السعر] - أفضل عرض"
+  ]
+};
+
+export const getTranslation = (languageCode: string): Translation => {
+  return translations[languageCode] || translations['pt'];
 };
 
 export const formatTemplate = (template: string, product: string, country: string): string => {
   return template
-    .replace(/\{product\}/g, product)
-    .replace(/\{country\}/g, country);
+    .replace(/\[PRODUTO\]/g, product)
+    .replace(/\[PRODUCT\]/g, product)
+    .replace(/\[PRODUIT\]/g, product)
+    .replace(/\[PRODUKT\]/g, product)
+    .replace(/\[PRODOTTO\]/g, product)
+    .replace(/\[PRODUCTO\]/g, product)
+    .replace(/\[ÜRÜN\]/g, product)
+    .replace(/\[PRODUK\]/g, product)
+    .replace(/\[उत्पाद\]/g, product)
+    .replace(/\[المنتج\]/g, product)
+    .replace(/\[製品\]/g, product)
+    .replace(/\[제품\]/g, product)
+    .replace(/\[PAÍS\]/g, country)
+    .replace(/\[COUNTRY\]/g, country)
+    .replace(/\[PAYS\]/g, country)
+    .replace(/\[LAND\]/g, country)
+    .replace(/\[PAESE\]/g, country)
+    .replace(/\[ÜLKE\]/g, country)
+    .replace(/\[NEGARA\]/g, country)
+    .replace(/\[देश\]/g, country)
+    .replace(/\[البلد\]/g, country)
+    .replace(/\[国\]/g, country)
+    .replace(/\[국가\]/g, country);
 };
