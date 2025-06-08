@@ -518,7 +518,7 @@ const CopyfyPanel = () => {
             </div>
 
             {/* Bidding Strategy Section - NEW */}
-            <div className="mb-6 md:mb-8 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+            <div className="mb-6 md:mb-8 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
               <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
                 <Target className="w-5 h-5 text-yellow-500" />
                 Estratégia de Lance Recomendada
@@ -532,7 +532,7 @@ const CopyfyPanel = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
               {/* Títulos - Now showing 30 titles */}
-              <div className="lg:col-span-2 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <div className="lg:col-span-2 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
                 <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
                   <Copy className="w-5 h-5 text-yellow-500" />
                   Títulos da Campanha (30 variações)
@@ -548,7 +548,7 @@ const CopyfyPanel = () => {
               </div>
 
               {/* Descrições */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
                 <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
                   <FileText className="w-5 h-5 text-yellow-500" />
                   Descrições
@@ -563,7 +563,7 @@ const CopyfyPanel = () => {
               </div>
 
               {/* Sitelinks */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Sitelinks</h3>
                 <div className="space-y-4">
                   {sitelinks.map((link, idx) => <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}>
@@ -589,7 +589,7 @@ const CopyfyPanel = () => {
               </div>
 
               {/* USPs */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Frases de Destaques</h3>
                 <div className="space-y-3">
                   {usps.map((usp, idx) => <div key={idx} className="bg-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(usp)}>
@@ -601,7 +601,7 @@ const CopyfyPanel = () => {
               </div>
 
               {/* Snippet Estruturado - Updated with 4 values */}
-              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
                 <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => copyToClipboard(generateStructuredSnippet())}>
                   📌 Snippet Estruturado
                 </h3>
@@ -614,7 +614,7 @@ const CopyfyPanel = () => {
               </div>
 
               {/* Extensão de Promoção - Updated with 3 promotions */}
-              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
                 <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
                   🎯 Extensão de Promoção
                 </h3>
@@ -631,7 +631,7 @@ const CopyfyPanel = () => {
             </div>
 
             {/* Extensão de Preço - Updated with 3 price blocks */}
-            <div className="mt-6 md:mt-8 extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gray-950">
+            <div className="mt-6 md:mt-8 extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/5 to-black">
               <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
                 💲 Extensão de Preço
               </h3>
