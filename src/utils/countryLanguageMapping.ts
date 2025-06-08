@@ -1,5 +1,3 @@
-
-
 // Mapeamento completo de países para idiomas
 export const countryToLanguage: { [key: string]: string } = {
   // Português
@@ -12,8 +10,8 @@ export const countryToLanguage: { [key: string]: string } = {
   
   // Inglês
   'US': 'en', 'GB': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en', 'ZA': 'en', 'SG': 'en',
-  'PH': 'en', 'NG': 'en', 'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en', 'ZM': 'en',
-  'ZW': 'en', 'BW': 'en', 'MW': 'en', 'MT': 'en', 'CY': 'el', 'JM': 'en', 'TT': 'en', 'BB': 'en',
+  'NG': 'en', 'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en', 'ZM': 'en',
+  'ZW': 'en', 'BW': 'en', 'MW': 'en', 'MT': 'en', 'JM': 'en', 'TT': 'en', 'BB': 'en',
   'BS': 'en', 'BZ': 'en', 'GY': 'en', 'LR': 'en', 'SL': 'en', 'GM': 'en', 'FJ': 'en',
   
   // Francês
@@ -31,21 +29,21 @@ export const countryToLanguage: { [key: string]: string } = {
   // Japonês
   'JP': 'ja',
   
-  // Chinês - CORRIGIDO DEFINITIVAMENTE
+  // Chinês
   'CN': 'zh', 'TW': 'zh', 'HK': 'zh', 'MO': 'zh',
   
   // Coreano
   'KR': 'ko',
   
-  // Russo - CORRIGIDO DEFINITIVAMENTE
+  // Russo
   'RU': 'ru', 'BY': 'be', 'KZ': 'ru', 'KG': 'ru',
   
-  // Árabe - TODOS OS PAÍSES ÁRABES
+  // Árabe
   'SA': 'ar', 'AE': 'ar', 'EG': 'ar', 'JO': 'ar', 'LB': 'ar', 'SY': 'ar', 'IQ': 'ar', 'KW': 'ar',
   'QA': 'ar', 'BH': 'ar', 'OM': 'ar', 'YE': 'ar', 'LY': 'ar', 'TN': 'ar', 'DZ': 'ar', 'MA': 'ar',
   'SD': 'ar', 'SO': 'ar',
   
-  // Hindi (Índia tem múltiplos idiomas, mas Hindi é predominante)
+  // Hindi
   'IN': 'hi',
   
   // Indonésio
@@ -54,49 +52,49 @@ export const countryToLanguage: { [key: string]: string } = {
   // Tailandês
   'TH': 'th',
   
-  // Vietnamita - CORRIGIDO
+  // Vietnamita
   'VN': 'vi',
   
   // Turco
   'TR': 'tr',
   
-  // Holandês - CORRIGIDO DEFINITIVAMENTE
+  // Holandês
   'NL': 'nl', 'SR': 'nl',
   
-  // Polonês - CORRIGIDO DEFINITIVAMENTE
+  // Polonês
   'PL': 'pl',
   
-  // Sueco - CORRIGIDO DEFINITIVAMENTE
+  // Sueco
   'SE': 'sv',
   
-  // Norueguês - CORRIGIDO DEFINITIVAMENTE
+  // Norueguês
   'NO': 'no',
   
-  // Dinamarquês - CORRIGIDO DEFINITIVAMENTE
+  // Dinamarquês
   'DK': 'da',
   
-  // Finlandês - CORRIGIDO DEFINITIVAMENTE
+  // Finlandês
   'FI': 'fi',
   
-  // Grego - CORRIGIDO
-  'GR': 'el',
+  // Grego
+  'GR': 'el', 'CY': 'el',
   
-  // Húngaro - CORRIGIDO
+  // Húngaro
   'HU': 'hu',
   
-  // Tcheco - CORRIGIDO
+  // Tcheco
   'CZ': 'cs',
   
-  // Eslovaco - CORRIGIDO
+  // Eslovaco
   'SK': 'sk',
   
-  // Romeno - CORRIGIDO
+  // Romeno
   'RO': 'ro',
   
   // Búlgaro
   'BG': 'bg',
   
-  // Croata - CORRIGIDO
+  // Croata
   'HR': 'hr',
   
   // Esloveno
@@ -105,19 +103,19 @@ export const countryToLanguage: { [key: string]: string } = {
   // Sérvio
   'RS': 'sr',
   
-  // Lituano - CORRIGIDO
+  // Lituano
   'LT': 'lt',
   
-  // Letão - CORRIGIDO
+  // Letão
   'LV': 'lv',
   
-  // Estoniano - CORRIGIDO
+  // Estoniano
   'EE': 'et',
   
-  // Ucraniano - CORRIGIDO
+  // Ucraniano
   'UA': 'uk',
   
-  // Hebraico - CORRIGIDO
+  // Hebraico
   'IL': 'he',
   
   // Persa
@@ -129,13 +127,13 @@ export const countryToLanguage: { [key: string]: string } = {
   // Bengali
   'BD': 'bn',
   
-  // Malaio - CORRIGIDO
+  // Malaio
   'MY': 'ms', 'BN': 'ms',
   
-  // Filipino/Tagalo - CORRIGIDO
+  // Filipino/Tagalo
   'PH': 'tl',
   
-  // Mongol - CORRIGIDO
+  // Mongol
   'MN': 'mn',
   
   // Swahili
@@ -267,4 +265,3 @@ export const getLanguageFromCountryName = (countryName: string): string => {
   console.log('Idioma encontrado:', language);
   return language || 'en';
 };
-
