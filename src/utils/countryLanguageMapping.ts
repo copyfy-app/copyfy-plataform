@@ -146,46 +146,84 @@ export const getLanguageFromCountry = (countryCode: string): string => {
 
 // Mapeamento de nomes de países para códigos de idioma
 export const countryNameToLanguage: { [key: string]: string } = {
+  // Português
   "Brasil": "pt", "Portugal": "pt", "Angola": "pt", "Moçambique": "pt",
-  "Estados Unidos": "en", "Reino Unido": "en", "Austrália": "en", "Canadá": "en",
-  "França": "fr", "Bélgica": "fr", "Suíça": "fr", "Luxemburgo": "fr",
-  "Alemanha": "de", "Áustria": "de", "Liechtenstein": "de",
-  "Itália": "it", "São Marino": "it", "Vaticano": "it",
-  "Espanha": "es", "México": "es", "Argentina": "es", "Colômbia": "es",
-  "Peru": "es", "Venezuela": "es", "Chile": "es", "Equador": "es",
-  "Japão": "ja",
-  "China": "zh", "Taiwan": "zh", "Hong Kong": "zh",
-  "Coreia do Sul": "ko",
-  "Rússia": "ru", "Bielorrússia": "ru", "Cazaquistão": "ru",
-  "Índia": "hi",
-  "Indonésia": "id",
-  "Tailândia": "th",
-  "Vietnã": "vi",
-  "Turquia": "tr",
-  "Holanda": "nl", "Países Baixos": "nl",
-  "Polônia": "pl",
-  "Suécia": "sv",
-  "Noruega": "no",
-  "Dinamarca": "da",
-  "Finlândia": "fi",
-  "Grécia": "el",
-  "Hungria": "hu",
-  "República Tcheca": "cs",
-  "Eslováquia": "sk",
-  "Romênia": "ro",
-  "Bulgária": "bg",
-  "Croácia": "hr",
-  "Eslovênia": "sl",
-  "Sérvia": "sr",
-  "Lituânia": "lt",
-  "Letônia": "lv",
-  "Estônia": "et",
-  "Ucrânia": "uk",
-  "Israel": "he",
+  
+  // Inglês
+  "Estados Unidos": "en", "United States": "en", "Reino Unido": "en", "United Kingdom": "en", 
+  "Austrália": "en", "Australia": "en", "Canadá": "en", "Canada": "en", "África do Sul": "en", "South Africa": "en",
+  
+  // Francês
+  "França": "fr", "France": "fr", "Bélgica": "fr", "België": "fr", "Suíça": "de", "Schweiz": "de", "Luxemburgo": "fr",
+  
+  // Alemão
+  "Alemanha": "de", "Deutschland": "de", "Áustria": "de", "Österreich": "de", "Liechtenstein": "de",
+  
+  // Italiano
+  "Itália": "it", "Italia": "it", "São Marino": "it", "Vaticano": "it",
+  
+  // Espanhol
+  "Espanha": "es", "España": "es", "México": "es", "Argentina": "es", "Colômbia": "es", "Colombia": "es",
+  "Peru": "es", "Perú": "es", "Venezuela": "es", "Chile": "es", "Equador": "es", "Ecuador": "es",
+  
+  // Japonês
+  "Japão": "ja", "日本": "ja",
+  
+  // Chinês
+  "China": "zh", "中国": "zh", "Taiwan": "zh", "台灣": "zh", "Hong Kong": "zh", "香港": "zh",
+  
+  // Coreano
+  "Coreia do Sul": "ko", "대한민국": "ko",
+  
+  // Russo
+  "Rússia": "ru", "Россия": "ru", "Bielorrússia": "ru", "Беларусь": "ru", "Cazaquistão": "ru",
+  
+  // Árabe
+  "Arábia Saudita": "ar", "المملكة العربية السعودية": "ar", "Emirados Árabes": "ar", "الإمارات العربية المتحدة": "ar",
+  "Egito": "ar", "مصر": "ar", "Marrocos": "ar", "المغرب": "ar",
+  
+  // Hindi
+  "Índia": "hi", "भारत": "hi",
+  
+  // Indonésio
+  "Indonésia": "id", "Indonesia": "id",
+  
+  // Tailandês
+  "Tailândia": "th", "ประเทศไทย": "th",
+  
+  // Vietnamita
+  "Vietnã": "vi", "Việt Nam": "vi",
+  
+  // Turco
+  "Turquia": "tr", "Türkiye": "tr",
+  
+  // Holandês
+  "Holanda": "nl", "Nederland": "nl", "Países Baixos": "nl",
+  
+  // Outros idiomas
+  "Polônia": "pl", "Polska": "pl",
+  "Suécia": "sv", "Sverige": "sv",
+  "Noruega": "no", "Norge": "no",
+  "Dinamarca": "da", "Danmark": "da",
+  "Finlândia": "fi", "Suomi": "fi",
+  "Grécia": "el", "Ελλάδα": "el",
+  "Hungria": "hu", "Magyarország": "hu",
+  "República Tcheca": "cs", "Česko": "cs",
+  "Eslováquia": "sk", "Slovensko": "sk",
+  "Romênia": "ro", "România": "ro",
+  "Bulgária": "bg", "България": "bg",
+  "Croácia": "hr", "Hrvatska": "hr",
+  "Eslovênia": "sl", "Slovenija": "sl",
+  "Sérvia": "sr", "Србија": "sr",
+  "Lituânia": "lt", "Lietuva": "lt",
+  "Letônia": "lv", "Latvija": "lv",
+  "Estônia": "et", "Eesti": "et",
+  "Ucrânia": "uk", "Україна": "uk",
+  "Israel": "he", "ישראל": "he",
   "Irã": "fa", "Afeganistão": "fa",
-  "Paquistão": "ur",
-  "Bangladesh": "bn",
-  "Malásia": "ms"
+  "Paquistão": "ur", "پاکستان": "ur",
+  "Bangladesh": "bn", "বাংলাদেশ": "bn",
+  "Malásia": "ms", "Malaysia": "ms"
 };
 
 // Estratégias de lance variadas
@@ -203,5 +241,8 @@ export const biddingStrategies = [
 ];
 
 export const getLanguageFromCountryName = (countryName: string): string => {
-  return countryNameToLanguage[countryName] || 'en';
+  console.log('Buscando idioma para país:', countryName);
+  const language = countryNameToLanguage[countryName];
+  console.log('Idioma encontrado:', language);
+  return language || 'en';
 };

@@ -1,5 +1,5 @@
 
-import { getLanguageFromCountry, getLanguageFromCountryName, biddingStrategies } from './countryLanguageMapping';
+import { getLanguageFromCountry, getLanguageFromCountryName } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 
 export const generateCODCopies = (
@@ -12,7 +12,7 @@ export const generateCODCopies = (
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
   // Determinar idioma baseado no país (priorizar mapeamento do país)
-  const detectedLanguage = getLanguageFromCountryName(country) || getLanguageFromCountry(country) || 'en';
+  const detectedLanguage = getLanguageFromCountryName(country) || getLanguageFromCountry(country) || languageCode || 'en';
   
   console.log('País:', country, 'Idioma detectado:', detectedLanguage);
 
@@ -60,13 +60,29 @@ export const generateCODCopies = (
   const randomStrategyIndex = Math.floor(Math.random() * selectedTranslations.biddingStrategies.length);
   const strategyMessage = formatTemplate(selectedTranslations.biddingStrategies[randomStrategyIndex], product, country);
 
+  // Formatar snippets, promoções e blocos de preço
+  const formattedSnippets = selectedTranslations.snippetValues.map(snippet => 
+    formatTemplate(snippet, product, country)
+  );
+  
+  const formattedPromotions = selectedTranslations.promotions.map(promo => 
+    formatTemplate(promo, product, country)
+  );
+  
+  const formattedPriceBlocks = selectedTranslations.priceBlocks.map(block => 
+    formatTemplate(block, product, country)
+  );
+
   console.log('Resultados gerados:', {
     idioma: detectedLanguage,
     titulos: randomTitles.length,
     descricoes: randomDescriptions.length,
     usps: randomUsps.length,
     sitelinks: randomSitelinks.length,
-    estrategia: strategyMessage
+    estrategia: strategyMessage,
+    snippets: formattedSnippets.length,
+    promocoes: formattedPromotions.length,
+    blocosPreco: formattedPriceBlocks.length
   });
 
   return {
@@ -75,8 +91,8 @@ export const generateCODCopies = (
     usps: randomUsps,
     sitelinks: randomSitelinks,
     biddingStrategy: strategyMessage,
-    snippetValues: selectedTranslations.snippetValues,
-    promotions: selectedTranslations.promotions.map(promo => formatTemplate(promo, product, country)),
-    priceBlocks: selectedTranslations.priceBlocks.map(block => formatTemplate(block, product, country))
+    snippetValues: formattedSnippets,
+    promotions: formattedPromotions,
+    priceBlocks: formattedPriceBlocks
   };
 };

@@ -37,15 +37,17 @@ export const useCampaignGeneration = () => {
     
     setIsGenerating(true);
     
+    // Buscar dados do país selecionado
     const countryData = countries.find(c => c.value === country);
     const countryName = countryData ? countryData.name : "";
     const languageCode = countryData ? countryData.languageCode : "pt";
     
     setCurrentLanguage(languageCode);
     
-    console.log('Gerando campanha com:', {
+    console.log('Gerando campanha com dados:', {
       product,
       price,
+      country,
       countryName,
       languageCode,
       funnel
@@ -55,8 +57,16 @@ export const useCampaignGeneration = () => {
       // Simular delay de geração
       await new Promise(resolve => setTimeout(resolve, 1500));
       
+      // Passar o nome do país (countryName) em vez do código para a função de geração
       const generatedContent = generateCODCopies(product, price, countryName, languageCode, funnel);
-      console.log('Conteúdo gerado:', generatedContent);
+      
+      console.log('Conteúdo gerado com sucesso:', {
+        idioma: languageCode,
+        titulos: generatedContent.titles.length,
+        primeiroTitulo: generatedContent.titles[0],
+        descricoes: generatedContent.descriptions.length,
+        primeiraDescricao: generatedContent.descriptions[0]
+      });
       
       setGeneratedContent(generatedContent);
       setCampaignGenerated(true);
