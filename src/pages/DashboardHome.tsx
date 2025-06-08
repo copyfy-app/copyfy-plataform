@@ -8,12 +8,12 @@ const DashboardHome = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-zinc-900 flex items-center justify-center px-4 relative">
+    <div className="min-h-screen bg-gradient-to-br from-black via-yellow-900/5 to-black flex items-center justify-center px-4 relative">
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button
           onClick={signOut}
-          className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 border-none rounded-md cursor-pointer font-bold text-sm transition-colors duration-200"
+          className="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1.5 border-none rounded-md cursor-pointer font-bold text-sm transition-colors duration-200"
           style={{
             zIndex: 10000,
             position: 'relative'
