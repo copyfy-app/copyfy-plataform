@@ -1,5 +1,3 @@
-
-
 export const generateCODCopies = (
   product: string,
   price: string,
@@ -47,10 +45,10 @@ export const generateCODCopies = (
     'CH': 'de'  // Suíça - alemão como principal
   };
 
-  // Determinar idioma correto (priorizar mapeamento direto do país)
-  const detectedLanguage = countryToLanguage[country.toUpperCase()] || languageCode || 'en';
+  // CORREÇÃO: Determinar idioma baseado no país (priorizar mapeamento do país)
+  const detectedLanguage = countryToLanguage[country.toUpperCase()] || 'en';
   
-  console.log('Idioma detectado:', detectedLanguage, 'para país:', country);
+  console.log('País:', country, 'Idioma detectado:', detectedLanguage);
 
   // Traduções por idioma
   const translations = {
@@ -519,7 +517,7 @@ export const generateCODCopies = (
   };
 
   // CORREÇÃO CRÍTICA: Usar o idioma detectado corretamente
-  const selectedTranslations = translations[detectedLanguage] || translations.en;
+  const selectedTranslations = translations[detectedLanguage as keyof typeof translations] || translations.en;
 
   console.log('Tradução selecionada:', detectedLanguage, 'Conteúdo:', selectedTranslations);
 
@@ -531,4 +529,3 @@ export const generateCODCopies = (
     biddingStrategy: selectedTranslations.biddingStrategy
   };
 };
-
