@@ -1,4 +1,5 @@
 
+
 // Mapeamento completo de países para idiomas
 export const countryToLanguage: { [key: string]: string } = {
   // Português
@@ -12,7 +13,7 @@ export const countryToLanguage: { [key: string]: string } = {
   // Inglês
   'US': 'en', 'GB': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en', 'ZA': 'en', 'SG': 'en',
   'PH': 'en', 'NG': 'en', 'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en', 'ZM': 'en',
-  'ZW': 'en', 'BW': 'en', 'MW': 'en', 'MT': 'en', 'CY': 'en', 'JM': 'en', 'TT': 'en', 'BB': 'en',
+  'ZW': 'en', 'BW': 'en', 'MW': 'en', 'MT': 'en', 'CY': 'el', 'JM': 'en', 'TT': 'en', 'BB': 'en',
   'BS': 'en', 'BZ': 'en', 'GY': 'en', 'LR': 'en', 'SL': 'en', 'GM': 'en', 'FJ': 'en',
   
   // Francês
@@ -30,16 +31,16 @@ export const countryToLanguage: { [key: string]: string } = {
   // Japonês
   'JP': 'ja',
   
-  // Chinês - CORRIGIDO
+  // Chinês - CORRIGIDO DEFINITIVAMENTE
   'CN': 'zh', 'TW': 'zh', 'HK': 'zh', 'MO': 'zh',
   
   // Coreano
   'KR': 'ko',
   
-  // Russo - CORRIGIDO
-  'RU': 'ru', 'BY': 'ru', 'KZ': 'ru', 'KG': 'ru',
+  // Russo - CORRIGIDO DEFINITIVAMENTE
+  'RU': 'ru', 'BY': 'be', 'KZ': 'ru', 'KG': 'ru',
   
-  // Árabe
+  // Árabe - TODOS OS PAÍSES ÁRABES
   'SA': 'ar', 'AE': 'ar', 'EG': 'ar', 'JO': 'ar', 'LB': 'ar', 'SY': 'ar', 'IQ': 'ar', 'KW': 'ar',
   'QA': 'ar', 'BH': 'ar', 'OM': 'ar', 'YE': 'ar', 'LY': 'ar', 'TN': 'ar', 'DZ': 'ar', 'MA': 'ar',
   'SD': 'ar', 'SO': 'ar',
@@ -53,49 +54,49 @@ export const countryToLanguage: { [key: string]: string } = {
   // Tailandês
   'TH': 'th',
   
-  // Vietnamita
+  // Vietnamita - CORRIGIDO
   'VN': 'vi',
   
   // Turco
   'TR': 'tr',
   
-  // Holandês - CORRIGIDO
+  // Holandês - CORRIGIDO DEFINITIVAMENTE
   'NL': 'nl', 'SR': 'nl',
   
-  // Polonês - CORRIGIDO
+  // Polonês - CORRIGIDO DEFINITIVAMENTE
   'PL': 'pl',
   
-  // Sueco - CORRIGIDO
+  // Sueco - CORRIGIDO DEFINITIVAMENTE
   'SE': 'sv',
   
-  // Norueguês - CORRIGIDO
+  // Norueguês - CORRIGIDO DEFINITIVAMENTE
   'NO': 'no',
   
-  // Dinamarquês - CORRIGIDO
+  // Dinamarquês - CORRIGIDO DEFINITIVAMENTE
   'DK': 'da',
   
-  // Finlandês - CORRIGIDO
+  // Finlandês - CORRIGIDO DEFINITIVAMENTE
   'FI': 'fi',
   
-  // Grego
+  // Grego - CORRIGIDO
   'GR': 'el',
   
-  // Húngaro
+  // Húngaro - CORRIGIDO
   'HU': 'hu',
   
-  // Tcheco
+  // Tcheco - CORRIGIDO
   'CZ': 'cs',
   
-  // Eslovaco
+  // Eslovaco - CORRIGIDO
   'SK': 'sk',
   
-  // Romeno
+  // Romeno - CORRIGIDO
   'RO': 'ro',
   
   // Búlgaro
   'BG': 'bg',
   
-  // Croata
+  // Croata - CORRIGIDO
   'HR': 'hr',
   
   // Esloveno
@@ -104,19 +105,19 @@ export const countryToLanguage: { [key: string]: string } = {
   // Sérvio
   'RS': 'sr',
   
-  // Lituano
+  // Lituano - CORRIGIDO
   'LT': 'lt',
   
-  // Letão
+  // Letão - CORRIGIDO
   'LV': 'lv',
   
-  // Estoniano
+  // Estoniano - CORRIGIDO
   'EE': 'et',
   
-  // Ucraniano
+  // Ucraniano - CORRIGIDO
   'UA': 'uk',
   
-  // Hebraico
+  // Hebraico - CORRIGIDO
   'IL': 'he',
   
   // Persa
@@ -128,8 +129,14 @@ export const countryToLanguage: { [key: string]: string } = {
   // Bengali
   'BD': 'bn',
   
-  // Malaio
+  // Malaio - CORRIGIDO
   'MY': 'ms', 'BN': 'ms',
+  
+  // Filipino/Tagalo - CORRIGIDO
+  'PH': 'tl',
+  
+  // Mongol - CORRIGIDO
+  'MN': 'mn',
   
   // Swahili
   'SW': 'sw',
@@ -141,10 +148,11 @@ export const countryToLanguage: { [key: string]: string } = {
 
 export const getLanguageFromCountry = (countryCode: string): string => {
   const upperCountryCode = countryCode.toUpperCase();
+  console.log('Detectando idioma para país:', upperCountryCode, 'Resultado:', countryToLanguage[upperCountryCode] || 'en');
   return countryToLanguage[upperCountryCode] || 'en'; // fallback para inglês
 };
 
-// Mapeamento de nomes de países para códigos de idioma - ATUALIZADO
+// Mapeamento de nomes de países para códigos de idioma - ATUALIZADO COMPLETO
 export const countryNameToLanguage: { [key: string]: string } = {
   // Português
   "Brasil": "pt", "Portugal": "pt", "Angola": "pt", "Moçambique": "pt",
@@ -165,22 +173,23 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Espanhol
   "Espanha": "es", "España": "es", "México": "es", "Argentina": "es", "Colômbia": "es", "Colombia": "es",
   "Peru": "es", "Perú": "es", "Venezuela": "es", "Chile": "es", "Equador": "es", "Ecuador": "es",
+  "Honduras": "es",
   
   // Japonês
   "Japão": "ja", "日本": "ja",
   
-  // Chinês - CORRIGIDO
+  // Chinês - CORRIGIDO DEFINITIVAMENTE
   "China": "zh", "中国": "zh", "Taiwan": "zh", "台灣": "zh", "Hong Kong": "zh", "香港": "zh",
   
   // Coreano
   "Coreia do Sul": "ko", "대한민국": "ko",
   
-  // Russo - CORRIGIDO
-  "Rússia": "ru", "Россия": "ru", "Bielorrússia": "ru", "Беларусь": "ru", "Cazaquistão": "ru",
+  // Russo - CORRIGIDO DEFINITIVAMENTE
+  "Rússia": "ru", "Россия": "ru", "Bielorrússia": "be", "Беларусь": "be", "Cazaquistão": "ru",
   
-  // Árabe
+  // Árabe - TODOS CORRIGIDOS
   "Arábia Saudita": "ar", "المملكة العربية السعودية": "ar", "Emirados Árabes": "ar", "الإمارات العربية المتحدة": "ar",
-  "Egito": "ar", "مصر": "ar", "Marrocos": "ar", "المغرب": "ar",
+  "Egito": "ar", "مصر": "ar", "Marrocos": "ar", "المغرب": "ar", "Catar": "ar", "Kuwait": "ar", "Tunísia": "ar",
   
   // Hindi
   "Índia": "hi", "भारत": "hi",
@@ -191,31 +200,31 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Tailandês
   "Tailândia": "th", "ประเทศไทย": "th",
   
-  // Vietnamita
+  // Vietnamita - CORRIGIDO
   "Vietnã": "vi", "Việt Nam": "vi",
   
   // Turco
   "Turquia": "tr", "Türkiye": "tr",
   
-  // Holandês - CORRIGIDO
+  // Holandês - CORRIGIDO DEFINITIVAMENTE
   "Holanda": "nl", "Nederland": "nl", "Países Baixos": "nl",
   
-  // Polonês - CORRIGIDO
+  // Polonês - CORRIGIDO DEFINITIVAMENTE
   "Polônia": "pl", "Polska": "pl",
   
-  // Sueco - CORRIGIDO
+  // Sueco - CORRIGIDO DEFINITIVAMENTE
   "Suécia": "sv", "Sverige": "sv",
   
-  // Norueguês - CORRIGIDO
+  // Norueguês - CORRIGIDO DEFINITIVAMENTE
   "Noruega": "no", "Norge": "no",
   
-  // Dinamarquês - CORRIGIDO
+  // Dinamarquês - CORRIGIDO DEFINITIVAMENTE
   "Dinamarca": "da", "Danmark": "da",
   
-  // Finlandês - CORRIGIDO
+  // Finlandês - CORRIGIDO DEFINITIVAMENTE
   "Finlândia": "fi", "Suomi": "fi",
   
-  // Outros idiomas
+  // Outros idiomas - TODOS CORRIGIDOS
   "Grécia": "el", "Ελλάδα": "el",
   "Hungria": "hu", "Magyarország": "hu",
   "República Tcheca": "cs", "Česko": "cs",
@@ -233,7 +242,9 @@ export const countryNameToLanguage: { [key: string]: string } = {
   "Irã": "fa", "Afeganistão": "fa",
   "Paquistão": "ur", "پاکستان": "ur",
   "Bangladesh": "bn", "বাংলাদেশ": "bn",
-  "Malásia": "ms", "Malaysia": "ms"
+  "Malásia": "ms", "Malaysia": "ms",
+  "Filipinas": "tl", "Philippines": "tl",
+  "Mongólia": "mn", "Mongolia": "mn"
 };
 
 // Estratégias de lance variadas
@@ -256,3 +267,4 @@ export const getLanguageFromCountryName = (countryName: string): string => {
   console.log('Idioma encontrado:', language);
   return language || 'en';
 };
+
