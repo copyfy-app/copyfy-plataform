@@ -385,7 +385,7 @@ const CopyfyPanel = () => {
     return priceBlocks.join('\n');
   };
 
-  return <div className="min-h-screen text-white bg-gradient-to-br from-black via-yellow-900/3 to-black relative">
+  return <div className="min-h-screen text-white bg-gradient-to-br from-black via-yellow-900/8 to-black relative">
       {/* Fixed Back Button */}
       <Button
         onClick={() => navigate("/dashboard")}

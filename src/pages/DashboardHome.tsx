@@ -8,7 +8,7 @@ const DashboardHome = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-yellow-900/5 to-black flex items-center justify-center px-4 relative">
+    <div className="min-h-screen bg-gradient-to-br from-black via-yellow-900/10 to-black flex items-center justify-center px-4 relative">
       {/* Logout Button - Top Right */}
       <div className="absolute top-6 right-6">
         <button
