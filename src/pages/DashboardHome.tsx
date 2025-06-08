@@ -26,7 +26,7 @@ const DashboardHome = () => {
       {/* Subtle background animation */}
       <div className="absolute inset-0 bg-gradient-to-r from-yellow-900/5 via-transparent to-yellow-900/5 opacity-50" />
 
-      <div className="w-full max-w-xl bg-black/60 border border-yellow-600 shadow-2xl p-8 rounded-2xl text-white text-center space-y-6 backdrop-blur-sm">
+      <div className="w-full max-w-xl bg-gradient-to-br from-black via-yellow-900/5 to-black border border-yellow-600 shadow-2xl p-8 rounded-2xl text-white text-center space-y-6 backdrop-blur-sm">
         
         <h1 className="text-4xl font-bold">
           <span className="text-yellow-500">Copy</span><span className="text-white">fy</span>
