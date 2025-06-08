@@ -21,28 +21,28 @@ export const generateCODCopies = (
 
   console.log('Tradução selecionada:', detectedLanguage, 'Conteúdo disponível:', !!selectedTranslations);
 
-  // Função para selecionar variações aleatórias
-  const getRandomVariations = <T>(array: T[], count: number = 15): T[] => {
-    const shuffled = [...array].sort(() => 0.5 - Math.random());
+  // Função para embaralhar array e selecionar variações aleatórias
+  const getRandomVariations = <T>(array: T[], count: number = 30): T[] => {
+    const shuffled = [...array].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, Math.min(count, array.length));
   };
 
-  // Formatar títulos com produto e país
+  // Formatar títulos com produto e país (30 variações)
   const formattedTitles = selectedTranslations.titles.map(title => 
     formatTemplate(title, product, country)
   );
 
-  // Formatar descrições
+  // Formatar descrições (30 variações)
   const formattedDescriptions = selectedTranslations.descriptions.map(desc => 
     formatTemplate(desc, product, country)
   );
 
-  // Formatar USPs
+  // Formatar USPs (30 variações)
   const formattedUsps = selectedTranslations.usps.map(usp => 
     formatTemplate(usp, product, country)
   );
 
-  // Formatar sitelinks com URL padrão
+  // Formatar sitelinks (30 variações)
   const formattedSitelinks = selectedTranslations.sitelinks.map(sitelink => ({
     title: formatTemplate(sitelink.title, product, country),
     description1: formatTemplate(sitelink.description1, product, country),
@@ -50,11 +50,11 @@ export const generateCODCopies = (
     url: "https://exemplo.com/comprar"
   }));
 
-  // Selecionar variações aleatórias para evitar repetição
+  // Selecionar 30 variações aleatórias para cada seção
   const randomTitles = getRandomVariations(formattedTitles, 30);
-  const randomDescriptions = getRandomVariations(formattedDescriptions, 6);
-  const randomUsps = getRandomVariations(formattedUsps, 15);
-  const randomSitelinks = getRandomVariations(formattedSitelinks, 15);
+  const randomDescriptions = getRandomVariations(formattedDescriptions, 30);
+  const randomUsps = getRandomVariations(formattedUsps, 30);
+  const randomSitelinks = getRandomVariations(formattedSitelinks, 30);
 
   console.log('Resultados gerados:', {
     idioma: detectedLanguage,
