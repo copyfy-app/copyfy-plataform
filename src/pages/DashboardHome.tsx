@@ -13,7 +13,7 @@ const DashboardHome = () => {
       <div className="absolute top-6 right-6">
         <button
           onClick={signOut}
-          className="bg-red-500 hover:bg-red-600 text-white px-5 py-3 border-none rounded-md cursor-pointer font-bold text-base transition-colors duration-200"
+          className="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 border-none rounded-md cursor-pointer font-bold text-sm transition-colors duration-200"
           style={{
             zIndex: 10000,
             position: 'relative'
