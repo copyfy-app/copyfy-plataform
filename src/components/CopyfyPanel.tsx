@@ -537,7 +537,7 @@ const CopyfyPanel = () => {
               </div>
             </div>
 
-            {/* Grid principal com layout corrigido */}
+            {/* Grid principal reorganizado */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
               {/* Títulos - Now showing 30 titles */}
               <div className="lg:col-span-2 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
@@ -583,42 +583,10 @@ const CopyfyPanel = () => {
                 </div>
               </div>
 
-              {/* Sitelinks */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
-                <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Sitelinks (30 variações)</h3>
-                <div className="space-y-4">
-                  {sitelinks.map((link, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
-                      onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}
-                    >
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-yellow-500 text-sm">🔗 Sitelink {idx + 1}</span>
-                        </div>
-                        <h4 className="font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors text-sm md:text-base">
-                          Título: {link.title}
-                        </h4>
-                        <p className="text-sm text-zinc-300 group-hover:text-white transition-colors">
-                          Descrição 1: {link.description1}
-                        </p>
-                        <p className="text-sm text-zinc-300 group-hover:text-white transition-colors">
-                          Descrição 2: {link.description2}
-                        </p>
-                        <p className="text-xs text-blue-400 group-hover:text-blue-300 transition-colors">
-                          URL: {link.url}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               {/* USPs */}
-              <div className="lg:col-span-2 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Frases de Destaques (30 variações)</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="space-y-3">
                   {usps.map((usp, idx) => (
                     <div
                       key={idx}
@@ -635,10 +603,10 @@ const CopyfyPanel = () => {
               </div>
             </div>
 
-            {/* Grid de extensões com layout uniforme CORRIGIDO */}
-            <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Grid de extensões com layout uniforme */}
+            <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Snippet Estruturado */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[200px] flex flex-col">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[250px] flex flex-col">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => copyToClipboard(generateStructuredSnippet())}>
                   📌 Snippet Estruturado
                 </h3>
@@ -651,7 +619,7 @@ const CopyfyPanel = () => {
               </div>
 
               {/* Extensão de Promoção */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[200px] flex flex-col">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[250px] flex flex-col">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">
                   🎯 Extensão de Promoção
                 </h3>
@@ -667,7 +635,7 @@ const CopyfyPanel = () => {
               </div>
 
               {/* Extensão de Preço */}
-              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[200px] flex flex-col">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[250px] flex flex-col">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">
                   💲 Extensão de Preço
                 </h3>
@@ -679,6 +647,40 @@ const CopyfyPanel = () => {
                       </div>
                     ))}
                   </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sitelinks - Movidos para último e em layout horizontal */}
+            <div className="mt-6 md:mt-8">
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
+                <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">🔗 Sitelinks (30 variações)</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {sitelinks.map((link, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
+                      onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-yellow-500 text-xs">🔗 #{idx + 1}</span>
+                        </div>
+                        <h4 className="font-bold text-yellow-500 group-hover:text-yellow-400 transition-colors text-sm">
+                          {link.title}
+                        </h4>
+                        <p className="text-xs text-zinc-300 group-hover:text-white transition-colors line-clamp-2">
+                          {link.description1}
+                        </p>
+                        <p className="text-xs text-zinc-300 group-hover:text-white transition-colors line-clamp-2">
+                          {link.description2}
+                        </p>
+                        <p className="text-xs text-blue-400 group-hover:text-blue-300 transition-colors truncate">
+                          {link.url}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
