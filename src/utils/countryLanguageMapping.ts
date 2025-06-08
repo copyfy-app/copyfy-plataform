@@ -146,8 +146,20 @@ export const countryToLanguage: { [key: string]: string } = {
 
 export const getLanguageFromCountry = (countryCode: string): string => {
   const upperCountryCode = countryCode.toUpperCase();
-  console.log('Detectando idioma para país:', upperCountryCode, 'Resultado:', countryToLanguage[upperCountryCode] || 'en');
-  return countryToLanguage[upperCountryCode] || 'en'; // fallback para inglês
+  
+  // Mapeamento específico para países que precisam de correção
+  const map: Record<string, string> = {
+    CN: 'zh', RU: 'ru', PL: 'pl', NL: 'nl', DK: 'da', NO: 'no', SE: 'sv', FI: 'fi',
+    SK: 'sk', SA: 'ar', GR: 'el', IL: 'he', LT: 'lt', LV: 'lv', EE: 'et', QA: 'ar',
+    KW: 'ar', CY: 'el', HN: 'es', MN: 'mn', HU: 'hu', RO: 'ro', VN: 'vi', TN: 'ar',
+    MY: 'ms', HK: 'zh', HR: 'hr', CZ: 'cs', PH: 'tl', NG: 'en', UA: 'uk', BY: 'be',
+  };
+  
+  // Primeiro verifica o mapeamento específico, depois o geral, com fallback para inglês
+  const language = map[upperCountryCode] || countryToLanguage[upperCountryCode] || 'en';
+  
+  console.log('Detectando idioma para país:', upperCountryCode, 'Resultado:', language);
+  return language;
 };
 
 // Mapeamento de nomes de países para códigos de idioma - ATUALIZADO COMPLETO
