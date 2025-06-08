@@ -8,6 +8,45 @@ export const generateCODCopies = (
 ) => {
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
+  // Mapeamento direto de países para idiomas (fallback caso languageCode não venha correto)
+  const countryToLanguage: { [key: string]: string } = {
+    // Países que falam português
+    'BR': 'pt', 'PT': 'pt', 'AO': 'pt', 'MZ': 'pt',
+    
+    // Países que falam espanhol
+    'ES': 'es', 'MX': 'es', 'AR': 'es', 'CO': 'es', 'PE': 'es', 'VE': 'es', 
+    'CL': 'es', 'EC': 'es', 'GT': 'es', 'CU': 'es', 'BO': 'es', 'DO': 'es',
+    'HN': 'es', 'PY': 'es', 'SV': 'es', 'NI': 'es', 'CR': 'es', 'PA': 'es',
+    'UY': 'es', 'GQ': 'es',
+    
+    // Países que falam inglês
+    'US': 'en', 'GB': 'en', 'CA': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en',
+    'ZA': 'en', 'IN': 'en', 'SG': 'en', 'MY': 'en', 'PH': 'en', 'NG': 'en',
+    'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en', 'ZM': 'en', 'ZW': 'en',
+    'BW': 'en', 'MW': 'en', 'MT': 'en', 'CY': 'en', 'JM': 'en', 'TT': 'en',
+    'BB': 'en', 'BS': 'en', 'BZ': 'en', 'GY': 'en', 'SR': 'en', 'LR': 'en',
+    'SL': 'en', 'GM': 'en',
+    
+    // Países que falam francês
+    'FR': 'fr', 'BE': 'fr', 'CH': 'fr', 'LU': 'fr', 'MC': 'fr', 'CA': 'fr',
+    'SN': 'fr', 'CI': 'fr', 'ML': 'fr', 'BF': 'fr', 'NE': 'fr', 'GN': 'fr',
+    'TD': 'fr', 'CF': 'fr', 'CG': 'fr', 'CD': 'fr', 'GA': 'fr', 'CM': 'fr',
+    'DJ': 'fr', 'KM': 'fr', 'MG': 'fr', 'MU': 'fr', 'SC': 'fr', 'VU': 'fr',
+    'NC': 'fr', 'PF': 'fr', 'WF': 'fr', 'RE': 'fr', 'GP': 'fr', 'MQ': 'fr',
+    'GF': 'fr', 'PM': 'fr', 'YT': 'fr',
+    
+    // Países que falam alemão
+    'DE': 'de', 'AT': 'de', 'CH': 'de', 'LI': 'de', 'LU': 'de',
+    
+    // Países que falam italiano
+    'IT': 'it', 'SM': 'it', 'VA': 'it', 'CH': 'it'
+  };
+
+  // Determinar idioma correto (priorizar mapeamento direto do país)
+  const detectedLanguage = countryToLanguage[country.toUpperCase()] || languageCode || 'en';
+  
+  console.log('Idioma detectado:', detectedLanguage, 'para país:', country);
+
   // Traduções por idioma
   const translations = {
     pt: {
@@ -51,7 +90,7 @@ export const generateCODCopies = (
       ],
       usps: [
         "✅ Pagamento Apenas na Entrega",
-        "🚚 Frete Grátis para Todo Brasil",
+        "🚚 Frete Grátis para Todo o País",
         "🛡️ Garantia de Satisfação",
         "⚡ Entrega Expressa",
         "🏆 Produto 100% Original",
@@ -68,7 +107,7 @@ export const generateCODCopies = (
         },
         {
           title: "Frete Grátis",
-          description1: "Entrega para todo Brasil",
+          description1: "Entrega para todo o país",
           description2: "Sem custo adicional",
           url: "https://exemplo.com/frete"
         },
@@ -474,10 +513,10 @@ export const generateCODCopies = (
     }
   };
 
-  // Selecionar idioma baseado no languageCode
-  const selectedTranslations = translations[languageCode as keyof typeof translations] || translations.pt;
+  // Selecionar tradução baseada no idioma detectado
+  const selectedTranslations = translations[detectedLanguage as keyof typeof translations] || translations.en;
 
-  console.log('Tradução selecionada:', languageCode, selectedTranslations);
+  console.log('Tradução selecionada:', detectedLanguage, 'Conteúdo:', selectedTranslations);
 
   return {
     titles: selectedTranslations.titles,
