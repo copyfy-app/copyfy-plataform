@@ -28,8 +28,8 @@ const DashboardHome = () => {
 
       <div className="w-full max-w-xl bg-black/60 border border-yellow-600 shadow-2xl p-8 rounded-2xl text-white text-center space-y-6 backdrop-blur-sm">
         
-        <h1 className="text-yellow-500 text-4xl font-bold">
-          COPY<span className="text-white">FY</span>
+        <h1 className="text-4xl font-bold">
+          <span className="text-yellow-500">Copy</span><span className="text-white">fy</span>
         </h1>
 
         <p className="text-md text-xl">
