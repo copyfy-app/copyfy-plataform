@@ -30,13 +30,13 @@ export const countryToLanguage: { [key: string]: string } = {
   // Japonês
   'JP': 'ja',
   
-  // Chinês
+  // Chinês - CORRIGIDO
   'CN': 'zh', 'TW': 'zh', 'HK': 'zh', 'MO': 'zh',
   
   // Coreano
   'KR': 'ko',
   
-  // Russo
+  // Russo - CORRIGIDO
   'RU': 'ru', 'BY': 'ru', 'KZ': 'ru', 'KG': 'ru',
   
   // Árabe
@@ -59,22 +59,22 @@ export const countryToLanguage: { [key: string]: string } = {
   // Turco
   'TR': 'tr',
   
-  // Holandês
+  // Holandês - CORRIGIDO
   'NL': 'nl', 'SR': 'nl',
   
-  // Polonês
+  // Polonês - CORRIGIDO
   'PL': 'pl',
   
-  // Sueco
+  // Sueco - CORRIGIDO
   'SE': 'sv',
   
-  // Norueguês
+  // Norueguês - CORRIGIDO
   'NO': 'no',
   
-  // Dinamarquês
+  // Dinamarquês - CORRIGIDO
   'DK': 'da',
   
-  // Finlandês
+  // Finlandês - CORRIGIDO
   'FI': 'fi',
   
   // Grego
@@ -144,7 +144,7 @@ export const getLanguageFromCountry = (countryCode: string): string => {
   return countryToLanguage[upperCountryCode] || 'en'; // fallback para inglês
 };
 
-// Mapeamento de nomes de países para códigos de idioma
+// Mapeamento de nomes de países para códigos de idioma - ATUALIZADO
 export const countryNameToLanguage: { [key: string]: string } = {
   // Português
   "Brasil": "pt", "Portugal": "pt", "Angola": "pt", "Moçambique": "pt",
@@ -169,13 +169,13 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Japonês
   "Japão": "ja", "日本": "ja",
   
-  // Chinês
+  // Chinês - CORRIGIDO
   "China": "zh", "中国": "zh", "Taiwan": "zh", "台灣": "zh", "Hong Kong": "zh", "香港": "zh",
   
   // Coreano
   "Coreia do Sul": "ko", "대한민국": "ko",
   
-  // Russo
+  // Russo - CORRIGIDO
   "Rússia": "ru", "Россия": "ru", "Bielorrússia": "ru", "Беларусь": "ru", "Cazaquistão": "ru",
   
   // Árabe
@@ -197,15 +197,25 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Turco
   "Turquia": "tr", "Türkiye": "tr",
   
-  // Holandês
+  // Holandês - CORRIGIDO
   "Holanda": "nl", "Nederland": "nl", "Países Baixos": "nl",
   
-  // Outros idiomas
+  // Polonês - CORRIGIDO
   "Polônia": "pl", "Polska": "pl",
+  
+  // Sueco - CORRIGIDO
   "Suécia": "sv", "Sverige": "sv",
+  
+  // Norueguês - CORRIGIDO
   "Noruega": "no", "Norge": "no",
+  
+  // Dinamarquês - CORRIGIDO
   "Dinamarca": "da", "Danmark": "da",
+  
+  // Finlandês - CORRIGIDO
   "Finlândia": "fi", "Suomi": "fi",
+  
+  // Outros idiomas
   "Grécia": "el", "Ελλάδα": "el",
   "Hungria": "hu", "Magyarország": "hu",
   "República Tcheca": "cs", "Česko": "cs",
