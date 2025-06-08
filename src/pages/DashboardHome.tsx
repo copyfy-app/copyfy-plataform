@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +32,7 @@ const DashboardHome = () => {
         </h1>
 
         <p className="text-md text-xl">
-          Bem-vindo{user?.email ? `, ${user.email.split('@')[0]}` : ""}!
+          Bem-vindo{user?.email ? ` ${user.email.split('@')[0]}` : ""}!
         </p>
 
         <p className="font-semibold text-2xl">
