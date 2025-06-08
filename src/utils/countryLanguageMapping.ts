@@ -143,3 +143,65 @@ export const getLanguageFromCountry = (countryCode: string): string => {
   const upperCountryCode = countryCode.toUpperCase();
   return countryToLanguage[upperCountryCode] || 'en'; // fallback para inglês
 };
+
+// Mapeamento de nomes de países para códigos de idioma
+export const countryNameToLanguage: { [key: string]: string } = {
+  "Brasil": "pt", "Portugal": "pt", "Angola": "pt", "Moçambique": "pt",
+  "Estados Unidos": "en", "Reino Unido": "en", "Austrália": "en", "Canadá": "en",
+  "França": "fr", "Bélgica": "fr", "Suíça": "fr", "Luxemburgo": "fr",
+  "Alemanha": "de", "Áustria": "de", "Liechtenstein": "de",
+  "Itália": "it", "São Marino": "it", "Vaticano": "it",
+  "Espanha": "es", "México": "es", "Argentina": "es", "Colômbia": "es",
+  "Peru": "es", "Venezuela": "es", "Chile": "es", "Equador": "es",
+  "Japão": "ja",
+  "China": "zh", "Taiwan": "zh", "Hong Kong": "zh",
+  "Coreia do Sul": "ko",
+  "Rússia": "ru", "Bielorrússia": "ru", "Cazaquistão": "ru",
+  "Índia": "hi",
+  "Indonésia": "id",
+  "Tailândia": "th",
+  "Vietnã": "vi",
+  "Turquia": "tr",
+  "Holanda": "nl", "Países Baixos": "nl",
+  "Polônia": "pl",
+  "Suécia": "sv",
+  "Noruega": "no",
+  "Dinamarca": "da",
+  "Finlândia": "fi",
+  "Grécia": "el",
+  "Hungria": "hu",
+  "República Tcheca": "cs",
+  "Eslováquia": "sk",
+  "Romênia": "ro",
+  "Bulgária": "bg",
+  "Croácia": "hr",
+  "Eslovênia": "sl",
+  "Sérvia": "sr",
+  "Lituânia": "lt",
+  "Letônia": "lv",
+  "Estônia": "et",
+  "Ucrânia": "uk",
+  "Israel": "he",
+  "Irã": "fa", "Afeganistão": "fa",
+  "Paquistão": "ur",
+  "Bangladesh": "bn",
+  "Malásia": "ms"
+};
+
+// Estratégias de lance variadas
+export const biddingStrategies = [
+  "Maximizar conversões",
+  "CPA desejado",
+  "ROAS desejado", 
+  "Maximizar cliques",
+  "Lance manual",
+  "Maximizar valor de conversão",
+  "CPM otimizado",
+  "CPA melhorado",
+  "Custo por visualização",
+  "Conversões de alta intenção"
+];
+
+export const getLanguageFromCountryName = (countryName: string): string => {
+  return countryNameToLanguage[countryName] || 'en';
+};
