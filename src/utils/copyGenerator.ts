@@ -1464,11 +1464,11 @@ export const generateCODCopies = (product: string, price: string, countryName: s
   const sitelinkTemplates = templates.sitelinks[funnel] || templates.sitelinks['cod'];
   
   // Shuffle and select 4 random sitelinks for variation
-  const shuffledTitles = [...sitelinkTemplates.titles].sort(() => Math.random() - 0.5);
+  const shuffledSitelinkTitles = [...sitelinkTemplates.titles].sort(() => Math.random() - 0.5);
   const shuffledDescriptions = [...sitelinkTemplates.descriptions].sort(() => Math.random() - 0.5);
   
   const sitelinks = Array.from({ length: 4 }, (_, index) => ({
-    title: shuffledTitles[index % shuffledTitles.length]
+    title: shuffledSitelinkTitles[index % shuffledSitelinkTitles.length]
       .replace('{product}', product)
       .replace('{price}', price)
       .replace('{country}', countryName),
