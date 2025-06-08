@@ -37,18 +37,23 @@ export const generateCODCopies = (
     formatTemplate(desc, product, country)
   );
 
-  // Formatar sitelinks (adicionando URL padrão já que não existe na estrutura)
+  // Formatar USPs
+  const formattedUsps = selectedTranslations.usps.map(usp => 
+    formatTemplate(usp, product, country)
+  );
+
+  // Formatar sitelinks com URL padrão
   const formattedSitelinks = selectedTranslations.sitelinks.map(sitelink => ({
-    title: sitelink.title,
-    description1: sitelink.description1,
-    description2: sitelink.description2,
-    url: "https://exemplo.com/comprar" // URL padrão adicionada
+    title: formatTemplate(sitelink.title, product, country),
+    description1: formatTemplate(sitelink.description1, product, country),
+    description2: formatTemplate(sitelink.description2, product, country),
+    url: "https://exemplo.com/comprar"
   }));
 
   // Selecionar variações aleatórias para evitar repetição
   const randomTitles = getRandomVariations(formattedTitles, 30);
   const randomDescriptions = getRandomVariations(formattedDescriptions, 6);
-  const randomUsps = getRandomVariations(selectedTranslations.usps, 15);
+  const randomUsps = getRandomVariations(formattedUsps, 15);
   const randomSitelinks = getRandomVariations(formattedSitelinks, 15);
 
   console.log('Resultados gerados:', {

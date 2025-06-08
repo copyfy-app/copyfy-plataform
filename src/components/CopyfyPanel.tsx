@@ -12,19 +12,26 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "@/components/ui/badge";
 import { Copy, FileText, User, Mail, Tag, Gift, DollarSign, ArrowLeft, History, HelpCircle, Target } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-const funnelStrategies = [{
-  value: "cod",
-  label: "COD (Pagamento na Entrega)"
-}, {
-  value: "bottom",
-  label: "Fundo de Funil"
-}, {
-  value: "mid",
-  label: "Meio de Funil"
-}, {
-  value: "top",
-  label: "Topo de Funil"
-}];
+
+const funnelStrategies = [
+  {
+    value: "cod",
+    label: "COD (Pagamento na Entrega)"
+  },
+  {
+    value: "bottom",
+    label: "Fundo de Funil"
+  },
+  {
+    value: "mid",
+    label: "Meio de Funil"
+  },
+  {
+    value: "top",
+    label: "Topo de Funil"
+  }
+];
+
 const CopyfyPanel = () => {
   const navigate = useNavigate();
   const [country, setCountry] = useState("");
@@ -45,6 +52,7 @@ const CopyfyPanel = () => {
   const [contactMessage, setContactMessage] = useState("");
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isSubmittingContact, setIsSubmittingContact] = useState(false);
+
   const {
     user,
     signOut,
@@ -238,6 +246,7 @@ const CopyfyPanel = () => {
     const countryData = countries.find(c => c.value === country);
     const languageCode = countryData ? countryData.languageCode : "pt";
     let values = "";
+    
     switch (languageCode) {
       case 'es':
         values = "Gel facial, Crema nocturna, Contorno de ojos, Fórmula anti-edad";
@@ -257,6 +266,7 @@ const CopyfyPanel = () => {
       default:
         values = "Gel facial, Creme noturno, Creme para olhos, Fórmula anti-idade";
     }
+    
     const snippet = `Categoria: Benefícios\nValores: ${values}`;
     return snippet;
   };
@@ -267,25 +277,51 @@ const CopyfyPanel = () => {
     const languageCode = countryData ? countryData.languageCode : "pt";
     const countryName = countryData ? countryData.name : "";
     let promotions = [];
+    
     switch (languageCode) {
       case 'es':
-        promotions = [`Descuento del 20% en el primer pedido`, `Envío gratis a toda ${countryName}`, `Compra 2 y llévate 3`];
+        promotions = [
+          `Descuento del 20% en el primer pedido`,
+          `Envío gratis a toda ${countryName}`,
+          `Compra 2 y llévate 3`
+        ];
         break;
       case 'en':
-        promotions = [`20% discount on first order`, `Free shipping to all ${countryName}`, `Buy 2 get 3`];
+        promotions = [
+          `20% discount on first order`,
+          `Free shipping to all ${countryName}`,
+          `Buy 2 get 3`
+        ];
         break;
       case 'fr':
-        promotions = [`Réduction de 20% sur la première commande`, `Livraison gratuite dans toute la ${countryName}`, `Achetez 2 et obtenez 3`];
+        promotions = [
+          `Réduction de 20% sur la première commande`,
+          `Livraison gratuite dans toute la ${countryName}`,
+          `Achetez 2 et obtenez 3`
+        ];
         break;
       case 'de':
-        promotions = [`20% Rabatt auf die erste Bestellung`, `Kostenloser Versand nach ganz ${countryName}`, `Kaufe 2 und erhalte 3`];
+        promotions = [
+          `20% Rabatt auf die erste Bestellung`,
+          `Kostenloser Versand nach ganz ${countryName}`,
+          `Kaufe 2 und erhalte 3`
+        ];
         break;
       case 'it':
-        promotions = [`Sconto del 20% sul primo ordine`, `Spedizione gratuita in tutta ${countryName}`, `Compra 2 e prendi 3`];
+        promotions = [
+          `Sconto del 20% sul primo ordine`,
+          `Spedizione gratuita in tutta ${countryName}`,
+          `Compra 2 e prendi 3`
+        ];
         break;
       default:
-        promotions = [`Desconto de 20% no primeiro pedido`, `Frete grátis para todo o ${countryName}`, `Compre 2 e leve 3`];
+        promotions = [
+          `Desconto de 20% no primeiro pedido`,
+          `Frete grátis para todo o ${countryName}`,
+          `Compre 2 e leve 3`
+        ];
     }
+    
     return promotions.join('\n');
   };
 
@@ -299,28 +335,56 @@ const CopyfyPanel = () => {
     const numericPrice = parseFloat(price.replace(/[^\d.,]/g, '').replace(',', '.')) || 97;
     const currency = price.match(/[^\d\s.,]+/)?.[0] || 'R$';
     let priceBlocks = [];
+    
     switch (languageCode) {
       case 'es':
-        priceBlocks = [`${product} 1 unidad: ${currency}${numericPrice} - Entrega a toda ${countryName}`, `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Envío gratis`, `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Mejor oferta`];
+        priceBlocks = [
+          `${product} 1 unidad: ${currency}${numericPrice} - Entrega a toda ${countryName}`,
+          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Envío gratis`,
+          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Mejor oferta`
+        ];
         break;
       case 'en':
-        priceBlocks = [`${product} 1 unit: ${currency}${numericPrice} - Delivery to all ${countryName}`, `${product} 3-unit kit: ${currency}${Math.round(numericPrice * 2.1)} - Free shipping`, `${product} Complete kit: ${currency}${Math.round(numericPrice * 3.1)} - Best offer`];
+        priceBlocks = [
+          `${product} 1 unit: ${currency}${numericPrice} - Delivery to all ${countryName}`,
+          `${product} 3-unit kit: ${currency}${Math.round(numericPrice * 2.1)} - Free shipping`,
+          `${product} Complete kit: ${currency}${Math.round(numericPrice * 3.1)} - Best offer`
+        ];
         break;
       case 'fr':
-        priceBlocks = [`${product} 1 unité: ${currency}${numericPrice} - Livraison dans toute la ${countryName}`, `${product} Kit 3 unités: ${currency}${Math.round(numericPrice * 2.1)} - Livraison gratuite`, `${product} Kit complet: ${currency}${Math.round(numericPrice * 3.1)} - Meilleure offre`];
+        priceBlocks = [
+          `${product} 1 unité: ${currency}${numericPrice} - Livraison dans toute la ${countryName}`,
+          `${product} Kit 3 unités: ${currency}${Math.round(numericPrice * 2.1)} - Livraison gratuite`,
+          `${product} Kit complet: ${currency}${Math.round(numericPrice * 3.1)} - Meilleure offre`
+        ];
         break;
       case 'de':
-        priceBlocks = [`${product} 1 Einheit: ${currency}${numericPrice} - Lieferung nach ganz ${countryName}`, `${product} 3er-Kit: ${currency}${Math.round(numericPrice * 2.1)} - Kostenloser Versand`, `${product} Komplettes Kit: ${currency}${Math.round(numericPrice * 3.1)} - Bestes Angebot`];
+        priceBlocks = [
+          `${product} 1 Einheit: ${currency}${numericPrice} - Lieferung nach ganz ${countryName}`,
+          `${product} 3er-Kit: ${currency}${Math.round(numericPrice * 2.1)} - Kostenloser Versand`,
+          `${product} Komplettes Kit: ${currency}${Math.round(numericPrice * 3.1)} - Bestes Angebot`
+        ];
         break;
       case 'it':
-        priceBlocks = [`${product} 1 unità: ${currency}${numericPrice} - Consegna in tutta ${countryName}`, `${product} Kit 3 unità: ${currency}${Math.round(numericPrice * 2.1)} - Spedizione gratuita`, `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Migliore offerta`];
+        priceBlocks = [
+          `${product} 1 unità: ${currency}${numericPrice} - Consegna in tutta ${countryName}`,
+          `${product} Kit 3 unità: ${currency}${Math.round(numericPrice * 2.1)} - Spedizione gratuita`,
+          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Migliore offerta`
+        ];
         break;
       default:
-        priceBlocks = [`${product} 1 unidade: ${currency}${numericPrice} - Entrega para todo ${countryName}`, `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Frete grátis`, `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Melhor oferta`];
+        priceBlocks = [
+          `${product} 1 unidade: ${currency}${numericPrice} - Entrega para todo ${countryName}`,
+          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Frete grátis`,
+          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Melhor oferta`
+        ];
     }
+    
     return priceBlocks.join('\n');
   };
-  return <div className="min-h-screen text-white bg-gradient-to-br from-black via-yellow-900/20 to-black relative">
+
+  return (
+    <div className="min-h-screen text-white bg-gradient-to-br from-black via-yellow-900/20 to-black relative">
       {/* Fixed Back Button */}
       <Button onClick={() => navigate("/dashboard")} className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">
         <ArrowLeft className="w-4 h-4 mr-2" />
@@ -358,7 +422,8 @@ const CopyfyPanel = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 md:px-8 py-8">
-        {!campaignGenerated ? <div className="max-w-4xl mx-auto">
+        {!campaignGenerated ? (
+          <div className="max-w-4xl mx-auto">
             <div className="border border-zinc-700 shadow-xl p-6 md:p-8 rounded-3xl bg-gradient-to-br from-black via-yellow-900/15 to-black">
               <h2 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">
                 Gere sua Campanha de Alta Conversão
@@ -437,7 +502,7 @@ const CopyfyPanel = () => {
               </div>
             </div>
 
-            {/* Bidding Strategy Section - NEW */}
+            {/* Bidding Strategy Section */}
             <div className="mb-6 md:mb-8 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
               <h3 className="font-bold mb-4 text-lg md:text-xl flex items-center gap-2 text-yellow-500">
                 <Target className="w-5 h-5 text-yellow-500" />
@@ -450,6 +515,7 @@ const CopyfyPanel = () => {
               </div>
             </div>
 
+            {/* Grid principal com layout corrigido */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
               {/* Títulos - Now showing 30 titles */}
               <div className="lg:col-span-2 rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
@@ -458,12 +524,18 @@ const CopyfyPanel = () => {
                   Títulos da Campanha (30 variações)
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {titles.map((title, idx) => <div key={idx} onClick={() => copyToClipboard(title)} className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group bg-black">
+                  {titles.map((title, idx) => (
+                    <div
+                      key={idx}
+                      onClick={() => copyToClipboard(title)}
+                      className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group bg-black"
+                    >
                       <p className="text-white group-hover:text-yellow-100 transition-colors text-sm break-words">
                         <span className="text-yellow-500 text-xs mr-2">#{idx + 1}</span>
                         {title}
                       </p>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -474,11 +546,17 @@ const CopyfyPanel = () => {
                   Descrições
                 </h3>
                 <div className="space-y-3">
-                  {descriptions.map((desc, idx) => <div key={idx} className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(desc)}>
+                  {descriptions.map((desc, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
+                      onClick={() => copyToClipboard(desc)}
+                    >
                       <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base break-words">
                         {desc}
                       </p>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -486,7 +564,12 @@ const CopyfyPanel = () => {
               <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Sitelinks</h3>
                 <div className="space-y-4">
-                  {sitelinks.map((link, idx) => <div key={idx} className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}>
+                  {sitelinks.map((link, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
+                      onClick={() => copyToClipboard(`🔗 Sitelink ${idx + 1}\nTítulo: ${link.title}\nDescrição 1: ${link.description1}\nDescrição 2: ${link.description2}\nURL: ${link.url}`)}
+                    >
                       <div className="space-y-2">
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-yellow-500 text-sm">🔗 Sitelink {idx + 1}</span>
@@ -504,7 +587,8 @@ const CopyfyPanel = () => {
                           URL: {link.url}
                         </p>
                       </div>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -512,56 +596,70 @@ const CopyfyPanel = () => {
               <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
                 <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">Frases de Destaques</h3>
                 <div className="space-y-3">
-                  {usps.map((usp, idx) => <div key={idx} className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(usp)}>
+                  {usps.map((usp, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
+                      onClick={() => copyToClipboard(usp)}
+                    >
                       <p className="text-white group-hover:text-yellow-100 transition-colors text-sm md:text-base break-words">
                         {usp}
                       </p>
-                    </div>)}
+                    </div>
+                  ))}
                 </div>
               </div>
+            </div>
 
-              {/* Snippet Estruturado - Updated with 4 values */}
-              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
-                <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => copyToClipboard(generateStructuredSnippet())}>
+            {/* Grid de extensões com layout uniforme corrigido */}
+            <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {/* Snippet Estruturado */}
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black flex flex-col h-full">
+                <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => copyToClipboard(generateStructuredSnippet())}>
                   📌 Snippet Estruturado
                 </h3>
-                <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generateStructuredSnippet())}>
-                  <p className="extensao-descricao text-sm text-zinc-400 mb-2">Categoria: <strong className="text-yellow-500">Benefícios</strong></p>
-                  <p className="extensao-itens text-sm text-white group-hover:text-yellow-100 transition-colors">
+                <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group flex-grow" onClick={() => copyToClipboard(generateStructuredSnippet())}>
+                  <p className="text-sm text-zinc-400 mb-2">Categoria: <strong className="text-yellow-500">Benefícios</strong></p>
+                  <p className="text-sm text-white group-hover:text-yellow-100 transition-colors">
                     {generateStructuredSnippet().split('\n')[1].replace('Valores: ', '')}
                   </p>
                 </div>
               </div>
 
-              {/* Extensão de Promoção - Updated with 3 promotions */}
-              <div className="extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
-                <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
+              {/* Extensão de Promoção */}
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black flex flex-col h-full">
+                <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">
                   🎯 Extensão de Promoção
                 </h3>
-                <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePromotionExtension())}>
-                  <div className="extensao-lista space-y-2">
-                    {generatePromotionExtension().split('\n').map((promo, idx) => <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group flex-grow" onClick={() => copyToClipboard(generatePromotionExtension())}>
+                  <div className="space-y-2">
+                    {generatePromotionExtension().split('\n').map((promo, idx) => (
+                      <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
                         <strong className="text-yellow-500">Promoção {idx + 1}:</strong> {promo}
-                      </div>)}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Extensão de Preço */}
+              <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black flex flex-col h-full">
+                <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">
+                  💲 Extensão de Preço
+                </h3>
+                <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group flex-grow" onClick={() => copyToClipboard(generatePriceExtension())}>
+                  <div className="space-y-3">
+                    {generatePriceExtension().split('\n').map((priceBlock, idx) => (
+                      <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                        <strong className="text-yellow-500">Opção {idx + 1}:</strong> {priceBlock}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Extensão de Preço - Updated with 3 price blocks */}
-            <div className="mt-6 md:mt-8 extensao-bloco rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
-              <h3 className="extensao-titulo font-bold mb-4 text-lg md:text-xl text-yellow-500">
-                💲 Extensão de Preço
-              </h3>
-              <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePriceExtension())}>
-                <div className="extensao-lista space-y-3">
-                  {generatePriceExtension().split('\n').map((priceBlock, idx) => <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
-                      <strong className="text-yellow-500">Opção {idx + 1}:</strong> {priceBlock}
-                    </div>)}
-                </div>
-              </div>
-            </div>
-          </div>}
+          </div>
+        )}
       </main>
 
       {/* Help Modal */}
@@ -659,6 +757,8 @@ const CopyfyPanel = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </div>;
+    </div>
+  );
 };
+
 export default CopyfyPanel;
