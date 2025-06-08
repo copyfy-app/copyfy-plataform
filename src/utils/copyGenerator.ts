@@ -11,8 +11,9 @@ export const generateCODCopies = (
 ) => {
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
-  // Determinar idioma baseado no país (priorizar mapeamento do país)
-  const detectedLanguage = getLanguageFromCountryName(country) || getLanguageFromCountry(country) || languageCode || 'en';
+  // Usar diretamente o languageCode que vem do país selecionado
+  // Este languageCode já é determinado corretamente no hook useCampaignGeneration
+  const detectedLanguage = languageCode || 'en';
   
   console.log('País:', country, 'Idioma detectado:', detectedLanguage);
 
