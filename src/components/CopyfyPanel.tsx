@@ -12,7 +12,6 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "@/components/ui/badge";
 import { Copy, FileText, User, Mail, Tag, Gift, DollarSign, ArrowLeft, History, HelpCircle, Target } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
 const funnelStrategies = [{
   value: "cod",
   label: "COD (Pagamento na Entrega)"
@@ -26,7 +25,6 @@ const funnelStrategies = [{
   value: "top",
   label: "Topo de Funil"
 }];
-
 const CopyfyPanel = () => {
   const navigate = useNavigate();
   const [country, setCountry] = useState("");
@@ -170,7 +168,6 @@ const CopyfyPanel = () => {
   // Save campaign to history
   const saveCampaign = () => {
     if (!campaignGenerated) return;
-    
     const campaignData = {
       product,
       price,
@@ -183,16 +180,13 @@ const CopyfyPanel = () => {
       biddingStrategy,
       timestamp: new Date().toISOString()
     };
-
     const history = JSON.parse(localStorage.getItem("historicoCampanhas") || "[]");
     history.unshift(JSON.stringify(campaignData));
-    
+
     // Keep only last 15 campaigns
     if (history.length > 15) history.pop();
-    
     localStorage.setItem("historicoCampanhas", JSON.stringify(history));
     setCampaignHistory(history);
-    
     toast({
       title: "Campanha salva!",
       description: "Campanha adicionada ao histórico."
@@ -214,7 +208,6 @@ const CopyfyPanel = () => {
       setBiddingStrategy(campaignData.biddingStrategy || "");
       setCampaignGenerated(true);
       setShowHistory(false);
-      
       toast({
         title: "Campanha carregada!",
         description: "Campanha do histórico carregada para edição."
@@ -234,7 +227,6 @@ const CopyfyPanel = () => {
     history.splice(index, 1);
     localStorage.setItem("historicoCampanhas", JSON.stringify(history));
     setCampaignHistory(history);
-    
     toast({
       title: "Campanha excluída",
       description: "Campanha removida do histórico."
@@ -245,7 +237,6 @@ const CopyfyPanel = () => {
   const generateStructuredSnippet = () => {
     const countryData = countries.find(c => c.value === country);
     const languageCode = countryData ? countryData.languageCode : "pt";
-    
     let values = "";
     switch (languageCode) {
       case 'es':
@@ -266,7 +257,6 @@ const CopyfyPanel = () => {
       default:
         values = "Gel facial, Creme noturno, Creme para olhos, Fórmula anti-idade";
     }
-    
     const snippet = `Categoria: Benefícios\nValores: ${values}`;
     return snippet;
   };
@@ -276,53 +266,26 @@ const CopyfyPanel = () => {
     const countryData = countries.find(c => c.value === country);
     const languageCode = countryData ? countryData.languageCode : "pt";
     const countryName = countryData ? countryData.name : "";
-    
     let promotions = [];
-    
     switch (languageCode) {
       case 'es':
-        promotions = [
-          `Descuento del 20% en el primer pedido`,
-          `Envío gratis a toda ${countryName}`,
-          `Compra 2 y llévate 3`
-        ];
+        promotions = [`Descuento del 20% en el primer pedido`, `Envío gratis a toda ${countryName}`, `Compra 2 y llévate 3`];
         break;
       case 'en':
-        promotions = [
-          `20% discount on first order`,
-          `Free shipping to all ${countryName}`,
-          `Buy 2 get 3`
-        ];
+        promotions = [`20% discount on first order`, `Free shipping to all ${countryName}`, `Buy 2 get 3`];
         break;
       case 'fr':
-        promotions = [
-          `Réduction de 20% sur la première commande`,
-          `Livraison gratuite dans toute la ${countryName}`,
-          `Achetez 2 et obtenez 3`
-        ];
+        promotions = [`Réduction de 20% sur la première commande`, `Livraison gratuite dans toute la ${countryName}`, `Achetez 2 et obtenez 3`];
         break;
       case 'de':
-        promotions = [
-          `20% Rabatt auf die erste Bestellung`,
-          `Kostenloser Versand nach ganz ${countryName}`,
-          `Kaufe 2 und erhalte 3`
-        ];
+        promotions = [`20% Rabatt auf die erste Bestellung`, `Kostenloser Versand nach ganz ${countryName}`, `Kaufe 2 und erhalte 3`];
         break;
       case 'it':
-        promotions = [
-          `Sconto del 20% sul primo ordine`,
-          `Spedizione gratuita in tutta ${countryName}`,
-          `Compra 2 e prendi 3`
-        ];
+        promotions = [`Sconto del 20% sul primo ordine`, `Spedizione gratuita in tutta ${countryName}`, `Compra 2 e prendi 3`];
         break;
       default:
-        promotions = [
-          `Desconto de 20% no primeiro pedido`,
-          `Frete grátis para todo o ${countryName}`,
-          `Compre 2 e leve 3`
-        ];
+        promotions = [`Desconto de 20% no primeiro pedido`, `Frete grátis para todo o ${countryName}`, `Compre 2 e leve 3`];
     }
-    
     return promotions.join('\n');
   };
 
@@ -331,84 +294,47 @@ const CopyfyPanel = () => {
     const countryData = countries.find(c => c.value === country);
     const countryName = countryData ? countryData.name : "";
     const languageCode = countryData ? countryData.languageCode : "pt";
-    
+
     // Extract numeric value from price for calculations
     const numericPrice = parseFloat(price.replace(/[^\d.,]/g, '').replace(',', '.')) || 97;
     const currency = price.match(/[^\d\s.,]+/)?.[0] || 'R$';
-    
     let priceBlocks = [];
-    
     switch (languageCode) {
       case 'es':
-        priceBlocks = [
-          `${product} 1 unidad: ${currency}${numericPrice} - Entrega a toda ${countryName}`,
-          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Envío gratis`,
-          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Mejor oferta`
-        ];
+        priceBlocks = [`${product} 1 unidad: ${currency}${numericPrice} - Entrega a toda ${countryName}`, `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Envío gratis`, `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Mejor oferta`];
         break;
       case 'en':
-        priceBlocks = [
-          `${product} 1 unit: ${currency}${numericPrice} - Delivery to all ${countryName}`,
-          `${product} 3-unit kit: ${currency}${Math.round(numericPrice * 2.1)} - Free shipping`,
-          `${product} Complete kit: ${currency}${Math.round(numericPrice * 3.1)} - Best offer`
-        ];
+        priceBlocks = [`${product} 1 unit: ${currency}${numericPrice} - Delivery to all ${countryName}`, `${product} 3-unit kit: ${currency}${Math.round(numericPrice * 2.1)} - Free shipping`, `${product} Complete kit: ${currency}${Math.round(numericPrice * 3.1)} - Best offer`];
         break;
       case 'fr':
-        priceBlocks = [
-          `${product} 1 unité: ${currency}${numericPrice} - Livraison dans toute la ${countryName}`,
-          `${product} Kit 3 unités: ${currency}${Math.round(numericPrice * 2.1)} - Livraison gratuite`,
-          `${product} Kit complet: ${currency}${Math.round(numericPrice * 3.1)} - Meilleure offre`
-        ];
+        priceBlocks = [`${product} 1 unité: ${currency}${numericPrice} - Livraison dans toute la ${countryName}`, `${product} Kit 3 unités: ${currency}${Math.round(numericPrice * 2.1)} - Livraison gratuite`, `${product} Kit complet: ${currency}${Math.round(numericPrice * 3.1)} - Meilleure offre`];
         break;
       case 'de':
-        priceBlocks = [
-          `${product} 1 Einheit: ${currency}${numericPrice} - Lieferung nach ganz ${countryName}`,
-          `${product} 3er-Kit: ${currency}${Math.round(numericPrice * 2.1)} - Kostenloser Versand`,
-          `${product} Komplettes Kit: ${currency}${Math.round(numericPrice * 3.1)} - Bestes Angebot`
-        ];
+        priceBlocks = [`${product} 1 Einheit: ${currency}${numericPrice} - Lieferung nach ganz ${countryName}`, `${product} 3er-Kit: ${currency}${Math.round(numericPrice * 2.1)} - Kostenloser Versand`, `${product} Komplettes Kit: ${currency}${Math.round(numericPrice * 3.1)} - Bestes Angebot`];
         break;
       case 'it':
-        priceBlocks = [
-          `${product} 1 unità: ${currency}${numericPrice} - Consegna in tutta ${countryName}`,
-          `${product} Kit 3 unità: ${currency}${Math.round(numericPrice * 2.1)} - Spedizione gratuita`,
-          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Migliore offerta`
-        ];
+        priceBlocks = [`${product} 1 unità: ${currency}${numericPrice} - Consegna in tutta ${countryName}`, `${product} Kit 3 unità: ${currency}${Math.round(numericPrice * 2.1)} - Spedizione gratuita`, `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Migliore offerta`];
         break;
       default:
-        priceBlocks = [
-          `${product} 1 unidade: ${currency}${numericPrice} - Entrega para todo ${countryName}`,
-          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Frete grátis`,
-          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Melhor oferta`
-        ];
+        priceBlocks = [`${product} 1 unidade: ${currency}${numericPrice} - Entrega para todo ${countryName}`, `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Frete grátis`, `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Melhor oferta`];
     }
-    
     return priceBlocks.join('\n');
   };
-
   return <div className="min-h-screen text-white bg-gradient-to-br from-black via-yellow-900/20 to-black relative">
       {/* Fixed Back Button */}
-      <Button
-        onClick={() => navigate("/dashboard")}
-        className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
-      >
+      <Button onClick={() => navigate("/dashboard")} className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">
         <ArrowLeft className="w-4 h-4 mr-2" />
         Voltar para o Dashboard
       </Button>
 
       {/* Fixed History Button */}
-      <Button
-        onClick={() => setShowHistory(true)}
-        className="fixed top-3 right-20 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
-      >
+      <Button onClick={() => setShowHistory(true)} className="fixed top-3 right-20 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">
         <History className="w-4 h-4 mr-2" />
         Histórico
       </Button>
 
       {/* Fixed Help Button */}
-      <Button
-        onClick={() => setShowHelpModal(true)}
-        className="fixed top-3 right-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
-      >
+      <Button onClick={() => setShowHelpModal(true)} className="fixed top-3 right-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">
         <HelpCircle className="w-4 h-4 mr-2" />
         Como usar a Copyfy
       </Button>
@@ -420,7 +346,7 @@ const CopyfyPanel = () => {
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 tracking-wide">
               Copy<span className="text-white">fy</span>
             </h1>
-            <p className="text-lg md:text-xl font-semibold text-yellow-500 lg:text-4xl">Gere suas Campanhas em Poucos Cliques</p>
+            <p className="text-lg md:text-xl font-semibold text-white lg:text-4xl">Gere suas Campanhas em Poucos Cliques</p>
           </div>
         </div>
       </header>
@@ -497,20 +423,14 @@ const CopyfyPanel = () => {
               </h2>
               <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
-                  <Button
-                    onClick={saveCampaign}
-                    className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg"
-                  >
+                  <Button onClick={saveCampaign} className="bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg">
                     Salvar Campanha
                   </Button>
                   <Button onClick={() => setCampaignGenerated(false)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg">
                     Nova Campanha
                   </Button>
                 </div>
-                <Button
-                  onClick={() => setShowHistory(true)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg"
-                >
+                <Button onClick={() => setShowHistory(true)} className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg">
                   <History className="w-4 h-4 mr-2" />
                   Histórico de Campanhas
                 </Button>
@@ -620,11 +540,9 @@ const CopyfyPanel = () => {
                 </h3>
                 <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePromotionExtension())}>
                   <div className="extensao-lista space-y-2">
-                    {generatePromotionExtension().split('\n').map((promo, idx) => (
-                      <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                    {generatePromotionExtension().split('\n').map((promo, idx) => <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
                         <strong className="text-yellow-500">Promoção {idx + 1}:</strong> {promo}
-                      </div>
-                    ))}
+                      </div>)}
                   </div>
                 </div>
               </div>
@@ -637,11 +555,9 @@ const CopyfyPanel = () => {
               </h3>
               <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group" onClick={() => copyToClipboard(generatePriceExtension())}>
                 <div className="extensao-lista space-y-3">
-                  {generatePriceExtension().split('\n').map((priceBlock, idx) => (
-                    <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                  {generatePriceExtension().split('\n').map((priceBlock, idx) => <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
                       <strong className="text-yellow-500">Opção {idx + 1}:</strong> {priceBlock}
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
               </div>
             </div>
@@ -690,10 +606,7 @@ const CopyfyPanel = () => {
             </div>
 
             <div className="text-center pt-6">
-              <Button
-                onClick={() => setShowHelpModal(false)}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg py-3 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105"
-              >
+              <Button onClick={() => setShowHelpModal(false)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg py-3 px-8 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105">
                 Fechar
               </Button>
             </div>
@@ -708,14 +621,10 @@ const CopyfyPanel = () => {
             <DialogTitle className="text-yellow-500">Histórico de Campanhas</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            {campaignHistory.length === 0 ? (
-              <p className="text-zinc-400 text-center py-4">Nenhuma campanha salva ainda.</p>
-            ) : (
-              campaignHistory.map((campaign, index) => {
-                try {
-                  const campaignData = JSON.parse(campaign);
-                  return (
-                    <div key={index} className="border border-zinc-600 p-4 rounded-lg">
+            {campaignHistory.length === 0 ? <p className="text-zinc-400 text-center py-4">Nenhuma campanha salva ainda.</p> : campaignHistory.map((campaign, index) => {
+            try {
+              const campaignData = JSON.parse(campaign);
+              return <div key={index} className="border border-zinc-600 p-4 rounded-lg">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <h3 className="text-yellow-500 font-bold">{campaignData.product}</h3>
@@ -727,46 +636,29 @@ const CopyfyPanel = () => {
                           </p>
                         </div>
                         <div className="flex gap-2">
-                          <Button
-                            onClick={() => editCampaign(campaign)}
-                            size="sm"
-                            className="bg-blue-500 hover:bg-blue-600 text-white"
-                          >
+                          <Button onClick={() => editCampaign(campaign)} size="sm" className="bg-blue-500 hover:bg-blue-600 text-white">
                             Editar
                           </Button>
-                          <Button
-                            onClick={() => deleteCampaign(index)}
-                            variant="destructive"
-                            size="sm"
-                          >
+                          <Button onClick={() => deleteCampaign(index)} variant="destructive" size="sm">
                             Excluir
                           </Button>
                         </div>
                       </div>
-                    </div>
-                  );
-                } catch (error) {
-                  return (
-                    <div key={index} className="border border-zinc-600 p-4 rounded-lg">
+                    </div>;
+            } catch (error) {
+              return <div key={index} className="border border-zinc-600 p-4 rounded-lg">
                       <div className="text-sm text-zinc-300 mb-2">
                         {campaign.substring(0, 100)}...
                       </div>
-                      <Button
-                        onClick={() => deleteCampaign(index)}
-                        variant="destructive"
-                        size="sm"
-                      >
+                      <Button onClick={() => deleteCampaign(index)} variant="destructive" size="sm">
                         Excluir
                       </Button>
-                    </div>
-                  );
-                }
-              })
-            )}
+                    </div>;
+            }
+          })}
           </div>
         </DialogContent>
       </Dialog>
     </div>;
 };
-
 export default CopyfyPanel;
