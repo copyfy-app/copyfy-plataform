@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -437,9 +438,11 @@ const CopyfyPanel = () => {
                       <SelectValue placeholder="Escolha um país" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-zinc-300 max-h-60">
-                      {countries.map(country => <SelectItem key={country.value} value={country.value} className="text-black hover:bg-zinc-100">
+                      {countries.map(country => (
+                        <SelectItem key={country.value} value={country.value} className="text-black hover:bg-zinc-100">
                           {country.label}
-                        </SelectItem>)}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -453,9 +456,11 @@ const CopyfyPanel = () => {
                       <SelectValue placeholder="Escolha uma estratégia" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-zinc-300">
-                      {funnelStrategies.map(strategy => <SelectItem key={strategy.value} value={strategy.value} className="text-black hover:bg-zinc-100">
+                      {funnelStrategies.map(strategy => (
+                        <SelectItem key={strategy.value} value={strategy.value} className="text-black hover:bg-zinc-100">
                           {strategy.label}
-                        </SelectItem>)}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -464,24 +469,42 @@ const CopyfyPanel = () => {
                   <Label htmlFor="product" className="text-white font-medium">
                     Nome do Produto
                   </Label>
-                  <Input id="product" placeholder="Ex: Testoy Gel" value={product} onChange={e => setProduct(e.target.value)} className="w-full p-4 rounded-lg text-black border-none text-base shadow-sm bg-zinc-50" />
+                  <Input 
+                    id="product" 
+                    placeholder="Ex: Testoy Gel" 
+                    value={product} 
+                    onChange={e => setProduct(e.target.value)} 
+                    className="w-full p-4 rounded-lg text-black border-none text-base shadow-sm bg-zinc-50" 
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="price" className="text-white font-medium">
                     Preço
                   </Label>
-                  <Input id="price" placeholder="Ex: R$ 197,00" value={price} onChange={e => setPrice(e.target.value)} className="w-full p-4 rounded-lg text-black border-none text-base shadow-sm bg-zinc-50" />
+                  <Input 
+                    id="price" 
+                    placeholder="Ex: R$ 197,00" 
+                    value={price} 
+                    onChange={e => setPrice(e.target.value)} 
+                    className="w-full p-4 rounded-lg text-black border-none text-base shadow-sm bg-zinc-50" 
+                  />
                 </div>
               </div>
 
               <div className="mt-8 text-center">
-                <Button className="w-full md:w-auto bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg py-4 px-8 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105" onClick={handleGenerateCampaign} disabled={isGenerating || !isTrialActive && !isAdmin}>
+                <Button 
+                  className="w-full md:w-auto bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-lg py-4 px-8 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105" 
+                  onClick={handleGenerateCampaign} 
+                  disabled={isGenerating || (!isTrialActive && !isAdmin)}
+                >
                   {isGenerating ? "Gerando Campanha..." : "Gerar Campanha"}
                 </Button>
               </div>
             </div>
-          </div> : <div>
+          </div>
+        ) : (
+          <div>
             <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
               <h2 className="text-2xl md:text-3xl font-bold text-white text-center md:text-left">
                 Campanha para {product}
@@ -719,10 +742,14 @@ const CopyfyPanel = () => {
             <DialogTitle className="text-yellow-500">Histórico de Campanhas</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            {campaignHistory.length === 0 ? <p className="text-zinc-400 text-center py-4">Nenhuma campanha salva ainda.</p> : campaignHistory.map((campaign, index) => {
-            try {
-              const campaignData = JSON.parse(campaign);
-              return <div key={index} className="border border-zinc-600 p-4 rounded-lg">
+            {campaignHistory.length === 0 ? (
+              <p className="text-zinc-400 text-center py-4">Nenhuma campanha salva ainda.</p>
+            ) : (
+              campaignHistory.map((campaign, index) => {
+                try {
+                  const campaignData = JSON.parse(campaign);
+                  return (
+                    <div key={index} className="border border-zinc-600 p-4 rounded-lg">
                       <div className="flex justify-between items-start mb-2">
                         <div>
                           <h3 className="text-yellow-500 font-bold">{campaignData.product}</h3>
@@ -742,18 +769,22 @@ const CopyfyPanel = () => {
                           </Button>
                         </div>
                       </div>
-                    </div>;
-            } catch (error) {
-              return <div key={index} className="border border-zinc-600 p-4 rounded-lg">
+                    </div>
+                  );
+                } catch (error) {
+                  return (
+                    <div key={index} className="border border-zinc-600 p-4 rounded-lg">
                       <div className="text-sm text-zinc-300 mb-2">
                         {campaign.substring(0, 100)}...
                       </div>
                       <Button onClick={() => deleteCampaign(index)} variant="destructive" size="sm">
                         Excluir
                       </Button>
-                    </div>;
-            }
-          })}
+                    </div>
+                  );
+                }
+              })
+            )}
           </div>
         </DialogContent>
       </Dialog>
