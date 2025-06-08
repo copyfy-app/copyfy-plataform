@@ -1,9 +1,11 @@
+
 import { useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarSeparator } from "@/components/ui/sidebar";
-import { Layers, FileText, HelpCircle, Home, User, LogOut } from "lucide-react";
+import { Layers, FileText, HelpCircle, Home, User, LogOut, Shield } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Badge } from "./ui/badge";
+
 const DashboardSidebar = () => {
   const location = useLocation();
   const {
@@ -13,26 +15,33 @@ const DashboardSidebar = () => {
     isAdmin,
     signOut
   } = useAuth();
+
   const isActive = useCallback((path: string) => {
     return location.pathname === path;
   }, [location.pathname]);
-  return <Sidebar>
+
+  return (
+    <Sidebar>
       <SidebarContent className="bg-blue-950">
-        {user && <SidebarGroup className="bg-blue-950">
+        {user && (
+          <SidebarGroup className="bg-blue-950">
             <SidebarGroupContent className="p-3 bg-blue-950">
               <div className="flex flex-col gap-2">
                 <div className="text-sm font-medium overflow-hidden text-ellipsis">
                   {user.email}
                 </div>
-                {isAdmin && <Badge variant="default" className="w-fit text-white bg-red-500">
+                {isAdmin && (
+                  <Badge variant="default" className="w-fit text-white bg-red-500">
                     ADMIN
-                  </Badge>}
+                  </Badge>
+                )}
                 <Badge variant={isTrialActive ? "outline" : "destructive"} className="w-fit bg-yellow-500">
                   {isAdmin ? "Acesso Ilimitado" : isTrialActive ? `Trial: ${trialDaysRemaining} dia${trialDaysRemaining !== 1 ? 's' : ''}` : 'Trial expirado'}
                 </Badge>
               </div>
             </SidebarGroupContent>
-          </SidebarGroup>}
+          </SidebarGroup>
+        )}
         
         <SidebarSeparator />
 
@@ -44,6 +53,24 @@ const DashboardSidebar = () => {
                   <Link to="/dashboard">
                     <Home />
                     <span className="text-yellow-500">Dashboard</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem className="bg-blue-950">
+                <SidebarMenuButton asChild isActive={isActive("/painel")} tooltip="Painel">
+                  <Link to="/painel">
+                    <Layers />
+                    <span className="text-yellow-500">Painel</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem className="bg-blue-950">
+                <SidebarMenuButton asChild isActive={isActive("/politica")} tooltip="Política">
+                  <Link to="/politica">
+                    <Shield />
+                    <span className="text-yellow-500">Política</span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -87,7 +114,8 @@ const DashboardSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
 
-      {user && <>
+      {user && (
+        <>
           <SidebarSeparator />
           <SidebarContent className="bg-blue-950">
             <SidebarGroup>
@@ -111,13 +139,16 @@ const DashboardSidebar = () => {
               </SidebarGroupContent>
             </SidebarGroup>
           </SidebarContent>
-        </>}
+        </>
+      )}
 
       <SidebarFooter className="py-2">
         <div className="px-3 text-xs text-gray-500 bg-black">
           © {new Date().getFullYear()} Copyfy
         </div>
       </SidebarFooter>
-    </Sidebar>;
+    </Sidebar>
+  );
 };
+
 export default DashboardSidebar;
