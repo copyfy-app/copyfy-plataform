@@ -1,4 +1,5 @@
 
+
 export const generateCODCopies = (
   product: string,
   price: string,
@@ -20,7 +21,7 @@ export const generateCODCopies = (
     'UY': 'es', 'GQ': 'es',
     
     // Países que falam inglês
-    'US': 'en', 'GB': 'en', 'CA': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en',
+    'US': 'en', 'GB': 'en', 'AU': 'en', 'NZ': 'en', 'IE': 'en',
     'ZA': 'en', 'IN': 'en', 'SG': 'en', 'MY': 'en', 'PH': 'en', 'NG': 'en',
     'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en', 'ZM': 'en', 'ZW': 'en',
     'BW': 'en', 'MW': 'en', 'MT': 'en', 'CY': 'en', 'JM': 'en', 'TT': 'en',
@@ -28,7 +29,7 @@ export const generateCODCopies = (
     'SL': 'en', 'GM': 'en',
     
     // Países que falam francês
-    'FR': 'fr', 'BE': 'fr', 'CH': 'fr', 'LU': 'fr', 'MC': 'fr', 'CA': 'fr',
+    'FR': 'fr', 'BE': 'fr', 'LU': 'fr', 'MC': 'fr',
     'SN': 'fr', 'CI': 'fr', 'ML': 'fr', 'BF': 'fr', 'NE': 'fr', 'GN': 'fr',
     'TD': 'fr', 'CF': 'fr', 'CG': 'fr', 'CD': 'fr', 'GA': 'fr', 'CM': 'fr',
     'DJ': 'fr', 'KM': 'fr', 'MG': 'fr', 'MU': 'fr', 'SC': 'fr', 'VU': 'fr',
@@ -36,10 +37,14 @@ export const generateCODCopies = (
     'GF': 'fr', 'PM': 'fr', 'YT': 'fr',
     
     // Países que falam alemão
-    'DE': 'de', 'AT': 'de', 'CH': 'de', 'LI': 'de', 'LU': 'de',
+    'DE': 'de', 'AT': 'de', 'LI': 'de',
     
     // Países que falam italiano
-    'IT': 'it', 'SM': 'it', 'VA': 'it', 'CH': 'it'
+    'IT': 'it', 'SM': 'it', 'VA': 'it',
+    
+    // Países multilíngues - priorizando idioma principal
+    'CA': 'en', // Canadá - inglês como principal
+    'CH': 'de'  // Suíça - alemão como principal
   };
 
   // Determinar idioma correto (priorizar mapeamento direto do país)
@@ -526,3 +531,4 @@ export const generateCODCopies = (
     biddingStrategy: selectedTranslations.biddingStrategy
   };
 };
+
