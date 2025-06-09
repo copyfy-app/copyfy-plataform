@@ -191,7 +191,7 @@ const Dashboard = () => {
 
           <Card className="bg-zinc-900 border-yellow-500/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-300">
+              <CardTitle className="font-medium text-sm text-white">
                 Campaigns Generated
               </CardTitle>
               <Zap className="h-4 w-4 text-yellow-500" />
@@ -206,7 +206,7 @@ const Dashboard = () => {
 
           <Card className="bg-zinc-900 border-yellow-500/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-300">
+              <CardTitle className="text-sm font-medium text-white">
                 Campaign History
               </CardTitle>
               <History className="h-4 w-4 text-yellow-500" />
