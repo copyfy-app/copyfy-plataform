@@ -254,7 +254,7 @@ const Dashboard = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-zinc-900 border-yellow-500/20">
+          <Card className="border-yellow-500/20 bg-zinc-900">
             <CardHeader>
               <CardTitle className="text-xl text-white flex items-center">
                 <History className="w-6 h-6 text-yellow-500 mr-3" />
