@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,6 +9,8 @@ import { ArrowLeft, Zap, History, User, LogOut, Play } from 'lucide-react';
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, signOut, isAdmin, isTrialActive, trialDaysRemaining } = useAuth();
+  const [campaignCount, setCampaignCount] = React.useState(0);
+  const [lastCampaign, setLastCampaign] = React.useState<string>('');
 
   const handleBackToHome = () => {
     navigate('/');
@@ -27,48 +30,29 @@ const Dashboard = () => {
     console.log('Profile page coming soon');
   };
 
+  // Load campaign data from localStorage
   React.useEffect(() => {
-    const script = document.createElement('script');
-    script.innerHTML = `
-      // Ativa os cards com dados fictícios
-      window.addEventListener("DOMContentLoaded", function () {
-        // Ativa Campaigns Generated
-        document.querySelectorAll("div").forEach(el => {
-          if (el.textContent.includes("Campaigns Generated")) {
-            el.innerHTML = \`
-              <strong style="font-size: 22px;">1</strong><br>
-              You've created your first campaign!
-            \`;
-          }
-          if (el.textContent.includes("Campaign History")) {
-            el.innerHTML = \`
-              <strong style="font-size: 22px;">1</strong><br>
-              Testoy Gel - Brazil
-            \`;
-          }
-          if (el.textContent.includes("No recent activity")) {
-            el.innerHTML = \`
-              <strong style="font-size: 18px;">Recent:</strong><br>
-              Generated 30 ads for Testoy Gel
-            \`;
-          }
-          if (el.textContent.includes("Trial Account")) {
-            el.innerHTML = \`
-              <strong>Trial Active</strong><br>
-              2 days remaining<br><br>
-              <a href="https://copyfy.shop/upgrade" style="background: #facc15; color: black; padding: 6px 14px; border-radius: 6px; font-weight: bold; text-decoration: none;">
-                Upgrade Now
-              </a>
-            \`;
-          }
-        });
-      });
-    `;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
+    const loadCampaignData = () => {
+      const history = JSON.parse(localStorage.getItem("historicoCampanhas") || "[]");
+      setCampaignCount(history.length);
+      
+      if (history.length > 0) {
+        try {
+          const latestCampaign = JSON.parse(history[0]);
+          setLastCampaign(latestCampaign.product || '');
+        } catch (error) {
+          console.error('Error parsing campaign data:', error);
+        }
+      }
     };
+
+    // Load data initially
+    loadCampaignData();
+
+    // Set up interval to check for updates every 2 seconds
+    const interval = setInterval(loadCampaignData, 2000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -153,9 +137,11 @@ const Dashboard = () => {
               <Zap className="h-4 w-4 text-yellow-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">0</div>
+              <div className="text-2xl font-bold text-white">{campaignCount}</div>
               <p className="text-xs text-gray-400">
-                Start creating your first campaign
+                {campaignCount === 0 ? 'Start creating your first campaign' : 
+                 campaignCount === 1 ? "You've created your first campaign!" : 
+                 `${campaignCount} campaigns created`}
               </p>
             </CardContent>
           </Card>
@@ -168,9 +154,11 @@ const Dashboard = () => {
               <History className="h-4 w-4 text-yellow-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">0</div>
+              <div className="text-2xl font-bold text-white">{campaignCount}</div>
               <p className="text-xs text-gray-400">
-                Saved campaigns will appear here
+                {campaignCount === 0 ? 'Saved campaigns will appear here' : 
+                 lastCampaign ? `Latest: ${lastCampaign}` : 
+                 'Saved campaigns'}
               </p>
             </CardContent>
           </Card>
@@ -208,13 +196,25 @@ const Dashboard = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="text-center py-8">
-                <History className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">No recent activity</p>
-                <p className="text-sm text-gray-500 mt-2">
-                  Your campaign history will appear here
-                </p>
-              </div>
+              {campaignCount === 0 ? (
+                <div className="text-center py-8">
+                  <History className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+                  <p className="text-gray-400">No recent activity</p>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Your campaign history will appear here
+                  </p>
+                </div>
+              ) : (
+                <div className="py-4">
+                  <p className="text-lg font-semibold text-white">Recent:</p>
+                  <p className="text-gray-300 mt-2">
+                    Generated 30 ads for {lastCampaign || 'your latest campaign'}
+                  </p>
+                  <p className="text-sm text-gray-500 mt-2">
+                    {campaignCount} campaign{campaignCount !== 1 ? 's' : ''} in history
+                  </p>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
