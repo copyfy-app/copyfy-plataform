@@ -10,19 +10,19 @@ import { CampaignData } from '../../hooks/useCampaignGeneration';
 const funnelStrategies = [
   {
     value: "cod",
-    label: "COD (Pagamento na Entrega)"
+    label: "COD (Cash on Delivery)"
   },
   {
     value: "bottom",
-    label: "Fundo de Funil"
+    label: "Bottom of Funnel"
   },
   {
     value: "mid",
-    label: "Meio de Funil"
+    label: "Middle of Funnel"
   },
   {
     value: "top",
-    label: "Topo de Funil"
+    label: "Top of Funnel"
   }
 ];
 
@@ -55,15 +55,15 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
     <div className="max-w-4xl mx-auto">
       <div className="border border-zinc-700 shadow-xl p-6 md:p-8 rounded-3xl bg-gradient-to-br from-black via-yellow-900/15 to-black">
         <h2 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">
-          Gere sua Campanha de Alta Conversão
+          Create Your High-Converting Campaign
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="country" className="text-white font-medium">Selecione o País</Label>
+            <Label htmlFor="country" className="text-white font-medium">Select Country</Label>
             <Select value={country} onValueChange={setCountry}>
               <SelectTrigger className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm">
-                <SelectValue placeholder="Escolha um país" />
+                <SelectValue placeholder="Choose a country" />
               </SelectTrigger>
               <SelectContent className="bg-white border-zinc-300 max-h-60">
                 {countries.map(country => (
@@ -77,11 +77,11 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
 
           <div className="space-y-2">
             <Label htmlFor="funnel" className="text-white font-medium">
-              Estratégia de Funil
+              Funnel Strategy
             </Label>
             <Select value={funnel} onValueChange={setFunnel}>
               <SelectTrigger className="w-full p-4 rounded-lg bg-white text-black border-none text-base shadow-sm">
-                <SelectValue placeholder="Escolha uma estratégia" />
+                <SelectValue placeholder="Choose a strategy" />
               </SelectTrigger>
               <SelectContent className="bg-white border-zinc-300">
                 {funnelStrategies.map(strategy => (
@@ -95,7 +95,7 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
 
           <div className="space-y-2">
             <Label htmlFor="product" className="text-white font-medium">
-              Nome do Produto
+              Product Name
             </Label>
             <Input 
               id="product" 
@@ -108,11 +108,11 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
 
           <div className="space-y-2">
             <Label htmlFor="price" className="text-white font-medium">
-              Preço
+              Price
             </Label>
             <Input 
               id="price" 
-              placeholder="Ex: R$ 197,00" 
+              placeholder="Ex: $197.00" 
               value={price} 
               onChange={e => setPrice(e.target.value)} 
               className="w-full p-4 rounded-lg text-black border-none text-base shadow-sm bg-zinc-50" 
@@ -126,7 +126,7 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
             onClick={handleSubmit} 
             disabled={isGenerating || !canGenerate || !country || !product || !price || !funnel}
           >
-            {isGenerating ? "Gerando Campanha..." : "Gerar Campanha"}
+            {isGenerating ? "Generating Campaign..." : "Generate Campaign"}
           </Button>
         </div>
       </div>
