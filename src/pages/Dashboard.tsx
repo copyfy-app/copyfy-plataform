@@ -26,11 +26,6 @@ const Dashboard = () => {
     navigate('/');
   };
 
-  const handleProfile = () => {
-    // Profile functionality can be added later
-    console.log('Profile page coming soon');
-  };
-
   const handleClearHistory = () => {
     localStorage.removeItem("historicoCampanhas");
     setCampaignCount(0);
@@ -78,6 +73,56 @@ const Dashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
+  React.useEffect(() => {
+    // Script para ativar o dropdown do profile
+    const profileMenuBtn = document.getElementById('profileMenuBtn');
+    const profileDropdown = document.getElementById('profileDropdown');
+    const userName = document.getElementById('userName');
+    const dropdownName = document.getElementById('dropdownName');
+    const dropdownEmail = document.getElementById('dropdownEmail');
+    const userAvatar = document.getElementById('userAvatar');
+    const dropdownAvatar = document.getElementById('dropdownAvatar');
+
+    if (profileMenuBtn && profileDropdown) {
+      const toggleDropdown = () => {
+        profileDropdown.classList.toggle('hidden');
+      };
+
+      profileMenuBtn.addEventListener('click', toggleDropdown);
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!profileMenuBtn.contains(e.target as Node) && !profileDropdown.contains(e.target as Node)) {
+          profileDropdown.classList.add('hidden');
+        }
+      });
+
+      // Update user info if available
+      if (user && userName && dropdownName && dropdownEmail && userAvatar && dropdownAvatar) {
+        const displayName = user.email?.split('@')[0] || 'User';
+        userName.textContent = displayName;
+        dropdownName.textContent = displayName;
+        dropdownEmail.textContent = user.email || 'user@email.com';
+        
+        const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}`;
+        userAvatar.src = avatarUrl;
+        dropdownAvatar.src = avatarUrl;
+      }
+
+      return () => {
+        profileMenuBtn.removeEventListener('click', toggleDropdown);
+      };
+    }
+  }, [user]);
+
+  // Global handleLogout function for the dropdown
+  React.useEffect(() => {
+    (window as any).handleLogout = handleLogout;
+    return () => {
+      delete (window as any).handleLogout;
+    };
+  }, [handleLogout]);
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
@@ -99,15 +144,28 @@ const Dashboard = () => {
           </div>
           
           <div className="flex items-center space-x-4">
-            <Button
-              onClick={handleProfile}
-              variant="ghost"
-              size="sm"
-              className="text-white hover:text-yellow-500"
-            >
-              <User className="w-4 h-4 mr-2" />
-              Profile
-            </Button>
+            {/* PROFILE USER MENU */}
+            <div className="relative">
+              <button id="profileMenuBtn" className="flex items-center space-x-2 text-white bg-black px-4 py-2 rounded-lg hover:bg-gray-800 transition">
+                <img id="userAvatar" className="w-6 h-6 rounded-full" src="https://ui-avatars.com/api/?name=User" alt="avatar" />
+                <span id="userName">Loading...</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* DROPDOWN MENU */}
+              <div id="profileDropdown" className="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg z-50">
+                <div className="p-4 border-b flex items-center space-x-3">
+                  <img id="dropdownAvatar" className="w-10 h-10 rounded-full" src="https://ui-avatars.com/api/?name=User" alt="avatar" />
+                  <div>
+                    <p id="dropdownName" className="text-gray-800 font-semibold text-sm">User</p>
+                    <p id="dropdownEmail" className="text-gray-500 text-xs">user@email.com</p>
+                  </div>
+                </div>
+                <button onClick={() => (window as any).handleLogout()} className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-100">Logout</button>
+              </div>
+            </div>
             <Button
               onClick={handleLogout}
               variant="ghost"
