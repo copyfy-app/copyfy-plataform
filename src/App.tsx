@@ -4,8 +4,10 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
-import DashboardHome from "./pages/DashboardHome";
+import Dashboard from "./pages/Dashboard";
+import CopyfyPage from "./pages/CopyfyPage";
 import PainelPage from "./pages/PainelPage";
 import PolicyPage from "./pages/PolicyPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -48,8 +50,8 @@ const RedirectIfAuthenticated = () => {
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Redireciona diretamente para dashboard (ou login se não autenticado) */}
-      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      {/* Home page - publicly accessible */}
+      <Route path="/" element={<Home />} />
       
       {/* Rotas que redirecionam se já estiver autenticado */}
       <Route element={<RedirectIfAuthenticated />}>
@@ -58,7 +60,8 @@ const AppRoutes = () => {
       
       {/* Rotas protegidas que requerem autenticação */}
       <Route element={<ProtectedRoute />}>
-        <Route path="/dashboard" element={<DashboardHome />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/copyfy" element={<CopyfyPage />} />
         <Route path="/painel" element={<PainelPage />} />
         <Route path="/politica" element={<PolicyPage />} />
       </Route>

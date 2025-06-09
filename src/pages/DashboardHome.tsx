@@ -1,12 +1,10 @@
 
 import React from "react";
-import { useAuth } from "@/contexts/AuthContext";
-import Dashboard from "@/components/Dashboard";
+import { Navigate } from "react-router-dom";
 
 const DashboardHome = () => {
-  const { user, signOut } = useAuth();
-
-  return <Dashboard />;
+  // Redirect to the new dashboard route
+  return <Navigate to="/dashboard" replace />;
 };
 
 export default DashboardHome;

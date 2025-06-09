@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
@@ -155,7 +154,7 @@ const CopyfyPanel = () => {
         className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
       >
         <ArrowLeft className="w-4 h-4 mr-2" />
-        Voltar para o Dashboard
+        Back to Dashboard
       </Button>
 
       {/* Fixed History Button */}
