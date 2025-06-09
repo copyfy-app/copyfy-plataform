@@ -80,8 +80,8 @@ const Dashboard = () => {
     const userName = document.getElementById('userName');
     const dropdownName = document.getElementById('dropdownName');
     const dropdownEmail = document.getElementById('dropdownEmail');
-    const userAvatar = document.getElementById('userAvatar');
-    const dropdownAvatar = document.getElementById('dropdownAvatar');
+    const userAvatar = document.getElementById('userAvatar') as HTMLImageElement;
+    const dropdownAvatar = document.getElementById('dropdownAvatar') as HTMLImageElement;
 
     if (profileMenuBtn && profileDropdown) {
       const toggleDropdown = () => {
