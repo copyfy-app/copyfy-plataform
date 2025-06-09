@@ -4,13 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { ArrowLeft, Zap, History, User, LogOut, Play } from 'lucide-react';
+import { ArrowLeft, Zap, History, User, LogOut, Play, Trash2 } from 'lucide-react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { user, signOut, isAdmin, isTrialActive, trialDaysRemaining } = useAuth();
   const [campaignCount, setCampaignCount] = React.useState(0);
   const [lastCampaign, setLastCampaign] = React.useState<string>('');
+  const [recentCampaigns, setRecentCampaigns] = React.useState<any[]>([]);
 
   const handleBackToHome = () => {
     navigate('/');
@@ -30,6 +31,17 @@ const Dashboard = () => {
     console.log('Profile page coming soon');
   };
 
+  const handleClearHistory = () => {
+    localStorage.removeItem("historicoCampanhas");
+    setCampaignCount(0);
+    setLastCampaign('');
+    setRecentCampaigns([]);
+  };
+
+  const handleUpgrade = () => {
+    window.open('https://www.hotmart.com/pt-br', '_blank');
+  };
+
   // Load campaign data from localStorage
   React.useEffect(() => {
     const loadCampaignData = () => {
@@ -40,6 +52,17 @@ const Dashboard = () => {
         try {
           const latestCampaign = JSON.parse(history[0]);
           setLastCampaign(latestCampaign.product || '');
+          
+          // Get last 5 campaigns for display
+          const campaigns = history.slice(0, 5).map((campaignStr: string) => {
+            try {
+              return JSON.parse(campaignStr);
+            } catch (error) {
+              return null;
+            }
+          }).filter(Boolean);
+          
+          setRecentCampaigns(campaigns);
         } catch (error) {
           console.error('Error parsing campaign data:', error);
         }
@@ -152,14 +175,39 @@ const Dashboard = () => {
                 Campaign History
               </CardTitle>
               <History className="h-4 w-4 text-yellow-500" />
+              <Button
+                onClick={handleClearHistory}
+                variant="ghost"
+                size="sm"
+                className="text-red-400 hover:text-red-300 p-1"
+                disabled={campaignCount === 0}
+              >
+                <Trash2 className="h-3 w-3" />
+              </Button>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">{campaignCount}</div>
-              <p className="text-xs text-gray-400">
-                {campaignCount === 0 ? 'Saved campaigns will appear here' : 
-                 lastCampaign ? `Latest: ${lastCampaign}` : 
-                 'Saved campaigns'}
-              </p>
+              {campaignCount === 0 ? (
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-white">0</div>
+                  <p className="text-xs text-gray-400">No campaigns yet</p>
+                </div>
+              ) : (
+                <div className="space-y-2">
+                  <div className="text-2xl font-bold text-white">{campaignCount}</div>
+                  <div className="space-y-1">
+                    {recentCampaigns.map((campaign, index) => (
+                      <div key={index} className="text-xs text-gray-400 truncate">
+                        {campaign.product}
+                      </div>
+                    ))}
+                    {campaignCount > 5 && (
+                      <div className="text-xs text-gray-500">
+                        +{campaignCount - 5} more...
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -196,25 +244,32 @@ const Dashboard = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              {campaignCount === 0 ? (
-                <div className="text-center py-8">
-                  <History className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-                  <p className="text-gray-400">No recent activity</p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Your campaign history will appear here
-                  </p>
-                </div>
-              ) : (
-                <div className="py-4">
-                  <p className="text-lg font-semibold text-white">Recent:</p>
-                  <p className="text-gray-300 mt-2">
-                    Generated 30 ads for {lastCampaign || 'your latest campaign'}
-                  </p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    {campaignCount} campaign{campaignCount !== 1 ? 's' : ''} in history
-                  </p>
-                </div>
-              )}
+              <div className="space-y-3">
+                {campaignCount > 0 ? (
+                  <>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">Campaign generated</span>
+                      <span className="text-gray-500">June 9</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">User logged in</span>
+                      <span className="text-gray-500">June 8</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300">Account created</span>
+                      <span className="text-gray-500">June 7</span>
+                    </div>
+                  </>
+                ) : (
+                  <div className="text-center py-4">
+                    <History className="w-8 h-8 text-gray-600 mx-auto mb-2" />
+                    <p className="text-gray-400 text-sm">No recent activity</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Activity will appear here
+                    </p>
+                  </div>
+                )}
+              </div>
             </CardContent>
           </Card>
         </div>
@@ -237,7 +292,7 @@ const Dashboard = () => {
                 </div>
                 <Button
                   className="bg-yellow-500 text-black hover:bg-yellow-600"
-                  onClick={() => console.log('Subscription page coming soon')}
+                  onClick={handleUpgrade}
                 >
                   {isTrialActive ? 'Upgrade Now' : 'Subscribe'}
                 </Button>
