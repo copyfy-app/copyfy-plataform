@@ -52,8 +52,8 @@ const CopyfyPanel = () => {
   const handleGenerateCampaign = async (data: CampaignData) => {
     if (!isTrialActive && !isAdmin) {
       toast({
-        title: "Teste expirado",
-        description: "Seu período de teste gratuito acabou. Assine um plano para continuar.",
+        title: "Trial expired",
+        description: "Your free trial period has ended. Subscribe to a plan to continue.",
         variant: "destructive"
       });
       return;
@@ -65,13 +65,13 @@ const CopyfyPanel = () => {
     
     if (success) {
       toast({
-        title: "Campanha gerada com sucesso!",
-        description: `30 títulos únicos gerados no idioma correto.`
+        title: "Campaign generated successfully!",
+        description: `30 unique titles generated in the correct language.`
       });
     } else {
       toast({
-        title: "Erro ao gerar campanha",
-        description: "Ocorreu um erro. Tente novamente.",
+        title: "Error generating campaign",
+        description: "An error occurred. Please try again.",
         variant: "destructive"
       });
     }
@@ -81,8 +81,8 @@ const CopyfyPanel = () => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast({
-      title: "Copiado!",
-      description: "Texto copiado para área de transferência."
+      title: "Copied!",
+      description: "Text copied to clipboard."
     });
   };
 
@@ -92,8 +92,8 @@ const CopyfyPanel = () => {
     
     saveCampaign(currentCampaignData, generatedContent);
     toast({
-      title: "Campanha salva!",
-      description: "Campanha adicionada ao histórico."
+      title: "Campaign saved!",
+      description: "Campaign added to history."
     });
   };
 
@@ -102,8 +102,8 @@ const CopyfyPanel = () => {
     const campaignData = loadCampaign(campaignString);
     if (!campaignData) {
       toast({
-        title: "Erro",
-        description: "Erro ao carregar campanha do histórico.",
+        title: "Error",
+        description: "Error loading campaign from history.",
         variant: "destructive"
       });
       return;
@@ -133,8 +133,8 @@ const CopyfyPanel = () => {
     // For now, we'll show a message to regenerate
     setShowHistory(false);
     toast({
-      title: "Campanha carregada!",
-      description: "Gere novamente a campanha com os dados carregados."
+      title: "Campaign loaded!",
+      description: "Generate the campaign again with the loaded data."
     });
   };
 
@@ -142,8 +142,8 @@ const CopyfyPanel = () => {
   const handleDeleteCampaign = (index: number) => {
     deleteCampaign(index);
     toast({
-      title: "Campanha excluída",
-      description: "Campanha removida do histórico."
+      title: "Campaign deleted",
+      description: "Campaign removed from history."
     });
   };
 
@@ -166,7 +166,7 @@ const CopyfyPanel = () => {
               className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
             >
               <History className="w-4 h-4 mr-2" />
-              Histórico
+              History
             </Button>
 
             <Button 
@@ -174,7 +174,7 @@ const CopyfyPanel = () => {
               className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
             >
               <HelpCircle className="w-4 h-4 mr-2" />
-              Ajuda
+              Help
             </Button>
           </div>
         </div>
@@ -188,7 +188,7 @@ const CopyfyPanel = () => {
             <span className="text-white">fy</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 font-semibold">
-            Gere suas Campanhas em Poucos Cliques
+            Generate Your Campaigns in Just a Few Clicks
           </p>
         </div>
       </header>
