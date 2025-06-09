@@ -1,12 +1,12 @@
 
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import InternationalDashboard from "@/components/InternationalDashboard";
+import Dashboard from "@/components/Dashboard";
 
 const DashboardHome = () => {
   const { user, signOut } = useAuth();
 
-  return <InternationalDashboard />;
+  return <Dashboard />;
 };
 
 export default DashboardHome;
