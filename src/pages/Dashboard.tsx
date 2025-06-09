@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,6 +26,50 @@ const Dashboard = () => {
     // Profile functionality can be added later
     console.log('Profile page coming soon');
   };
+
+  React.useEffect(() => {
+    const script = document.createElement('script');
+    script.innerHTML = `
+      // Ativa os cards com dados fictícios
+      window.addEventListener("DOMContentLoaded", function () {
+        // Ativa Campaigns Generated
+        document.querySelectorAll("div").forEach(el => {
+          if (el.textContent.includes("Campaigns Generated")) {
+            el.innerHTML = \`
+              <strong style="font-size: 22px;">1</strong><br>
+              You've created your first campaign!
+            \`;
+          }
+          if (el.textContent.includes("Campaign History")) {
+            el.innerHTML = \`
+              <strong style="font-size: 22px;">1</strong><br>
+              Testoy Gel - Brazil
+            \`;
+          }
+          if (el.textContent.includes("No recent activity")) {
+            el.innerHTML = \`
+              <strong style="font-size: 18px;">Recent:</strong><br>
+              Generated 30 ads for Testoy Gel
+            \`;
+          }
+          if (el.textContent.includes("Trial Account")) {
+            el.innerHTML = \`
+              <strong>Trial Active</strong><br>
+              2 days remaining<br><br>
+              <a href="https://copyfy.shop/upgrade" style="background: #facc15; color: black; padding: 6px 14px; border-radius: 6px; font-weight: bold; text-decoration: none;">
+                Upgrade Now
+              </a>
+            \`;
+          }
+        });
+      });
+    `;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
