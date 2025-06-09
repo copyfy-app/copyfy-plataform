@@ -1,38 +1,37 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { ArrowLeft, Zap, History, User, LogOut, Play, Trash2 } from 'lucide-react';
-
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { user, signOut, isAdmin, isTrialActive, trialDaysRemaining } = useAuth();
+  const {
+    user,
+    signOut,
+    isAdmin,
+    isTrialActive,
+    trialDaysRemaining
+  } = useAuth();
   const [campaignCount, setCampaignCount] = React.useState(0);
   const [lastCampaign, setLastCampaign] = React.useState<string>('');
   const [recentCampaigns, setRecentCampaigns] = React.useState<any[]>([]);
-
   const handleBackToHome = () => {
     navigate('/');
   };
-
   const handleOpenCopyfy = () => {
     navigate('/copyfy');
   };
-
   const handleLogout = () => {
     signOut();
     navigate('/');
   };
-
   const handleClearHistory = () => {
     localStorage.removeItem("historicoCampanhas");
     setCampaignCount(0);
     setLastCampaign('');
     setRecentCampaigns([]);
   };
-
   const handleUpgrade = () => {
     window.open('https://www.hotmart.com/pt-br', '_blank');
   };
@@ -42,12 +41,11 @@ const Dashboard = () => {
     const loadCampaignData = () => {
       const history = JSON.parse(localStorage.getItem("historicoCampanhas") || "[]");
       setCampaignCount(history.length);
-      
       if (history.length > 0) {
         try {
           const latestCampaign = JSON.parse(history[0]);
           setLastCampaign(latestCampaign.product || '');
-          
+
           // Get last 5 campaigns for display
           const campaigns = history.slice(0, 5).map((campaignStr: string) => {
             try {
@@ -56,7 +54,6 @@ const Dashboard = () => {
               return null;
             }
           }).filter(Boolean);
-          
           setRecentCampaigns(campaigns);
         } catch (error) {
           console.error('Error parsing campaign data:', error);
@@ -69,10 +66,8 @@ const Dashboard = () => {
 
     // Set up interval to check for updates every 2 seconds
     const interval = setInterval(loadCampaignData, 2000);
-
     return () => clearInterval(interval);
   }, []);
-
   React.useEffect(() => {
     // Script para ativar o dropdown do profile
     const profileMenuBtn = document.getElementById('profileMenuBtn');
@@ -82,16 +77,14 @@ const Dashboard = () => {
     const dropdownEmail = document.getElementById('dropdownEmail');
     const userAvatar = document.getElementById('userAvatar') as HTMLImageElement;
     const dropdownAvatar = document.getElementById('dropdownAvatar') as HTMLImageElement;
-
     if (profileMenuBtn && profileDropdown) {
       const toggleDropdown = () => {
         profileDropdown.classList.toggle('hidden');
       };
-
       profileMenuBtn.addEventListener('click', toggleDropdown);
 
       // Close dropdown when clicking outside
-      document.addEventListener('click', (e) => {
+      document.addEventListener('click', e => {
         if (!profileMenuBtn.contains(e.target as Node) && !profileDropdown.contains(e.target as Node)) {
           profileDropdown.classList.add('hidden');
         }
@@ -103,12 +96,10 @@ const Dashboard = () => {
         userName.textContent = displayName;
         dropdownName.textContent = displayName;
         dropdownEmail.textContent = user.email || 'user@email.com';
-        
         const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}`;
         userAvatar.src = avatarUrl;
         dropdownAvatar.src = avatarUrl;
       }
-
       return () => {
         profileMenuBtn.removeEventListener('click', toggleDropdown);
       };
@@ -122,19 +113,12 @@ const Dashboard = () => {
       delete (window as any).handleLogout;
     };
   }, [handleLogout]);
-
-  return (
-    <div className="min-h-screen bg-black text-white">
+  return <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="border-b border-yellow-500/20 py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <Button
-              onClick={handleBackToHome}
-              variant="outline"
-              size="sm"
-              className="border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black"
-            >
+            <Button onClick={handleBackToHome} variant="outline" size="sm" className="border-yellow-500/50 text-yellow-500 hover:bg-yellow-500 hover:text-black">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Home
             </Button>
@@ -166,12 +150,7 @@ const Dashboard = () => {
                 <button onClick={() => (window as any).handleLogout()} className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-100">Logout</button>
               </div>
             </div>
-            <Button
-              onClick={handleLogout}
-              variant="ghost"
-              size="sm"
-              className="text-white hover:text-yellow-500"
-            >
+            <Button onClick={handleLogout} variant="ghost" size="sm" className="text-white hover:text-yellow-500">
               <LogOut className="w-4 h-4 mr-2" />
               Logout
             </Button>
@@ -193,7 +172,7 @@ const Dashboard = () => {
 
         {/* Stats Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          <Card className="bg-zinc-900 border-yellow-500/20">
+          <Card className="border-yellow-500/20 bg-zinc-900">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-300">
                 Account Status
@@ -220,9 +199,7 @@ const Dashboard = () => {
             <CardContent>
               <div className="text-2xl font-bold text-white">{campaignCount}</div>
               <p className="text-xs text-gray-400">
-                {campaignCount === 0 ? 'Start creating your first campaign' : 
-                 campaignCount === 1 ? "You've created your first campaign!" : 
-                 `${campaignCount} campaigns created`}
+                {campaignCount === 0 ? 'Start creating your first campaign' : campaignCount === 1 ? "You've created your first campaign!" : `${campaignCount} campaigns created`}
               </p>
             </CardContent>
           </Card>
@@ -233,39 +210,25 @@ const Dashboard = () => {
                 Campaign History
               </CardTitle>
               <History className="h-4 w-4 text-yellow-500" />
-              <Button
-                onClick={handleClearHistory}
-                variant="ghost"
-                size="sm"
-                className="text-red-400 hover:text-red-300 p-1"
-                disabled={campaignCount === 0}
-              >
+              <Button onClick={handleClearHistory} variant="ghost" size="sm" className="text-red-400 hover:text-red-300 p-1" disabled={campaignCount === 0}>
                 <Trash2 className="h-3 w-3" />
               </Button>
             </CardHeader>
             <CardContent>
-              {campaignCount === 0 ? (
-                <div className="text-center">
+              {campaignCount === 0 ? <div className="text-center">
                   <div className="text-2xl font-bold text-white">0</div>
                   <p className="text-xs text-gray-400">No campaigns yet</p>
-                </div>
-              ) : (
-                <div className="space-y-2">
+                </div> : <div className="space-y-2">
                   <div className="text-2xl font-bold text-white">{campaignCount}</div>
                   <div className="space-y-1">
-                    {recentCampaigns.map((campaign, index) => (
-                      <div key={index} className="text-xs text-gray-400 truncate">
+                    {recentCampaigns.map((campaign, index) => <div key={index} className="text-xs text-gray-400 truncate">
                         {campaign.product}
-                      </div>
-                    ))}
-                    {campaignCount > 5 && (
-                      <div className="text-xs text-gray-500">
+                      </div>)}
+                    {campaignCount > 5 && <div className="text-xs text-gray-500">
                         +{campaignCount - 5} more...
-                      </div>
-                    )}
+                      </div>}
                   </div>
-                </div>
-              )}
+                </div>}
             </CardContent>
           </Card>
         </div>
@@ -284,10 +247,7 @@ const Dashboard = () => {
                 Create high-converting Google Ads campaigns with AI-powered copy generation.
                 Generate 30 unique variations instantly.
               </p>
-              <Button
-                onClick={handleOpenCopyfy}
-                className="w-full bg-yellow-500 text-black hover:bg-yellow-600 text-lg py-3"
-              >
+              <Button onClick={handleOpenCopyfy} className="w-full bg-yellow-500 text-black hover:bg-yellow-600 text-lg py-3">
                 <Play className="w-5 h-5 mr-2" />
                 Start Creating Campaigns
               </Button>
@@ -303,8 +263,7 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {campaignCount > 0 ? (
-                  <>
+                {campaignCount > 0 ? <>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-gray-300">Campaign generated</span>
                       <span className="text-gray-500">June 9</span>
@@ -317,24 +276,20 @@ const Dashboard = () => {
                       <span className="text-gray-300">Account created</span>
                       <span className="text-gray-500">June 7</span>
                     </div>
-                  </>
-                ) : (
-                  <div className="text-center py-4">
+                  </> : <div className="text-center py-4">
                     <History className="w-8 h-8 text-gray-600 mx-auto mb-2" />
                     <p className="text-gray-400 text-sm">No recent activity</p>
                     <p className="text-xs text-gray-500 mt-1">
                       Activity will appear here
                     </p>
-                  </div>
-                )}
+                  </div>}
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Trial Information */}
-        {!isAdmin && (
-          <Card className="mt-8 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-500/30">
+        {!isAdmin && <Card className="mt-8 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-500/30">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -342,25 +297,16 @@ const Dashboard = () => {
                     {isTrialActive ? 'Trial Account' : 'Trial Expired'}
                   </h3>
                   <p className="text-gray-300">
-                    {isTrialActive 
-                      ? `You have ${trialDaysRemaining} days remaining in your free trial.`
-                      : 'Your free trial has expired. Subscribe to continue using Copyfy.'
-                    }
+                    {isTrialActive ? `You have ${trialDaysRemaining} days remaining in your free trial.` : 'Your free trial has expired. Subscribe to continue using Copyfy.'}
                   </p>
                 </div>
-                <Button
-                  className="bg-yellow-500 text-black hover:bg-yellow-600"
-                  onClick={handleUpgrade}
-                >
+                <Button className="bg-yellow-500 text-black hover:bg-yellow-600" onClick={handleUpgrade}>
                   {isTrialActive ? 'Upgrade Now' : 'Subscribe'}
                 </Button>
               </div>
             </CardContent>
-          </Card>
-        )}
+          </Card>}
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default Dashboard;
