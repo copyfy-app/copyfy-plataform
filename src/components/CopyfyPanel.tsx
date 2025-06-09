@@ -43,6 +43,11 @@ const CopyfyPanel = () => {
 
   const [currentCampaignData, setCurrentCampaignData] = useState<CampaignData | null>(null);
 
+  // Handle navigation back to dashboard
+  const handleBackToDashboard = () => {
+    navigate("/dashboard");
+  };
+
   // Handle campaign generation
   const handleGenerateCampaign = async (data: CampaignData) => {
     if (!isTrialActive && !isAdmin) {
@@ -145,7 +150,10 @@ const CopyfyPanel = () => {
   return (
     <div className="min-h-screen text-white bg-gradient-to-br from-black via-yellow-900/20 to-black relative">
       {/* Fixed Back Button */}
-      <Button onClick={() => navigate("/dashboard")} className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">
+      <Button 
+        onClick={handleBackToDashboard} 
+        className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
+      >
         <ArrowLeft className="w-4 h-4 mr-2" />
         Voltar para o Dashboard
       </Button>
