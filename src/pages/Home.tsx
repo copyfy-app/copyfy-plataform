@@ -1,22 +1,16 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Zap, Target, TrendingUp } from 'lucide-react';
-
 const Home = () => {
   const navigate = useNavigate();
-
   const handleGetStarted = () => {
     navigate('/login');
   };
-
   const handleGoToDashboard = () => {
     navigate('/dashboard');
   };
-
-  return (
-    <div className="min-h-screen bg-black text-white">
+  return <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="border-b border-yellow-500/20 py-6">
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -24,17 +18,10 @@ const Home = () => {
             COPY<span className="text-white">FY</span>
           </div>
           <div className="space-x-4">
-            <Button
-              onClick={handleGetStarted}
-              variant="outline"
-              className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black"
-            >
+            <Button onClick={handleGetStarted} variant="outline" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black">
               Login
             </Button>
-            <Button
-              onClick={handleGoToDashboard}
-              className="bg-yellow-500 text-black hover:bg-yellow-600"
-            >
+            <Button onClick={handleGoToDashboard} className="bg-yellow-500 text-black hover:bg-yellow-600">
               Dashboard
             </Button>
           </div>
@@ -51,11 +38,7 @@ const Home = () => {
         <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
           Create high-converting Google Ads copy in seconds with AI-powered campaign generation
         </p>
-        <Button
-          onClick={handleGetStarted}
-          size="lg"
-          className="bg-yellow-500 text-black hover:bg-yellow-600 text-lg px-8 py-4"
-        >
+        <Button onClick={handleGetStarted} size="lg" className="bg-yellow-500 text-black hover:bg-yellow-600 text-lg px-8 py-4">
           Get Started
           <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
@@ -103,11 +86,7 @@ const Home = () => {
           <p className="text-xl text-gray-300 mb-8">
             Join thousands of marketers already using Copyfy
           </p>
-          <Button
-            onClick={handleGetStarted}
-            size="lg"
-            className="bg-yellow-500 text-black hover:bg-yellow-600 text-lg px-8 py-4"
-          >
+          <Button onClick={handleGetStarted} size="lg" className="bg-yellow-500 text-black hover:bg-yellow-600 text-lg px-8 py-4">
             Start Creating Campaigns
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
@@ -117,11 +96,9 @@ const Home = () => {
       {/* Footer */}
       <footer className="border-t border-yellow-500/20 py-8">
         <div className="container mx-auto px-4 text-center text-gray-400">
-          <p>&copy; 2024 Copyfy. All rights reserved.</p>
+          <p className="text-white">© 2025 Copyfy. All rights reserved.</p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Home;
