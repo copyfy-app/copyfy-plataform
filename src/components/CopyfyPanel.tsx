@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
@@ -11,12 +10,10 @@ import CampaignForm from "./copyfy/CampaignForm";
 import CampaignResults from "./copyfy/CampaignResults";
 import HistoryModal from "./modals/HistoryModal";
 import HelpModal from "./modals/HelpModal";
-
 const CopyfyPanel = () => {
   const navigate = useNavigate();
   const [showHistory, setShowHistory] = useState(false);
   const [showHelpModal, setShowHelpModal] = useState(false);
-
   const {
     user,
     signOut,
@@ -24,7 +21,6 @@ const CopyfyPanel = () => {
     isTrialActive,
     trialDaysRemaining
   } = useAuth();
-
   const {
     isGenerating,
     campaignGenerated,
@@ -33,14 +29,12 @@ const CopyfyPanel = () => {
     generateCampaign,
     resetCampaign
   } = useCampaignGeneration();
-
   const {
     campaignHistory,
     saveCampaign,
     deleteCampaign,
     loadCampaign
   } = useCampaignHistory();
-
   const [currentCampaignData, setCurrentCampaignData] = useState<CampaignData | null>(null);
 
   // Handle navigation back to dashboard
@@ -58,11 +52,8 @@ const CopyfyPanel = () => {
       });
       return;
     }
-
     setCurrentCampaignData(data);
-    
     const success = await generateCampaign(data);
-    
     if (success) {
       toast({
         title: "Campaign generated successfully!",
@@ -89,7 +80,6 @@ const CopyfyPanel = () => {
   // Save campaign to history
   const handleSaveCampaign = () => {
     if (!campaignGenerated || !currentCampaignData || !generatedContent) return;
-    
     saveCampaign(currentCampaignData, generatedContent);
     toast({
       title: "Campaign saved!",
@@ -146,33 +136,22 @@ const CopyfyPanel = () => {
       description: "Campaign removed from history."
     });
   };
-
-  return (
-    <div className="min-h-screen bg-black text-white relative">
+  return <div className="min-h-screen bg-black text-white relative">
       {/* Fixed Navigation Bar */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-yellow-500/20">
         <div className="flex justify-between items-center p-4">
-          <Button 
-            onClick={handleBackToDashboard} 
-            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
-          >
+          <Button onClick={handleBackToDashboard} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Dashboard
           </Button>
 
           <div className="flex gap-3">
-            <Button 
-              onClick={() => setShowHistory(true)} 
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
-            >
+            <Button onClick={() => setShowHistory(true)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
               <History className="w-4 h-4 mr-2" />
               History
             </Button>
 
-            <Button 
-              onClick={() => setShowHelpModal(true)} 
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
-            >
+            <Button onClick={() => setShowHelpModal(true)} className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold">
               <HelpCircle className="w-4 h-4 mr-2" />
               Help
             </Button>
@@ -187,7 +166,7 @@ const CopyfyPanel = () => {
             <span className="text-yellow-500">Copy</span>
             <span className="text-white">fy</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 font-semibold">
+          <p className="text-xl font-semibold text-white md:text-3xl">
             Generate Your Campaigns in Just a Few Clicks
           </p>
         </div>
@@ -196,47 +175,19 @@ const CopyfyPanel = () => {
       {/* Main Content */}
       <main className="container mx-auto px-4 pb-8">
         <div className="max-w-4xl mx-auto">
-          {!campaignGenerated ? (
-            <div className="bg-zinc-900 border border-yellow-500/20 rounded-xl p-6 shadow-xl">
-              <CampaignForm 
-                onGenerate={handleGenerateCampaign} 
-                isGenerating={isGenerating}
-                canGenerate={isTrialActive || isAdmin}
-              />
-            </div>
-          ) : (
-            currentCampaignData && generatedContent && (
-              <div className="bg-zinc-900 border border-yellow-500/20 rounded-xl p-6 shadow-xl">
-                <CampaignResults
-                  campaignData={currentCampaignData}
-                  generatedContent={generatedContent}
-                  onSave={handleSaveCampaign}
-                  onNewCampaign={resetCampaign}
-                  onShowHistory={() => setShowHistory(true)}
-                  onCopyToClipboard={copyToClipboard}
-                />
-              </div>
-            )
-          )}
+          {!campaignGenerated ? <div className="bg-zinc-900 border border-yellow-500/20 rounded-xl p-6 shadow-xl">
+              <CampaignForm onGenerate={handleGenerateCampaign} isGenerating={isGenerating} canGenerate={isTrialActive || isAdmin} />
+            </div> : currentCampaignData && generatedContent && <div className="bg-zinc-900 border border-yellow-500/20 rounded-xl p-6 shadow-xl">
+                <CampaignResults campaignData={currentCampaignData} generatedContent={generatedContent} onSave={handleSaveCampaign} onNewCampaign={resetCampaign} onShowHistory={() => setShowHistory(true)} onCopyToClipboard={copyToClipboard} />
+              </div>}
         </div>
       </main>
 
       {/* History Modal */}
-      <HistoryModal 
-        open={showHistory}
-        onOpenChange={setShowHistory}
-        campaignHistory={campaignHistory}
-        onEditCampaign={editCampaign}
-        onDeleteCampaign={handleDeleteCampaign}
-      />
+      <HistoryModal open={showHistory} onOpenChange={setShowHistory} campaignHistory={campaignHistory} onEditCampaign={editCampaign} onDeleteCampaign={handleDeleteCampaign} />
 
       {/* Help Modal */}
-      <HelpModal 
-        open={showHelpModal}
-        onOpenChange={setShowHelpModal}
-      />
-    </div>
-  );
+      <HelpModal open={showHelpModal} onOpenChange={setShowHelpModal} />
+    </div>;
 };
-
 export default CopyfyPanel;
