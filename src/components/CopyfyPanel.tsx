@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
@@ -147,60 +148,77 @@ const CopyfyPanel = () => {
   };
 
   return (
-    <div className="min-h-screen text-white bg-gradient-to-br from-black via-yellow-900/20 to-black relative">
-      {/* Fixed Back Button */}
-      <Button 
-        onClick={handleBackToDashboard} 
-        className="fixed top-3 left-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg"
-      >
-        <ArrowLeft className="w-4 h-4 mr-2" />
-        Back to Dashboard
-      </Button>
+    <div className="min-h-screen bg-black text-white relative">
+      {/* Fixed Navigation Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-yellow-500/20">
+        <div className="flex justify-between items-center p-4">
+          <Button 
+            onClick={handleBackToDashboard} 
+            className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Dashboard
+          </Button>
 
-      {/* Fixed History Button */}
-      <Button onClick={() => setShowHistory(true)} className="fixed top-3 right-20 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">
-        <History className="w-4 h-4 mr-2" />
-        Histórico
-      </Button>
+          <div className="flex gap-3">
+            <Button 
+              onClick={() => setShowHistory(true)} 
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+            >
+              <History className="w-4 h-4 mr-2" />
+              Histórico
+            </Button>
 
-      {/* Fixed Help Button */}
-      <Button onClick={() => setShowHelpModal(true)} className="fixed top-3 right-3 z-50 bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 py-2 rounded-lg">
-        <HelpCircle className="w-4 h-4 mr-2" />
-        Como usar a Copyfy
-      </Button>
+            <Button 
+              onClick={() => setShowHelpModal(true)} 
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold"
+            >
+              <HelpCircle className="w-4 h-4 mr-2" />
+              Ajuda
+            </Button>
+          </div>
+        </div>
+      </div>
 
       {/* Header */}
-      <header className="border-b border-zinc-700 py-6 md:py-8 shadow-lg bg-gradient-to-br from-black via-yellow-900/15 to-black pt-16">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center space-y-4">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-yellow-500 tracking-wide">
-              Copy<span className="text-white">fy</span>
-            </h1>
-            <p className="text-lg md:text-xl font-semibold text-white lg:text-4xl">Gere suas Campanhas em Poucos Cliques</p>
-          </div>
+      <header className="pt-20 pb-8 px-4">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4">
+            <span className="text-yellow-500">Copy</span>
+            <span className="text-white">fy</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 font-semibold">
+            Gere suas Campanhas em Poucos Cliques
+          </p>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 md:px-8 py-8">
-        {!campaignGenerated ? (
-          <CampaignForm 
-            onGenerate={handleGenerateCampaign} 
-            isGenerating={isGenerating}
-            canGenerate={isTrialActive || isAdmin}
-          />
-        ) : (
-          currentCampaignData && generatedContent && (
-            <CampaignResults
-              campaignData={currentCampaignData}
-              generatedContent={generatedContent}
-              onSave={handleSaveCampaign}
-              onNewCampaign={resetCampaign}
-              onShowHistory={() => setShowHistory(true)}
-              onCopyToClipboard={copyToClipboard}
-            />
-          )
-        )}
+      <main className="container mx-auto px-4 pb-8">
+        <div className="max-w-4xl mx-auto">
+          {!campaignGenerated ? (
+            <div className="bg-zinc-900 border border-yellow-500/20 rounded-xl p-6 shadow-xl">
+              <CampaignForm 
+                onGenerate={handleGenerateCampaign} 
+                isGenerating={isGenerating}
+                canGenerate={isTrialActive || isAdmin}
+              />
+            </div>
+          ) : (
+            currentCampaignData && generatedContent && (
+              <div className="bg-zinc-900 border border-yellow-500/20 rounded-xl p-6 shadow-xl">
+                <CampaignResults
+                  campaignData={currentCampaignData}
+                  generatedContent={generatedContent}
+                  onSave={handleSaveCampaign}
+                  onNewCampaign={resetCampaign}
+                  onShowHistory={() => setShowHistory(true)}
+                  onCopyToClipboard={copyToClipboard}
+                />
+              </div>
+            )
+          )}
+        </div>
       </main>
 
       {/* History Modal */}
