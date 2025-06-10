@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Session, User } from "@supabase/supabase-js";
 import { toast } from "@/hooks/use-toast";
+import { calculateDaysRemaining } from "@/utils/dateUtils";
 
 type AuthContextType = {
   session: Session | null;
@@ -34,14 +35,72 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       console.log("📊 Carregando informações do usuário:", userId);
       
-      // Configuração padrão para todos os usuários
-      console.log("👤 Configuração padrão aplicada");
-      setIsAdmin(false);
-      setTrialDaysRemaining(2);
-      setIsTrialActive(true);
+      // Buscar o perfil do usuário na tabela profiles
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', userId)
+        .single();
+
+      if (profileError) {
+        console.error("❌ Erro ao buscar perfil:", profileError);
+        // Se o perfil não existir, usar valores padrão
+        console.log("👤 Usando configuração padrão (perfil não encontrado)");
+        setIsAdmin(false);
+        setTrialDaysRemaining(2);
+        setIsTrialActive(true);
+        return;
+      }
+
+      console.log("✅ Perfil encontrado:", profile);
+
+      // Verificar se é admin
+      const adminStatus = profile.is_admin || false;
+      setIsAdmin(adminStatus);
+
+      if (adminStatus) {
+        console.log("👑 Usuário é admin - acesso completo");
+        setTrialDaysRemaining(999); // Admin não tem limitação
+        setIsTrialActive(true);
+      } else {
+        // Calcular dias restantes do trial baseado no trial_start
+        if (profile.trial_start) {
+          const trialStartDate = new Date(profile.trial_start);
+          const daysRemaining = calculateDaysRemaining(trialStartDate);
+          const isActive = daysRemaining > 0;
+          
+          console.log("📅 Dados do trial:", {
+            trialStart: trialStartDate.toISOString(),
+            daysRemaining,
+            isActive
+          });
+          
+          setTrialDaysRemaining(daysRemaining);
+          setIsTrialActive(isActive);
+        } else {
+          // Se não tiver trial_start, criar um novo
+          console.log("🆕 Criando novo período de trial");
+          const now = new Date();
+          
+          const { error: updateError } = await supabase
+            .from('profiles')
+            .update({ trial_start: now.toISOString() })
+            .eq('id', userId);
+
+          if (updateError) {
+            console.error("❌ Erro ao atualizar trial_start:", updateError);
+          } else {
+            console.log("✅ Trial_start atualizado com sucesso");
+          }
+          
+          setTrialDaysRemaining(2);
+          setIsTrialActive(true);
+        }
+      }
 
     } catch (error) {
       console.error("❌ Erro ao processar informações do usuário:", error);
+      // Em caso de erro, usar valores padrão
       setIsAdmin(false);
       setTrialDaysRemaining(2);
       setIsTrialActive(true);
