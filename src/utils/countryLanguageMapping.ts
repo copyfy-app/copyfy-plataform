@@ -1,3 +1,4 @@
+
 // Mapeamento completo de países para idiomas
 export const countryToLanguage: { [key: string]: string } = {
   // Português
@@ -21,7 +22,7 @@ export const countryToLanguage: { [key: string]: string } = {
   'WF': 'fr', 'RE': 'fr', 'GP': 'fr', 'MQ': 'fr', 'GF': 'fr', 'PM': 'fr', 'YT': 'fr',
   
   // Alemão
-  'DE': 'de', 'AT': 'de', 'LI': 'de',
+  'DE': 'de', 'AT': 'de', 'LI': 'de', 'CH': 'de',
   
   // Italiano
   'IT': 'it', 'SM': 'it', 'VA': 'it',
@@ -36,7 +37,7 @@ export const countryToLanguage: { [key: string]: string } = {
   'KR': 'ko',
   
   // Russo
-  'RU': 'ru', 'BY': 'be', 'KZ': 'ru', 'KG': 'ru',
+  'RU': 'ru', 'BY': 'ru', 'KZ': 'ru', 'KG': 'ru',
   
   // Árabe
   'SA': 'ar', 'AE': 'ar', 'EG': 'ar', 'JO': 'ar', 'LB': 'ar', 'SY': 'ar', 'IQ': 'ar', 'KW': 'ar',
@@ -136,33 +137,19 @@ export const countryToLanguage: { [key: string]: string } = {
   // Mongol
   'MN': 'mn',
   
-  // Swahili
-  'SW': 'sw',
-  
   // Países multilíngues - priorizando idioma principal
-  'CA': 'en', // Canadá - inglês como principal
-  'CH': 'de'  // Suíça - alemão como principal
+  'CA': 'en' // Canadá - inglês como principal
 };
 
 export const getLanguageFromCountry = (countryCode: string): string => {
   const upperCountryCode = countryCode.toUpperCase();
-  
-  // Mapeamento específico para países que precisam de correção
-  const map: Record<string, string> = {
-    CN: 'zh', RU: 'ru', PL: 'pl', NL: 'nl', DK: 'da', NO: 'no', SE: 'sv', FI: 'fi',
-    SK: 'sk', SA: 'ar', GR: 'el', IL: 'he', LT: 'lt', LV: 'lv', EE: 'et', QA: 'ar',
-    KW: 'ar', CY: 'el', HN: 'es', MN: 'mn', HU: 'hu', RO: 'ro', VN: 'vi', TN: 'ar',
-    MY: 'ms', HK: 'zh', HR: 'hr', CZ: 'cs', PH: 'tl', NG: 'en', UA: 'uk', BY: 'be',
-  };
-  
-  // Primeiro verifica o mapeamento específico, depois o geral, com fallback para inglês
-  const language = map[upperCountryCode] || countryToLanguage[upperCountryCode] || 'en';
+  const language = countryToLanguage[upperCountryCode] || 'en';
   
   console.log('Detectando idioma para país:', upperCountryCode, 'Resultado:', language);
   return language;
 };
 
-// Mapeamento de nomes de países para códigos de idioma - ATUALIZADO COMPLETO
+// Mapeamento de nomes de países para códigos de idioma
 export const countryNameToLanguage: { [key: string]: string } = {
   // Português
   "Brasil": "pt", "Portugal": "pt", "Angola": "pt", "Moçambique": "pt",
@@ -172,7 +159,7 @@ export const countryNameToLanguage: { [key: string]: string } = {
   "Austrália": "en", "Australia": "en", "Canadá": "en", "Canada": "en", "África do Sul": "en", "South Africa": "en",
   
   // Francês
-  "França": "fr", "France": "fr", "Bélgica": "fr", "België": "fr", "Suíça": "de", "Schweiz": "de", "Luxemburgo": "fr",
+  "França": "fr", "France": "fr", "Bélgica": "fr", "België": "fr", "Suíça": "fr", "Schweiz": "fr", "Luxemburgo": "fr",
   
   // Alemão
   "Alemanha": "de", "Deutschland": "de", "Áustria": "de", "Österreich": "de", "Liechtenstein": "de",
@@ -188,16 +175,16 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Japonês
   "Japão": "ja", "日本": "ja",
   
-  // Chinês - CORRIGIDO DEFINITIVAMENTE
+  // Chinês
   "China": "zh", "中国": "zh", "Taiwan": "zh", "台灣": "zh", "Hong Kong": "zh", "香港": "zh",
   
   // Coreano
   "Coreia do Sul": "ko", "대한민국": "ko",
   
-  // Russo - CORRIGIDO DEFINITIVAMENTE
-  "Rússia": "ru", "Россия": "ru", "Bielorrússia": "be", "Беларусь": "be", "Cazaquistão": "ru",
+  // Russo
+  "Rússia": "ru", "Россия": "ru", "Bielorrússia": "ru", "Беларусь": "ru", "Cazaquistão": "ru",
   
-  // Árabe - TODOS CORRIGIDOS
+  // Árabe
   "Arábia Saudita": "ar", "المملكة العربية السعودية": "ar", "Emirados Árabes": "ar", "الإمارات العربية المتحدة": "ar",
   "Egito": "ar", "مصر": "ar", "Marrocos": "ar", "المغرب": "ar", "Catar": "ar", "Kuwait": "ar", "Tunísia": "ar",
   
@@ -210,31 +197,31 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Tailandês
   "Tailândia": "th", "ประเทศไทย": "th",
   
-  // Vietnamita - CORRIGIDO
+  // Vietnamita
   "Vietnã": "vi", "Việt Nam": "vi",
   
   // Turco
   "Turquia": "tr", "Türkiye": "tr",
   
-  // Holandês - CORRIGIDO DEFINITIVAMENTE
+  // Holandês
   "Holanda": "nl", "Nederland": "nl", "Países Baixos": "nl",
   
-  // Polonês - CORRIGIDO DEFINITIVAMENTE
+  // Polonês
   "Polônia": "pl", "Polska": "pl",
   
-  // Sueco - CORRIGIDO DEFINITIVAMENTE
+  // Sueco
   "Suécia": "sv", "Sverige": "sv",
   
-  // Norueguês - CORRIGIDO DEFINITIVAMENTE
+  // Norueguês
   "Noruega": "no", "Norge": "no",
   
-  // Dinamarquês - CORRIGIDO DEFINITIVAMENTE
+  // Dinamarquês
   "Dinamarca": "da", "Danmark": "da",
   
-  // Finlandês - CORRIGIDO DEFINITIVAMENTE
+  // Finlandês
   "Finlândia": "fi", "Suomi": "fi",
   
-  // Outros idiomas - TODOS CORRIGIDOS
+  // Outros idiomas
   "Grécia": "el", "Ελλάδα": "el",
   "Hungria": "hu", "Magyarország": "hu",
   "República Tcheca": "cs", "Česko": "cs",
@@ -257,23 +244,9 @@ export const countryNameToLanguage: { [key: string]: string } = {
   "Mongólia": "mn", "Mongolia": "mn"
 };
 
-// Estratégias de lance variadas
-export const biddingStrategies = [
-  "Maximizar conversões",
-  "CPA desejado",
-  "ROAS desejado", 
-  "Maximizar cliques",
-  "Lance manual",
-  "Maximizar valor de conversão",
-  "CPM otimizado",
-  "CPA melhorado",
-  "Custo por visualização",
-  "Conversões de alta intenção"
-];
-
 export const getLanguageFromCountryName = (countryName: string): string => {
   console.log('Buscando idioma para país:', countryName);
-  const language = countryNameToLanguage[countryName];
+  const language = countryNameToLanguage[countryName] || 'en';
   console.log('Idioma encontrado:', language);
-  return language || 'en';
+  return language;
 };

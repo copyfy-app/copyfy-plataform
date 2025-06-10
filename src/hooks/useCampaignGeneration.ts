@@ -1,7 +1,7 @@
-
 import { useState } from 'react';
 import { generateCODCopies } from '../utils/copyGenerator';
 import { countries } from '../components/data/Countries';
+import { getLanguageFromCountry } from '../utils/countryLanguageMapping';
 
 export interface CampaignData {
   country: string;
@@ -39,17 +39,20 @@ export const useCampaignGeneration = () => {
     
     // Buscar dados do país selecionado
     const countryData = countries.find(c => c.value === country);
-    const countryName = countryData ? countryData.name : "";
-    const languageCode = countryData ? countryData.languageCode : "pt";
+    const countryName = countryData ? countryData.name : country;
+    const languageCode = countryData ? countryData.languageCode : 'en';
     
-    setCurrentLanguage(languageCode);
+    // Detectar idioma correto baseado no código do país
+    const detectedLanguage = getLanguageFromCountry(country);
+    
+    setCurrentLanguage(detectedLanguage);
     
     console.log('Gerando campanha com dados:', {
       product,
       price,
       country,
       countryName,
-      languageCode,
+      languageCode: detectedLanguage,
       funnel
     });
 
@@ -57,11 +60,12 @@ export const useCampaignGeneration = () => {
       // Simular delay de geração
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Passar o nome do país (countryName) em vez do código para a função de geração
-      const generatedContent = generateCODCopies(product, price, countryName, languageCode, funnel);
+      // Passar o nome do país para a função de geração com idioma detectado
+      const generatedContent = generateCODCopies(product, price, countryName, detectedLanguage, funnel);
       
       console.log('Conteúdo gerado com sucesso:', {
-        idioma: languageCode,
+        idioma: detectedLanguage,
+        pais: countryName,
         titulos: generatedContent.titles.length,
         primeiroTitulo: generatedContent.titles[0],
         descricoes: generatedContent.descriptions.length,

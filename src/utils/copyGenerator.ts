@@ -1,6 +1,7 @@
 
-import { getLanguageFromCountry, getLanguageFromCountryName } from './countryLanguageMapping';
+import { getLanguageFromCountry } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
+import { countries } from '../components/data/Countries';
 
 export const generateCODCopies = (
   product: string,
@@ -11,10 +12,15 @@ export const generateCODCopies = (
 ) => {
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
-  // Detectar idioma baseado no código do país - CONVERTENDO PARA MAIÚSCULO
-  const detectedLanguage = getLanguageFromCountry(country.toUpperCase()) || languageCode || 'en';
+  // Buscar dados do país selecionado para obter o código correto
+  const countryData = countries.find(c => c.name === country || c.value === country);
+  const countryCodeForDetection = countryData ? countryData.value : country;
+  const countryNameForTemplate = countryData ? countryData.name : country;
   
-  console.log('País:', country, 'Idioma detectado:', detectedLanguage);
+  // Detectar idioma baseado no código do país
+  const detectedLanguage = getLanguageFromCountry(countryCodeForDetection) || languageCode || 'en';
+  
+  console.log('País:', country, 'Código do país:', countryCodeForDetection, 'Idioma detectado:', detectedLanguage);
 
   // Obter traduções para o idioma detectado
   const selectedTranslations = getTranslation(detectedLanguage);
@@ -29,24 +35,24 @@ export const generateCODCopies = (
 
   // Formatar títulos com produto e país (30 variações)
   const formattedTitles = selectedTranslations.titles.map(title => 
-    formatTemplate(title, product, country)
+    formatTemplate(title, product, countryNameForTemplate)
   );
 
   // Formatar descrições (30 variações)
   const formattedDescriptions = selectedTranslations.descriptions.map(desc => 
-    formatTemplate(desc, product, country)
+    formatTemplate(desc, product, countryNameForTemplate)
   );
 
   // Formatar USPs (15 variações)
   const formattedUsps = selectedTranslations.usps.map(usp => 
-    formatTemplate(usp, product, country)
+    formatTemplate(usp, product, countryNameForTemplate)
   );
 
   // Formatar sitelinks (15 variações)
   const formattedSitelinks = selectedTranslations.sitelinks.map(sitelink => ({
-    title: formatTemplate(sitelink.title, product, country),
-    description1: formatTemplate(sitelink.description1, product, country),
-    description2: formatTemplate(sitelink.description2, product, country),
+    title: formatTemplate(sitelink.title, product, countryNameForTemplate),
+    description1: formatTemplate(sitelink.description1, product, countryNameForTemplate),
+    description2: formatTemplate(sitelink.description2, product, countryNameForTemplate),
     url: "https://exemplo.com/comprar"
   }));
 
@@ -58,19 +64,19 @@ export const generateCODCopies = (
 
   // Selecionar estratégia de lance aleatória do idioma específico
   const randomStrategyIndex = Math.floor(Math.random() * selectedTranslations.biddingStrategies.length);
-  const strategyMessage = formatTemplate(selectedTranslations.biddingStrategies[randomStrategyIndex], product, country);
+  const strategyMessage = formatTemplate(selectedTranslations.biddingStrategies[randomStrategyIndex], product, countryNameForTemplate);
 
   // Formatar snippets, promoções e blocos de preço
   const formattedSnippets = selectedTranslations.snippetValues.map(snippet => 
-    formatTemplate(snippet, product, country)
+    formatTemplate(snippet, product, countryNameForTemplate)
   );
   
   const formattedPromotions = selectedTranslations.promotions.map(promo => 
-    formatTemplate(promo, product, country)
+    formatTemplate(promo, product, countryNameForTemplate)
   );
   
   const formattedPriceBlocks = selectedTranslations.priceBlocks.map(block => 
-    formatTemplate(block, product, country)
+    formatTemplate(block, product, countryNameForTemplate)
   );
 
   console.log('Resultados gerados:', {
@@ -82,7 +88,9 @@ export const generateCODCopies = (
     estrategia: strategyMessage,
     snippets: formattedSnippets.length,
     promocoes: formattedPromotions.length,
-    blocosPreco: formattedPriceBlocks.length
+    blocosPreco: formattedPriceBlocks.length,
+    primeiroTitulo: randomTitles[0],
+    primeiraDescricao: randomDescriptions[0]
   });
 
   return {

@@ -1,9 +1,11 @@
 
 import { countries } from '../components/data/Countries';
+import { getLanguageFromCountry } from './countryLanguageMapping';
 
 export const generateStructuredSnippet = (product: string, country: string): string => {
-  const countryData = countries.find(c => c.value === country);
-  const languageCode = countryData ? countryData.languageCode : "pt";
+  const countryData = countries.find(c => c.value === country || c.name === country);
+  const countryCode = countryData ? countryData.value : country;
+  const languageCode = getLanguageFromCountry(countryCode);
   let values = "";
   
   switch (languageCode) {
@@ -48,9 +50,10 @@ export const generateStructuredSnippet = (product: string, country: string): str
 };
 
 export const generatePromotionExtension = (product: string, country: string): string => {
-  const countryData = countries.find(c => c.value === country);
-  const languageCode = countryData ? countryData.languageCode : "pt";
-  const countryName = countryData ? countryData.name : "";
+  const countryData = countries.find(c => c.value === country || c.name === country);
+  const countryCode = countryData ? countryData.value : country;
+  const countryName = countryData ? countryData.name : country;
+  const languageCode = getLanguageFromCountry(countryCode);
   let promotions = [];
   
   switch (languageCode) {
@@ -143,9 +146,10 @@ export const generatePromotionExtension = (product: string, country: string): st
 };
 
 export const generatePriceExtension = (product: string, price: string, country: string): string => {
-  const countryData = countries.find(c => c.value === country);
-  const countryName = countryData ? countryData.name : "";
-  const languageCode = countryData ? countryData.languageCode : "pt";
+  const countryData = countries.find(c => c.value === country || c.name === country);
+  const countryCode = countryData ? countryData.value : country;
+  const countryName = countryData ? countryData.name : country;
+  const languageCode = getLanguageFromCountry(countryCode);
 
   // Extract numeric value from price for calculations
   const numericPrice = parseFloat(price.replace(/[^\d.,]/g, '').replace(',', '.')) || 97;
