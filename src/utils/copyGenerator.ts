@@ -1,3 +1,4 @@
+
 import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
@@ -53,8 +54,15 @@ export const generateCODCopies = (
   languageCode: string,
   funnel: string
 ) => {
-  const paisSelecionado = country;
-  const language = idiomaForcado[paisSelecionado] || getLanguageByCountry(paisSelecionado);
+  // ✅ CORREÇÃO: Usar idiomaForcado primeiro, depois fallback
+  const language = idiomaForcado[country] || getLanguageByCountry(country);
+  
+  console.log('🔍 DEBUG - Idioma detectado:', { 
+    country, 
+    idiomaForcado: idiomaForcado[country], 
+    fallback: getLanguageByCountry(country),
+    finalLanguage: language 
+  });
 
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
@@ -63,18 +71,8 @@ export const generateCODCopies = (
   const countryCodeForDetection = countryData ? countryData.value : country;
   const countryNameForTemplate = countryData ? countryData.name : country;
   
-  // ⚙️ Aplicar correção dos 35 países
-  const paisSelecionadoTemplate = countryNameForTemplate;
-  const idiomaDestino = getLanguageByCountry(paisSelecionadoTemplate);
-  
-  // Detectar idioma baseado no código do país ou nome do país - CORREÇÃO IMPLEMENTADA
-  let detectedLanguage: string;
-  
-  // Priorizar o idioma final forçado
-  detectedLanguage = language;
-  
-  // Fallback para idioma fornecido ou inglês
-  detectedLanguage = detectedLanguage || languageCode || 'en';
+  // ✅ USAR O IDIOMA CORRETO DETECTADO
+  const detectedLanguage = language; // Usar diretamente o idioma forçado/detectado
   
   console.log('País:', country, 'Código do país:', countryCodeForDetection, 'Idioma detectado:', detectedLanguage);
 
