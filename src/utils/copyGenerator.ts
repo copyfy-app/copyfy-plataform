@@ -1,5 +1,3 @@
-
-
 import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
