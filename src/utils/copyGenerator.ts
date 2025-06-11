@@ -1,4 +1,3 @@
-
 import { getLanguageFromCountry, detectLanguageByCountry } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
@@ -54,7 +53,7 @@ export const generateCODCopies = (
   languageCode: string,
   funnel: string
 ) => {
-  // 🧠 Correção manual para os 35 países que ainda estavam em português
+  // Correção manual para os 35 países que estavam sendo traduzidos em português
   const idiomaForcado = {
     "China": "zh-CN",
     "Rússia": "ru",
@@ -93,12 +92,10 @@ export const generateCODCopies = (
     "Letônia": "lv"
   };
 
-  // ⚠️ Substitui idioma de forma forçada, respeitando o nome do país selecionado
   const paisSelecionado = country;
-  const idiomaFinal = idiomaForcado[paisSelecionado] || getLanguageByCountry(paisSelecionado); // usa getLanguageByCountry como fallback
 
-  // 🛠️ Substitui o uso de countryLanguageFix (se existir)
-  const language = idiomaFinal;
+  // Se o país estiver na lista com idioma forçado, usa ele. Senão, pega da função existente.
+  const language = idiomaForcado[paisSelecionado] || getLanguageByCountry(paisSelecionado);
 
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
 
