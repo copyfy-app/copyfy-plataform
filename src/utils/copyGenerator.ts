@@ -3,6 +3,50 @@ import { getLanguageFromCountry, detectLanguageByCountry } from './countryLangua
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
 
+// Lista de idiomas corretos para os 35 países com erro
+const countryLanguageFix = {
+  "China": "zh-CN",
+  "Rússia": "ru",
+  "Holanda": "nl",
+  "Dinamarca": "da",
+  "Noruega": "no",
+  "Suécia": "sv",
+  "Polônia": "pl",
+  "República Tcheca": "cs",
+  "Hungria": "hu",
+  "Bulgária": "bg",
+  "Grécia": "el",
+  "Israel": "he",
+  "Tailândia": "th",
+  "Malásia": "ms",
+  "Filipinas": "tl",
+  "Vietnã": "vi",
+  "Hong Kong": "zh-HK",
+  "Taiwan": "zh-TW",
+  "Ucrânia": "uk",
+  "Belarus": "be",
+  "Cazaquistão": "kk",
+  "Paquistão": "ur",
+  "Sri Lanka": "si",
+  "Eslovênia": "sl",
+  "Bangladesh": "bn",
+  "Romênia": "ro",
+  "Finlândia": "fi",
+  "Croácia": "hr",
+  "Bósnia": "bs",
+  "Sérvia": "sr",
+  "Montenegro": "sr",
+  "Macedônia": "mk",
+  "Estônia": "et",
+  "Lituânia": "lt",
+  "Letônia": "lv"
+};
+
+// Função para detectar idioma correto
+function getLanguageByCountry(country: string): string {
+  return countryLanguageFix[country] || "en"; // fallback inglês
+}
+
 export const generateCODCopies = (
   product: string,
   price: string,
@@ -17,10 +61,17 @@ export const generateCODCopies = (
   const countryCodeForDetection = countryData ? countryData.value : country;
   const countryNameForTemplate = countryData ? countryData.name : country;
   
+  // ⚙️ Aplicar correção dos 35 países
+  const paisSelecionado = countryNameForTemplate;
+  const idiomaDestino = getLanguageByCountry(paisSelecionado);
+  
   // Detectar idioma baseado no código do país ou nome do país - CORREÇÃO IMPLEMENTADA
   let detectedLanguage: string;
   
-  if (countryCodeForDetection) {
+  // Priorizar o idioma corrigido dos 35 países
+  if (idiomaDestino !== "en") {
+    detectedLanguage = idiomaDestino;
+  } else if (countryCodeForDetection) {
     detectedLanguage = getLanguageFromCountry(countryCodeForDetection);
   } else {
     // Usar a nova função de detecção por nome do país
@@ -48,17 +99,14 @@ export const generateCODCopies = (
     formatTemplate(title, product, countryNameForTemplate)
   );
 
-  // Formatar descrições (30 variações)
   const formattedDescriptions = selectedTranslations.descriptions.map(desc => 
     formatTemplate(desc, product, countryNameForTemplate)
   );
 
-  // Formatar USPs (15 variações)
   const formattedUsps = selectedTranslations.usps.map(usp => 
     formatTemplate(usp, product, countryNameForTemplate)
   );
 
-  // Formatar sitelinks (15 variações)
   const formattedSitelinks = selectedTranslations.sitelinks.map(sitelink => ({
     title: formatTemplate(sitelink.title, product, countryNameForTemplate),
     description1: formatTemplate(sitelink.description1, product, countryNameForTemplate),
@@ -66,17 +114,14 @@ export const generateCODCopies = (
     url: "https://exemplo.com/comprar"
   }));
 
-  // Selecionar variações aleatórias para cada seção
   const randomTitles = getRandomVariations(formattedTitles, 30);
   const randomDescriptions = getRandomVariations(formattedDescriptions, 30);
   const randomUsps = getRandomVariations(formattedUsps, 15);
   const randomSitelinks = getRandomVariations(formattedSitelinks, 15);
 
-  // Selecionar estratégia de lance aleatória do idioma específico
   const randomStrategyIndex = Math.floor(Math.random() * selectedTranslations.biddingStrategies.length);
   const strategyMessage = formatTemplate(selectedTranslations.biddingStrategies[randomStrategyIndex], product, countryNameForTemplate);
 
-  // Formatar snippets, promoções e blocos de preço
   const formattedSnippets = selectedTranslations.snippetValues.map(snippet => 
     formatTemplate(snippet, product, countryNameForTemplate)
   );
