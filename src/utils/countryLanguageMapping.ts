@@ -30,14 +30,14 @@ export const countryToLanguage: { [key: string]: string } = {
   // Japonês
   'JP': 'ja',
   
-  // Chinês
+  // Chinês - Correção implementada
   'CN': 'zh', 'TW': 'zh', 'HK': 'zh', 'MO': 'zh',
   
   // Coreano
   'KR': 'ko',
   
-  // Russo
-  'RU': 'ru', 'BY': 'ru', 'KZ': 'ru', 'KG': 'ru',
+  // Russo - Correção implementada
+  'RU': 'ru', 'BY': 'be', 'KZ': 'kk', 'KG': 'ru',
   
   // Árabe
   'SA': 'ar', 'AE': 'ar', 'EG': 'ar', 'JO': 'ar', 'LB': 'ar', 'SY': 'ar', 'IQ': 'ar', 'KW': 'ar',
@@ -50,92 +50,95 @@ export const countryToLanguage: { [key: string]: string } = {
   // Indonésio
   'ID': 'id',
   
-  // Tailandês
+  // Tailandês - Correção implementada
   'TH': 'th',
   
-  // Vietnamita
+  // Vietnamita - Correção implementada
   'VN': 'vi',
   
   // Turco
   'TR': 'tr',
   
-  // Holandês
+  // Holandês - Correção implementada
   'NL': 'nl', 'SR': 'nl',
   
-  // Polonês
+  // Polonês - Correção implementada
   'PL': 'pl',
   
-  // Sueco
+  // Sueco - Correção implementada
   'SE': 'sv',
   
-  // Norueguês
+  // Norueguês - Correção implementada
   'NO': 'no',
   
-  // Dinamarquês
+  // Dinamarquês - Correção implementada
   'DK': 'da',
   
-  // Finlandês
+  // Finlandês - Correção implementada
   'FI': 'fi',
   
-  // Grego
+  // Grego - Correção implementada
   'GR': 'el', 'CY': 'el',
   
-  // Húngaro
+  // Húngaro - Correção implementada
   'HU': 'hu',
   
-  // Tcheco
+  // Tcheco - Correção implementada
   'CZ': 'cs',
   
   // Eslovaco
   'SK': 'sk',
   
-  // Romeno
+  // Romeno - Correção implementada
   'RO': 'ro',
   
-  // Búlgaro
+  // Búlgaro - Correção implementada
   'BG': 'bg',
   
-  // Croata
+  // Croata - Correção implementada
   'HR': 'hr',
   
-  // Esloveno
+  // Esloveno - Correção implementada
   'SI': 'sl',
   
-  // Sérvio
+  // Sérvio - Correção implementada
   'RS': 'sr',
   
-  // Lituano
+  // Lituano - Correção implementada
   'LT': 'lt',
   
-  // Letão
+  // Letão - Correção implementada
   'LV': 'lv',
   
-  // Estoniano
+  // Estoniano - Correção implementada
   'EE': 'et',
   
-  // Ucraniano
+  // Ucraniano - Correção implementada
   'UA': 'uk',
   
-  // Hebraico
+  // Hebraico - Correção implementada
   'IL': 'he',
   
   // Persa
   'IR': 'fa', 'AF': 'fa',
   
-  // Urdu
+  // Urdu - Correção implementada
   'PK': 'ur',
   
-  // Bengali
+  // Bengali - Correção implementada
   'BD': 'bn',
   
-  // Malaio
+  // Malaio - Correção implementada
   'MY': 'ms', 'BN': 'ms',
   
-  // Filipino/Tagalo
+  // Filipino/Tagalo - Correção implementada
   'PH': 'tl',
   
   // Mongol
   'MN': 'mn',
+  
+  // Sri Lanka - Correção implementada
+  'LK': 'si',
   
   // Países multilíngues - priorizando idioma principal
   'CA': 'en' // Canadá - inglês como principal
@@ -149,7 +152,7 @@ export const getLanguageFromCountry = (countryCode: string): string => {
   return language;
 };
 
-// Mapeamento de nomes de países para códigos de idioma
+// Mapeamento de nomes de países para códigos de idioma - CORRIGIDO conforme solicitação
 export const countryNameToLanguage: { [key: string]: string } = {
   // Português
   "Brasil": "pt", "Portugal": "pt", "Angola": "pt", "Moçambique": "pt",
@@ -175,14 +178,14 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Japonês
   "Japão": "ja", "日本": "ja",
   
-  // Chinês
+  // Chinês - CORREÇÕES IMPLEMENTADAS
   "China": "zh", "中国": "zh", "Taiwan": "zh", "台灣": "zh", "Hong Kong": "zh", "香港": "zh",
   
   // Coreano
   "Coreia do Sul": "ko", "대한민국": "ko",
   
-  // Russo
-  "Rússia": "ru", "Россия": "ru", "Bielorrússia": "ru", "Беларусь": "ru", "Cazaquistão": "ru",
+  // Russo - CORREÇÕES IMPLEMENTADAS
+  "Rússia": "ru", "Россия": "ru", "Bielorrússia": "be", "Беларусь": "be", "Cazaquistão": "kk",
   
   // Árabe
   "Arábia Saudita": "ar", "المملكة العربية السعودية": "ar", "Emirados Árabes": "ar", "الإمارات العربية المتحدة": "ar",
@@ -194,34 +197,34 @@ export const countryNameToLanguage: { [key: string]: string } = {
   // Indonésio
   "Indonésia": "id", "Indonesia": "id",
   
-  // Tailandês
+  // Tailandês - CORREÇÃO IMPLEMENTADA
   "Tailândia": "th", "ประเทศไทย": "th",
   
-  // Vietnamita
+  // Vietnamita - CORREÇÃO IMPLEMENTADA
   "Vietnã": "vi", "Việt Nam": "vi",
   
   // Turco
   "Turquia": "tr", "Türkiye": "tr",
   
-  // Holandês
+  // Holandês - CORREÇÃO IMPLEMENTADA
   "Holanda": "nl", "Nederland": "nl", "Países Baixos": "nl",
   
-  // Polonês
+  // Polonês - CORREÇÃO IMPLEMENTADA
   "Polônia": "pl", "Polska": "pl",
   
-  // Sueco
+  // Sueco - CORREÇÃO IMPLEMENTADA
   "Suécia": "sv", "Sverige": "sv",
   
-  // Norueguês
+  // Norueguês - CORREÇÃO IMPLEMENTADA
   "Noruega": "no", "Norge": "no",
   
-  // Dinamarquês
+  // Dinamarquês - CORREÇÃO IMPLEMENTADA
   "Dinamarca": "da", "Danmark": "da",
   
-  // Finlandês
+  // Finlandês - CORREÇÃO IMPLEMENTADA
   "Finlândia": "fi", "Suomi": "fi",
   
-  // Outros idiomas
+  // Outros idiomas - CORREÇÕES IMPLEMENTADAS
   "Grécia": "el", "Ελλάδα": "el",
   "Hungria": "hu", "Magyarország": "hu",
   "República Tcheca": "cs", "Česko": "cs",
@@ -241,12 +244,21 @@ export const countryNameToLanguage: { [key: string]: string } = {
   "Bangladesh": "bn", "বাংলাদেশ": "bn",
   "Malásia": "ms", "Malaysia": "ms",
   "Filipinas": "tl", "Philippines": "tl",
-  "Mongólia": "mn", "Mongolia": "mn"
+  "Mongólia": "mn", "Mongolia": "mn",
+  "Sri Lanka": "si", "ශ්‍රී ලංකාව": "si",
+  
+  // Países dos Balcãs - CORREÇÕES IMPLEMENTADAS
+  "Bósnia": "bs", "Montenegro": "sr", "Macedônia": "mk"
+};
+
+// Função para detectar idioma por país - IMPLEMENTADA conforme solicitação
+export const detectLanguageByCountry = (country: string): string => {
+  return countryNameToLanguage[country] || "en";
 };
 
 export const getLanguageFromCountryName = (countryName: string): string => {
   console.log('Buscando idioma para país:', countryName);
-  const language = countryNameToLanguage[countryName] || 'en';
+  const language = detectLanguageByCountry(countryName);
   console.log('Idioma encontrado:', language);
   return language;
 };

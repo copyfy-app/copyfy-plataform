@@ -1,5 +1,5 @@
 
-import { getLanguageFromCountry } from './countryLanguageMapping';
+import { getLanguageFromCountry, detectLanguageByCountry } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
 
@@ -17,8 +17,18 @@ export const generateCODCopies = (
   const countryCodeForDetection = countryData ? countryData.value : country;
   const countryNameForTemplate = countryData ? countryData.name : country;
   
-  // Detectar idioma baseado no código do país
-  const detectedLanguage = getLanguageFromCountry(countryCodeForDetection) || languageCode || 'en';
+  // Detectar idioma baseado no código do país ou nome do país - CORREÇÃO IMPLEMENTADA
+  let detectedLanguage: string;
+  
+  if (countryCodeForDetection) {
+    detectedLanguage = getLanguageFromCountry(countryCodeForDetection);
+  } else {
+    // Usar a nova função de detecção por nome do país
+    detectedLanguage = detectLanguageByCountry(countryNameForTemplate);
+  }
+  
+  // Fallback para idioma fornecido ou inglês
+  detectedLanguage = detectedLanguage || languageCode || 'en';
   
   console.log('País:', country, 'Código do país:', countryCodeForDetection, 'Idioma detectado:', detectedLanguage);
 

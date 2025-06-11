@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { generateCODCopies } from '../utils/copyGenerator';
 import { countries } from '../components/data/Countries';
-import { getLanguageFromCountry } from '../utils/countryLanguageMapping';
+import { detectLanguageByCountry, getLanguageFromCountry } from '../utils/countryLanguageMapping';
 
 export interface CampaignData {
   country: string;
@@ -40,10 +40,16 @@ export const useCampaignGeneration = () => {
     // Buscar dados do país selecionado
     const countryData = countries.find(c => c.value === country);
     const countryName = countryData ? countryData.name : country;
-    const languageCode = countryData ? countryData.languageCode : 'en';
     
-    // Detectar idioma correto baseado no código do país
-    const detectedLanguage = getLanguageFromCountry(country);
+    // Detectar idioma correto baseado no código do país - CORREÇÃO IMPLEMENTADA
+    let detectedLanguage: string;
+    
+    if (countryData) {
+      detectedLanguage = getLanguageFromCountry(countryData.value);
+    } else {
+      // Usar detecção por nome do país com as correções implementadas
+      detectedLanguage = detectLanguageByCountry(countryName);
+    }
     
     setCurrentLanguage(detectedLanguage);
     
