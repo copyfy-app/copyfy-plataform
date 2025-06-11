@@ -1,4 +1,3 @@
-
 // Mapeamento completo de países para idiomas
 export const countryToLanguage: { [key: string]: string } = {
   // Português
@@ -261,4 +260,43 @@ export const getLanguageFromCountryName = (countryName: string): string => {
   const language = detectLanguageByCountry(countryName);
   console.log('Idioma encontrado:', language);
   return language;
+};
+
+// Adicionando o mapeamento para os 35 países com idioma forçado
+export const idiomaForcado: Record<string, string> = {
+  "China": "zh-CN",
+  "Rússia": "ru",
+  "Holanda": "nl",
+  "Dinamarca": "da",
+  "Noruega": "no",
+  "Suécia": "sv",
+  "Polônia": "pl",
+  "República Tcheca": "cs",
+  "Hungria": "hu",
+  "Bulgária": "bg",
+  "Grécia": "el",
+  "Israel": "he",
+  "Tailândia": "th",
+  "Malásia": "ms",
+  "Filipinas": "tl",
+  "Vietnã": "vi",
+  "Hong Kong": "zh-HK",
+  "Taiwan": "zh-TW",
+  "Ucrânia": "uk",
+  "Belarus": "be",
+  "Cazaquistão": "kk",
+  "Paquistão": "ur",
+  "Sri Lanka": "si",
+  "Eslovênia": "sl",
+  "Bangladesh": "bn",
+  "Romênia": "ro",
+  "Finlândia": "fi",
+  "Croácia": "hr",
+  "Bósnia": "bs",
+  "Sérvia": "sr",
+  "Montenegro": "sr",
+  "Macedônia": "mk",
+  "Estônia": "et",
+  "Lituânia": "lt",
+  "Letônia": "lv"
 };

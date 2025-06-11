@@ -1,4 +1,4 @@
-import { getLanguageFromCountry, detectLanguageByCountry } from './countryLanguageMapping';
+import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
 
@@ -53,48 +53,7 @@ export const generateCODCopies = (
   languageCode: string,
   funnel: string
 ) => {
-  // Correção manual para os 35 países que estavam sendo traduzidos em português
-  const idiomaForcado = {
-    "China": "zh-CN",
-    "Rússia": "ru",
-    "Holanda": "nl",
-    "Dinamarca": "da",
-    "Noruega": "no",
-    "Suécia": "sv",
-    "Polônia": "pl",
-    "República Tcheca": "cs",
-    "Hungria": "hu",
-    "Bulgária": "bg",
-    "Grécia": "el",
-    "Israel": "he",
-    "Tailândia": "th",
-    "Malásia": "ms",
-    "Filipinas": "tl",
-    "Vietnã": "vi",
-    "Hong Kong": "zh-HK",
-    "Taiwan": "zh-TW",
-    "Ucrânia": "uk",
-    "Belarus": "be",
-    "Cazaquistão": "kk",
-    "Paquistão": "ur",
-    "Sri Lanka": "si",
-    "Eslovênia": "sl",
-    "Bangladesh": "bn",
-    "Romênia": "ro",
-    "Finlândia": "fi",
-    "Croácia": "hr",
-    "Bósnia": "bs",
-    "Sérvia": "sr",
-    "Montenegro": "sr",
-    "Macedônia": "mk",
-    "Estônia": "et",
-    "Lituânia": "lt",
-    "Letônia": "lv"
-  };
-
   const paisSelecionado = country;
-
-  // Se o país estiver na lista com idioma forçado, usa ele. Senão, pega da função existente.
   const language = idiomaForcado[paisSelecionado] || getLanguageByCountry(paisSelecionado);
 
   console.log('Gerando conteúdo para:', { product, price, country, languageCode, funnel });
