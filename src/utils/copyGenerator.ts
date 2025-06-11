@@ -1,4 +1,5 @@
 
+
 import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
@@ -71,12 +72,12 @@ export const generateCODCopies = (
   const countryCodeForDetection = countryData ? countryData.value : country;
   const countryNameForTemplate = countryData ? countryData.name : country;
   
-  // ✅ USAR O IDIOMA CORRETO DETECTADO
+  // ✅ USAR O IDIOMA CORRETO DETECTADO - CORREÇÃO PRINCIPAL
   const detectedLanguage = language; // Usar diretamente o idioma forçado/detectado
   
   console.log('País:', country, 'Código do país:', countryCodeForDetection, 'Idioma detectado:', detectedLanguage);
 
-  // Obter traduções para o idioma detectado
+  // ✅ CORREÇÃO PRINCIPAL: Usar detectedLanguage na função getTranslation
   const selectedTranslations = getTranslation(detectedLanguage);
 
   console.log('Tradução selecionada:', detectedLanguage, 'Conteúdo disponível:', !!selectedTranslations);
