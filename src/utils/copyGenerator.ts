@@ -70,15 +70,12 @@ export const generateCODCopies = (
   const countryCodeForDetection = countryData ? countryData.value : country;
   const countryNameForTemplate = countryData ? countryData.name : country;
   
-  // ✅ USAR O IDIOMA CORRETO DETECTADO - CORREÇÃO PRINCIPAL
-  const detectedLanguage = language; // Usar diretamente o idioma forçado/detectado
-  
-  console.log('País:', country, 'Código do país:', countryCodeForDetection, 'Idioma detectado:', detectedLanguage);
+  console.log('País:', country, 'Código do país:', countryCodeForDetection, 'Idioma detectado:', language);
 
-  // ✅ CORREÇÃO PRINCIPAL: Usar detectedLanguage na função getTranslation
-  const selectedTranslations = getTranslation(detectedLanguage);
+  // ✅ CORREÇÃO PRINCIPAL: Usar o idioma correto detectado na função getTranslation
+  const selectedTranslations = getTranslation(language);
 
-  console.log('Tradução selecionada:', detectedLanguage, 'Conteúdo disponível:', !!selectedTranslations);
+  console.log('Tradução selecionada:', language, 'Conteúdo disponível:', !!selectedTranslations);
 
   // Função para embaralhar array e selecionar variações aleatórias
   const getRandomVariations = <T>(array: T[], count: number = 30): T[] => {
@@ -127,7 +124,7 @@ export const generateCODCopies = (
   );
 
   console.log('Resultados gerados:', {
-    idioma: detectedLanguage,
+    idioma: language,
     titulos: randomTitles.length,
     descricoes: randomDescriptions.length,
     usps: randomUsps.length,
