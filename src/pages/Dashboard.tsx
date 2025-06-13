@@ -1,9 +1,12 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { ArrowLeft, Zap, History, User, LogOut, Play, Trash2 } from 'lucide-react';
+import Footer from '@/components/Footer';
+
 const Dashboard = () => {
   const navigate = useNavigate();
   const {
@@ -13,25 +16,31 @@ const Dashboard = () => {
     isTrialActive,
     trialDaysRemaining
   } = useAuth();
+
   const [campaignCount, setCampaignCount] = React.useState(0);
   const [lastCampaign, setLastCampaign] = React.useState<string>('');
   const [recentCampaigns, setRecentCampaigns] = React.useState<any[]>([]);
+
   const handleBackToHome = () => {
     navigate('/');
   };
+
   const handleOpenCopyfy = () => {
     navigate('/copyfy');
   };
+
   const handleLogout = () => {
     signOut();
     navigate('/');
   };
+
   const handleClearHistory = () => {
     localStorage.removeItem("historicoCampanhas");
     setCampaignCount(0);
     setLastCampaign('');
     setRecentCampaigns([]);
   };
+
   const handleUpgrade = () => {
     window.open('https://www.hotmart.com/pt-br', '_blank');
   };
@@ -68,6 +77,7 @@ const Dashboard = () => {
     const interval = setInterval(loadCampaignData, 2000);
     return () => clearInterval(interval);
   }, []);
+
   React.useEffect(() => {
     // Script para ativar o dropdown do profile
     const profileMenuBtn = document.getElementById('profileMenuBtn');
@@ -77,14 +87,16 @@ const Dashboard = () => {
     const dropdownEmail = document.getElementById('dropdownEmail');
     const userAvatar = document.getElementById('userAvatar') as HTMLImageElement;
     const dropdownAvatar = document.getElementById('dropdownAvatar') as HTMLImageElement;
+
     if (profileMenuBtn && profileDropdown) {
       const toggleDropdown = () => {
         profileDropdown.classList.toggle('hidden');
       };
+
       profileMenuBtn.addEventListener('click', toggleDropdown);
 
       // Close dropdown when clicking outside
-      document.addEventListener('click', e => {
+      document.addEventListener('click', (e) => {
         if (!profileMenuBtn.contains(e.target as Node) && !profileDropdown.contains(e.target as Node)) {
           profileDropdown.classList.add('hidden');
         }
@@ -96,10 +108,12 @@ const Dashboard = () => {
         userName.textContent = displayName;
         dropdownName.textContent = displayName;
         dropdownEmail.textContent = user.email || 'user@email.com';
+
         const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(displayName)}`;
         userAvatar.src = avatarUrl;
         dropdownAvatar.src = avatarUrl;
       }
+
       return () => {
         profileMenuBtn.removeEventListener('click', toggleDropdown);
       };
@@ -113,7 +127,9 @@ const Dashboard = () => {
       delete (window as any).handleLogout;
     };
   }, [handleLogout]);
-  return <div className="min-h-screen bg-black text-white">
+
+  return (
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="border-b border-yellow-500/20 py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -215,20 +231,28 @@ const Dashboard = () => {
               </Button>
             </CardHeader>
             <CardContent>
-              {campaignCount === 0 ? <div className="text-center">
+              {campaignCount === 0 ? (
+                <div className="text-center">
                   <div className="text-2xl font-bold text-white">0</div>
                   <p className="text-xs text-gray-400">No campaigns yet</p>
-                </div> : <div className="space-y-2">
+                </div>
+              ) : (
+                <div className="space-y-2">
                   <div className="text-2xl font-bold text-white">{campaignCount}</div>
                   <div className="space-y-1">
-                    {recentCampaigns.map((campaign, index) => <div key={index} className="text-xs text-gray-400 truncate">
+                    {recentCampaigns.map((campaign, index) => (
+                      <div key={index} className="text-xs text-gray-400 truncate">
                         {campaign.product}
-                      </div>)}
-                    {campaignCount > 5 && <div className="text-xs text-gray-500">
+                      </div>
+                    ))}
+                    {campaignCount > 5 && (
+                      <div className="text-xs text-gray-500">
                         +{campaignCount - 5} more...
-                      </div>}
+                      </div>
+                    )}
                   </div>
-                </div>}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -263,7 +287,8 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {campaignCount > 0 ? <>
+                {campaignCount > 0 ? (
+                  <>
                     <div className="flex justify-between items-center text-sm">
                       <span className="text-gray-300">Campaign generated</span>
                       <span className="text-gray-500">June 9</span>
@@ -276,20 +301,24 @@ const Dashboard = () => {
                       <span className="text-gray-300">Account created</span>
                       <span className="text-gray-500">June 7</span>
                     </div>
-                  </> : <div className="text-center py-4">
+                  </>
+                ) : (
+                  <div className="text-center py-4">
                     <History className="w-8 h-8 text-gray-600 mx-auto mb-2" />
                     <p className="text-gray-400 text-sm">No recent activity</p>
                     <p className="text-xs text-gray-500 mt-1">
                       Activity will appear here
                     </p>
-                  </div>}
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Trial Information */}
-        {!isAdmin && <Card className="mt-8 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-500/30">
+        {!isAdmin && (
+          <Card className="mt-8 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-500/30">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -305,8 +334,14 @@ const Dashboard = () => {
                 </Button>
               </div>
             </CardContent>
-          </Card>}
+          </Card>
+        )}
       </main>
-    </div>;
+
+      {/* Footer */}
+      <Footer />
+    </div>
+  );
 };
+
 export default Dashboard;

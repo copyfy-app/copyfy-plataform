@@ -11,7 +11,9 @@ import CopyfyPage from "./pages/CopyfyPage";
 import PainelPage from "./pages/PainelPage";
 import PolicyPage from "./pages/PolicyPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import PrivacyPolicyEn from "./pages/PrivacyPolicyEn";
 import TermsOfUse from "./pages/TermsOfUse";
+import TermsOfUseEn from "./pages/TermsOfUseEn";
 import Support from "./pages/Support";
 import NotFound from "./pages/NotFound";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
@@ -68,7 +70,9 @@ const AppRoutes = () => {
       
       {/* Rotas públicas */}
       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/privacy-policy-en" element={<PrivacyPolicyEn />} />
       <Route path="/terms-of-use" element={<TermsOfUse />} />
+      <Route path="/terms-of-use-en" element={<TermsOfUseEn />} />
       <Route path="/support" element={<Support />} />
       
       {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

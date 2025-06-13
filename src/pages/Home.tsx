@@ -1,16 +1,23 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Zap, Target, TrendingUp } from 'lucide-react';
+import Footer from '@/components/Footer';
+
 const Home = () => {
   const navigate = useNavigate();
+
   const handleGetStarted = () => {
     navigate('/login');
   };
+
   const handleGoToDashboard = () => {
     navigate('/dashboard');
   };
-  return <div className="min-h-screen bg-black text-white">
+
+  return (
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <header className="border-b border-yellow-500/20 py-6">
         <div className="container mx-auto px-4 flex justify-between items-center">
@@ -94,11 +101,9 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-yellow-500/20 py-8">
-        <div className="container mx-auto px-4 text-center text-gray-400">
-          <p className="text-white">© 2025 Copyfy. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>;
+      <Footer />
+    </div>
+  );
 };
+
 export default Home;
