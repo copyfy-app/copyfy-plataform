@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +21,7 @@ const Home = () => {
       <header className="border-b border-yellow-500/20 py-6">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="text-2xl font-bold text-yellow-500">
-            COPY<span className="text-white">FY</span>
+            Copy<span className="text-white">fy</span>
           </div>
           <div className="space-x-4">
             <Button onClick={handleGetStarted} variant="outline" className="border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-black">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -139,7 +138,7 @@ const Dashboard = () => {
               Home
             </Button>
             <div className="text-2xl font-bold text-yellow-500">
-              COPY<span className="text-white">FY</span>
+              Copy<span className="text-white">fy</span>
             </div>
           </div>
           
