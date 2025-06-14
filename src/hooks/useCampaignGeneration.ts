@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { generateCODCopies } from '../utils/copyGenerator';
 import { countries } from '../components/data/Countries';
@@ -32,10 +33,41 @@ export const useCampaignGeneration = () => {
   const [generatedContent, setGeneratedContent] = useState<GeneratedContent | null>(null);
   const [currentLanguage, setCurrentLanguage] = useState("pt");
 
+  const sendWebhookRequest = async (campaignData: CampaignData): Promise<void> => {
+    try {
+      console.log('Sending webhook request to n8n:', campaignData);
+      
+      const response = await fetch('https://copyfy-n8n.app.n8n.cloud/webhook/copyfy-teste', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          produto: campaignData.product,
+          preco: campaignData.price,
+          pais: campaignData.country,
+          estrategia: campaignData.funnel
+        })
+      });
+
+      if (response.ok) {
+        console.log('Webhook request sent successfully to n8n');
+      } else {
+        console.warn('Webhook request failed with status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error sending webhook request:', error);
+      // Don't throw the error so campaign generation can continue
+    }
+  };
+
   const generateCampaign = async (campaignData: CampaignData): Promise<boolean> => {
     const { country, product, price, funnel } = campaignData;
     
     setIsGenerating(true);
+    
+    // Send webhook request to n8n for translation processing
+    await sendWebhookRequest(campaignData);
     
     // Buscar dados do país selecionado
     const countryData = countries.find(c => c.value === country);
