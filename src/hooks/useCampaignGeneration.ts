@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { generateCODCopies } from '../utils/copyGenerator';
 import { countries } from '../components/data/Countries';
@@ -83,7 +84,7 @@ export const useCampaignGeneration = () => {
     
     setCurrentLanguage(detectedLanguage);
     
-    console.log('🚀 Gerando campanha com tradução automática:', {
+    console.log('🚀 Gerando campanha:', {
       product,
       price,
       country,
@@ -96,10 +97,10 @@ export const useCampaignGeneration = () => {
       // Simular delay de geração
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Usar nova função com tradução automática
+      // Usar função de geração existente
       const generatedContent = await generateCODCopies(product, price, countryName, detectedLanguage, funnel);
       
-      console.log('✅ Conteúdo gerado com tradução automática:', {
+      console.log('✅ Conteúdo gerado:', {
         idioma: detectedLanguage,
         pais: countryName,
         titulos: generatedContent.titles.length,
@@ -114,7 +115,7 @@ export const useCampaignGeneration = () => {
       
       return true;
     } catch (error) {
-      console.error('❌ Erro ao gerar campanha com tradução:', error);
+      console.error('❌ Erro ao gerar campanha:', error);
       setIsGenerating(false);
       return false;
     }
