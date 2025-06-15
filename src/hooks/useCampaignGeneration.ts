@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { generateCODCopies } from '../utils/copyGenerator';
 import { countries } from '../components/data/Countries';
@@ -73,19 +72,18 @@ export const useCampaignGeneration = () => {
     const countryData = countries.find(c => c.value === country);
     const countryName = countryData ? countryData.name : country;
     
-    // Detectar idioma correto baseado no código do país - CORREÇÃO IMPLEMENTADA
+    // Detectar idioma correto baseado no código do país
     let detectedLanguage: string;
     
     if (countryData) {
       detectedLanguage = getLanguageFromCountry(countryData.value);
     } else {
-      // Usar detecção por nome do país com as correções implementadas
       detectedLanguage = detectLanguageByCountry(countryName);
     }
     
     setCurrentLanguage(detectedLanguage);
     
-    console.log('Gerando campanha com dados:', {
+    console.log('🚀 Gerando campanha com tradução automática:', {
       product,
       price,
       country,
@@ -98,10 +96,10 @@ export const useCampaignGeneration = () => {
       // Simular delay de geração
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      // Passar o nome do país para a função de geração com idioma detectado
-      const generatedContent = generateCODCopies(product, price, countryName, detectedLanguage, funnel);
+      // Usar nova função com tradução automática
+      const generatedContent = await generateCODCopies(product, price, countryName, detectedLanguage, funnel);
       
-      console.log('Conteúdo gerado com sucesso:', {
+      console.log('✅ Conteúdo gerado com tradução automática:', {
         idioma: detectedLanguage,
         pais: countryName,
         titulos: generatedContent.titles.length,
@@ -116,7 +114,7 @@ export const useCampaignGeneration = () => {
       
       return true;
     } catch (error) {
-      console.error('Erro ao gerar campanha:', error);
+      console.error('❌ Erro ao gerar campanha com tradução:', error);
       setIsGenerating(false);
       return false;
     }
