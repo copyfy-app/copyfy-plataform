@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -25,7 +24,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [trialDaysRemaining, setTrialDaysRemaining] = useState(2);
+  const [trialDaysRemaining, setTrialDaysRemaining] = useState(1);
   const [isTrialActive, setIsTrialActive] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +46,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         // Se o perfil não existir, usar valores padrão
         console.log("👤 Usando configuração padrão (perfil não encontrado)");
         setIsAdmin(false);
-        setTrialDaysRemaining(2);
+        setTrialDaysRemaining(1);
         setIsTrialActive(true);
         return;
       }
@@ -93,7 +92,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             console.log("✅ Trial_start atualizado com sucesso");
           }
           
-          setTrialDaysRemaining(2);
+          setTrialDaysRemaining(1);
           setIsTrialActive(true);
         }
       }
@@ -102,7 +101,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       console.error("❌ Erro ao processar informações do usuário:", error);
       // Em caso de erro, usar valores padrão
       setIsAdmin(false);
-      setTrialDaysRemaining(2);
+      setTrialDaysRemaining(1);
       setIsTrialActive(true);
     }
   };
@@ -161,7 +160,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           } else {
             console.log("❌ Usuário desautenticado");
             setIsAdmin(false);
-            setTrialDaysRemaining(2);
+            setTrialDaysRemaining(1);
             setIsTrialActive(true);
           }
         }
@@ -322,7 +321,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setSession(null);
       setUser(null);
       setIsAdmin(false);
-      setTrialDaysRemaining(2);
+      setTrialDaysRemaining(1);
       setIsTrialActive(true);
       
       // Redirecionar para login
@@ -334,7 +333,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setSession(null);
       setUser(null);
       setIsAdmin(false);
-      setTrialDaysRemaining(2);
+      setTrialDaysRemaining(1);
       setIsTrialActive(true);
       
       navigate("/login");

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { ArrowLeft, Zap, History, User, LogOut, Play, Trash2 } from 'lucide-react';
+import { ArrowLeft, Zap, History, User, LogOut, Play, Trash2, Info } from 'lucide-react';
 import Footer from '@/components/Footer';
 
 const Dashboard = () => {
@@ -175,6 +176,16 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
+        {/* Trial Warning Alert */}
+        {!isAdmin && (
+          <Alert className="mb-6 bg-blue-900/30 border-blue-500/30 text-blue-200">
+            <Info className="h-4 w-4 text-blue-400" />
+            <AlertDescription className="text-blue-200">
+              Free 24-hour trial to explore everything the platform offers. Enjoy it!
+            </AlertDescription>
+          </Alert>
+        )}
+
         {/* Welcome Section */}
         <div className="mb-8">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
