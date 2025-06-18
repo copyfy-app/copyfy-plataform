@@ -42,7 +42,7 @@ const Dashboard = () => {
   };
 
   const handleUpgrade = () => {
-    window.open('https://www.hotmart.com/pt-br', '_blank');
+    window.open('https://pay.hotmart.com/Q100328287K', '_blank');
   };
 
   // Load campaign data from localStorage
