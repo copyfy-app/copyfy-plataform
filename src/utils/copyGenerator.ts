@@ -2,6 +2,7 @@
 import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
+import { generateStructuredSnippet, generatePromotionExtension, generatePriceExtension } from './extensionGenerators';
 
 export const generateCODCopies = async (
   product: string,
@@ -40,6 +41,11 @@ export const generateCODCopies = async (
       url: "https://exemplo.com/comprar"
     }));
 
+    // Generate multiple variations for extensions
+    const snippetVariations = generateStructuredSnippet(product, country);
+    const promotionVariations = generatePromotionExtension(product, country);
+    const priceVariations = generatePriceExtension(product, price, country);
+
     const getRandomVariations = <T>(array: T[], count: number = 30): T[] => {
       const shuffled = [...array].sort(() => Math.random() - 0.5);
       return shuffled.slice(0, Math.min(count, array.length));
@@ -51,21 +57,18 @@ export const generateCODCopies = async (
       usps: getRandomVariations(formattedUsps, 15),
       sitelinks: getRandomVariations(formattedSitelinks, 15),
       biddingStrategy: formatTemplate(selectedTranslations.biddingStrategies[0], product, country),
-      snippetValues: selectedTranslations.snippetValues.map(snippet => 
-        formatTemplate(snippet, product, country)
-      ),
-      promotions: selectedTranslations.promotions.map(promo => 
-        formatTemplate(promo, product, country)
-      ),
-      priceBlocks: selectedTranslations.priceBlocks.map(block => 
-        formatTemplate(block, product, country)
-      )
+      snippetValues: snippetVariations, // Now returns multiple variations
+      promotions: promotionVariations, // Now returns multiple variations
+      priceBlocks: priceVariations // Now returns multiple variations
     };
 
     console.log('✅ Geração concluída:', {
       idioma: targetLanguage,
       titulos: result.titles.length,
-      primeiroTitulo: result.titles[0]
+      primeiroTitulo: result.titles[0],
+      snippetVariations: result.snippetValues.length,
+      promotionVariations: result.promotions.length,
+      priceVariations: result.priceBlocks.length
     });
 
     return result;

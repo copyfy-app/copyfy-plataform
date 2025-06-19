@@ -1,8 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Copy, FileText, Target, History } from "lucide-react";
 import { GeneratedContent, CampaignData } from '../../hooks/useCampaignGeneration';
-import { generateStructuredSnippet, generatePromotionExtension, generatePriceExtension } from '../../utils/extensionGenerators';
 
 interface CampaignResultsProps {
   campaignData: CampaignData;
@@ -22,7 +20,7 @@ const CampaignResults = ({
   onCopyToClipboard 
 }: CampaignResultsProps) => {
   const { product, price, country } = campaignData;
-  const { titles, descriptions, usps, sitelinks, biddingStrategy } = generatedContent;
+  const { titles, descriptions, usps, sitelinks, biddingStrategy, snippetValues, promotions, priceBlocks } = generatedContent;
 
   return (
     <div>
@@ -127,48 +125,77 @@ const CampaignResults = ({
 
       {/* Grid de extensões com layout uniforme - TODOS OS BLOCOS COM MESMA ALTURA */}
       <div className="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Snippet Estruturado */}
-        <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[280px] flex flex-col">
-          <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500 cursor-pointer" onClick={() => onCopyToClipboard(generateStructuredSnippet(product, country))}>
-            📌 Structured Snippet
+        {/* Structured Snippets - Now showing multiple variations */}
+        <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
+          <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">
+            📌 Structured Snippets ({snippetValues?.length || 5} variations)
           </h3>
-          <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group flex-grow flex flex-col justify-center" onClick={() => onCopyToClipboard(generateStructuredSnippet(product, country))}>
-            <p className="text-sm text-zinc-400 mb-2">Category: <strong className="text-yellow-500">Benefits</strong></p>
-            <p className="text-sm text-white group-hover:text-yellow-100 transition-colors">
-              {generateStructuredSnippet(product, country).split('\n')[1].replace('Valores: ', '')}
-            </p>
+          <div className="space-y-3 max-h-96 overflow-y-auto">
+            {(snippetValues || []).map((snippet, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-3 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
+                onClick={() => onCopyToClipboard(snippet)}
+              >
+                <p className="text-xs text-zinc-400 mb-2">
+                  <span className="text-yellow-500 mr-2">#{idx + 1}</span>
+                  <strong className="text-yellow-500">Category: Benefits</strong>
+                </p>
+                <p className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                  {snippet.split('\n')[1]?.replace('Valores: ', '') || snippet}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Extensão de Promoção */}
-        <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[280px] flex flex-col">
+        {/* Promotion Extensions - Now showing multiple variations */}
+        <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
           <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">
-            🎯 Promotion Extension
+            🎯 Promotion Extensions ({promotions?.length || 5} variations)
           </h3>
-          <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group flex-grow flex flex-col justify-center" onClick={() => onCopyToClipboard(generatePromotionExtension(product, country))}>
-            <div className="space-y-2">
-              {generatePromotionExtension(product, country).split('\n').map((promo, idx) => (
-                <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
-                  <strong className="text-yellow-500">Promotion {idx + 1}:</strong> {promo}
+          <div className="space-y-3 max-h-96 overflow-y-auto">
+            {(promotions || []).map((promoSet, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-3 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
+                onClick={() => onCopyToClipboard(promoSet)}
+              >
+                <p className="text-xs text-yellow-500 mb-2">#{idx + 1}</p>
+                <div className="space-y-1">
+                  {promoSet.split('\n').map((promo, promoIdx) => (
+                    <div key={promoIdx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
+                      <strong className="text-yellow-500">•</strong> {promo}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Extensão de Preço */}
-        <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black min-h-[280px] flex flex-col">
+        {/* Price Extensions - Now showing multiple variations */}
+        <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
           <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">
-            💲 Price Extension
+            💲 Price Extensions ({priceBlocks?.length || 5} variations)
           </h3>
-          <div className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group flex-grow flex flex-col justify-center" onClick={() => onCopyToClipboard(generatePriceExtension(product, price, country))}>
-            <div className="space-y-3">
-              {generatePriceExtension(product, price, country).split('\n').map((priceBlock, idx) => (
-                <div key={idx} className="text-sm text-white group-hover:text-yellow-100 transition-colors">
-                  <strong className="text-yellow-500">Option {idx + 1}:</strong> {priceBlock}
+          <div className="space-y-3 max-h-96 overflow-y-auto">
+            {(priceBlocks || []).map((priceSet, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-3 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group"
+                onClick={() => onCopyToClipboard(priceSet)}
+              >
+                <p className="text-xs text-yellow-500 mb-2">#{idx + 1}</p>
+                <div className="space-y-2">
+                  {priceSet.split('\n').map((priceBlock, priceIdx) => (
+                    <div key={priceIdx} className="text-sm text-white group-hover: text-yellow-100 transition-colors">
+                      <strong className="text-yellow-500">•</strong> {priceBlock}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
