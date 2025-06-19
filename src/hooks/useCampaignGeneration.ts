@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { generateCODCopies } from '../utils/copyGenerator';
 import { countries } from '../components/data/Countries';
@@ -21,7 +20,6 @@ export interface GeneratedContent {
     description2: string;
     url: string;
   }[];
-  biddingStrategy: string;
   snippetValues: string[];
   promotions: string[];
   priceBlocks: string[];

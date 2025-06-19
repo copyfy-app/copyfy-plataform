@@ -1,4 +1,3 @@
-
 import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
@@ -24,9 +23,8 @@ export const generateCODCopies = async (
     const copyfyDescriptions = generateCopyfyDescriptions(product, price, country, targetLanguage);
     const copyfyUsps = generateCopyfyUSPs(product, price, country, targetLanguage);
     const copyfySitelinks = generateCopyfySitelinks(product, price, country, targetLanguage);
-    const copyfyBiddingStrategy = generateCopyfyBiddingStrategy(product, price, country, targetLanguage);
 
-    // Generate multiple variations for extensions
+    // Generate multiple variations for extensions with product/country context
     const snippetVariations = generateStructuredSnippet(product, country);
     const promotionVariations = generatePromotionExtension(product, country);
     const priceVariations = generatePriceExtension(product, price, country);
@@ -41,10 +39,9 @@ export const generateCODCopies = async (
       descriptions: getRandomVariations(copyfyDescriptions, 30),
       usps: getRandomVariations(copyfyUsps, 15),
       sitelinks: getRandomVariations(copyfySitelinks, 15),
-      biddingStrategy: copyfyBiddingStrategy,
-      snippetValues: snippetVariations,
-      promotions: promotionVariations,
-      priceBlocks: priceVariations
+      snippetValues: snippetVariations.slice(0, 8), // Exactly 8 snippets
+      promotions: promotionVariations.slice(0, 8), // Exactly 8 promotions
+      priceBlocks: priceVariations.slice(0, 5) // Exactly 5 price extensions
     };
 
     console.log('✅ Geração Copyfy concluída:', {
