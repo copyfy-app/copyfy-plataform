@@ -104,51 +104,62 @@ const generateCopyfyTitles = (product: string, price: string, country: string, l
 };
 
 const generateCopyfyDescriptions = (product: string, price: string, country: string, language: string): string[] => {
-  const baseTemplates = [
-    // COD Value Propositions
-    `Get ${product} delivered to ${country}. Pay only ${price} when you receive it. No advance payment required. Order now for immediate processing.`,
-    `${product} available with cash on delivery in ${country}. Pay ${price} at your doorstep. Safe, secure, and risk-free ordering process.`,
-    `Order ${product} today - pay ${price} tomorrow. COD available across ${country}. No credit card needed. Satisfaction guaranteed or money back.`,
-    `${product} with ${price} cash on delivery option. Available in ${country}. Zero risk, maximum convenience. Order now, pay when delivered.`,
-    `Secure ${product} purchase - pay ${price} on delivery. Available throughout ${country}. No upfront payment. Inspect before you pay.`,
-    
-    // Direct Response Copy
-    `Don't wait! ${product} available for ${price} COD in ${country}. Limited stock remaining. Order now before it's too late.`,
-    `Exclusive ${product} offer - only ${price} cash on delivery. Available in ${country} for limited time. Act fast, supplies are limited.`,
-    `Get ${product} risk-free. Pay only ${price} when satisfied. COD available in ${country}. Money-back guarantee included.`,
-    `${product} - special ${price} COD offer for ${country} residents. No advance payment. Order today, receive tomorrow, pay on delivery.`,
-    `Limited time: ${product} for ${price} with free COD in ${country}. No hidden fees. Pay only when you're completely satisfied.`,
-    
-    // Urgency & Action
-    `Final hours to get ${product} for ${price} COD in ${country}. Don't miss this exclusive offer. Order now while stocks last.`,
-    `Last chance: ${product} available for ${price} cash on delivery. Only in ${country}. Order immediately to secure your copy.`,
-    `Urgent: ${product} stock running low. Get yours for ${price} COD in ${country}. Order now to avoid disappointment.`,
-    `Breaking: ${product} back in stock! ${price} cash on delivery in ${country}. Limited quantities available. Order immediately.`,
-    `Alert: ${product} available for ${price} COD. Delivery to ${country} only. High demand - order now to guarantee availability.`,
-    
-    // Benefit & Results Focus
-    `Transform your results with ${product}. Only ${price} with cash on delivery in ${country}. Risk-free trial. Order today.`,
-    `Proven ${product} system - pay just ${price} on delivery. Available in ${country}. Join thousands of satisfied customers.`,
-    `Get instant access to ${product}. Pay ${price} when delivered to ${country}. No risk, all reward. Order your copy now.`,
-    `Revolutionary ${product} - only ${price} COD in ${country}. Tested, proven, guaranteed. Order now for immediate shipping.`,
-    `Breakthrough ${product} offer - ${price} cash on delivery. Exclusive to ${country}. Limited time availability. Act now.`,
-    
-    // Trust & Security
-    `Authentic ${product} with ${price} COD guarantee. Trusted by thousands in ${country}. Secure ordering, fast delivery.`,
-    `Official ${product} - pay ${price} on delivery only. Available in ${country}. Verified seller, guaranteed authenticity.`,
-    `Genuine ${product} for ${price} with COD option. Serving ${country} customers. 100% satisfaction guaranteed.`,
-    `Certified ${product} - ${price} cash on delivery available. Exclusive ${country} distributor. Safe, secure, reliable.`,
-    `Authorized ${product} dealer - ${price} COD option. Delivering to ${country}. Premium quality guaranteed.`,
-    
-    // Call-to-Action Focused
-    `Order ${product} now! Pay ${price} on delivery in ${country}. Quick ordering process. Immediate dispatch guaranteed.`,
-    `Click to order ${product} - ${price} COD available. Fast delivery to ${country}. No payment until you receive it.`,
-    `Buy ${product} today - pay ${price} tomorrow. COD service in ${country}. Easy ordering, secure delivery.`,
-    `Purchase ${product} risk-free - ${price} cash on delivery. Available in ${country}. Order now for fastest delivery.`,
-    `Secure your ${product} copy - pay ${price} on arrival. Delivery to ${country}. Order today, receive tomorrow.`
-  ];
+  // Dynamic prefixes and suffixes based on country
+  const countrySpecific = {
+    'US': { currency: '$', shipping: 'nationwide', urgency: 'today' },
+    'UK': { currency: '£', shipping: 'UK-wide', urgency: 'same day' },
+    'DE': { currency: '€', shipping: 'Germany-wide', urgency: 'schnell' },
+    'FR': { currency: '€', shipping: 'France-wide', urgency: 'rapide' },
+    'IT': { currency: '€', shipping: 'Italy-wide', urgency: 'veloce' },
+    'ES': { currency: '€', shipping: 'Spain-wide', urgency: 'rápido' },
+    'BR': { currency: 'R$', shipping: 'Brazil-wide', urgency: 'hoje' },
+    'MX': { currency: '$', shipping: 'Mexico-wide', urgency: 'hoy' },
+    'default': { currency: '', shipping: 'nationwide', urgency: 'now' }
+  };
 
-  return baseTemplates;
+  const spec = countrySpecific[country] || countrySpecific['default'];
+  
+  // Product-specific variations - making each unique
+  const productCode = product.substring(0, 3).toUpperCase();
+  const countryCode = country.substring(0, 2).toUpperCase();
+  
+  return [
+    // COD-focused under 90 chars
+    `${product} delivered to ${country}. Pay ${price} when received. Order ${spec.urgency}!`,
+    `Get ${product} risk-free! Pay ${price} COD in ${country}. No advance payment.`,
+    `${product} ${price} COD available in ${country}. Order now, pay on delivery.`,
+    `Order ${product} today - pay ${price} at your door in ${country}. Safe & secure.`,
+    `${product} for ${price} with COD option. Delivered safely to ${country}.`,
+    `Risk-free ${product} purchase. Pay ${price} only when satisfied in ${country}.`,
+    `${product} available ${spec.urgency} - ${price} cash on delivery to ${country}.`,
+    `Get ${product} delivered. Pay ${price} when received in ${country}. Order now!`,
+    `${product} ${price} - no prepayment needed. COD available in ${country}.`,
+    `Order ${product} risk-free. Pay ${price} on delivery in ${country}. Limited time.`,
+    
+    // Urgency-focused COD under 90 chars
+    `Last chance: ${product} for ${price} COD in ${country}. Order before sold out!`,
+    `24h only: ${product} ${price} cash on delivery. Available in ${country} now.`,
+    `Limited: ${product} at ${price} with COD. Delivery to ${country} guaranteed.`,
+    `Final hours: ${product} for ${price}. Pay on delivery in ${country} only.`,
+    `Urgent: ${product} stock low. Get yours for ${price} COD in ${country}.`,
+    `Today only: ${product} ${price} with free COD delivery to ${country}.`,
+    `Breaking: ${product} back in stock! ${price} COD available in ${country}.`,
+    `Alert: ${product} selling fast. Secure yours for ${price} COD in ${country}.`,
+    `48h left: ${product} at ${price}. Cash on delivery to ${country} available.`,
+    `Flash sale: ${product} for ${price}. COD option in ${country}. Act now!`,
+    
+    // Trust & Security focused under 90 chars
+    `Authentic ${product} - pay ${price} on delivery. Trusted seller in ${country}.`,
+    `Verified ${product} for ${price}. COD available. Safe delivery to ${country}.`,
+    `Official ${product} dealer. Pay ${price} when delivered to ${country}.`,
+    `Genuine ${product} guarantee. ${price} COD option available in ${country}.`,
+    `Certified ${product} - ${price} cash on delivery. Serving ${country} customers.`,
+    `Trusted ${product} source. Pay ${price} on receipt in ${country}. Order now.`,
+    `Authorized ${product} seller. ${price} COD guarantee in ${country}.`,
+    `Premium ${product} quality. Pay ${price} when satisfied in ${country}.`,
+    `Reliable ${product} delivery. ${price} cash on delivery to ${country}.`,
+    `Secure ${product} purchase. Pay ${price} only when received in ${country}.`
+  ];
 };
 
 const generateCopyfyUSPs = (product: string, price: string, country: string, language: string): string[] => {
@@ -294,8 +305,4 @@ const generateCopyfySitelinks = (product: string, price: string, country: string
   ];
 
   return sitelinkTemplates;
-};
-
-const generateCopyfyBiddingStrategy = (product: string, price: string, country: string, language: string): string => {
-  return `Focus on high-intent COD keywords for ${product} in ${country}. Target "cash on delivery", "COD available", "pay on delivery" terms. Bid aggressively on product + location + COD combinations. Set higher bids for mobile traffic as COD users often prefer mobile ordering. Use ${price} as competitive advantage in ad copy.`;
 };
