@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { generateCODCopies } from '../utils/copyGenerator';
 import { countries } from '../components/data/Countries';
@@ -35,7 +36,7 @@ export const useCampaignGeneration = () => {
     try {
       console.log('Sending webhook request to n8n:', campaignData);
       
-      const response = await fetch('https://webhook.site/147641b2-66cb-4855-b9c4-a6bb2aec24f3', {
+      const response = await fetch('https://copyfy-n8n.app.n8n.cloud/webhook/copyfy-traducao-final', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
