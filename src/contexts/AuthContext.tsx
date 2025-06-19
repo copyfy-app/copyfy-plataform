@@ -1,3 +1,4 @@
+
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -65,11 +66,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         // Calcular dias restantes do trial baseado no trial_start
         if (profile.trial_start) {
           const trialStartDate = new Date(profile.trial_start);
-          const daysRemaining = calculateDaysRemaining(trialStartDate);
-          const isActive = daysRemaining > 0;
+          
+          // Calcular horas desde o início do trial
+          const now = new Date();
+          const hoursElapsed = Math.floor((now.getTime() - trialStartDate.getTime()) / (1000 * 60 * 60));
+          const hoursRemaining = Math.max(0, 24 - hoursElapsed); // 24 horas de trial
+          const daysRemaining = hoursRemaining > 0 ? 1 : 0; // Se ainda tem horas, mostra 1 dia
+          const isActive = hoursRemaining > 0;
           
           console.log("📅 Dados do trial:", {
             trialStart: trialStartDate.toISOString(),
+            hoursElapsed,
+            hoursRemaining,
             daysRemaining,
             isActive
           });
