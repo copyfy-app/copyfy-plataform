@@ -7,120 +7,156 @@ export const generateStructuredSnippet = (product: string, country: string): str
   const countryCode = countryData ? countryData.value : country;
   const languageCode = getLanguageFromCountry(countryCode);
   
-  // Generate multiple structured snippet variations
+  // Generate Copyfy SaaS service snippets focused on Google Ads & COD
   let snippetVariations: string[] = [];
   
   switch (languageCode) {
     case 'es':
       snippetVariations = [
-        "Gel facial, Crema nocturna, Contorno de ojos, Fórmula anti-edad",
-        "Sérum hidratante, Limpiador facial, Mascarilla, Protector solar",
-        "Crema día, Exfoliante, Tónico facial, Aceite nutritivo",
-        "Contorno labial, Primer facial, Base hidratante, Bruma facial",
-        "Tratamiento nocturno, Crema antiarrugas, Sérum vitamina C, Gel limpiador"
+        "Generación automática de campañas, Traducción a más de 100 países, Copywriting COD optimizado, Templates de respuesta directa",
+        "Plataforma SaaS de Google Ads, Automatización de campañas, Copy especializado en afiliados, Estrategias de pago contra entrega",
+        "Herramientas de copywriting, Campañas multiidioma, Optimización para COD, Plantillas de alta conversión",
+        "Software de marketing digital, Generación de anuncios automática, Copy persuasivo, Estrategias de ventas directas",
+        "Automatización publicitaria, Traducción instantánea, Templates COD, Copywriting de respuesta directa",
+        "Plataforma de anuncios, Generación de contenido, Estrategias de afiliados, Optimización de conversiones",
+        "SaaS de Google Ads, Copywriting automático, Templates multipaís, Estrategias de pago diferido",
+        "Herramientas de conversión, Automatización de copy, Campañas internacionales, Optimización COD"
       ];
       break;
     case 'en':
       snippetVariations = [
-        "Facial serum, Night gel, Eye cream, Anti-aging formula",
-        "Moisturizing cream, Face cleanser, Beauty mask, Sun protection",
-        "Day cream, Gentle scrub, Facial toner, Nourishing oil",
-        "Lip treatment, Face primer, Hydrating base, Facial mist",
-        "Night treatment, Anti-wrinkle cream, Vitamin C serum, Cleansing gel"
+        "Automated campaign generation, Translation to 100+ countries, COD-optimized copywriting, Direct response templates",
+        "Google Ads SaaS platform, Campaign automation, Affiliate-focused copy, Cash on delivery strategies",
+        "Copywriting tools, Multi-language campaigns, COD optimization, High-converting templates",
+        "Digital marketing software, Automated ad generation, Persuasive copy, Direct sales strategies",
+        "Advertising automation, Instant translation, COD templates, Direct response copywriting",
+        "Ad platform solution, Content generation, Affiliate strategies, Conversion optimization",
+        "Google Ads SaaS, Automated copywriting, Multi-country templates, Deferred payment strategies",
+        "Conversion tools, Copy automation, International campaigns, COD optimization"
       ];
       break;
     case 'fr':
       snippetVariations = [
-        "Sérum facial, Gel de nuit, Crème contour des yeux, Formule anti-âge",
-        "Crème hydratante, Nettoyant visage, Masque beauté, Protection solaire",
-        "Crème de jour, Gommage doux, Lotion tonique, Huile nourrissante",
-        "Soin des lèvres, Base lissante, Fond hydratant, Brume faciale",
-        "Traitement nuit, Crème anti-rides, Sérum vitamine C, Gel nettoyant"
+        "Génération automatique de campagnes, Traduction dans plus de 100 pays, Copywriting optimisé COD, Modèles de réponse directe",
+        "Plateforme SaaS Google Ads, Automatisation de campagnes, Copy axé affiliés, Stratégies paiement à la livraison",
+        "Outils de copywriting, Campagnes multilingues, Optimisation COD, Modèles haute conversion",
+        "Logiciel marketing digital, Génération d'annonces automatique, Copy persuasif, Stratégies vente directe",
+        "Automatisation publicitaire, Traduction instantanée, Modèles COD, Copywriting réponse directe",
+        "Solution plateforme pub, Génération contenu, Stratégies affiliés, Optimisation conversions",
+        "SaaS Google Ads, Copywriting automatique, Modèles multi-pays, Stratégies paiement différé",
+        "Outils conversion, Automatisation copy, Campagnes internationales, Optimisation COD"
       ];
       break;
     case 'de':
       snippetVariations = [
-        "Gesichtsserum, Nachtgel, Augencreme, Anti-Aging-Formel",
-        "Feuchtigkeitscreme, Gesichtsreiniger, Schönheitsmaske, Sonnenschutz",
-        "Tagescreme, Sanftes Peeling, Gesichtswasser, Pflegeöl",
-        "Lippenbehandlung, Gesichtsprimer, Feuchtigkeitsbasis, Gesichtsspray",
-        "Nachtbehandlung, Anti-Falten-Creme, Vitamin-C-Serum, Reinigungsgel"
+        "Automatische Kampagnenerstellung, Übersetzung in 100+ Länder, COD-optimiertes Copywriting, Direct Response Vorlagen",
+        "Google Ads SaaS Plattform, Kampagnen-Automatisierung, Affiliate-fokussiertes Copy, Nachnahme-Strategien",
+        "Copywriting-Tools, Mehrsprachige Kampagnen, COD-Optimierung, Hochkonvertierende Vorlagen",
+        "Digital Marketing Software, Automatische Anzeigenerstellung, Überzeugender Copy, Direktverkaufsstrategien",
+        "Werbeautomatisierung, Sofortübersetzung, COD-Vorlagen, Direct Response Copywriting",
+        "Anzeigenplattform-Lösung, Content-Generierung, Affiliate-Strategien, Conversion-Optimierung",
+        "Google Ads SaaS, Automatisiertes Copywriting, Multi-Land-Vorlagen, Zahlungsaufschub-Strategien",
+        "Conversion-Tools, Copy-Automatisierung, Internationale Kampagnen, COD-Optimierung"
       ];
       break;
     case 'it':
       snippetVariations = [
-        "Siero viso, Gel notte, Crema contorno occhi, Formula anti-età",
-        "Crema idratante, Detergente viso, Maschera bellezza, Protezione solare",
-        "Crema giorno, Scrub delicato, Tonico viso, Olio nutriente",
-        "Trattamento labbra, Primer viso, Base idratante, Nebbia facciale",
-        "Trattamento notte, Crema antirughe, Siero vitamina C, Gel detergente"
+        "Generazione automatica campagne, Traduzione in oltre 100 paesi, Copywriting ottimizzato COD, Template risposta diretta",
+        "Piattaforma SaaS Google Ads, Automazione campagne, Copy focalizzato affiliati, Strategie pagamento alla consegna",
+        "Strumenti copywriting, Campagne multilingue, Ottimizzazione COD, Template alta conversione",
+        "Software marketing digitale, Generazione annunci automatica, Copy persuasivo, Strategie vendita diretta",
+        "Automazione pubblicitaria, Traduzione istantanea, Template COD, Copywriting risposta diretta",
+        "Soluzione piattaforma annunci, Generazione contenuti, Strategie affiliate, Ottimizzazione conversioni",
+        "SaaS Google Ads, Copywriting automatico, Template multi-paese, Strategie pagamento differito",
+        "Strumenti conversione, Automazione copy, Campagne internazionali, Ottimizzazione COD"
       ];
       break;
     case 'ja':
       snippetVariations = [
-        "フェイシャルセラム, ナイトジェル, アイクリーム, アンチエイジング",
-        "保湿クリーム, 洗顔料, 美容マスク, 日焼け止め",
-        "デイクリーム, マイルドスクラブ, 化粧水, 栄養オイル",
-        "リップトリートメント, フェイスプライマー, 保湿ベース, フェイシャルミスト",
-        "ナイトトリートメント, シワ対策クリーム, ビタミンCセラム, クレンジングジェル"
+        "自動キャンペーン生成, 100ヶ国以上への翻訳, COD最適化コピーライティング, ダイレクトレスポンステンプレート",
+        "Google広告SaaSプラットフォーム, キャンペーン自動化, アフィリエイト重視コピー, 代金引換戦略",
+        "コピーライティングツール, 多言語キャンペーン, COD最適化, 高コンバージョンテンプレート",
+        "デジタルマーケティングソフトウェア, 自動広告生成, 説得力のあるコピー, 直接販売戦略",
+        "広告自動化, 即時翻訳, CODテンプレート, ダイレクトレスポンスコピーライティング",
+        "広告プラットフォームソリューション, コンテンツ生成, アフィリエイト戦略, コンバージョン最適化",
+        "Google広告SaaS, 自動コピーライティング, マルチカントリーテンプレート, 支払い延期戦略",
+        "コンバージョンツール, コピー自動化, 国際キャンペーン, COD最適化"
       ];
       break;
     case 'zh':
       snippetVariations = [
-        "面部精华, 夜间凝胶, 眼霜, 抗衰老配方",
-        "保湿霜, 洁面乳, 美容面膜, 防晒霜",
-        "日霜, 温和磨砂, 爽肤水, 滋养油",
-        "唇部护理, 妆前乳, 保湿底妆, 喷雾",
-        "夜间护理, 抗皱霜, 维C精华, 洁面凝胶"
+        "自动生成活动, 翻译至100+国家, COD优化文案, 直接回应模板",
+        "Google广告SaaS平台, 活动自动化, 联盟专注文案, 货到付款策略",
+        "文案工具, 多语言活动, COD优化, 高转换模板",
+        "数字营销软件, 自动广告生成, 说服性文案, 直销策略",
+        "广告自动化, 即时翻译, COD模板, 直接回应文案",
+        "广告平台解决方案, 内容生成, 联盟策略, 转换优化",
+        "Google广告SaaS, 自动文案, 多国模板, 延期付款策略",
+        "转换工具, 文案自动化, 国际活动, COD优化"
       ];
       break;
     case 'ar':
       snippetVariations = [
-        "سيروم الوجه، جل ليلي، كريم العين، تركيبة مضادة للشيخوخة",
-        "كريم مرطب، منظف الوجه، قناع الجمال، واقي الشمس",
-        "كريم النهار، مقشر لطيف، تونر الوجه، زيت مغذي",
-        "علاج الشفاه، برايمر الوجه، قاعدة مرطبة، رذاذ الوجه",
-        "علاج ليلي، كريم مضاد للتجاعيد، سيروم فيتامين سي، جل منظف"
+        "إنشاء الحملات التلقائي, ترجمة لأكثر من 100 دولة, كتابة الإعلانات المحسنة للدفع عند الاستلام, قوالب الاستجابة المباشرة",
+        "منصة جوجل أدز SaaS, أتمتة الحملات, نسخ مركزة على الشركاء, استراتيجيات الدفع عند الاستلام",
+        "أدوات كتابة الإعلانات, حملات متعددة اللغات, تحسين الدفع عند الاستلام, قوالب عالية التحويل",
+        "برنامج التسويق الرقمي, إنشاء الإعلانات التلقائي, نسخ مقنعة, استراتيجيات البيع المباشر",
+        "أتمتة الإعلان, ترجمة فورية, قوالب الدفع عند الاستلام, كتابة الاستجابة المباشرة",
+        "حل منصة الإعلان, إنشاء المحتوى, استراتيجيات الشركاء, تحسين التحويل",
+        "جوجل أدز SaaS, كتابة الإعلانات التلقائية, قوالب متعددة البلدان, استراتيجيات الدفع المؤجل",
+        "أدوات التحويل, أتمتة النسخ, حملات دولية, تحسين الدفع عند الاستلام"
       ];
       break;
     case 'hi':
       snippetVariations = [
-        "चेहरे का सीरम, नाइट जेल, आई क्रीम, एंटी-एजिंग फॉर्मूला",
-        "मॉइस्चराइजिंग क्रीम, फेस क्लींजर, ब्यूटी मास्क, सन प्रोटेक्शन",
-        "डे क्रीम, जेंटल स्क्रब, फेशियल टोनर, पोषक तेल",
-        "लिप ट्रीटमेंट, फेस प्राइमर, हाइड्रेटिंग बेस, फेशियल मिस्ट",
-        "नाइट ट्रीटमेंट, एंटी-रिंकल क्रीम, विटामिन सी सीरम, क्लींजिंग जेल"
+        "स्वचालित अभियान निर्माण, 100+ देशों में अनुवाद, COD-अनुकूलित कॉपी राइटिंग, प्रत्यक्ष प्रतिक्रिया टेम्प्लेट",
+        "Google Ads SaaS प्लेटफॉर्म, अभियान स्वचालन, सहयोगी-केंद्रित कॉपी, डिलीवरी पर भुगतान रणनीतियां",
+        "कॉपी राइटिंग उपकरण, बहुभाषी अभियान, COD अनुकूलन, उच्च रूपांतरण टेम्प्लेट",
+        "डिजिटल मार्केटिंग सॉफ्टवेयर, स्वचालित विज्ञापन निर्माण, प्रेरक कॉपी, प्रत्यक्ष बिक्री रणनीतियां",
+        "विज्ञापन स्वचालन, तत्काल अनुवाद, COD टेम्प्लेट, प्रत्यक्ष प्रतिक्रिया कॉपी राइटिंग",
+        "विज्ञापन प्लेटफॉर्म समाधान, सामग्री निर्माण, सहयोगी रणनीतियां, रूपांतरण अनुकूलन",
+        "Google Ads SaaS, स्वचालित कॉपी राइटिंग, बहु-देश टेम्प्लेट, स्थगित भुगतान रणनीतियां",
+        "रूपांतरण उपकरण, कॉपी स्वचालन, अंतर्राष्ट्रीय अभियान, COD अनुकूलन"
       ];
       break;
     case 'tr':
       snippetVariations = [
-        "Yüz serumu, Gece jeli, Göz kremi, Yaşlanma karşıtı formül",
-        "Nemlendirici krem, Yüz temizleyici, Güzellik maskesi, Güneş koruma",
-        "Gündüz kremi, Nazik peling, Yüz toniği, Besleyici yağ",
-        "Dudak bakımı, Yüz primerı, Nemlendirici baz, Yüz spreyi",
-        "Gece bakımı, Kırışıklık karşıtı krem, C vitamini serum, Temizlik jeli"
+        "Otomatik kampanya oluşturma, 100+ ülkeye çeviri, COD-optimize metin yazımı, Doğrudan yanıt şablonları",
+        "Google Ads SaaS platformu, Kampanya otomasyonu, Ortak odaklı metin, Kapıda ödeme stratejileri",
+        "Metin yazımı araçları, Çok dilli kampanyalar, COD optimizasyonu, Yüksek dönüşüm şablonları",
+        "Dijital pazarlama yazılımı, Otomatik reklam oluşturma, İkna edici metin, Doğrudan satış stratejileri",
+        "Reklam otomasyonu, Anında çeviri, COD şablonları, Doğrudan yanıt metin yazımı",
+        "Reklam platformu çözümü, İçerik oluşturma, Ortak stratejileri, Dönüşüm optimizasyonu",
+        "Google Ads SaaS, Otomatik metin yazımı, Çok ülke şablonları, Ertelenmiş ödeme stratejileri",
+        "Dönüşüm araçları, Metin otomasyonu, Uluslararası kampanyalar, COD optimizasyonu"
       ];
       break;
     case 'ru':
       snippetVariations = [
-        "Сыворотка для лица, Ночной гель, Крем для глаз, Антивозрастная формула",
-        "Увлажняющий крем, Очищающее средство, Маска красоты, Солнцезащитный крем",
-        "Дневной крем, Мягкий скраб, Тоник для лица, Питательное масло",
-        "Уход за губами, Праймер для лица, Увлажняющая основа, Спрей для лица",
-        "Ночной уход, Крем против морщин, Сыворотка с витамином С, Очищающий гель"
+        "Автоматическое создание кампаний, Перевод на 100+ стран, COD-оптимизированный копирайтинг, Шаблоны прямого отклика",
+        "SaaS платформа Google Ads, Автоматизация кампаний, Партнерский копирайтинг, Стратегии наложенного платежа",
+        "Инструменты копирайтинга, Многоязычные кампании, COD оптимизация, Высококонвертирующие шаблоны",
+        "Программное обеспечение цифрового маркетинга, Автоматическое создание объявлений, Убедительный копирайтинг, Стратегии прямых продаж",
+        "Автоматизация рекламы, Мгновенный перевод, COD шаблоны, Копирайтинг прямого отклика",
+        "Решение рекламной платформы, Создание контента, Партнерские стратегии, Оптимизация конверсий",
+        "Google Ads SaaS, Автоматический копирайтинг, Многострановые шаблоны, Стратегии отложенной оплаты",
+        "Инструменты конверсии, Автоматизация копирайтинга, Международные кампании, COD оптимизация"
       ];
       break;
     default:
       snippetVariations = [
-        "Gel facial, Creme noturno, Creme para olhos, Fórmula anti-idade",
-        "Creme hidratante, Limpador facial, Máscara de beleza, Protetor solar",
-        "Creme diurno, Esfoliante suave, Tônico facial, Óleo nutritivo",
-        "Tratamento labial, Primer facial, Base hidratante, Névoa facial",
-        "Tratamento noturno, Creme antirrugas, Sérum vitamina C, Gel de limpeza"
+        "Geração automática de campanhas, Tradução para mais de 100 países, Copywriting otimizado para COD, Templates de resposta direta",
+        "Plataforma SaaS Google Ads, Automação de campanhas, Copy focado em afiliados, Estratégias de pagamento na entrega",
+        "Ferramentas de copywriting, Campanhas multilíngues, Otimização COD, Templates de alta conversão",
+        "Software de marketing digital, Geração automática de anúncios, Copy persuasivo, Estratégias de venda direta",
+        "Automação publicitária, Tradução instantânea, Templates COD, Copywriting de resposta direta",
+        "Solução de plataforma de anúncios, Geração de conteúdo, Estratégias de afiliados, Otimização de conversões",
+        "Google Ads SaaS, Copywriting automatizado, Templates multi-país, Estratégias de pagamento diferido",
+        "Ferramentas de conversão, Automação de copy, Campanhas internacionais, Otimização COD"
       ];
   }
   
-  return snippetVariations.map(values => `Categoria: Benefícios\nValores: ${values}`);
+  return snippetVariations.map(values => `Categoria: Serviços SaaS\nValores: ${values}`);
 };
 
 export const generatePromotionExtension = (product: string, country: string): string[] => {
@@ -133,110 +169,146 @@ export const generatePromotionExtension = (product: string, country: string): st
   switch (languageCode) {
     case 'es':
       promotionVariations = [
-        [`Descuento del 20% en el primer pedido`, `Envío gratis a toda ${countryName}`, `Compra 2 y llévate 3`],
-        [`Oferta especial: 30% de descuento`, `Devolución gratuita en 30 días`, `Regalo sorpresa con tu compra`],
-        [`Precio promocional limitado`, `Garantía de satisfacción 100%`, `Descuento por volumen disponible`],
-        [`Oferta por tiempo limitado`, `Consulta médica gratis incluida`, `Pago seguro garantizado`],
-        [`Descuento exclusivo online`, `Entrega express disponible`, `Plan de pagos sin intereses`]
+        [`Prueba gratuita de 7 días de Copyfy`, `Genera campañas ilimitadas`, `Soporte 24/7 incluido`],
+        [`50% descuento primer mes`, `Más de 100 idiomas disponibles`, `Templates COD pre-construidos`],
+        [`Acceso instantáneo a Copyfy`, `Cancela cuando quieras`, `Sin compromiso a largo plazo`],
+        [`Demo personalizada gratuita`, `Integración con Google Ads`, `Resultados garantizados`],
+        [`Plan empresarial disponible`, `API completa incluida`, `Traducciones automáticas`],
+        [`Oferta por tiempo limitado`, `Onboarding personalizado`, `Campañas de alta conversión`],
+        [`ROI garantizado o reembolso`, `Optimización automática`, `Reportes en tiempo real`],
+        [`Especialistas en marketing incluidos`, `Templates probados`, `Soporte multicanal`]
       ];
       break;
     case 'en':
       promotionVariations = [
-        [`20% discount on first order`, `Free shipping to all ${countryName}`, `Buy 2 get 3`],
-        [`Special offer: 30% off today`, `Free 30-day returns`, `Surprise gift with purchase`],
-        [`Limited time promotional price`, `100% satisfaction guarantee`, `Volume discount available`],
-        [`Time-limited exclusive offer`, `Free medical consultation included`, `Secure payment guaranteed`],
-        [`Exclusive online discount`, `Express delivery available`, `Interest-free payment plans`]
+        [`7-day free trial of Copyfy`, `Generate unlimited campaigns`, `24/7 support included`],
+        [`50% off first month`, `100+ languages available`, `Pre-built COD templates`],
+        [`Instant access to Copyfy`, `Cancel anytime`, `No long-term commitment`],
+        [`Free personalized demo`, `Google Ads integration`, `Guaranteed results`],
+        [`Enterprise plan available`, `Full API included`, `Automatic translations`],
+        [`Limited time offer`, `Custom onboarding`, `High-converting campaigns`],
+        [`ROI guaranteed or refund`, `Auto-optimization`, `Real-time reporting`],
+        [`Marketing specialists included`, `Proven templates`, `Multi-channel support`]
       ];
       break;
     case 'fr':
       promotionVariations = [
-        [`Réduction de 20% sur la première commande`, `Livraison gratuite dans toute la ${countryName}`, `Achetez 2 et obtenez 3`],
-        [`Offre spéciale : 30% de réduction`, `Retour gratuit sous 30 jours`, `Cadeau surprise avec achat`],
-        [`Prix promotionnel à durée limitée`, `Garantie satisfaction 100%`, `Remise sur quantité disponible`],
-        [`Offre exclusive à durée limitée`, `Consultation médicale gratuite incluse`, `Paiement sécurisé garanti`],
-        [`Remise exclusive en ligne`, `Livraison express disponible`, `Plans de paiement sans intérêts`]
+        [`Essai gratuit de 7 jours Copyfy`, `Générez des campagnes illimitées`, `Support 24/7 inclus`],
+        [`50% de réduction premier mois`, `Plus de 100 langues disponibles`, `Templates COD pré-construits`],
+        [`Accès instantané à Copyfy`, `Annulez à tout moment`, `Aucun engagement long terme`],
+        [`Démo personnalisée gratuite`, `Intégration Google Ads`, `Résultats garantis`],
+        [`Plan entreprise disponible`, `API complète incluse`, `Traductions automatiques`],
+        [`Offre limitée dans le temps`, `Intégration personnalisée`, `Campagnes haute conversion`],
+        [`ROI garanti ou remboursé`, `Optimisation automatique`, `Rapports temps réel`],
+        [`Spécialistes marketing inclus`, `Templates éprouvés`, `Support multi-canal`]
       ];
       break;
     case 'de':
       promotionVariations = [
-        [`20% Rabatt auf die erste Bestellung`, `Kostenloser Versand nach ganz ${countryName}`, `Kaufe 2 und erhalte 3`],
-        [`Sonderangebot: 30% Rabatt heute`, `Kostenlose 30-Tage Rückgabe`, `Überraschungsgeschenk beim Kauf`],
-        [`Zeitlich begrenzter Aktionspreis`, `100% Zufriedenheitsgarantie`, `Mengenrabatt verfügbar`],
-        [`Zeitlich begrenztes exklusives Angebot`, `Kostenlose medizinische Beratung inklusive`, `Sichere Zahlung garantiert`],
-        [`Exklusiver Online-Rabatt`, `Express-Lieferung verfügbar`, `Zinsfreie Zahlungspläne`]
+        [`7 Tage kostenlose Testversion Copyfy`, `Unbegrenzte Kampagnen generieren`, `24/7 Support inklusive`],
+        [`50% Rabatt erster Monat`, `Über 100 Sprachen verfügbar`, `Vorgefertigte COD-Vorlagen`],
+        [`Sofortiger Zugang zu Copyfy`, `Jederzeit kündbar`, `Keine langfristige Bindung`],
+        [`Kostenlose personalisierte Demo`, `Google Ads Integration`, `Garantierte Ergebnisse`],
+        [`Enterprise-Plan verfügbar`, `Vollständige API inklusive`, `Automatische Übersetzungen`],
+        [`Zeitlich begrenztes Angebot`, `Individuelles Onboarding`, `Hochkonvertierende Kampagnen`],
+        [`ROI garantiert oder Geld zurück`, `Auto-Optimierung`, `Echtzeit-Berichte`],
+        [`Marketing-Spezialisten inklusive`, `Bewährte Vorlagen`, `Multi-Channel-Support`]
       ];
       break;
     case 'it':
       promotionVariations = [
-        [`Sconto del 20% sul primo ordine`, `Spedizione gratuita in tutta ${countryName}`, `Compra 2 e prendi 3`],
-        [`Offerta speciale: 30% di sconto`, `Reso gratuito entro 30 giorni`, `Regalo a sorpresa con acquisto`],
-        [`Prezzo promozionale a tempo limitato`, `Garanzia soddisfazione 100%`, `Sconto quantità disponibile`],
-        [`Offerta esclusiva a tempo limitato`, `Consulenza medica gratuita inclusa`, `Pagamento sicuro garantito`],
-        [`Sconto esclusivo online`, `Consegna express disponibile`, `Piani di pagamento senza interessi`]
+        [`Prova gratuita di 7 giorni Copyfy`, `Genera campagne illimitate`, `Supporto 24/7 incluso`],
+        [`50% sconto primo mese`, `Oltre 100 lingue disponibili`, `Template COD pre-costruiti`],
+        [`Accesso istantaneo a Copyfy`, `Cancella quando vuoi`, `Nessun impegno a lungo termine`],
+        [`Demo personalizzata gratuita`, `Integrazione Google Ads`, `Risultati garantiti`],
+        [`Piano enterprise disponibile`, `API completa inclusa`, `Traduzioni automatiche`],
+        [`Offerta a tempo limitato`, `Onboarding personalizzato`, `Campagne ad alta conversione`],
+        [`ROI garantito o rimborso`, `Ottimizzazione automatica`, `Report in tempo reale`],
+        [`Specialisti marketing inclusi`, `Template collaudati`, `Supporto multicanale`]
       ];
       break;
     case 'ja':
       promotionVariations = [
-        [`初回注文20%割引`, `${countryName}全国送料無料`, `2個買うと3個もらえる`],
-        [`特別オファー：今日30%オフ`, `30日間無料返品`, `購入でサプライズギフト`],
-        [`期間限定プロモーション価格`, `100%満足保証`, `まとめ買い割引あり`],
-        [`期間限定独占オファー`, `無料医療相談付き`, `安全決済保証`],
-        [`オンライン限定割引`, `速達配送利用可能`, `無利息分割払い`]
+        [`Copyfy 7日間無料トライアル`, `無制限キャンペーン生成`, `24/7サポート付き`],
+        [`初月50%オフ`, `100以上の言語対応`, `CODテンプレート内蔵`],
+        [`Copyfyへの即時アクセス`, `いつでもキャンセル可能`, `長期契約不要`],
+        [`無料パーソナライズドデモ`, `Google Ads統合`, `結果保証`],
+        [`エンタープライズプラン利用可能`, `完全API付き`, `自動翻訳`],
+        [`期間限定オファー`, `カスタムオンボーディング`, `高コンバージョンキャンペーン`],
+        [`ROI保証または返金`, `自動最適化`, `リアルタイムレポート`],
+        [`マーケティング専門家付き`, `実証済みテンプレート`, `マルチチャネルサポート`]
       ];
       break;
     case 'zh':
       promotionVariations = [
-        [`首次订单享受20%折扣`, `${countryName}全国免费送货`, `买2送1`],
-        [`特别优惠：今日30%折扣`, `30天免费退货`, `购买即送惊喜礼品`],
-        [`限时促销价格`, `100%满意保证`, `批量折扣优惠`],
-        [`限时独家优惠`, `免费医疗咨询`, `安全支付保障`],
-        [`在线专享折扣`, `快递配送服务`, `无息分期付款`]
+        [`Copyfy 7天免费试用`, `生成无限制活动`, `24/7支持包含`],
+        [`首月50%折扣`, `支持100+语言`, `预构建COD模板`],
+        [`即时访问Copyfy`, `随时取消`, `无长期承诺`],
+        [`免费个性化演示`, `Google Ads集成`, `保证结果`],
+        [`企业计划可用`, `完整API包含`, `自动翻译`],
+        [`限时优惠`, `定制入门`, `高转换活动`],
+        [`ROI保证或退款`, `自动优化`, `实时报告`],
+        [`包含营销专家`, `经验证模板`, `多渠道支持`]
       ];
       break;
     case 'ar':
       promotionVariations = [
-        [`خصم 20% على الطلب الأول`, `شحن مجاني لجميع أنحاء ${countryName}`, `اشتر 2 واحصل على 3`],
-        [`عرض خاص: خصم 30% اليوم`, `إرجاع مجاني لمدة 30 يوماً`, `هدية مفاجئة مع الشراء`],
-        [`سعر ترويجي لفترة محدودة`, `ضمان الرضا 100%`, `خصم الكمية متاح`],
-        [`عرض حصري لفترة محدودة`, `استشارة طبية مجانية مشمولة`, `دفع آمن مضمون`],
-        [`خصم حصري عبر الإنترنت`, `توصيل سريع متاح`, `خطط دفع بدون فوائد`]
+        [`تجربة مجانية 7 أيام من Copyfy`, `إنشاء حملات غير محدودة`, `دعم 24/7 مشمول`],
+        [`خصم 50% على الشهر الأول`, `أكثر من 100 لغة متاحة`, `قوالب COD مبنية مسبقاً`],
+        [`وصول فوري إلى Copyfy`, `إلغاء في أي وقت`, `لا التزام طويل المدى`],
+        [`عرض توضيحي مخصص مجاني`, `تكامل Google Ads`, `نتائج مضمونة`],
+        [`خطة المؤسسة متاحة`, `API كامل مشمول`, `ترجمات تلقائية`],
+        [`عرض لفترة محدودة`, `إعداد مخصص`, `حملات عالية التحويل`],
+        [`عائد استثمار مضمون أو استرداد`, `تحسين تلقائي`, `تقارير فورية`],
+        [`متخصصو تسويق مشمولون`, `قوالب مثبتة`, `دعم متعدد القنوات`]
       ];
       break;
     case 'hi':
       promotionVariations = [
-        [`पहले ऑर्डर पर 20% छूट`, `पूरे ${countryName} में मुफ्त शिपिंग`, `2 खरीदें और 3 पाएं`],
-        [`विशेष ऑफर: आज 30% छूट`, `30 दिन मुफ्त रिटर्न`, `खरीदारी पर सरप्राइज गिफ्ट`],
-        [`सीमित समय प्रमोशनल कीमत`, `100% संतुष्टि गारंटी`, `वॉल्यूम डिस्काउंट उपलब्ध`],
-        [`सीमित समय एक्सक्लूसिव ऑफर`, `मुफ्त मेडिकल सलाह शामिल`, `सुरक्षित पेमेंट गारंटी`],
-        [`एक्सक्लूसिव ऑनलाइन डिस्काउंट`, `एक्सप्रेस डिलीवरी उपलब्ध`, `बिना ब्याज पेमेंट प्लान`]
+        [`Copyfy का 7-दिन निःशुल्क परीक्षण`, `असीमित अभियान उत्पन्न करें`, `24/7 सहायता शामिल`],
+        [`पहले महीने 50% छूट`, `100+ भाषाएं उपलब्ध`, `पूर्व-निर्मित COD टेम्प्लेट`],
+        [`Copyfy तक तत्काल पहुंच`, `कभी भी रद्द करें`, `कोई दीर्घकालिक प्रतिबद्धता नहीं`],
+        [`निःशुल्क व्यक्तिगत डेमो`, `Google Ads एकीकरण`, `गारंटीकृत परिणाम`],
+        [`एंटरप्राइज़ योजना उपलब्ध`, `पूर्ण API शामिल`, `स्वचालित अनुवाद`],
+        [`सीमित समय ऑफर`, `कस्टम ऑनबोर्डिंग`, `उच्च रूपांतरण अभियान`],
+        [`ROI गारंटी या रिफंड`, `स्वचालित अनुकूलन`, `वास्तविक समय रिपोर्टिंग`],
+        [`मार्केटिंग विशेषज्ञ शामिल`, `सिद्ध टेम्प्लेट`, `बहु-चैनल सहायता`]
       ];
       break;
     case 'tr':
       promotionVariations = [
-        [`İlk siparişte %20 indirim`, `Tüm ${countryName}'ye ücretsiz kargo`, `2 al 3 öde`],
-        [`Özel teklif: Bugün %30 indirim`, `30 gün ücretsiz iade`, `Alışverişte sürpriz hediye`],
-        [`Sınırlı süre promosyon fiyatı`, `%100 memnuniyet garantisi`, `Toplu alım indirimi mevcut`],
-        [`Sınırlı süre özel teklif`, `Ücretsiz tıbbi danışmanlık dahil`, `Güvenli ödeme garantisi`],
-        [`Özel online indirim`, `Ekspres teslimat mevcut`, `Faizsiz ödeme planları`]
+        [`Copyfy 7 günlük ücretsiz deneme`, `Sınırsız kampanya oluşturun`, `24/7 destek dahil`],
+        [`İlk ay %50 indirim`, `100+ dil mevcut`, `Önceden oluşturulmuş COD şablonları`],
+        [`Copyfy'ye anında erişim`, `İstediğiniz zaman iptal edin`, `Uzun vadeli taahhüt yok`],
+        [`Ücretsiz kişiselleştirilmiş demo`, `Google Ads entegrasyonu`, `Garantili sonuçlar`],
+        [`Kurumsal plan mevcut`, `Tam API dahil`, `Otomatik çeviriler`],
+        [`Sınırlı süreli teklif`, `Özel katılım`, `Yüksek dönüşümlü kampanyalar`],
+        [`ROI garantili veya para iadesi`, `Otomatik optimizasyon`, `Gerçek zamanlı raporlama`],
+        [`Pazarlama uzmanları dahil`, `Kanıtlanmış şablonlar`, `Çok kanallı destek`]
       ];
       break;
     case 'ru':
       promotionVariations = [
-        [`Скидка 20% на первый заказ`, `Бесплатная доставка по всей ${countryName}`, `Купи 2, получи 3`],
-        [`Специальное предложение: скидка 30%`, `Бесплатный возврат в течение 30 дней`, `Подарок-сюрприз с покупкой`],
-        [`Ограниченная по времени акционная цена`, `100% гарантия удовлетворения`, `Скидка на объем доступна`],
-        [`Ограниченное по времени эксклюзивное предложение`, `Бесплатная медицинская консультация включена`, `Безопасная оплата гарантирована`],
-        [`Эксклюзивная онлайн скидка`, `Экспресс-доставка доступна`, `Беспроцентные планы оплаты`]
+        [`7-дневная бесплатная пробная версия Copyfy`, `Создавайте неограниченные кампании`, `Поддержка 24/7 включена`],
+        [`Скидка 50% в первый месяц`, `Доступно 100+ языков`, `Предварительно созданные COD шаблоны`],
+        [`Мгновенный доступ к Copyfy`, `Отмена в любое время`, `Никаких долгосрочных обязательств`],
+        [`Бесплатная персонализированная демонстрация`, `Интеграция с Google Ads`, `Гарантированные результаты`],
+        [`Корпоративный план доступен`, `Полный API включен`, `Автоматические переводы`],
+        [`Ограниченное по времени предложение`, `Индивидуальная настройка`, `Высококонвертирующие кампании`],
+        [`ROI гарантирован или возврат денег`, `Автоматическая оптимизация`, `Отчеты в реальном времени`],
+        [`Маркетинговые специалисты включены`, `Проверенные шаблоны`, `Многоканальная поддержка`]
       ];
       break;
     default:
       promotionVariations = [
-        [`Desconto de 20% no primeiro pedido`, `Frete grátis para todo o ${countryName}`, `Compre 2 e leve 3`],
-        [`Oferta especial: 30% de desconto`, `Devolução grátis em 30 dias`, `Presente surpresa na compra`],
-        [`Preço promocional por tempo limitado`, `Garantia de satisfação 100%`, `Desconto por quantidade disponível`],
-        [`Oferta exclusiva por tempo limitado`, `Consulta médica grátis incluída`, `Pagamento seguro garantido`],
-        [`Desconto exclusivo online`, `Entrega expressa disponível`, `Planos de pagamento sem juros`]
+        [`Teste grátis de 7 dias do Copyfy`, `Gere campanhas ilimitadas`, `Suporte 24/7 incluído`],
+        [`50% desconto no primeiro mês`, `Mais de 100 idiomas disponíveis`, `Templates COD pré-construídos`],
+        [`Acesso instantâneo ao Copyfy`, `Cancele quando quiser`, `Sem compromisso de longo prazo`],
+        [`Demo personalizada gratuita`, `Integração com Google Ads`, `Resultados garantidos`],
+        [`Plano empresarial disponível`, `API completa incluída`, `Traduções automáticas`],
+        [`Oferta por tempo limitado`, `Onboarding personalizado`, `Campanhas de alta conversão`],
+        [`ROI garantido ou reembolso`, `Otimização automática`, `Relatórios em tempo real`],
+        [`Especialistas em marketing incluídos`, `Templates comprovados`, `Suporte multicanal`]
       ];
   }
   
@@ -251,355 +323,355 @@ export const generatePriceExtension = (product: string, price: string, country: 
 
   // Extract numeric value from price for calculations
   const numericPrice = parseFloat(price.replace(/[^\d.,]/g, '').replace(',', '.')) || 97;
-  const currency = price.match(/[^\d\s.,]+/)?.[0] || 'R$';
+  const currency = price.match(/[^\d\s.,]+/)?.[0] || '$';
   let priceVariations: string[][] = [];
   
   switch (languageCode) {
     case 'es':
       priceVariations = [
         [
-          `${product} 1 unidad: ${currency}${numericPrice} - Entrega a toda ${countryName}`,
-          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Envío gratis`,
-          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Mejor oferta`
+          `Copyfy Básico: ${currency}${numericPrice}/mes - Hasta 50 campañas`,
+          `Copyfy Pro: ${currency}${Math.round(numericPrice * 2.5)}/mes - Campañas ilimitadas`,
+          `Copyfy Enterprise: ${currency}${Math.round(numericPrice * 4.8)}/mes - API + soporte dedicado`
         ],
         [
-          `${product} Básico: ${currency}${numericPrice} - Envío incluido`,
-          `${product} Estándar: ${currency}${Math.round(numericPrice * 1.8)} - Más popular`,
-          `${product} Premium: ${currency}${Math.round(numericPrice * 2.9)} - Máximo ahorro`
+          `Plan Starter: ${currency}${numericPrice} - Perfecto para comenzar`,
+          `Plan Crecimiento: ${currency}${Math.round(numericPrice * 2.2)} - Para agencias`,
+          `Plan Escalable: ${currency}${Math.round(numericPrice * 4.1)} - Volumen alto`
         ],
         [
-          `${product} Individual: ${currency}${numericPrice} - Prueba inicial`,
-          `${product} Duo: ${currency}${Math.round(numericPrice * 1.7)} - Para parejas`,
-          `${product} Familiar: ${currency}${Math.round(numericPrice * 2.5)} - Para toda la familia`
+          `Mensual: ${currency}${numericPrice}/mes - Sin compromiso`,
+          `Anual: ${currency}${Math.round(numericPrice * 8.5)}/año - 30% descuento`,
+          `Bianual: ${currency}${Math.round(numericPrice * 15.2)}/2 años - 40% descuento`
         ],
         [
-          `${product} Mes 1: ${currency}${numericPrice} - Primer mes`,
-          `${product} Trimestre: ${currency}${Math.round(numericPrice * 2.4)} - 3 meses`,
-          `${product} Semestre: ${currency}${Math.round(numericPrice * 4.2)} - 6 meses`
+          `Solo: ${currency}${numericPrice} - 1 usuario`,
+          `Equipo: ${currency}${Math.round(numericPrice * 3.2)} - 5 usuarios`,
+          `Empresa: ${currency}${Math.round(numericPrice * 6.8)} - Usuarios ilimitados`
         ],
         [
-          `${product} Starter: ${currency}${numericPrice} - Inicio perfecto`,
-          `${product} Professional: ${currency}${Math.round(numericPrice * 1.9)} - Uso profesional`,
-          `${product} Master: ${currency}${Math.round(numericPrice * 3.3)} - Resultados garantizados`
+          `Básico COD: ${currency}${numericPrice} - Templates esenciales`,
+          `Pro COD: ${currency}${Math.round(numericPrice * 2.7)} - Templates avanzados`,
+          `Master COD: ${currency}${Math.round(numericPrice * 5.1)} - IA personalizada`
         ]
       ];
       break;
     case 'en':
       priceVariations = [
         [
-          `${product} 1 unit: ${currency}${numericPrice} - Delivery to all ${countryName}`,
-          `${product} 3-unit kit: ${currency}${Math.round(numericPrice * 2.1)} - Free shipping`,
-          `${product} Complete kit: ${currency}${Math.round(numericPrice * 3.1)} - Best offer`
+          `Copyfy Basic: ${currency}${numericPrice}/month - Up to 50 campaigns`,
+          `Copyfy Pro: ${currency}${Math.round(numericPrice * 2.5)}/month - Unlimited campaigns`,
+          `Copyfy Enterprise: ${currency}${Math.round(numericPrice * 4.8)}/month - API + dedicated support`
         ],
         [
-          `${product} Basic: ${currency}${numericPrice} - Shipping included`,
-          `${product} Standard: ${currency}${Math.round(numericPrice * 1.8)} - Most popular`,
-          `${product} Premium: ${currency}${Math.round(numericPrice * 2.9)} - Maximum savings`
+          `Starter Plan: ${currency}${numericPrice} - Perfect to begin`,
+          `Growth Plan: ${currency}${Math.round(numericPrice * 2.2)} - For agencies`,
+          `Scale Plan: ${currency}${Math.round(numericPrice * 4.1)} - High volume`
         ],
         [
-          `${product} Individual: ${currency}${numericPrice} - Trial starter`,
-          `${product} Duo: ${currency}${Math.round(numericPrice * 1.7)} - For couples`,
-          `${product} Family: ${currency}${Math.round(numericPrice * 2.5)} - For whole family`
+          `Monthly: ${currency}${numericPrice}/month - No commitment`,
+          `Annual: ${currency}${Math.round(numericPrice * 8.5)}/year - 30% discount`,
+          `Biennial: ${currency}${Math.round(numericPrice * 15.2)}/2 years - 40% discount`
         ],
         [
-          `${product} Month 1: ${currency}${numericPrice} - First month`,
-          `${product} Quarterly: ${currency}${Math.round(numericPrice * 2.4)} - 3 months`,
-          `${product} Semi-annual: ${currency}${Math.round(numericPrice * 4.2)} - 6 months`
+          `Solo: ${currency}${numericPrice} - 1 user`,
+          `Team: ${currency}${Math.round(numericPrice * 3.2)} - 5 users`,
+          `Enterprise: ${currency}${Math.round(numericPrice * 6.8)} - Unlimited users`
         ],
         [
-          `${product} Starter: ${currency}${numericPrice} - Perfect beginning`,
-          `${product} Professional: ${currency}${Math.round(numericPrice * 1.9)} - Professional use`,
-          `${product} Master: ${currency}${Math.round(numericPrice * 3.3)} - Guaranteed results`
+          `Basic COD: ${currency}${numericPrice} - Essential templates`,
+          `Pro COD: ${currency}${Math.round(numericPrice * 2.7)} - Advanced templates`,
+          `Master COD: ${currency}${Math.round(numericPrice * 5.1)} - Custom AI`
         ]
       ];
       break;
     case 'fr':
       priceVariations = [
         [
-          `${product} 1 unité: ${currency}${numericPrice} - Livraison dans toute la ${countryName}`,
-          `${product} Kit 3 unités: ${currency}${Math.round(numericPrice * 2.1)} - Livraison gratuite`,
-          `${product} Kit complet: ${currency}${Math.round(numericPrice * 3.1)} - Meilleure offre`
+          `Copyfy Basic: ${currency}${numericPrice}/mois - Jusqu'à 50 campagnes`,
+          `Copyfy Pro: ${currency}${Math.round(numericPrice * 2.5)}/mois - Campagnes illimitées`,
+          `Copyfy Enterprise: ${currency}${Math.round(numericPrice * 4.8)}/mois - API + support dédié`
         ],
         [
-          `${product} Basique: ${currency}${numericPrice} - Expédition incluse`,
-          `${product} Standard: ${currency}${Math.round(numericPrice * 1.8)} - Le plus populaire`,
-          `${product} Premium: ${currency}${Math.round(numericPrice * 2.9)} - Économies maximales`
+          `Plan Démarrage: ${currency}${numericPrice} - Parfait pour commencer`,
+          `Plan Croissance: ${currency}${Math.round(numericPrice * 2.2)} - Pour agences`,
+          `Plan Évolutif: ${currency}${Math.round(numericPrice * 4.1)} - Gros volume`
         ],
         [
-          `${product} Individuel: ${currency}${numericPrice} - Essai initial`,
-          `${product} Duo: ${currency}${Math.round(numericPrice * 1.7)} - Pour couples`,
-          `${product} Familial: ${currency}${Math.round(numericPrice * 2.5)} - Pour toute la famille`
+          `Mensuel: ${currency}${numericPrice}/mois - Sans engagement`,
+          `Annuel: ${currency}${Math.round(numericPrice * 8.5)}/an - 30% réduction`,
+          `Bisannuel: ${currency}${Math.round(numericPrice * 15.2)}/2 ans - 40% réduction`
         ],
         [
-          `${product} Mois 1: ${currency}${numericPrice} - Premier mois`,
-          `${product} Trimestriel: ${currency}${Math.round(numericPrice * 2.4)} - 3 mois`,
-          `${product} Semestriel: ${currency}${Math.round(numericPrice * 4.2)} - 6 mois`
+          `Solo: ${currency}${numericPrice} - 1 utilisateur`,
+          `Équipe: ${currency}${Math.round(numericPrice * 3.2)} - 5 utilisateurs`,
+          `Entreprise: ${currency}${Math.round(numericPrice * 6.8)} - Utilisateurs illimités`
         ],
         [
-          `${product} Débutant: ${currency}${numericPrice} - Début parfait`,
-          `${product} Professionnel: ${currency}${Math.round(numericPrice * 1.9)} - Usage professionnel`,
-          `${product} Maître: ${currency}${Math.round(numericPrice * 3.3)} - Résultats garantis`
+          `COD Basic: ${currency}${numericPrice} - Templates essentiels`,
+          `COD Pro: ${currency}${Math.round(numericPrice * 2.7)} - Templates avancés`,
+          `COD Master: ${currency}${Math.round(numericPrice * 5.1)} - IA personnalisée`
         ]
       ];
       break;
     case 'de':
       priceVariations = [
         [
-          `${product} 1 Einheit: ${currency}${numericPrice} - Lieferung nach ganz ${countryName}`,
-          `${product} 3er-Kit: ${currency}${Math.round(numericPrice * 2.1)} - Kostenloser Versand`,
-          `${product} Komplettes Kit: ${currency}${Math.round(numericPrice * 3.1)} - Bestes Angebot`
+          `Copyfy Basic: ${currency}${numericPrice}/Monat - Bis zu 50 Kampagnen`,
+          `Copyfy Pro: ${currency}${Math.round(numericPrice * 2.5)}/Monat - Unbegrenzte Kampagnen`,
+          `Copyfy Enterprise: ${currency}${Math.round(numericPrice * 4.8)}/Monat - API + dedizierter Support`
         ],
         [
-          `${product} Basic: ${currency}${numericPrice} - Versand inklusive`,
-          `${product} Standard: ${currency}${Math.round(numericPrice * 1.8)} - Am beliebtesten`,
-          `${product} Premium: ${currency}${Math.round(numericPrice * 2.9)} - Maximale Ersparnis`
+          `Starter Plan: ${currency}${numericPrice} - Perfekt zum Beginnen`,
+          `Wachstumsplan: ${currency}${Math.round(numericPrice * 2.2)} - Für Agenturen`,
+          `Skalierungsplan: ${currency}${Math.round(numericPrice * 4.1)} - Hohes Volumen`
         ],
         [
-          `${product} Einzeln: ${currency}${numericPrice} - Probestart`,
-          `${product} Duo: ${currency}${Math.round(numericPrice * 1.7)} - Für Paare`,
-          `${product} Familie: ${currency}${Math.round(numericPrice * 2.5)} - Für die ganze Familie`
+          `Monatlich: ${currency}${numericPrice}/Monat - Keine Bindung`,
+          `Jährlich: ${currency}${Math.round(numericPrice * 8.5)}/Jahr - 30% Rabatt`,
+          `Zweijährig: ${currency}${Math.round(numericPrice * 15.2)}/2 Jahre - 40% Rabatt`
         ],
         [
-          `${product} Monat 1: ${currency}${numericPrice} - Erster Monat`,
-          `${product} Vierteljährlich: ${currency}${Math.round(numericPrice * 2.4)} - 3 Monate`,
-          `${product} Halbjährlich: ${currency}${Math.round(numericPrice * 4.2)} - 6 Monate`
+          `Solo: ${currency}${numericPrice} - 1 Benutzer`,
+          `Team: ${currency}${Math.round(numericPrice * 3.2)} - 5 Benutzer`,
+          `Unternehmen: ${currency}${Math.round(numericPrice * 6.8)} - Unbegrenzte Benutzer`
         ],
         [
-          `${product} Starter: ${currency}${numericPrice} - Perfekter Beginn`,
-          `${product} Professionell: ${currency}${Math.round(numericPrice * 1.9)} - Professionelle Nutzung`,
-          `${product} Master: ${currency}${Math.round(numericPrice * 3.3)} - Garantierte Ergebnisse`
+          `Basic COD: ${currency}${numericPrice} - Wesentliche Vorlagen`,
+          `Pro COD: ${currency}${Math.round(numericPrice * 2.7)} - Erweiterte Vorlagen`,
+          `Master COD: ${currency}${Math.round(numericPrice * 5.1)} - Benutzerdefinierte KI`
         ]
       ];
       break;
     case 'it':
       priceVariations = [
         [
-          `${product} 1 unità: ${currency}${numericPrice} - Consegna in tutta ${countryName}`,
-          `${product} Kit 3 unità: ${currency}${Math.round(numericPrice * 2.1)} - Spedizione gratuita`,
-          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Migliore offerta`
+          `Copyfy Basic: ${currency}${numericPrice}/mese - Fino a 50 campagne`,
+          `Copyfy Pro: ${currency}${Math.round(numericPrice * 2.5)}/mese - Campagne illimitate`,
+          `Copyfy Enterprise: ${currency}${Math.round(numericPrice * 4.8)}/mese - API + supporto dedicato`
         ],
         [
-          `${product} Base: ${currency}${numericPrice} - Spedizione inclusa`,
-          `${product} Standard: ${currency}${Math.round(numericPrice * 1.8)} - Più popolare`,
-          `${product} Premium: ${currency}${Math.round(numericPrice * 2.9)} - Massimo risparmio`
+          `Piano Starter: ${currency}${numericPrice} - Perfetto per iniziare`,
+          `Piano Crescita: ${currency}${Math.round(numericPrice * 2.2)} - Per agenzie`,
+          `Piano Scalabile: ${currency}${Math.round(numericPrice * 4.1)} - Alto volume`
         ],
         [
-          `${product} Individuale: ${currency}${numericPrice} - Prova iniziale`,
-          `${product} Duo: ${currency}${Math.round(numericPrice * 1.7)} - Per coppie`,
-          `${product} Famiglia: ${currency}${Math.round(numericPrice * 2.5)} - Per tutta la famiglia`
+          `Mensile: ${currency}${numericPrice}/mese - Nessun impegno`,
+          `Annuale: ${currency}${Math.round(numericPrice * 8.5)}/anno - 30% sconto`,
+          `Biennale: ${currency}${Math.round(numericPrice * 15.2)}/2 anni - 40% sconto`
         ],
         [
-          `${product} Mese 1: ${currency}${numericPrice} - Primo mese`,
-          `${product} Trimestrale: ${currency}${Math.round(numericPrice * 2.4)} - 3 mesi`,
-          `${product} Semestrale: ${currency}${Math.round(numericPrice * 4.2)} - 6 mesi`
+          `Solo: ${currency}${numericPrice} - 1 utente`,
+          `Team: ${currency}${Math.round(numericPrice * 3.2)} - 5 utenti`,
+          `Enterprise: ${currency}${Math.round(numericPrice * 6.8)} - Utenti illimitati`
         ],
         [
-          `${product} Starter: ${currency}${numericPrice} - Inizio perfetto`,
-          `${product} Professionale: ${currency}${Math.round(numericPrice * 1.9)} - Uso professionale`,
-          `${product} Master: ${currency}${Math.round(numericPrice * 3.3)} - Risultati garantiti`
+          `COD Basic: ${currency}${numericPrice} - Template essenziali`,
+          `COD Pro: ${currency}${Math.round(numericPrice * 2.7)} - Template avanzati`,
+          `COD Master: ${currency}${Math.round(numericPrice * 5.1)} - IA personalizzata`
         ]
       ];
       break;
     case 'ja':
       priceVariations = [
         [
-          `${product} 1個: ${currency}${numericPrice} - ${countryName}全国配送`,
-          `${product} 3個セット: ${currency}${Math.round(numericPrice * 2.1)} - 送料無料`,
-          `${product} コンプリートキット: ${currency}${Math.round(numericPrice * 3.1)} - 最優秀オファー`
+          `Copyfy ベーシック: ${currency}${numericPrice}/月 - 最大50キャンペーン`,
+          `Copyfy プロ: ${currency}${Math.round(numericPrice * 2.5)}/月 - 無制限キャンペーン`,
+          `Copyfy エンタープライズ: ${currency}${Math.round(numericPrice * 4.8)}/月 - API + 専用サポート`
         ],
         [
-          `${product} ベーシック: ${currency}${numericPrice} - 送料込み`,
-          `${product} スタンダード: ${currency}${Math.round(numericPrice * 1.8)} - 最も人気`,
-          `${product} プレミアム: ${currency}${Math.round(numericPrice * 2.9)} - 最大節約`
+          `スタータープラン: ${currency}${numericPrice} - 始めるのに最適`,
+          `成長プラン: ${currency}${Math.round(numericPrice * 2.2)} - 代理店向け`,
+          `スケールプラン: ${currency}${Math.round(numericPrice * 4.1)} - 大容量`
         ],
         [
-          `${product} 個人用: ${currency}${numericPrice} - お試しスタート`,
-          `${product} デュオ: ${currency}${Math.round(numericPrice * 1.7)} - カップル向け`,
-          `${product} ファミリー: ${currency}${Math.round(numericPrice * 2.5)} - ご家族向け`
+          `月額: ${currency}${numericPrice}/月 - 縛りなし`,
+          `年額: ${currency}${Math.round(numericPrice * 8.5)}/年 - 30%割引`,
+          `2年契約: ${currency}${Math.round(numericPrice * 15.2)}/2年 - 40%割引`
         ],
         [
-          `${product} 1ヶ月目: ${currency}${numericPrice} - 初月`,
-          `${product} 3ヶ月: ${currency}${Math.round(numericPrice * 2.4)} - 四半期`,
-          `${product} 6ヶ月: ${currency}${Math.round(numericPrice * 4.2)} - 半年`
+          `ソロ: ${currency}${numericPrice} - 1ユーザー`,
+          `チーム: ${currency}${Math.round(numericPrice * 3.2)} - 5ユーザー`,
+          `エンタープライズ: ${currency}${Math.round(numericPrice * 6.8)} - 無制限ユーザー`
         ],
         [
-          `${product} スターター: ${currency}${numericPrice} - 完璧なスタート`,
-          `${product} プロフェッショナル: ${currency}${Math.round(numericPrice * 1.9)} - プロ仕様`,
-          `${product} マスター: ${currency}${Math.round(numericPrice * 3.3)} - 結果保証`
+          `ベーシックCOD: ${currency}${numericPrice} - 基本テンプレート`,
+          `プロCOD: ${currency}${Math.round(numericPrice * 2.7)} - 高度テンプレート`,
+          `マスターCOD: ${currency}${Math.round(numericPrice * 5.1)} - カスタムAI`
         ]
       ];
       break;
     case 'zh':
       priceVariations = [
         [
-          `${product} 1件: ${currency}${numericPrice} - 配送至全${countryName}`,
-          `${product} 3件套装: ${currency}${Math.round(numericPrice * 2.1)} - 免费送货`,
-          `${product} 完整套装: ${currency}${Math.round(numericPrice * 3.1)} - 最优惠价`
+          `Copyfy 基础版: ${currency}${numericPrice}/月 - 最多50个活动`,
+          `Copyfy 专业版: ${currency}${Math.round(numericPrice * 2.5)}/月 - 无限活动`,
+          `Copyfy 企业版: ${currency}${Math.round(numericPrice * 4.8)}/月 - API + 专属支持`
         ],
         [
-          `${product} 基础版: ${currency}${numericPrice} - 包邮`,
-          `${product} 标准版: ${currency}${Math.round(numericPrice * 1.8)} - 最受欢迎`,
-          `${product} 高级版: ${currency}${Math.round(numericPrice * 2.9)} - 最大节省`
+          `初始计划: ${currency}${numericPrice} - 完美入门`,
+          `增长计划: ${currency}${Math.round(numericPrice * 2.2)} - 代理商专用`,
+          `扩展计划: ${currency}${Math.round(numericPrice * 4.1)} - 大批量`
         ],
         [
-          `${product} 个人装: ${currency}${numericPrice} - 试用入门`,
-          `${product} 双人装: ${currency}${Math.round(numericPrice * 1.7)} - 情侣专用`,
-          `${product} 家庭装: ${currency}${Math.round(numericPrice * 2.5)} - 全家适用`
+          `月付: ${currency}${numericPrice}/月 - 无承诺`,
+          `年付: ${currency}${Math.round(numericPrice * 8.5)}/年 - 30%折扣`,
+          `两年付: ${currency}${Math.round(numericPrice * 15.2)}/2年 - 40%折扣`
         ],
         [
-          `${product} 1个月: ${currency}${numericPrice} - 首月`,
-          `${product} 季度装: ${currency}${Math.round(numericPrice * 2.4)} - 3个月`,
-          `${product} 半年装: ${currency}${Math.round(numericPrice * 4.2)} - 6个月`
+          `个人版: ${currency}${numericPrice} - 1用户`,
+          `团队版: ${currency}${Math.round(numericPrice * 3.2)} - 5用户`,
+          `企业版: ${currency}${Math.round(numericPrice * 6.8)} - 无限用户`
         ],
         [
-          `${product} 入门版: ${currency}${numericPrice} - 完美开始`,
-          `${product} 专业版: ${currency}${Math.round(numericPrice * 1.9)} - 专业使用`,
-          `${product} 大师版: ${currency}${Math.round(numericPrice * 3.3)} - 效果保证`
+          `COD基础版: ${currency}${numericPrice} - 基本模板`,
+          `COD专业版: ${currency}${Math.round(numericPrice * 2.7)} - 高级模板`,
+          `COD大师版: ${currency}${Math.round(numericPrice * 5.1)} - 定制AI`
         ]
       ];
       break;
     case 'ar':
       priceVariations = [
         [
-          `${product} قطعة واحدة: ${currency}${numericPrice} - التوصيل لجميع أنحاء ${countryName}`,
-          `${product} طقم 3 قطع: ${currency}${Math.round(numericPrice * 2.1)} - شحن مجاني`,
-          `${product} الطقم الكامل: ${currency}${Math.round(numericPrice * 3.1)} - أفضل عرض`
+          `Copyfy الأساسي: ${currency}${numericPrice}/شهر - حتى 50 حملة`,
+          `Copyfy المحترف: ${currency}${Math.round(numericPrice * 2.5)}/شهر - حملات غير محدودة`,
+          `Copyfy المؤسسي: ${currency}${Math.round(numericPrice * 4.8)}/شهر - API + دعم مخصص`
         ],
         [
-          `${product} أساسي: ${currency}${numericPrice} - الشحن مشمول`,
-          `${product} قياسي: ${currency}${Math.round(numericPrice * 1.8)} - الأكثر شعبية`,
-          `${product} مميز: ${currency}${Math.round(numericPrice * 2.9)} - أقصى توفير`
+          `خطة البداية: ${currency}${numericPrice} - مثالي للبدء`,
+          `خطة النمو: ${currency}${Math.round(numericPrice * 2.2)} - للوكالات`,
+          `خطة التوسع: ${currency}${Math.round(numericPrice * 4.1)} - حجم عالي`
         ],
         [
-          `${product} فردي: ${currency}${numericPrice} - بداية تجريبية`,
-          `${product} ثنائي: ${currency}${Math.round(numericPrice * 1.7)} - للأزواج`,
-          `${product} عائلي: ${currency}${Math.round(numericPrice * 2.5)} - للعائلة كلها`
+          `شهري: ${currency}${numericPrice}/شهر - بدون التزام`,
+          `سنوي: ${currency}${Math.round(numericPrice * 8.5)}/سنة - خصم 30%`,
+          `سنتان: ${currency}${Math.round(numericPrice * 15.2)}/سنتان - خصم 40%`
         ],
         [
-          `${product} الشهر الأول: ${currency}${numericPrice} - شهر أول`,
-          `${product} ربع سنوي: ${currency}${Math.round(numericPrice * 2.4)} - 3 أشهر`,
-          `${product} نصف سنوي: ${currency}${Math.round(numericPrice * 4.2)} - 6 أشهر`
+          `فردي: ${currency}${numericPrice} - مستخدم واحد`,
+          `فريق: ${currency}${Math.round(numericPrice * 3.2)} - 5 مستخدمين`,
+          `مؤسسة: ${currency}${Math.round(numericPrice * 6.8)} - مستخدمون غير محدودون`
         ],
         [
-          `${product} مبتدئ: ${currency}${numericPrice} - بداية مثالية`,
-          `${product} محترف: ${currency}${Math.round(numericPrice * 1.9)} - استخدام مهني`,
-          `${product} خبير: ${currency}${Math.round(numericPrice * 3.3)} - نتائج مضمونة`
+          `COD أساسي: ${currency}${numericPrice} - قوالب أساسية`,
+          `COD محترف: ${currency}${Math.round(numericPrice * 2.7)} - قوالب متقدمة`,
+          `COD خبير: ${currency}${Math.round(numericPrice * 5.1)} - ذكاء اصطناعي مخصص`
         ]
       ];
       break;
     case 'hi':
       priceVariations = [
         [
-          `${product} 1 यूनिट: ${currency}${numericPrice} - पूरे ${countryName} में डिलीवरी`,
-          `${product} 3-यूनिट किट: ${currency}${Math.round(numericPrice * 2.1)} - मुफ्त शिपिंग`,
-          `${product} कंप्लीट किट: ${currency}${Math.round(numericPrice * 3.1)} - बेस्ट ऑफर`
+          `Copyfy बेसिक: ${currency}${numericPrice}/महीना - 50 अभियान तक`,
+          `Copyfy प्रो: ${currency}${Math.round(numericPrice * 2.5)}/महीना - असीमित अभियान`,
+          `Copyfy एंटरप्राइज़: ${currency}${Math.round(numericPrice * 4.8)}/महीना - API + समर्पित समर्थन`
         ],
         [
-          `${product} बेसिक: ${currency}${numericPrice} - शिपिंग शामिल`,
-          `${product} स्टैंडर्ड: ${currency}${Math.round(numericPrice * 1.8)} - सबसे लोकप्रिय`,
-          `${product} प्रीमियम: ${currency}${Math.round(numericPrice * 2.9)} - अधिकतम बचत`
+          `स्टार्टर प्लान: ${currency}${numericPrice} - शुरुआत के लिए बेहतरीन`,
+          `ग्रोथ प्लान: ${currency}${Math.round(numericPrice * 2.2)} - एजेंसियों के लिए`,
+          `स्केल प्लान: ${currency}${Math.round(numericPrice * 4.1)} - उच्च मात्रा`
         ],
         [
-          `${product} व्यक्तिगत: ${currency}${numericPrice} - ट्रायल स्टार्ट`,
-          `${product} डुओ: ${currency}${Math.round(numericPrice * 1.7)} - कपल्स के लिए`,
-          `${product} फैमिली: ${currency}${Math.round(numericPrice * 2.5)} - पूरे परिवार के लिए`
+          `मासिक: ${currency}${numericPrice}/महीना - कोई प्रतिबद्धता नहीं`,
+          `वार्षिक: ${currency}${Math.round(numericPrice * 8.5)}/वर्ष - 30% छूट`,
+          `द्विवार्षिक: ${currency}${Math.round(numericPrice * 15.2)}/2 वर्ष - 40% छूट`
         ],
         [
-          `${product} महीना 1: ${currency}${numericPrice} - पहला महीना`,
-          `${product} तिमाही: ${currency}${Math.round(numericPrice * 2.4)} - 3 महीने`,
-          `${product} अर्धवार्षिक: ${currency}${Math.round(numericPrice * 4.2)} - 6 महीने`
+          `सोलो: ${currency}${numericPrice} - 1 उपयोगकर्ता`,
+          `टीम: ${currency}${Math.round(numericPrice * 3.2)} - 5 उपयोगकर्ता`,
+          `एंटरप्राइज़: ${currency}${Math.round(numericPrice * 6.8)} - असीमित उपयोगकर्ता`
         ],
         [
-          `${product} स्टार्टर: ${currency}${numericPrice} - सही शुरुआत`,
-          `${product} प्रोफेशनल: ${currency}${Math.round(numericPrice * 1.9)} - प्रोफेशनल यूज`,
-          `${product} मास्टर: ${currency}${Math.round(numericPrice * 3.3)} - गारंटीड रिजल्ट्स`
+          `बेसिक COD: ${currency}${numericPrice} - आवश्यक टेम्प्लेट`,
+          `प्रो COD: ${currency}${Math.round(numericPrice * 2.7)} - उन्नत टेम्प्लेट`,
+          `मास्टर COD: ${currency}${Math.round(numericPrice * 5.1)} - कस्टम AI`
         ]
       ];
       break;
     case 'tr':
       priceVariations = [
         [
-          `${product} 1 adet: ${currency}${numericPrice} - Tüm ${countryName}'ye teslimat`,
-          `${product} 3'lü kit: ${currency}${Math.round(numericPrice * 2.1)} - Ücretsiz kargo`,
-          `${product} Komple kit: ${currency}${Math.round(numericPrice * 3.1)} - En iyi teklif`
+          `Copyfy Temel: ${currency}${numericPrice}/ay - 50 kampanyaya kadar`,
+          `Copyfy Pro: ${currency}${Math.round(numericPrice * 2.5)}/ay - Sınırsız kampanya`,
+          `Copyfy Kurumsal: ${currency}${Math.round(numericPrice * 4.8)}/ay - API + özel destek`
         ],
         [
-          `${product} Temel: ${currency}${numericPrice} - Kargo dahil`,
-          `${product} Standart: ${currency}${Math.round(numericPrice * 1.8)} - En popüler`,
-          `${product} Premium: ${currency}${Math.round(numericPrice * 2.9)} - Maksimum tasarruf`
+          `Başlangıç Planı: ${currency}${numericPrice} - Başlamak için mükemmel`,
+          `Büyüme Planı: ${currency}${Math.round(numericPrice * 2.2)} - Ajanslar için`,
+          `Ölçek Planı: ${currency}${Math.round(numericPrice * 4.1)} - Yüksek hacim`
         ],
         [
-          `${product} Bireysel: ${currency}${numericPrice} - Deneme başlangıcı`,
-          `${product} İkili: ${currency}${Math.round(numericPrice * 1.7)} - Çiftler için`,
-          `${product} Aile: ${currency}${Math.round(numericPrice * 2.5)} - Tüm aile için`
+          `Aylık: ${currency}${numericPrice}/ay - Taahhüt yok`,
+          `Yıllık: ${currency}${Math.round(numericPrice * 8.5)}/yıl - %30 indirim`,
+          `İki yıllık: ${currency}${Math.round(numericPrice * 15.2)}/2 yıl - %40 indirim`
         ],
         [
-          `${product} 1. Ay: ${currency}${numericPrice} - İlk ay`,
-          `${product} Üç aylık: ${currency}${Math.round(numericPrice * 2.4)} - 3 ay`,
-          `${product} Altı aylık: ${currency}${Math.round(numericPrice * 4.2)} - 6 ay`
+          `Solo: ${currency}${numericPrice} - 1 kullanıcı`,
+          `Takım: ${currency}${Math.round(numericPrice * 3.2)} - 5 kullanıcı`,
+          `Kurumsal: ${currency}${Math.round(numericPrice * 6.8)} - Sınırsız kullanıcı`
         ],
         [
-          `${product} Başlangıç: ${currency}${numericPrice} - Mükemmel başlangıç`,
-          `${product} Profesyonel: ${currency}${Math.round(numericPrice * 1.9)} - Profesyonel kullanım`,
-          `${product} Usta: ${currency}${Math.round(numericPrice * 3.3)} - Garantili sonuçlar`
+          `Temel COD: ${currency}${numericPrice} - Temel şablonlar`,
+          `Pro COD: ${currency}${Math.round(numericPrice * 2.7)} - Gelişmiş şablonlar`,
+          `Master COD: ${currency}${Math.round(numericPrice * 5.1)} - Özel AI`
         ]
       ];
       break;
     case 'ru':
       priceVariations = [
         [
-          `${product} 1 единица: ${currency}${numericPrice} - Доставка по всей ${countryName}`,
-          `${product} Набор из 3: ${currency}${Math.round(numericPrice * 2.1)} - Бесплатная доставка`,
-          `${product} Полный набор: ${currency}${Math.round(numericPrice * 3.1)} - Лучшее предложение`
+          `Copyfy Базовый: ${currency}${numericPrice}/месяц - До 50 кампаний`,
+          `Copyfy Про: ${currency}${Math.round(numericPrice * 2.5)}/месяц - Неограниченные кампании`,
+          `Copyfy Корпоративный: ${currency}${Math.round(numericPrice * 4.8)}/месяц - API + выделенная поддержка`
         ],
         [
-          `${product} Базовый: ${currency}${numericPrice} - Доставка включена`,
-          `${product} Стандартный: ${currency}${Math.round(numericPrice * 1.8)} - Самый популярный`,
-          `${product} Премиум: ${currency}${Math.round(numericPrice * 2.9)} - Максимальная экономия`
+          `Стартовый план: ${currency}${numericPrice} - Идеально для начала`,
+          `План роста: ${currency}${Math.round(numericPrice * 2.2)} - Для агентств`,
+          `План масштабирования: ${currency}${Math.round(numericPrice * 4.1)} - Большой объем`
         ],
         [
-          `${product} Индивидуальный: ${currency}${numericPrice} - Пробный старт`,
-          `${product} Дуэт: ${currency}${Math.round(numericPrice * 1.7)} - Для пар`,
-          `${product} Семейный: ${currency}${Math.round(numericPrice * 2.5)} - Для всей семьи`
+          `Ежемесячно: ${currency}${numericPrice}/месяц - Без обязательств`,
+          `Ежегодно: ${currency}${Math.round(numericPrice * 8.5)}/год - Скидка 30%`,
+          `Раз в два года: ${currency}${Math.round(numericPrice * 15.2)}/2 года - Скидка 40%`
         ],
         [
-          `${product} 1 месяц: ${currency}${numericPrice} - Первый месяц`,
-          `${product} Квартальный: ${currency}${Math.round(numericPrice * 2.4)} - 3 месяца`,
-          `${product} Полугодовой: ${currency}${Math.round(numericPrice * 4.2)} - 6 месяцев`
+          `Соло: ${currency}${numericPrice} - 1 пользователь`,
+          `Команда: ${currency}${Math.round(numericPrice * 3.2)} - 5 пользователей`,
+          `Предприятие: ${currency}${Math.round(numericPrice * 6.8)} - Неограниченные пользователи`
         ],
         [
-          `${product} Стартер: ${currency}${numericPrice} - Идеальное начало`,
-          `${product} Профессиональный: ${currency}${Math.round(numericPrice * 1.9)} - Профессиональное использование`,
-          `${product} Мастер: ${currency}${Math.round(numericPrice * 3.3)} - Гарантированные результаты`
+          `Базовый COD: ${currency}${numericPrice} - Основные шаблоны`,
+          `Про COD: ${currency}${Math.round(numericPrice * 2.7)} - Продвинутые шаблоны`,
+          `Мастер COD: ${currency}${Math.round(numericPrice * 5.1)} - Пользовательский ИИ`
         ]
       ];
       break;
     default:
       priceVariations = [
         [
-          `${product} 1 unidade: ${currency}${numericPrice} - Entrega para todo ${countryName}`,
-          `${product} Kit 3 unidades: ${currency}${Math.round(numericPrice * 2.1)} - Frete grátis`,
-          `${product} Kit completo: ${currency}${Math.round(numericPrice * 3.1)} - Melhor oferta`
+          `Copyfy Básico: ${currency}${numericPrice}/mês - Até 50 campanhas`,
+          `Copyfy Pro: ${currency}${Math.round(numericPrice * 2.5)}/mês - Campanhas ilimitadas`,
+          `Copyfy Enterprise: ${currency}${Math.round(numericPrice * 4.8)}/mês - API + suporte dedicado`
         ],
         [
-          `${product} Básico: ${currency}${numericPrice} - Frete incluído`,
-          `${product} Padrão: ${currency}${Math.round(numericPrice * 1.8)} - Mais popular`,
-          `${product} Premium: ${currency}${Math.round(numericPrice * 2.9)} - Máxima economia`
+          `Plano Starter: ${currency}${numericPrice} - Perfeito para começar`,
+          `Plano Crescimento: ${currency}${Math.round(numericPrice * 2.2)} - Para agências`,
+          `Plano Escala: ${currency}${Math.round(numericPrice * 4.1)} - Alto volume`
         ],
         [
-          `${product} Individual: ${currency}${numericPrice} - Início experimental`,
-          `${product} Duo: ${currency}${Math.round(numericPrice * 1.7)} - Para casais`,
-          `${product} Família: ${currency}${Math.round(numericPrice * 2.5)} - Para toda família`
+          `Mensal: ${currency}${numericPrice}/mês - Sem compromisso`,
+          `Anual: ${currency}${Math.round(numericPrice * 8.5)}/ano - 30% desconto`,
+          `Bienal: ${currency}${Math.round(numericPrice * 15.2)}/2 anos - 40% desconto`
         ],
         [
-          `${product} Mês 1: ${currency}${numericPrice} - Primeiro mês`,
-          `${product} Trimestral: ${currency}${Math.round(numericPrice * 2.4)} - 3 meses`,
-          `${product} Semestral: ${currency}${Math.round(numericPrice * 4.2)} - 6 meses`
+          `Solo: ${currency}${numericPrice} - 1 usuário`,
+          `Equipe: ${currency}${Math.round(numericPrice * 3.2)} - 5 usuários`,
+          `Empresa: ${currency}${Math.round(numericPrice * 6.8)} - Usuários ilimitados`
         ],
         [
-          `${product} Iniciante: ${currency}${numericPrice} - Começo perfeito`,
-          `${product} Profissional: ${currency}${Math.round(numericPrice * 1.9)} - Uso profissional`,
-          `${product} Master: ${currency}${Math.round(numericPrice * 3.3)} - Resultados garantidos`
+          `COD Básico: ${currency}${numericPrice} - Templates essenciais`,
+          `COD Pro: ${currency}${Math.round(numericPrice * 2.7)} - Templates avançados`,
+          `COD Master: ${currency}${Math.round(numericPrice * 5.1)} - IA personalizada`
         ]
       ];
   }
