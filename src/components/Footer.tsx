@@ -110,7 +110,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-yellow-500/20 mt-8 pt-6 text-center">
-          <p className="text-gray-400">
+          <p className="text-white">
             © 2025 Copyfy LLC. All rights reserved.
           </p>
         </div>
