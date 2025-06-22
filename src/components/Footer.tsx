@@ -60,7 +60,7 @@ const Footer = () => {
               </div>
               
               <div className="mt-6">
-                <h4 className="font-semibold text-white mb-2">Business Address</h4>
+                <h4 className="font-semibold mb-2 text-yellow-500">Business Address</h4>
                 <div className="text-sm text-gray-300">
                   <p className="text-white">Copyfy LLC</p>
                   <p className="text-white">548 Market St, PMB 62345</p>
