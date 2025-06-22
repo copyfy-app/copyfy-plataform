@@ -64,8 +64,3 @@ export const isAdminEmail = (email: string | undefined): boolean => {
   const adminEmails = ['inspiranegociosonline@gmail.com'];
   return email ? adminEmails.includes(email.toLowerCase().trim()) : false;
 };
-
-export const forcePageReload = (url: string = '/'): void => {
-  console.log(`🔄 Forçando recarregamento da página para: ${url}`);
-  window.location.href = url;
-};

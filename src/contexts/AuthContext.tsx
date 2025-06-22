@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Session, User } from "@supabase/supabase-js";
 import { toast } from "@/hooks/use-toast";
-import { cleanupAuthState, isAdminEmail, forcePageReload } from "@/utils/authCleanup";
+import { cleanupAuthState, isAdminEmail } from "@/utils/authCleanup";
 
 type AuthContextType = {
   session: Session | null;
@@ -153,15 +153,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       try {
         console.log("🚀 Inicializando autenticação...");
         
-        // Limpar estado corrompido na inicialização
-        cleanupAuthState();
-        
-        // Verificar sessão atual
+        // Verificar sessão atual SEM limpar estado automaticamente
         const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession();
         
         if (sessionError) {
           console.error("❌ Erro ao obter sessão:", sessionError);
-          // Se houver erro de token, limpar e tentar novamente
+          // APENAS limpar se houver erro específico de token corrompido
           if (sessionError.message.includes('refresh_token_not_found') || 
               sessionError.message.includes('Invalid Refresh Token')) {
             console.log("🧹 Token corrompido detectado, limpando...");
@@ -188,7 +185,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       } catch (error) {
         console.error("💥 Erro na inicialização:", error);
         if (mounted) {
-          cleanupAuthState();
           setLoading(false);
         }
       }
@@ -232,9 +228,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     try {
       console.log("🔐 Tentando fazer login com:", email);
       
-      // Limpar estado antes do login
-      cleanupAuthState();
-      
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email.trim().toLowerCase(),
         password: password,
@@ -262,10 +255,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           description: "Bem-vindo de volta ao Copyfy.",
         });
         
-        // Aguardar um pouco para o estado ser atualizado
-        setTimeout(() => {
-          forcePageReload('/dashboard');
-        }, 1000);
+        // Usar navegação interna em vez de recarregar página
+        navigate('/dashboard');
       }
     } catch (error: any) {
       console.error("💥 Erro no login:", error);
@@ -284,8 +275,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setLoading(true);
     try {
       console.log("📝 Tentando criar conta com:", email);
-      
-      cleanupAuthState();
       
       const { data, error } = await supabase.auth.signUp({
         email: email.trim().toLowerCase(),
@@ -315,9 +304,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             title: "Conta criada!",
             description: "Sua conta foi criada com sucesso.",
           });
-          setTimeout(() => {
-            forcePageReload('/dashboard');
-          }, 1000);
+          navigate('/dashboard');
         } else {
           toast({
             title: "Conta criada!",
@@ -337,18 +324,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Login com Google
+  // Login com Google - CORRIGIDO
   const signInWithGoogle = async () => {
     setLoading(true);
     try {
       console.log("🔐 Tentando fazer login com Google...");
       
-      cleanupAuthState();
-      
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `https://painel.copyfy.shop/dashboard`
+          redirectTo: `${window.location.origin}/dashboard`
         }
       });
 
@@ -385,7 +370,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setTrialDaysRemaining(1);
       setIsTrialActive(true);
       
-      forcePageReload('/login');
+      navigate('/login');
     } catch (error: any) {
       console.error("❌ Erro no logout:", error);
       
@@ -395,7 +380,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setTrialDaysRemaining(1);
       setIsTrialActive(true);
       
-      forcePageReload('/login');
+      navigate('/login');
     }
   };
 
