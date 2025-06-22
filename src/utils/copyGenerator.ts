@@ -1,4 +1,4 @@
-import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from './countryLanguageMapping';
+import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado, getLanguageByCountry } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
 import { generateStructuredSnippet, generatePromotionExtension, generatePriceExtension } from './extensionGenerators';
@@ -9,6 +9,7 @@ const translationCache: { [key: string]: string } = {};
 
 const translateTexts = async (texts: string[], targetLanguage: string): Promise<string[]> => {
   if (targetLanguage === 'en' || !targetLanguage) {
+    console.log('⏩ Skipping translation - target language is English or empty');
     return texts;
   }
 
@@ -30,10 +31,12 @@ const translateTexts = async (texts: string[], targetLanguage: string): Promise<
 
     // If all texts are cached, return immediately
     if (textsToTranslate.length === 0) {
+      console.log(`📋 All ${texts.length} texts loaded from cache for ${targetLanguage}`);
       return cachedResults;
     }
 
-    console.log(`Translating ${textsToTranslate.length} texts to ${targetLanguage}`);
+    console.log(`🌐 Calling Google Translate API for ${textsToTranslate.length} texts to ${targetLanguage}`);
+    console.log('📤 First text to translate:', textsToTranslate[0]?.substring(0, 100) + '...');
 
     const { data, error } = await supabase.functions.invoke('translate-content', {
       body: {
@@ -43,8 +46,10 @@ const translateTexts = async (texts: string[], targetLanguage: string): Promise<
       }
     });
 
+    console.log('📥 Translation response:', { data, error });
+
     if (error || !data?.translations) {
-      console.error('Translation failed, using original texts:', error);
+      console.error('❌ Translation failed, using original texts:', error);
       // Fallback to original texts
       indices.forEach((originalIndex, i) => {
         cachedResults[originalIndex] = textsToTranslate[i];
@@ -61,12 +66,14 @@ const translateTexts = async (texts: string[], targetLanguage: string): Promise<
       // Cache the result
       const cacheKey = `${targetLanguage}:${textsToTranslate[i].substring(0, 50)}`;
       translationCache[cacheKey] = translatedText;
+      
+      console.log(`✅ Translated: "${textsToTranslate[i].substring(0, 50)}..." → "${translatedText.substring(0, 50)}..."`);
     });
 
     return cachedResults;
 
   } catch (error) {
-    console.error('Translation error:', error);
+    console.error('❌ Translation error:', error);
     // Always return original texts as fallback
     return texts;
   }
@@ -81,10 +88,59 @@ export const generateCODCopies = async (
 ) => {
   console.log('🔍 Iniciando geração de conteúdo Copyfy:', { product, price, country, languageCode, funnel });
 
-  // Detectar idioma correto baseado no país
-  const targetLanguage = idiomaForcado[country] || getLanguageFromCountry(country) || "en";
+  // Buscar dados do país selecionado
+  const countryData = countries.find(c => c.value === country.toLowerCase());
+  const countryName = countryData ? countryData.name : country;
   
-  console.log('🌐 Idioma detectado:', targetLanguage, 'para país:', country);
+  console.log('🗺️ Country data found:', { countryData, countryName });
+
+  // Detectar idioma correto - usando múltiplas estratégias
+  let targetLanguage: string;
+  
+  // 1. Primeiro, tentar usar o mapeamento forçado por nome do país
+  if (idiomaForcado[countryName]) {
+    targetLanguage = idiomaForcado[countryName];
+    console.log('🎯 Using forced language mapping:', countryName, '→', targetLanguage);
+  }
+  // 2. Se não, usar o código do país
+  else if (countryData) {
+    targetLanguage = getLanguageByCountry(countryData.value.toUpperCase());
+    console.log('🔤 Using country code mapping:', countryData.value, '→', targetLanguage);
+  }
+  // 3. Fallback para detecção por nome
+  else {
+    targetLanguage = detectLanguageByCountry(countryName);
+    console.log('📝 Using country name detection:', countryName, '→', targetLanguage);
+  }
+  
+  // Garantir que não seja 'en' por engano para países que claramente não são anglófonos
+  if (targetLanguage === 'en' && !['United States', 'United Kingdom', 'Canada', 'Australia', 'New Zealand', 'us', 'gb', 'ca', 'au', 'nz'].includes(country.toLowerCase())) {
+    // Forçar uma detecção melhor para países comuns
+    const commonMappings: { [key: string]: string } = {
+      'brasil': 'pt',
+      'brazil': 'pt',
+      'france': 'fr',
+      'germany': 'de',
+      'spain': 'es',
+      'italy': 'it',
+      'china': 'zh',
+      'japan': 'ja',
+      'russia': 'ru'
+    };
+    
+    const lowerCountry = country.toLowerCase();
+    const lowerCountryName = countryName.toLowerCase();
+    
+    if (commonMappings[lowerCountry]) {
+      targetLanguage = commonMappings[lowerCountry];
+      console.log('🔧 Fixed language detection:', country, '→', targetLanguage);
+    } else if (commonMappings[lowerCountryName]) {
+      targetLanguage = commonMappings[lowerCountryName];
+      console.log('🔧 Fixed language detection by name:', countryName, '→', targetLanguage);
+    }
+  }
+  
+  console.log('🌐 Final detected language:', targetLanguage, 'for country:', country, '/', countryName);
 
   try {
     // Generate base content in English first (more consistent templates)
@@ -100,7 +156,7 @@ export const generateCODCopies = async (
     let finalSitelinks = baseSitelinks;
 
     if (targetLanguage !== 'en') {
-      console.log(`🔄 Traduzindo conteúdo para ${targetLanguage}`);
+      console.log(`🔄 Starting translation to ${targetLanguage}`);
       
       // Translate titles and descriptions
       const [translatedTitles, translatedDescriptions, translatedUsps] = await Promise.all([
@@ -131,6 +187,8 @@ export const generateCODCopies = async (
       finalSitelinks = translatedSitelinks;
 
       console.log('✅ Tradução concluída');
+    } else {
+      console.log('⏩ Using English content - no translation needed');
     }
 
     // Generate extensions with product/country context

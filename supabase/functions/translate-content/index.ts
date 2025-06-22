@@ -29,22 +29,22 @@ serve(async (req) => {
   }
 
   try {
-    const apiKey = Deno.env.get('GOOGLE_TRANSLATE_API_KEY');
+    // Use the provided API key
+    const apiKey = 'AIzaSyCOV1dRSUzFxDNMVRlPtasA_lniRwjgi6I';
     
-    if (!apiKey) {
-      console.error('Google Translate API key not found');
-      return new Response(
-        JSON.stringify({ error: 'Translation service not configured' }),
-        { 
-          status: 500, 
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
-        }
-      );
-    }
+    console.log('🔑 Google Translate API Key configured');
 
     const { texts, targetLanguage, sourceLanguage = 'en' }: TranslationRequest = await req.json();
 
+    console.log(`📥 Translation request received:`, {
+      textsCount: texts.length,
+      targetLanguage,
+      sourceLanguage,
+      firstText: texts[0]?.substring(0, 100) + '...'
+    });
+
     if (!texts || !Array.isArray(texts) || texts.length === 0) {
+      console.error('❌ Invalid texts array');
       return new Response(
         JSON.stringify({ error: 'Invalid texts array' }),
         { 
@@ -56,7 +56,7 @@ serve(async (req) => {
 
     // Skip translation if target language is the same as source
     if (targetLanguage === sourceLanguage || targetLanguage === 'en') {
-      console.log('Skipping translation - same language or English target');
+      console.log('⏩ Skipping translation - same language or English target');
       return new Response(
         JSON.stringify({ 
           translations: texts.map(text => ({ translatedText: text })),
@@ -69,34 +69,44 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Translating ${texts.length} texts from ${sourceLanguage} to ${targetLanguage}`);
+    console.log(`🌐 Translating ${texts.length} texts from ${sourceLanguage} to ${targetLanguage}`);
 
     // Batch translate multiple texts at once for efficiency
     const url = `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`;
+    
+    const requestBody = {
+      q: texts,
+      source: sourceLanguage,
+      target: targetLanguage,
+      format: 'text'
+    };
+
+    console.log('📤 Sending request to Google Translate API:', {
+      url: url.replace(apiKey, 'API_KEY_HIDDEN'),
+      body: { ...requestBody, q: `[${texts.length} texts]` }
+    });
     
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        q: texts,
-        source: sourceLanguage,
-        target: targetLanguage,
-        format: 'text'
-      }),
+      body: JSON.stringify(requestBody),
     });
+
+    console.log(`📥 Google Translate API response status: ${response.status}`);
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Google Translate API error:', response.status, errorText);
+      console.error('❌ Google Translate API error:', response.status, errorText);
       
       // Return original texts as fallback
       return new Response(
         JSON.stringify({ 
           translations: texts.map(text => ({ translatedText: text })),
           error: 'Translation failed, using original text',
-          fromCache: false
+          fromCache: false,
+          apiError: errorText
         }),
         { 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -106,7 +116,11 @@ serve(async (req) => {
 
     const data: GoogleTranslateResponse = await response.json();
     
-    console.log(`Successfully translated ${data.data.translations.length} texts`);
+    console.log(`✅ Successfully translated ${data.data.translations.length} texts`);
+    console.log('📝 First translation result:', {
+      original: texts[0]?.substring(0, 50) + '...',
+      translated: data.data.translations[0]?.translatedText.substring(0, 50) + '...'
+    });
 
     return new Response(
       JSON.stringify({ 
@@ -119,14 +133,15 @@ serve(async (req) => {
     );
 
   } catch (error) {
-    console.error('Error in translate-content function:', error);
+    console.error('❌ Error in translate-content function:', error);
     
     // Always return a fallback response to prevent system crashes
     return new Response(
       JSON.stringify({ 
         error: 'Translation service unavailable',
         translations: [],
-        fromCache: false
+        fromCache: false,
+        details: error.message
       }),
       { 
         status: 500, 
