@@ -27,7 +27,6 @@ class TranslationManager {
       const stored = localStorage.getItem(this.CACHE_KEY);
       if (stored) {
         this.cache = JSON.parse(stored);
-        // Clean expired entries
         this.cleanExpiredCache();
       }
     } catch (error) {
@@ -85,11 +84,14 @@ class TranslationManager {
   }
 
   async translateTexts(texts: string[], targetLanguage: string): Promise<TranslationResult[]> {
+    console.log(`🌐 Iniciando tradução de ${texts.length} textos para ${targetLanguage}`);
+    
     if (targetLanguage === 'en' || !targetLanguage) {
+      console.log("⏩ Pulando tradução - idioma inglês ou não especificado");
       return texts.map(text => ({ translatedText: text, fromCache: false }));
     }
 
-    // Check cache first
+    // Verificar cache primeiro
     const results: TranslationResult[] = [];
     const textsToTranslate: string[] = [];
     const indices: number[] = [];
@@ -104,14 +106,14 @@ class TranslationManager {
       }
     });
 
-    // If all texts were cached, return immediately
+    // Se todos os textos estavam em cache
     if (textsToTranslate.length === 0) {
-      console.log(`All ${texts.length} texts loaded from cache for ${targetLanguage}`);
+      console.log(`✅ Todos os ${texts.length} textos carregados do cache para ${targetLanguage}`);
       return results;
     }
 
     try {
-      console.log(`Translating ${textsToTranslate.length} texts to ${targetLanguage}, ${results.length} from cache`);
+      console.log(`🔄 Traduzindo ${textsToTranslate.length} textos para ${targetLanguage}, ${results.length} do cache`);
       
       const { data, error } = await supabase.functions.invoke('translate-content', {
         body: {
@@ -122,8 +124,8 @@ class TranslationManager {
       });
 
       if (error) {
-        console.error('Translation function error:', error);
-        // Fallback: return original texts
+        console.error('❌ Erro na função de tradução:', error);
+        // Fallback: retornar textos originais
         indices.forEach((originalIndex, i) => {
           results[originalIndex] = { translatedText: textsToTranslate[i], fromCache: false };
         });
@@ -131,37 +133,41 @@ class TranslationManager {
       }
 
       if (data?.translations && Array.isArray(data.translations)) {
+        console.log(`✅ Tradução bem-sucedida de ${data.translations.length} textos`);
+        
         data.translations.forEach((translation: any, i: number) => {
           const originalIndex = indices[i];
           const translatedText = translation.translatedText || textsToTranslate[i];
           
           results[originalIndex] = { translatedText, fromCache: false };
           
-          // Cache the translation
+          // Cache da tradução
           if (translation.translatedText) {
             this.setCache(textsToTranslate[i], translatedText, targetLanguage);
           }
         });
       } else {
-        // Fallback: use original texts
+        console.warn("⚠️ Resposta da tradução inválida, usando textos originais");
+        // Fallback: usar textos originais
         indices.forEach((originalIndex, i) => {
           results[originalIndex] = { translatedText: textsToTranslate[i], fromCache: false };
         });
       }
 
     } catch (error) {
-      console.error('Translation error:', error);
-      // Fallback: use original texts
+      console.error('❌ Erro na tradução:', error);
+      // Fallback: usar textos originais
       indices.forEach((originalIndex, i) => {
         results[originalIndex] = { translatedText: textsToTranslate[i], fromCache: false };
       });
     }
 
+    console.log(`🎯 Tradução finalizada: ${results.length} textos processados`);
     return results;
   }
 }
 
-// Singleton instance
+// Instância singleton
 const translationManager = new TranslationManager();
 
 export const useTranslation = () => {
