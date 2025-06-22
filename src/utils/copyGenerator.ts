@@ -2,6 +2,75 @@ import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado } from '
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
 import { generateStructuredSnippet, generatePromotionExtension, generatePriceExtension } from './extensionGenerators';
+import { supabase } from "@/integrations/supabase/client";
+
+// Translation cache for performance
+const translationCache: { [key: string]: string } = {};
+
+const translateTexts = async (texts: string[], targetLanguage: string): Promise<string[]> => {
+  if (targetLanguage === 'en' || !targetLanguage) {
+    return texts;
+  }
+
+  try {
+    // Check cache first
+    const cachedResults: string[] = [];
+    const textsToTranslate: string[] = [];
+    const indices: number[] = [];
+
+    texts.forEach((text, index) => {
+      const cacheKey = `${targetLanguage}:${text.substring(0, 50)}`;
+      if (translationCache[cacheKey]) {
+        cachedResults[index] = translationCache[cacheKey];
+      } else {
+        textsToTranslate.push(text);
+        indices.push(index);
+      }
+    });
+
+    // If all texts are cached, return immediately
+    if (textsToTranslate.length === 0) {
+      return cachedResults;
+    }
+
+    console.log(`Translating ${textsToTranslate.length} texts to ${targetLanguage}`);
+
+    const { data, error } = await supabase.functions.invoke('translate-content', {
+      body: {
+        texts: textsToTranslate,
+        targetLanguage,
+        sourceLanguage: 'en'
+      }
+    });
+
+    if (error || !data?.translations) {
+      console.error('Translation failed, using original texts:', error);
+      // Fallback to original texts
+      indices.forEach((originalIndex, i) => {
+        cachedResults[originalIndex] = textsToTranslate[i];
+      });
+      return cachedResults;
+    }
+
+    // Process translations and update cache
+    data.translations.forEach((translation: any, i: number) => {
+      const originalIndex = indices[i];
+      const translatedText = translation.translatedText || textsToTranslate[i];
+      cachedResults[originalIndex] = translatedText;
+      
+      // Cache the result
+      const cacheKey = `${targetLanguage}:${textsToTranslate[i].substring(0, 50)}`;
+      translationCache[cacheKey] = translatedText;
+    });
+
+    return cachedResults;
+
+  } catch (error) {
+    console.error('Translation error:', error);
+    // Always return original texts as fallback
+    return texts;
+  }
+};
 
 export const generateCODCopies = async (
   product: string,
@@ -13,18 +82,58 @@ export const generateCODCopies = async (
   console.log('🔍 Iniciando geração de conteúdo Copyfy:', { product, price, country, languageCode, funnel });
 
   // Detectar idioma correto baseado no país
-  const targetLanguage = idiomaForcado[country] || getLanguageFromCountry(country) || "pt";
+  const targetLanguage = idiomaForcado[country] || getLanguageFromCountry(country) || "en";
   
   console.log('🌐 Idioma detectado:', targetLanguage, 'para país:', country);
 
   try {
-    // Generate Copyfy-specific content with COD focus
-    const copyfyTitles = generateCopyfyTitles(product, price, country, targetLanguage);
-    const copyfyDescriptions = generateCopyfyDescriptions(product, price, country, targetLanguage);
-    const copyfyUsps = generateCopyfyUSPs(product, price, country, targetLanguage);
-    const copyfySitelinks = generateCopyfySitelinks(product, price, country, targetLanguage);
+    // Generate base content in English first (more consistent templates)
+    const baseTitles = generateCopyfyTitles(product, price, country, 'en');
+    const baseDescriptions = generateCopyfyDescriptions(product, price, country, 'en');
+    const baseUsps = generateCopyfyUSPs(product, price, country, 'en');
+    const baseSitelinks = generateCopyfySitelinks(product, price, country, 'en');
 
-    // Generate multiple variations for extensions with product/country context
+    // Translate content if target language is not English
+    let finalTitles = baseTitles;
+    let finalDescriptions = baseDescriptions;
+    let finalUsps = baseUsps;
+    let finalSitelinks = baseSitelinks;
+
+    if (targetLanguage !== 'en') {
+      console.log(`🔄 Traduzindo conteúdo para ${targetLanguage}`);
+      
+      // Translate titles and descriptions
+      const [translatedTitles, translatedDescriptions, translatedUsps] = await Promise.all([
+        translateTexts(baseTitles, targetLanguage),
+        translateTexts(baseDescriptions, targetLanguage),
+        translateTexts(baseUsps, targetLanguage)
+      ]);
+
+      // Translate sitelinks content
+      const sitelinkTexts = baseSitelinks.flatMap(sitelink => [
+        sitelink.title,
+        sitelink.description1,
+        sitelink.description2
+      ]);
+
+      const translatedSitelinkTexts = await translateTexts(sitelinkTexts, targetLanguage);
+      
+      const translatedSitelinks = baseSitelinks.map((sitelink, index) => ({
+        ...sitelink,
+        title: translatedSitelinkTexts[index * 3] || sitelink.title,
+        description1: translatedSitelinkTexts[index * 3 + 1] || sitelink.description1,
+        description2: translatedSitelinkTexts[index * 3 + 2] || sitelink.description2
+      }));
+
+      finalTitles = translatedTitles;
+      finalDescriptions = translatedDescriptions;
+      finalUsps = translatedUsps;
+      finalSitelinks = translatedSitelinks;
+
+      console.log('✅ Tradução concluída');
+    }
+
+    // Generate extensions with product/country context
     const snippetVariations = generateStructuredSnippet(product, country);
     const promotionVariations = generatePromotionExtension(product, country);
     const priceVariations = generatePriceExtension(product, price, country);
@@ -35,13 +144,13 @@ export const generateCODCopies = async (
     };
 
     const result = {
-      titles: getRandomVariations(copyfyTitles, 30),
-      descriptions: getRandomVariations(copyfyDescriptions, 30),
-      usps: getRandomVariations(copyfyUsps, 15),
-      sitelinks: getRandomVariations(copyfySitelinks, 15),
-      snippetValues: snippetVariations.slice(0, 8), // Exactly 8 snippets
-      promotions: promotionVariations.slice(0, 8), // Exactly 8 promotions
-      priceBlocks: priceVariations.slice(0, 5) // Exactly 5 price extensions
+      titles: getRandomVariations(finalTitles, 30),
+      descriptions: getRandomVariations(finalDescriptions, 30),
+      usps: getRandomVariations(finalUsps, 15),
+      sitelinks: getRandomVariations(finalSitelinks, 15),
+      snippetValues: snippetVariations.slice(0, 8),
+      promotions: promotionVariations.slice(0, 8),
+      priceBlocks: priceVariations.slice(0, 5)
     };
 
     console.log('✅ Geração Copyfy concluída:', {
@@ -57,7 +166,33 @@ export const generateCODCopies = async (
 
   } catch (error) {
     console.error('❌ Erro na geração Copyfy:', error);
-    throw error;
+    
+    // Fallback: Generate content in detected language using existing templates
+    console.log('🔄 Usando fallback para templates multilíngues');
+    
+    const fallbackTitles = generateCopyfyTitles(product, price, country, targetLanguage);
+    const fallbackDescriptions = generateCopyfyDescriptions(product, price, country, targetLanguage);
+    const fallbackUsps = generateCopyfyUSPs(product, price, country, targetLanguage);
+    const fallbackSitelinks = generateCopyfySitelinks(product, price, country, targetLanguage);
+
+    const snippetVariations = generateStructuredSnippet(product, country);
+    const promotionVariations = generatePromotionExtension(product, country);
+    const priceVariations = generatePriceExtension(product, price, country);
+
+    const getRandomVariations = <T>(array: T[], count: number = 30): T[] => {
+      const shuffled = [...array].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, Math.min(count, array.length));
+    };
+
+    return {
+      titles: getRandomVariations(fallbackTitles, 30),
+      descriptions: getRandomVariations(fallbackDescriptions, 30),
+      usps: getRandomVariations(fallbackUsps, 15),
+      sitelinks: getRandomVariations(fallbackSitelinks, 15),
+      snippetValues: snippetVariations.slice(0, 8),
+      promotions: promotionVariations.slice(0, 8),
+      priceBlocks: priceVariations.slice(0, 5)
+    };
   }
 };
 
