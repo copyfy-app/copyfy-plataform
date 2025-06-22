@@ -52,13 +52,13 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="border border-zinc-700 shadow-xl p-6 md:p-8 rounded-3xl bg-gradient-to-br from-black via-yellow-900/15 to-black">
+    <div className="max-w-6xl mx-auto">
+      <div className="border border-zinc-700 shadow-xl p-8 md:p-12 rounded-3xl bg-gradient-to-br from-black via-yellow-900/15 to-black">
         <h2 className="text-xl md:text-2xl font-bold text-white mb-8 text-center">
           Create Your High-Converting Campaign
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-2">
             <Label htmlFor="country" className="text-white font-medium">Select Country</Label>
             <Select value={country} onValueChange={setCountry}>
@@ -128,6 +128,11 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
           >
             {isGenerating ? "Generating Campaign..." : "Generate Campaign"}
           </Button>
+          {!canGenerate && (
+            <p className="text-red-400 mt-4 text-sm">
+              Your trial period has expired. Please contact support to continue using the service.
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -1,39 +1,34 @@
 
 /**
- * Calcula quantos dias restam a partir de uma data inicial considerando um período de trial de 2 dias
+ * Calcula quantos dias restam a partir de uma data inicial considerando um período de trial de 1 dia (24 horas)
  * @param startDate Data de início do trial
- * @returns Número de dias restantes (0 a 2)
+ * @returns Número de dias restantes (0 ou 1)
  */
 export const calculateDaysRemaining = (startDate: Date): number => {
-  const TRIAL_DAYS = 2;
+  const TRIAL_HOURS = 24; // 1 dia = 24 horas
   const now = new Date();
   
-  // Normalizar as datas para considerar apenas o dia (ignorar horas/minutos/segundos)
-  const startDateNormalized = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-  const nowNormalized = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  // Calcular diferença em horas
+  const diffTime = now.getTime() - startDate.getTime();
+  const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
   
-  // Calcular diferença em milissegundos
-  const diffTime = nowNormalized.getTime() - startDateNormalized.getTime();
-  
-  // Converter para dias (dividir por milissegundos em um dia)
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-  
-  // Retornar os dias restantes (trial_days - dias passados)
-  const daysRemaining = TRIAL_DAYS - diffDays;
+  // Retornar os dias restantes baseado nas horas
+  const hoursRemaining = Math.max(0, TRIAL_HOURS - diffHours);
+  const daysRemaining = hoursRemaining > 0 ? 1 : 0;
   
   console.log("📊 Cálculo de dias restantes:", {
-    dataInicio: startDateNormalized.toISOString(),
-    dataAtual: nowNormalized.toISOString(),
-    diasPassados: diffDays,
-    diasRestantes: Math.max(0, daysRemaining)
+    dataInicio: startDate.toISOString(),
+    dataAtual: now.toISOString(),
+    horasPassadas: diffHours,
+    horasRestantes: hoursRemaining,
+    diasRestantes: daysRemaining
   });
   
-  // Retornar o maior valor entre 0 e os dias restantes
-  return Math.max(0, daysRemaining);
+  return daysRemaining;
 };
 
 /**
- * Verifica se o trial ainda está ativo
+ * Verifica se o trial ainda está ativo (dentro de 24 horas)
  * @param startDate Data de início do trial
  * @returns true se o trial ainda está ativo, false se expirou
  */

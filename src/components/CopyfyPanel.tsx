@@ -6,11 +6,13 @@ import { useCampaignGeneration } from '../hooks/useCampaignGeneration';
 import { useCampaignHistory } from '../hooks/useCampaignHistory';
 import HistoryModal from './modals/HistoryModal';
 import { Button } from './ui/button';
-import { ArrowLeft, History } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 export const CopyfyPanel = () => {
   const navigate = useNavigate();
+  const { isTrialActive, isAdmin } = useAuth();
   const {
     isGenerating,
     campaignGenerated,
@@ -82,6 +84,9 @@ export const CopyfyPanel = () => {
     navigate('/dashboard');
   };
 
+  // Check if user can generate campaigns
+  const canGenerate = isAdmin || isTrialActive;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
       <div className="container mx-auto px-4 py-8">
@@ -90,33 +95,22 @@ export const CopyfyPanel = () => {
           <div className="flex items-center gap-4">
             <Button 
               onClick={handleBackToDashboard}
-              variant="outline"
-              className="flex items-center gap-2 bg-zinc-800 border-zinc-600 text-white hover:bg-zinc-700"
+              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
               Voltar ao Dashboard
             </Button>
             <h1 className="text-3xl md:text-4xl font-bold text-yellow-500">
-              Copyfy - Gerador de Campanhas COD
+              Copyf<span className="text-white">y</span> - COD Campaign Generator
             </h1>
           </div>
-          
-          {campaignGenerated && (
-            <Button 
-              onClick={handleShowHistory}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2"
-            >
-              <History className="w-4 h-4" />
-              Histórico de Campanhas
-            </Button>
-          )}
         </div>
 
         {!campaignGenerated ? (
           <CampaignForm 
             onGenerate={handleGenerateCampaign} 
             isGenerating={isGenerating}
-            canGenerate={true}
+            canGenerate={canGenerate}
           />
         ) : (
           <CampaignResults 
