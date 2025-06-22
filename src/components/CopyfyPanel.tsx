@@ -17,6 +17,24 @@ export const CopyfyPanel = () => {
   } = useCampaignGeneration();
 
   const [showTranslationTest, setShowTranslationTest] = useState(false);
+  const [campaignData, setCampaignData] = useState(null);
+
+  const handleGenerateCampaign = async (data) => {
+    setCampaignData(data);
+    await generateCampaign(data);
+  };
+
+  const handleCopyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+  };
+
+  const handleSave = () => {
+    console.log('Save campaign functionality to be implemented');
+  };
+
+  const handleShowHistory = () => {
+    console.log('Show history functionality to be implemented');
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -38,14 +56,18 @@ export const CopyfyPanel = () => {
 
       {!campaignGenerated ? (
         <CampaignForm 
-          onGenerate={generateCampaign} 
+          onGenerate={handleGenerateCampaign} 
           isGenerating={isGenerating}
+          canGenerate={true}
         />
       ) : (
         <CampaignResults 
-          content={generatedContent!}
-          currentLanguage={currentLanguage}
-          onReset={resetCampaign}
+          campaignData={campaignData}
+          generatedContent={generatedContent}
+          onSave={handleSave}
+          onNewCampaign={resetCampaign}
+          onShowHistory={handleShowHistory}
+          onCopyToClipboard={handleCopyToClipboard}
         />
       )}
     </div>
