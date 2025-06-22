@@ -1,3 +1,4 @@
+
 import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado, getLanguageByCountry } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
@@ -148,17 +149,25 @@ export const generateCODCopies = async (
     const baseDescriptions = generateCopyfyDescriptions(product, price, country, 'en');
     const baseUsps = generateCopyfyUSPs(product, price, country, 'en');
     const baseSitelinks = generateCopyfySitelinks(product, price, country, 'en');
+    
+    // Generate extensions in English first
+    const baseSnippets = generateStructuredSnippetVariations(product, country);
+    const basePromotions = generatePromotionVariations(product, country);
+    const basePriceBlocks = generatePriceVariations(product, price, country);
 
     // Translate content if target language is not English
     let finalTitles = baseTitles;
     let finalDescriptions = baseDescriptions;
     let finalUsps = baseUsps;
     let finalSitelinks = baseSitelinks;
+    let finalSnippets = baseSnippets;
+    let finalPromotions = basePromotions;
+    let finalPriceBlocks = basePriceBlocks;
 
     if (targetLanguage !== 'en') {
       console.log(`🔄 Starting translation to ${targetLanguage}`);
       
-      // Translate titles and descriptions
+      // Translate main content
       const [translatedTitles, translatedDescriptions, translatedUsps] = await Promise.all([
         translateTexts(baseTitles, targetLanguage),
         translateTexts(baseDescriptions, targetLanguage),
@@ -181,20 +190,25 @@ export const generateCODCopies = async (
         description2: translatedSitelinkTexts[index * 3 + 2] || sitelink.description2
       }));
 
+      // Translate extensions - THIS IS THE KEY FIX
+      const [translatedSnippets, translatedPromotions, translatedPriceBlocks] = await Promise.all([
+        translateTexts(baseSnippets, targetLanguage),
+        translateTexts(basePromotions, targetLanguage),
+        translateTexts(basePriceBlocks, targetLanguage)
+      ]);
+
       finalTitles = translatedTitles;
       finalDescriptions = translatedDescriptions;
       finalUsps = translatedUsps;
       finalSitelinks = translatedSitelinks;
+      finalSnippets = translatedSnippets;
+      finalPromotions = translatedPromotions;
+      finalPriceBlocks = translatedPriceBlocks;
 
-      console.log('✅ Tradução concluída');
+      console.log('✅ Tradução concluída incluindo extensões');
     } else {
       console.log('⏩ Using English content - no translation needed');
     }
-
-    // Generate extensions with product/country context
-    const snippetVariations = generateStructuredSnippet(product, country);
-    const promotionVariations = generatePromotionExtension(product, country);
-    const priceVariations = generatePriceExtension(product, price, country);
 
     const getRandomVariations = <T>(array: T[], count: number = 30): T[] => {
       const shuffled = [...array].sort(() => Math.random() - 0.5);
@@ -206,9 +220,9 @@ export const generateCODCopies = async (
       descriptions: getRandomVariations(finalDescriptions, 30),
       usps: getRandomVariations(finalUsps, 15),
       sitelinks: getRandomVariations(finalSitelinks, 15),
-      snippetValues: snippetVariations.slice(0, 8),
-      promotions: promotionVariations.slice(0, 8),
-      priceBlocks: priceVariations.slice(0, 5)
+      snippetValues: finalSnippets.slice(0, 8),
+      promotions: finalPromotions.slice(0, 8),
+      priceBlocks: finalPriceBlocks.slice(0, 5)
     };
 
     console.log('✅ Geração Copyfy concluída:', {
@@ -254,9 +268,115 @@ export const generateCODCopies = async (
   }
 };
 
+// New functions to generate extensions in English for translation
+const generateStructuredSnippetVariations = (product: string, country: string): string[] => {
+  const snippetTemplates = [
+    `${product} available in ${country}, Cash on delivery guaranteed, Fast secure shipping, No advance payment`,
+    `Get ${product} today, Pay on delivery in ${country}, Verified delivery, Satisfaction guaranteed`,
+    `${product} COD ${country}, Inspect before paying, Free returns, 24/7 support`,
+    `Secure ${product} order, Delivery to ${country}, Cash payment on receipt, Quick process`,
+    `Authentic ${product}, Available in ${country}, COD available, Immediate delivery`,
+    `Safe ${product} purchase, ${country} fast delivery, Cash on delivery, Risk-free`,
+    `Original ${product}, COD service in ${country}, Verified delivery, Warranty included`,
+    `Order ${product} now, ${country} available, Pay on receipt, Express shipping`,
+    `Premium ${product} quality, ${country} delivery, Cash on delivery, Best prices`,
+    `Trusted ${product} seller, Available in ${country}, COD guarantee, Fast service`,
+    `Exclusive ${product} offer, ${country} only, Pay when delivered, Limited time`,
+    `Professional ${product}, Delivery to ${country}, Secure COD, Quality assured`,
+    `Certified ${product} dealer, ${country} service, Cash on delivery, Proven results`,
+    `Official ${product} distributor, Available ${country}, COD option, Customer support`,
+    `Guaranteed ${product} delivery, ${country} wide, Pay on receipt, Satisfaction promise`,
+    `Reliable ${product} source, ${country} shipping, Cash on delivery, Trust guaranteed`,
+    `Verified ${product} quality, Available ${country}, COD service, Express delivery`,
+    `Established ${product} provider, ${country} coverage, Pay when received, Quality promise`,
+    `Licensed ${product} seller, Delivery ${country}, Cash on delivery, Secure process`,
+    `Authorized ${product} agent, ${country} service, COD available, Fast shipping`
+  ];
+
+  return snippetTemplates.map(snippet => `Category: COD Benefits\nValues: ${snippet}`);
+};
+
+const generatePromotionVariations = (product: string, country: string): string[] => {
+  const promotionSets = [
+    [`${product} available in ${country}`, `Cash on delivery guaranteed`, `Free shipping included`],
+    [`Limited offer for ${product}`, `Only available in ${country}`, `Pay when you receive`],
+    [`Authentic ${product}`, `Verified delivery to ${country}`, `No advance payments`],
+    [`Last units of ${product}`, `COD available in ${country}`, `Satisfaction guaranteed`],
+    [`${product} - Special offer`, `Express shipping to ${country}`, `Inspect before paying`],
+    [`Original ${product} guaranteed`, `COD service in ${country}`, `Free returns`],
+    [`${product} promotion`, `Available only in ${country}`, `Secure cash on delivery`],
+    [`${product} - Limited stock`, `Fast delivery to ${country}`, `Zero purchase risk`],
+    [`Premium ${product} quality`, `${country} exclusive offer`, `Pay only when satisfied`],
+    [`Certified ${product}`, `Delivery guarantee ${country}`, `Cash on delivery option`],
+    [`Professional ${product}`, `Available throughout ${country}`, `Secure payment process`],
+    [`Exclusive ${product} deal`, `${country} limited time`, `Risk-free purchase`],
+    [`Official ${product} seller`, `Trusted delivery ${country}`, `COD payment guaranteed`],
+    [`Genuine ${product}`, `Fast shipping ${country}`, `Pay when you receive`],
+    [`Quality ${product}`, `${country} wide delivery`, `Cash on delivery service`],
+    [`Reliable ${product} source`, `Available in ${country}`, `Secure COD option`],
+    [`Verified ${product} dealer`, `Express delivery ${country}`, `Payment on receipt`],
+    [`Trusted ${product} provider`, `${country} coverage`, `Safe cash delivery`],
+    [`Licensed ${product} distributor`, `Delivery to ${country}`, `COD guarantee`],
+    [`Authorized ${product} agent`, `${country} service area`, `Pay when delivered`]
+  ];
+  
+  return promotionSets.map(promos => promos.join('\n'));
+};
+
+const generatePriceVariations = (product: string, price: string, country: string): string[] => {
+  // Extract numeric value from price for calculations
+  const numericPrice = parseFloat(price.replace(/[^\d.,]/g, '').replace(',', '.')) || 97;
+  const currency = price.match(/[^\d\s.,]+/)?.[0] || '$';
+  
+  const priceVariationSets = [
+    [
+      `${product}: ${currency}${numericPrice} - Cash on delivery in ${country}`,
+      `2x ${product}: ${currency}${Math.round(numericPrice * 1.8)} - Quantity discount`,
+      `3x ${product}: ${currency}${Math.round(numericPrice * 2.5)} - Special COD offer`
+    ],
+    [
+      `Single ${product}: ${currency}${numericPrice} - Only in ${country}`,
+      `${product} Pack: ${currency}${Math.round(numericPrice * 2.2)} - Free shipping`,
+      `${product} Deal: ${currency}${Math.round(numericPrice * 3.1)} - Maximum savings`
+    ],
+    [
+      `${product} Price: ${currency}${numericPrice} - COD available`,
+      `${product} Discount: ${currency}${Math.round(numericPrice * 1.7)} - Limited time`,
+      `${product} Promo: ${currency}${Math.round(numericPrice * 2.9)} - Today only`
+    ],
+    [
+      `Basic ${product}: ${currency}${numericPrice} - Delivery to ${country}`,
+      `Premium ${product}: ${currency}${Math.round(numericPrice * 2.1)} - Express shipping`,
+      `Complete ${product}: ${currency}${Math.round(numericPrice * 3.3)} - Everything included`
+    ],
+    [
+      `Buy ${product}: ${currency}${numericPrice} - Pay on receipt`,
+      `Save on ${product}: ${currency}${Math.round(numericPrice * 1.9)} - Secure COD`,
+      `Ultimate ${product}: ${currency}${Math.round(numericPrice * 2.8)} - Final offer`
+    ],
+    [
+      `Standard ${product}: ${currency}${numericPrice} - ${country} delivery`,
+      `Deluxe ${product}: ${currency}${Math.round(numericPrice * 2.0)} - Enhanced package`,
+      `Professional ${product}: ${currency}${Math.round(numericPrice * 3.0)} - Complete solution`
+    ],
+    [
+      `Essential ${product}: ${currency}${numericPrice} - COD in ${country}`,
+      `Advanced ${product}: ${currency}${Math.round(numericPrice * 1.9)} - Better value`,
+      `Master ${product}: ${currency}${Math.round(numericPrice * 2.7)} - Best investment`
+    ],
+    [
+      `Starter ${product}: ${currency}${numericPrice} - Perfect beginning`,
+      `Growth ${product}: ${currency}${Math.round(numericPrice * 2.3)} - Enhanced results`,
+      `Elite ${product}: ${currency}${Math.round(numericPrice * 3.2)} - Maximum impact`
+    ]
+  ];
+  
+  return priceVariationSets.map(blocks => blocks.join('\n'));
+};
+
 const generateCopyfyTitles = (product: string, price: string, country: string, language: string): string[] => {
   const baseTemplates = [
-    // COD Direct Response Headlines
+    // COD Direct Response Headlines - Basic
     `Get ${product} - Pay ${price} on Delivery in ${country}`,
     `${product} ${price} - Order Now, Pay When You Receive`,
     `Instant ${product} Access - Only ${price} Cash on Delivery`,
@@ -268,7 +388,7 @@ const generateCopyfyTitles = (product: string, price: string, country: string, l
     `Limited: ${product} for ${price} - Cash on Delivery`,
     `${product} - Order Today, Pay ${price} Tomorrow`,
     
-    // Urgency & Scarcity
+    // Urgency & Scarcity - Enhanced
     `Last Days: ${product} ${price} COD in ${country}`,
     `24h Only: ${product} - Pay ${price} on Delivery`,
     `Urgent: ${product} Available ${price} COD ${country}`,
@@ -279,8 +399,13 @@ const generateCopyfyTitles = (product: string, price: string, country: string, l
     `Exclusive: ${product} ${price} COD Available Now`,
     `Time Sensitive: ${product} - ${price} Payment on Delivery`,
     `Flash Sale: ${product} ${price} - Order Now, Pay Later`,
+    `Midnight Deadline: ${product} ${price} COD ${country}`,
+    `This Weekend Only: ${product} - ${price} on Delivery`,
+    `Breaking: ${product} Back in Stock - ${price} COD`,
+    `Alert: Final ${product} Units - ${price} in ${country}`,
+    `Countdown: ${product} ${price} - COD Ends Soon`,
     
-    // Benefit-Driven COD
+    // Benefit-Driven COD - Expanded
     `Risk-Free ${product} - ${price} Only if Satisfied`,
     `No Risk: ${product} ${price} - Pay Only When Delivered`,
     `Guaranteed ${product} - ${price} Cash on Delivery`,
@@ -290,46 +415,72 @@ const generateCopyfyTitles = (product: string, price: string, country: string, l
     `Protected Buy: ${product} ${price} - Cash on Delivery`,
     `Verified ${product} - ${price} Payment on Receipt`,
     `Trusted ${product} - Pay ${price} When You Receive`,
-    `Authentic ${product} - ${price} COD Guaranteed`
+    `Authentic ${product} - ${price} COD Guaranteed`,
+    `Certified ${product} - ${price} Secure COD ${country}`,
+    `Premium ${product} - Pay ${price} After Delivery`,
+    `Official ${product} - ${price} COD Service ${country}`,
+    `Licensed ${product} - ${price} Payment on Receipt`,
+    `Approved ${product} - ${price} Cash on Delivery`,
+    
+    // Social Proof & Authority - New
+    `#1 ${product} in ${country} - ${price} COD Available`,
+    `Bestselling ${product} - Pay ${price} on Delivery`,
+    `Award Winning ${product} - ${price} COD ${country}`,
+    `Recommended ${product} - ${price} Cash on Delivery`,
+    `Professional ${product} - Pay ${price} When Delivered`,
+    `Expert Choice ${product} - ${price} COD Available`,
+    `Doctor Approved ${product} - ${price} on Delivery`,
+    `Clinically Tested ${product} - ${price} COD ${country}`,
+    `Customer Favorite ${product} - Pay ${price} on Receipt`,
+    `5-Star ${product} - ${price} Cash on Delivery`,
+    
+    // Emotional & Transformation - New
+    `Transform Your Life: ${product} - ${price} COD`,
+    `Change Everything: ${product} ${price} in ${country}`,
+    `Life-Changing ${product} - Pay ${price} on Delivery`,
+    `Revolutionary ${product} - ${price} COD Available`,
+    `Breakthrough ${product} - ${price} Cash on Delivery`,
+    `Game-Changer: ${product} ${price} COD ${country}`,
+    `Miracle ${product} - Pay ${price} When You Receive`,
+    `Amazing ${product} Results - ${price} on Delivery`,
+    `Incredible ${product} - ${price} COD in ${country}`,
+    `Phenomenal ${product} - ${price} Payment on Receipt`,
+    
+    // Value & Investment - New
+    `Best Investment: ${product} ${price} COD ${country}`,
+    `Smart Choice: ${product} - Pay ${price} on Delivery`,
+    `Wise Decision: ${product} ${price} Cash on Delivery`,
+    `Perfect Investment: ${product} - ${price} COD`,
+    `Valuable ${product} - Pay ${price} When Delivered`,
+    `Priceless ${product} - Only ${price} on Delivery`,
+    `Worth Every Penny: ${product} ${price} COD`,
+    `Maximum Value: ${product} - ${price} in ${country}`,
+    `Unbeatable Deal: ${product} ${price} COD Available`,
+    `Exceptional Value: ${product} - ${price} on Receipt`
   ];
 
   return baseTemplates;
 };
 
 const generateCopyfyDescriptions = (product: string, price: string, country: string, language: string): string[] => {
-  // Dynamic prefixes and suffixes based on country
-  const countrySpecific = {
-    'US': { currency: '$', shipping: 'nationwide', urgency: 'today' },
-    'UK': { currency: '£', shipping: 'UK-wide', urgency: 'same day' },
-    'DE': { currency: '€', shipping: 'Germany-wide', urgency: 'schnell' },
-    'FR': { currency: '€', shipping: 'France-wide', urgency: 'rapide' },
-    'IT': { currency: '€', shipping: 'Italy-wide', urgency: 'veloce' },
-    'ES': { currency: '€', shipping: 'Spain-wide', urgency: 'rápido' },
-    'BR': { currency: 'R$', shipping: 'Brazil-wide', urgency: 'hoje' },
-    'MX': { currency: '$', shipping: 'Mexico-wide', urgency: 'hoy' },
-    'default': { currency: '', shipping: 'nationwide', urgency: 'now' }
-  };
-
-  const spec = countrySpecific[country] || countrySpecific['default'];
-  
   // Product-specific variations - making each unique
   const productCode = product.substring(0, 3).toUpperCase();
   const countryCode = country.substring(0, 2).toUpperCase();
   
   return [
-    // COD-focused under 90 chars
-    `${product} delivered to ${country}. Pay ${price} when received. Order ${spec.urgency}!`,
+    // COD-focused under 90 chars - Basic
+    `${product} delivered to ${country}. Pay ${price} when received. Order now!`,
     `Get ${product} risk-free! Pay ${price} COD in ${country}. No advance payment.`,
     `${product} ${price} COD available in ${country}. Order now, pay on delivery.`,
     `Order ${product} today - pay ${price} at your door in ${country}. Safe & secure.`,
     `${product} for ${price} with COD option. Delivered safely to ${country}.`,
     `Risk-free ${product} purchase. Pay ${price} only when satisfied in ${country}.`,
-    `${product} available ${spec.urgency} - ${price} cash on delivery to ${country}.`,
+    `${product} available now - ${price} cash on delivery to ${country}.`,
     `Get ${product} delivered. Pay ${price} when received in ${country}. Order now!`,
     `${product} ${price} - no prepayment needed. COD available in ${country}.`,
     `Order ${product} risk-free. Pay ${price} on delivery in ${country}. Limited time.`,
     
-    // Urgency-focused COD under 90 chars
+    // Urgency-focused COD under 90 chars - Enhanced
     `Last chance: ${product} for ${price} COD in ${country}. Order before sold out!`,
     `24h only: ${product} ${price} cash on delivery. Available in ${country} now.`,
     `Limited: ${product} at ${price} with COD. Delivery to ${country} guaranteed.`,
@@ -340,8 +491,13 @@ const generateCopyfyDescriptions = (product: string, price: string, country: str
     `Alert: ${product} selling fast. Secure yours for ${price} COD in ${country}.`,
     `48h left: ${product} at ${price}. Cash on delivery to ${country} available.`,
     `Flash sale: ${product} for ${price}. COD option in ${country}. Act now!`,
+    `Midnight deadline: ${product} ${price} COD. Don't miss out in ${country}!`,
+    `Weekend special: ${product} for ${price}. COD delivery to ${country}.`,
+    `Time running out: ${product} ${price}. Cash on delivery in ${country}.`,
+    `Final call: ${product} at ${price} COD. Available in ${country} today.`,
+    `Last units: ${product} for ${price}. Pay on delivery in ${country}.`,
     
-    // Trust & Security focused under 90 chars
+    // Trust & Security focused under 90 chars - Expanded
     `Authentic ${product} - pay ${price} on delivery. Trusted seller in ${country}.`,
     `Verified ${product} for ${price}. COD available. Safe delivery to ${country}.`,
     `Official ${product} dealer. Pay ${price} when delivered to ${country}.`,
@@ -351,53 +507,119 @@ const generateCopyfyDescriptions = (product: string, price: string, country: str
     `Authorized ${product} seller. ${price} COD guarantee in ${country}.`,
     `Premium ${product} quality. Pay ${price} when satisfied in ${country}.`,
     `Reliable ${product} delivery. ${price} cash on delivery to ${country}.`,
-    `Secure ${product} purchase. Pay ${price} only when received in ${country}.`
+    `Secure ${product} purchase. Pay ${price} only when received in ${country}.`,
+    `Licensed ${product} distributor. ${price} COD service in ${country}.`,
+    `Professional ${product} supplier. Pay ${price} on delivery to ${country}.`,
+    `Established ${product} provider. ${price} cash on delivery available.`,
+    `Reputable ${product} seller. Pay ${price} when delivered in ${country}.`,
+    `Verified ${product} merchant. ${price} COD option in ${country}.`,
+    
+    // Results & Benefits - New
+    `Transform with ${product}! Pay ${price} on delivery in ${country}. Results guaranteed.`,
+    `Amazing ${product} results await. ${price} COD available in ${country}.`,
+    `Experience ${product} benefits. Pay ${price} when delivered to ${country}.`,
+    `Discover ${product} power. ${price} cash on delivery in ${country}.`,
+    `Unlock ${product} potential. Pay ${price} on receipt in ${country}.`,
+    `Feel ${product} difference. ${price} COD option available in ${country}.`,
+    `See ${product} results fast. Pay ${price} when delivered to ${country}.`,
+    `Enjoy ${product} benefits. ${price} cash on delivery in ${country}.`,
+    `Experience ${product} magic. Pay ${price} on delivery in ${country}.`,
+    `Witness ${product} power. ${price} COD available in ${country}.`,
+    
+    // Professional & Medical - New
+    `Clinically proven ${product}. Pay ${price} on delivery in ${country}.`,
+    `Doctor recommended ${product}. ${price} COD available in ${country}.`,
+    `Scientifically tested ${product}. Pay ${price} when delivered to ${country}.`,
+    `Professionally formulated ${product}. ${price} cash on delivery in ${country}.`,
+    `Laboratory tested ${product}. Pay ${price} on receipt in ${country}.`,
+    `Expert approved ${product}. ${price} COD option in ${country}.`,
+    `Medically endorsed ${product}. Pay ${price} when delivered to ${country}.`,
+    `Research-backed ${product}. ${price} cash on delivery available in ${country}.`,
+    `Pharmaceutical grade ${product}. Pay ${price} on delivery in ${country}.`,
+    `Clinical strength ${product}. ${price} COD available in ${country}.`,
+    
+    // Exclusive & Premium - New
+    `Exclusive ${product} formula. Pay ${price} on delivery in ${country}.`,
+    `Premium ${product} quality. ${price} COD available in ${country}.`,
+    `Luxury ${product} experience. Pay ${price} when delivered to ${country}.`,
+    `Elite ${product} solution. ${price} cash on delivery in ${country}.`,
+    `VIP ${product} access. Pay ${price} on receipt in ${country}.`,
+    `Platinum ${product} grade. ${price} COD option in ${country}.`,
+    `Gold standard ${product}. Pay ${price} when delivered to ${country}.`,
+    `First-class ${product}. ${price} cash on delivery available in ${country}.`,
+    `Superior ${product} quality. Pay ${price} on delivery in ${country}.`,
+    `Deluxe ${product} version. ${price} COD available in ${country}.`
   ];
 };
 
 const generateCopyfyUSPs = (product: string, price: string, country: string, language: string): string[] => {
   const baseTemplates = [
-    // COD Benefits
+    // COD Benefits - Basic
     `✓ Pay ${price} only when you receive ${product} in ${country}`,
     `✓ No advance payment required - ${price} cash on delivery`,
     `✓ Risk-free ordering - inspect ${product} before paying ${price}`,
     `✓ Secure COD available throughout ${country} - pay ${price} at door`,
     `✓ Zero risk purchase - ${product} for ${price} with COD guarantee`,
     
-    // Delivery & Service
+    // Delivery & Service - Enhanced
     `✓ Fast delivery to ${country} - ${product} arrives within 24-48 hours`,
     `✓ Free shipping included - pay only ${price} for ${product}`,
     `✓ Doorstep delivery in ${country} - convenient ${price} COD option`,
     `✓ Track your ${product} order - ${price} payment on successful delivery`,
     `✓ Professional packaging - ${product} delivered safely for ${price}`,
+    `✓ Express shipping available - ${product} delivered next day in ${country}`,
+    `✓ Secure packaging guarantee - ${product} arrives perfect condition`,
+    `✓ Real-time tracking - monitor your ${product} journey to ${country}`,
+    `✓ Contactless delivery - safe ${product} delivery for ${price}`,
+    `✓ Flexible delivery times - receive ${product} when convenient`,
     
-    // Guarantees & Trust
+    // Guarantees & Trust - Expanded
     `✓ Money-back guarantee - return ${product} if not satisfied`,
     `✓ Authentic ${product} guaranteed - pay ${price} with confidence`,
     `✓ Verified seller - trusted ${product} delivery to ${country}`,
     `✓ Customer support included - help with your ${product} purchase`,
     `✓ Quality assured - premium ${product} worth every penny of ${price}`,
+    `✓ 100% satisfaction promise - ${product} must exceed expectations`,
+    `✓ Warranty included - ${product} protected for peace of mind`,
+    `✓ Licensed distributor - authorized ${product} sales in ${country}`,
+    `✓ Secure transaction - ${price} payment protected and guaranteed`,
+    `✓ Trusted by thousands - ${product} customers love their results`,
     
-    // Exclusivity & Urgency
+    // Exclusivity & Urgency - New
     `✓ Limited time offer - ${product} available for ${price} COD only`,
     `✓ Exclusive ${country} availability - don't miss ${product} at ${price}`,
     `✓ High demand product - secure your ${product} for ${price} today`,
     `✓ Special pricing - ${product} normally costs more than ${price}`,
     `✓ Time-sensitive deal - ${product} at ${price} won't last long`,
+    `✓ VIP access only - exclusive ${product} offer for ${country}`,
+    `✓ Member pricing - special ${product} rate of ${price} for you`,
+    `✓ Early bird special - first access to ${product} at ${price}`,
+    `✓ Flash discount - ${product} reduced to ${price} temporarily`,
+    `✓ Today's special - ${product} available at ${price} COD only`,
     
-    // Easy Process
+    // Easy Process - Enhanced
     `✓ Simple 3-step ordering - get ${product} for ${price} in minutes`,
     `✓ No registration required - order ${product} instantly`,
     `✓ Phone orders accepted - call now for ${product} at ${price}`,
     `✓ WhatsApp ordering available - get ${product} delivered for ${price}`,
     `✓ Quick order form - ${product} shipped within hours`,
+    `✓ One-click ordering - ${product} delivered to ${country} fast`,
+    `✓ Mobile-friendly process - order ${product} from any device`,
+    `✓ Instant confirmation - ${product} order confirmed immediately`,
+    `✓ Multiple contact options - order ${product} your preferred way`,
+    `✓ Streamlined checkout - ${product} ordered in under 2 minutes`,
     
-    // Value & Results
+    // Value & Results - New
     `✓ Proven results - ${product} delivers value beyond ${price}`,
     `✓ Best investment - ${product} worth much more than ${price}`,
     `✓ Life-changing opportunity - ${product} for just ${price}`,
     `✓ Premium quality - ${product} exceeds ${price} expectations`,
-    `✓ Maximum value - get ${product} benefits for only ${price}`
+    `✓ Maximum value - get ${product} benefits for only ${price}`,
+    `✓ Unbeatable ROI - ${product} returns far exceed ${price} cost`,
+    `✓ Smart investment - ${product} at ${price} pays for itself`,
+    `✓ Incredible value - ${product} normally sells for much more`,
+    `✓ Cost-effective solution - ${product} saves money long-term`,
+    `✓ Budget-friendly option - premium ${product} at affordable ${price}`
   ];
 
   return baseTemplates;
@@ -494,6 +716,67 @@ const generateCopyfySitelinks = (product: string, price: string, country: string
       description1: `Exclusive offers for ${country}`,
       description2: `Limited time ${product} promotions`,
       url: "https://exemplo.com/deals"
+    },
+    // New sitelinks for variety
+    {
+      title: `Express Delivery`,
+      description1: `Same-day ${product} delivery available`,
+      description2: `Rush orders processed immediately`,
+      url: "https://exemplo.com/express"
+    },
+    {
+      title: `Product Guarantee`,
+      description1: `${product} quality guarantee included`,
+      description2: `Full refund if not completely satisfied`,
+      url: "https://exemplo.com/product-guarantee"
+    },
+    {
+      title: `Compare Options`,
+      description1: `Different ${product} packages available`,
+      description2: `Choose the best option for you`,
+      url: "https://exemplo.com/compare"
+    },
+    {
+      title: `Success Stories`,
+      description1: `Real ${product} success testimonials`,
+      description2: `See amazing results from customers`,
+      url: "https://exemplo.com/success-stories"
+    },
+    {
+      title: `Scientific Proof`,
+      description1: `Clinical studies supporting ${product}`,
+      description2: `Research-backed effectiveness proven`,
+      url: "https://exemplo.com/clinical-studies"
+    },
+    {
+      title: `How It Works`,
+      description1: `Step-by-step ${product} usage guide`,
+      description2: `Easy instructions for best results`,
+      url: "https://exemplo.com/how-it-works"
+    },
+    {
+      title: `Safety Information`,
+      description1: `${product} safety and side effects`,
+      description2: `Important usage precautions`,
+      url: "https://exemplo.com/safety"
+    },
+    {
+      title: `Ingredients List`,
+      description1: `Complete ${product} ingredient breakdown`,
+      description2: `All natural components listed`,
+      url: "https://exemplo.com/ingredients"
+    },
+    {
+      title: `Before & After`,
+      description1: `Amazing ${product} transformation photos`,
+      description2: `Real customer results gallery`,
+      url: "https://exemplo.com/before-after"
+    },
+    {
+      title: `Video Testimonials`,
+      description1: `Watch real customers discuss ${product}`,
+      description2: `Authentic video reviews and stories`,
+      url: "https://exemplo.com/video-testimonials"
     }
   ];
 
