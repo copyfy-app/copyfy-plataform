@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { CampaignForm } from './copyfy/CampaignForm';
-import { CampaignResults } from './copyfy/CampaignResults';
+import CampaignForm from './copyfy/CampaignForm';
+import CampaignResults from './copyfy/CampaignResults';
 import { TranslationTest } from './TranslationTest';
 import { useCampaignGeneration } from '../hooks/useCampaignGeneration';
 import { Button } from './ui/button';

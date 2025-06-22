@@ -1,6 +1,6 @@
 
 import React from 'react';
-import CopyfyPanel from '@/components/CopyfyPanel';
+import { CopyfyPanel } from '@/components/CopyfyPanel';
 
 const CopyfyPage = () => {
   return <CopyfyPanel />;

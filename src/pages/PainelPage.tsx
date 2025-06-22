@@ -1,5 +1,5 @@
 
-import CopyfyPanel from '@/components/CopyfyPanel';
+import { CopyfyPanel } from '@/components/CopyfyPanel';
 
 const PainelPage = () => {
   return <CopyfyPanel />;
