@@ -22,34 +22,62 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 const queryClient = new QueryClient();
 
 // Componente para proteger rotas que requerem autenticação
-const ProtectedRoute = () => {
+const ProtectedRoutes = () => {
   const { user, loading } = useAuth();
   
-  // Enquanto carrega, não faz nada
-  if (loading) return null;
+  console.log("🛡️ ProtectedRoutes - user:", user?.email, "loading:", loading);
+  
+  // Enquanto carrega, mostra loading
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-zinc-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-white">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
   
   // Se não houver usuário autenticado, redireciona para login
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user) {
+    console.log("🚫 Usuário não autenticado, redirecionando para login");
+    return <Navigate to="/login" replace />;
+  }
   
   // Se houver usuário, permite acessar a rota
   return <Outlet />;
 };
 
 // Componente para redirecionar usuários já autenticados
-const RedirectIfAuthenticated = () => {
+const PublicRoutes = () => {
   const { user, loading } = useAuth();
   
-  // Enquanto carrega, não faz nada
-  if (loading) return null;
+  console.log("🔓 PublicRoutes - user:", user?.email, "loading:", loading);
+  
+  // Enquanto carrega, mostra loading
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-zinc-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-500 mx-auto mb-4"></div>
+          <p className="text-white">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
   
   // Se houver usuário autenticado, redireciona para dashboard
-  if (user) return <Navigate to="/dashboard" replace />;
+  if (user) {
+    console.log("✅ Usuário autenticado, redirecionando para dashboard");
+    return <Navigate to="/dashboard" replace />;
+  }
   
   // Se não houver usuário, permite acessar a rota
   return <Outlet />;
 };
 
-// Wrapper para poder usar o AuthProvider com o useAuth nos componentes de rota
+// Componente interno com as rotas - só renderiza após o AuthProvider estar disponível
 const AppRoutes = () => {
   return (
     <Routes>
@@ -60,12 +88,12 @@ const AppRoutes = () => {
       <Route path="/auth/callback" element={<AuthCallback />} />
       
       {/* Rotas que redirecionam se já estiver autenticado */}
-      <Route element={<RedirectIfAuthenticated />}>
+      <Route element={<PublicRoutes />}>
         <Route path="/login" element={<Login />} />
       </Route>
       
       {/* Rotas protegidas que requerem autenticação */}
-      <Route element={<ProtectedRoute />}>
+      <Route element={<ProtectedRoutes />}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/copyfy" element={<CopyfyPage />} />
         <Route path="/painel" element={<PainelPage />} />
@@ -85,18 +113,22 @@ const AppRoutes = () => {
   );
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AuthProvider>
-          <AppRoutes />
-        </AuthProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  console.log("🚀 App component renderizado");
+  
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AuthProvider>
+            <AppRoutes />
+          </AuthProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
