@@ -16,6 +16,7 @@ import TermsOfUse from "./pages/TermsOfUse";
 import TermsOfUseEn from "./pages/TermsOfUseEn";
 import Support from "./pages/Support";
 import NotFound from "./pages/NotFound";
+import AuthCallback from "./components/AuthCallback";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 const queryClient = new QueryClient();
@@ -54,6 +55,9 @@ const AppRoutes = () => {
     <Routes>
       {/* Home page - publicly accessible */}
       <Route path="/" element={<Home />} />
+      
+      {/* Auth callback route for OAuth */}
+      <Route path="/auth/callback" element={<AuthCallback />} />
       
       {/* Rotas que redirecionam se já estiver autenticado */}
       <Route element={<RedirectIfAuthenticated />}>

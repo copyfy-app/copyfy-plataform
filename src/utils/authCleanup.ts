@@ -62,5 +62,6 @@ export const cleanupAuthState = (): void => {
 
 export const isAdminEmail = (email: string | undefined): boolean => {
   const adminEmails = ['inspiranegociosonline@gmail.com'];
+  console.log("🔍 Verificando se email é admin:", { email, isAdmin: email ? adminEmails.includes(email.toLowerCase().trim()) : false });
   return email ? adminEmails.includes(email.toLowerCase().trim()) : false;
 };

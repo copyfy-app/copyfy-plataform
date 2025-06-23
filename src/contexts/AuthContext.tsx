@@ -30,44 +30,61 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
-  // Função para determinar admin com múltiplas verificações
+  // Função para determinar admin com preservação de dados existentes
   const determineAdminStatus = async (userId: string, userEmail: string | undefined): Promise<boolean> => {
     console.log("👑 Verificando status de admin para:", userEmail);
     
     // Verificação 1: Email direto
     if (isAdminEmail(userEmail)) {
       console.log("✅ Admin confirmado por email:", userEmail);
-      return true;
+      
+      try {
+        // Verificar se já existe perfil
+        const { data: existingProfile } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', userId)
+          .single();
+
+        if (existingProfile) {
+          console.log("📋 Perfil admin já existe, preservando dados");
+          // Se já é admin, apenas atualizar se necessário sem tocar no trial_start
+          if (!existingProfile.is_admin) {
+            console.log("🔧 Atualizando status de admin sem afetar trial_start");
+            await supabase
+              .from('profiles')
+              .update({ is_admin: true })
+              .eq('id', userId);
+          }
+        } else {
+          console.log("🆕 Criando novo perfil admin");
+          await supabase
+            .from('profiles')
+            .insert({ 
+              id: userId, 
+              is_admin: true,
+              trial_start: new Date().toISOString()
+            });
+        }
+        
+        return true;
+      } catch (error) {
+        console.error("❌ Erro ao gerenciar perfil admin:", error);
+        return true; // Retorna true porque é admin por email mesmo se houver erro no banco
+      }
     }
     
-    // Verificação 2: Consulta no banco
+    // Verificação 2: Consulta no banco para não-admins
     try {
-      const { data: profile, error } = await supabase
+      const { data: profile } = await supabase
         .from('profiles')
         .select('is_admin')
         .eq('id', userId)
         .single();
 
-      if (!error && profile?.is_admin) {
+      if (profile?.is_admin) {
         console.log("✅ Admin confirmado por banco de dados");
         return true;
-      }
-      
-      // Se o email é admin mas não está marcado no banco, corrigir
-      if (isAdminEmail(userEmail) && (!profile || !profile.is_admin)) {
-        console.log("🔧 Corrigindo status de admin no banco...");
-        const { error: updateError } = await supabase
-          .from('profiles')
-          .upsert({ 
-            id: userId, 
-            is_admin: true,
-            trial_start: new Date().toISOString()
-          });
-        
-        if (!updateError) {
-          console.log("✅ Status de admin corrigido no banco");
-          return true;
-        }
       }
     } catch (error) {
       console.error("❌ Erro ao verificar admin no banco:", error);
@@ -76,7 +93,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return false;
   };
 
-  // Carregar informações do usuário com verificação robusta de admin
+  // Carregar informações do usuário com preservação de dados de admin
   const loadUserInfo = async (userId: string, userEmail: string | undefined) => {
     try {
       console.log("📊 Carregando informações do usuário:", userId, userEmail);
@@ -92,7 +109,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         return;
       }
 
-      // Para usuários não-admin, verificar trial
+      // Para usuários não-admin, verificar/criar trial
       const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .select('*')
@@ -222,7 +239,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
-  // Login com e-mail e senha
+  // Login com e-mail e senha - MOBILE OTIMIZADO
   const signIn = async (email: string, password: string) => {
     setLoading(true);
     try {
@@ -244,6 +261,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           errorMessage = "Muitas tentativas. Tente novamente em alguns minutos.";
         }
         
+        console.error("❌ Erro de login:", error.message);
         throw new Error(errorMessage);
       }
       
@@ -255,8 +273,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           description: "Bem-vindo de volta ao Copyfy.",
         });
         
-        // Usar navegação interna em vez de recarregar página
-        navigate('/dashboard');
+        // Aguardar um momento para garantir que o estado seja atualizado
+        setTimeout(() => {
+          console.log("🧭 Navegando para dashboard...");
+          try {
+            navigate('/dashboard');
+          } catch (navError) {
+            console.error("❌ Erro na navegação, usando fallback:", navError);
+            window.location.href = '/dashboard';
+          }
+        }, 500);
       }
     } catch (error: any) {
       console.error("💥 Erro no login:", error);
@@ -270,7 +296,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Cadastro com e-mail e senha
+  // Cadastro com e-mail e senha - MOBILE OTIMIZADO
   const signUp = async (email: string, password: string) => {
     setLoading(true);
     try {
@@ -293,6 +319,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           errorMessage = "A senha deve ter pelo menos 6 caracteres.";
         }
         
+        console.error("❌ Erro de cadastro:", error.message);
         throw new Error(errorMessage);
       }
 
@@ -304,7 +331,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             title: "Conta criada!",
             description: "Sua conta foi criada com sucesso.",
           });
-          navigate('/dashboard');
+          
+          setTimeout(() => {
+            console.log("🧭 Navegando para dashboard após cadastro...");
+            try {
+              navigate('/dashboard');
+            } catch (navError) {
+              console.error("❌ Erro na navegação, usando fallback:", navError);
+              window.location.href = '/dashboard';
+            }
+          }, 500);
         } else {
           toast({
             title: "Conta criada!",
@@ -324,7 +360,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Login com Google - CORRIGIDO
+  // Login com Google - CORRIGIDO COM CALLBACK
   const signInWithGoogle = async () => {
     setLoading(true);
     try {
@@ -333,7 +369,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/dashboard`
+          redirectTo: `${window.location.origin}/auth/callback`
         }
       });
 
