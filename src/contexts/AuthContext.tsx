@@ -30,16 +30,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
-  // Função para determinar admin com preservação de dados existentes
+  // Função para determinar admin status - CORRIGIDA para garantir admin total
   const determineAdminStatus = async (userId: string, userEmail: string | undefined): Promise<boolean> => {
     console.log("👑 Verificando status de admin para:", userEmail);
     
-    // Verificação 1: Email direto
+    // Verificação 1: Email direto - ADMIN GARANTIDO
     if (isAdminEmail(userEmail)) {
-      console.log("✅ Admin confirmado por email:", userEmail);
+      console.log("✅ Admin confirmado por email - ACESSO TOTAL:", userEmail);
       
       try {
-        // Verificar se já existe perfil
+        // Para admin: GARANTIR que não há trial_start e is_admin = true
         const { data: existingProfile } = await supabase
           .from('profiles')
           .select('*')
@@ -47,24 +47,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           .single();
 
         if (existingProfile) {
-          console.log("📋 Perfil admin já existe, preservando dados");
-          // Se já é admin, apenas atualizar se necessário sem tocar no trial_start
-          if (!existingProfile.is_admin) {
-            console.log("🔧 Atualizando status de admin sem afetar trial_start");
-            await supabase
-              .from('profiles')
-              .update({ is_admin: true })
-              .eq('id', userId);
-          }
+          console.log("📋 Perfil admin existente - garantindo acesso total");
+          // Atualizar perfil admin: remover trial_start e garantir is_admin = true
+          await supabase
+            .from('profiles')
+            .update({ 
+              is_admin: true,
+              trial_start: null // REMOVER trial_start para admin
+            })
+            .eq('id', userId);
+          console.log("✅ Perfil admin atualizado com acesso total");
         } else {
-          console.log("🆕 Criando novo perfil admin");
+          console.log("🆕 Criando novo perfil admin sem trial");
           await supabase
             .from('profiles')
             .insert({ 
               id: userId, 
-              is_admin: true,
-              trial_start: new Date().toISOString()
+              is_admin: true
+              // NÃO inserir trial_start para admin
             });
+          console.log("✅ Perfil admin criado com acesso total");
         }
         
         return true;
@@ -93,7 +95,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     return false;
   };
 
-  // Carregar informações do usuário com preservação de dados de admin
+  // Carregar informações do usuário - CORRIGIDA para admin total
   const loadUserInfo = async (userId: string, userEmail: string | undefined) => {
     try {
       console.log("📊 Carregando informações do usuário:", userId, userEmail);
@@ -103,8 +105,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setIsAdmin(adminStatus);
 
       if (adminStatus) {
-        console.log("👑 Usuário é admin - acesso completo sem limitações");
-        setTrialDaysRemaining(999);
+        console.log("👑 Usuário é admin - ACESSO TOTAL ILIMITADO");
+        setTrialDaysRemaining(999); // Número alto para indicar ilimitado
         setIsTrialActive(true);
         return;
       }
@@ -136,7 +138,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
 
       // Calcular trial para usuários normais
-      if (profile.trial_start) {
+      if (profile.trial_start && !profile.is_admin) {
         const trialStartDate = new Date(profile.trial_start);
         const now = new Date();
         const hoursElapsed = Math.floor((now.getTime() - trialStartDate.getTime()) / (1000 * 60 * 60));
@@ -153,6 +155,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         
         setTrialDaysRemaining(daysRemaining);
         setIsTrialActive(isActive);
+      } else {
+        // Usuário sem trial_start (provavelmente admin ou erro)
+        setTrialDaysRemaining(1);
+        setIsTrialActive(true);
       }
 
     } catch (error) {
@@ -170,12 +176,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       try {
         console.log("🚀 Inicializando autenticação...");
         
-        // Verificar sessão atual SEM limpar estado automaticamente
+        // Verificar sessão atual
         const { data: { session: currentSession }, error: sessionError } = await supabase.auth.getSession();
         
         if (sessionError) {
           console.error("❌ Erro ao obter sessão:", sessionError);
-          // APENAS limpar se houver erro específico de token corrompido
+          // Limpar apenas se houver erro específico de token corrompido
           if (sessionError.message.includes('refresh_token_not_found') || 
               sessionError.message.includes('Invalid Refresh Token')) {
             console.log("🧹 Token corrompido detectado, limpando...");
@@ -239,7 +245,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
-  // Login com e-mail e senha - MOBILE OTIMIZADO
+  // Login com e-mail e senha - FORTALECIDO para novos usuários
   const signIn = async (email: string, password: string) => {
     setLoading(true);
     try {
@@ -254,11 +260,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         let errorMessage = "Verifique suas credenciais e tente novamente";
         
         if (error.message.includes("Invalid login credentials")) {
-          errorMessage = "Email ou senha incorretos.";
+          errorMessage = "Email ou senha incorretos. Verifique se você já criou uma conta.";
         } else if (error.message.includes("Email not confirmed")) {
-          errorMessage = "Por favor, confirme seu email antes de fazer login.";
+          errorMessage = "Por favor, confirme seu email antes de fazer login. Verifique sua caixa de entrada.";
         } else if (error.message.includes("Too many requests")) {
           errorMessage = "Muitas tentativas. Tente novamente em alguns minutos.";
+        } else if (error.message.includes("signup")) {
+          errorMessage = "Conta não encontrada. Você precisa criar uma conta primeiro.";
         }
         
         console.error("❌ Erro de login:", error.message);
@@ -282,7 +290,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             console.error("❌ Erro na navegação, usando fallback:", navError);
             window.location.href = '/dashboard';
           }
-        }, 500);
+        }, 1000);
       }
     } catch (error: any) {
       console.error("💥 Erro no login:", error);
@@ -296,7 +304,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Cadastro com e-mail e senha - MOBILE OTIMIZADO
+  // Cadastro com e-mail e senha - MELHORADO
   const signUp = async (email: string, password: string) => {
     setLoading(true);
     try {
@@ -306,7 +314,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         email: email.trim().toLowerCase(),
         password: password,
         options: {
-          emailRedirectTo: `${window.location.origin}/dashboard`
+          emailRedirectTo: `${window.location.origin}/auth/callback`
         }
       });
 
@@ -317,6 +325,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           errorMessage = "Este email já está cadastrado. Tente fazer login.";
         } else if (error.message.includes("Password should be")) {
           errorMessage = "A senha deve ter pelo menos 6 caracteres.";
+        } else if (error.message.includes("Invalid email")) {
+          errorMessage = "Email inválido. Verifique o formato do email.";
         }
         
         console.error("❌ Erro de cadastro:", error.message);
@@ -327,6 +337,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         console.log("✅ Conta criada com sucesso!");
         
         if (data.session) {
+          // Usuário já está logado (confirmação automática)
           toast({
             title: "Conta criada!",
             description: "Sua conta foi criada com sucesso.",
@@ -340,11 +351,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               console.error("❌ Erro na navegação, usando fallback:", navError);
               window.location.href = '/dashboard';
             }
-          }, 500);
+          }, 1000);
         } else {
+          // Usuário precisa confirmar email
           toast({
             title: "Conta criada!",
-            description: "Verifique seu email para confirmar a conta.",
+            description: "Verifique seu email para confirmar a conta e fazer login.",
+            duration: 8000,
           });
         }
       }
@@ -360,7 +373,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  // Login com Google - CORRIGIDO COM CALLBACK
+  // Login com Google - CORRIGIDO com callback robusto
   const signInWithGoogle = async () => {
     setLoading(true);
     try {
@@ -386,12 +399,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         description: error.message || "Tente novamente mais tarde",
         variant: "destructive",
       });
-    } finally {
       setLoading(false);
     }
   };
 
-  // Logout
+  // Logout - ROBUSTO
   const signOut = async () => {
     try {
       console.log("🚪 Fazendo logout...");
