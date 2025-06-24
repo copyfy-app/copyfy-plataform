@@ -1,4 +1,3 @@
-
 import { getLanguageFromCountry, detectLanguageByCountry, idiomaForcado, getLanguageByCountry } from './countryLanguageMapping';
 import { getTranslation, formatTemplate } from './translations';
 import { countries } from '../components/data/Countries';
@@ -218,8 +217,8 @@ export const generateCODCopies = async (
     const result = {
       titles: getRandomVariations(finalTitles, 30),
       descriptions: getRandomVariations(finalDescriptions, 30),
-      usps: getRandomVariations(finalUsps, 15),
-      sitelinks: getRandomVariations(finalSitelinks, 15),
+      usps: getRandomVariations(finalUsps, 30),
+      sitelinks: getRandomVariations(finalSitelinks, 30),
       snippetValues: finalSnippets.slice(0, 8),
       promotions: finalPromotions.slice(0, 8),
       priceBlocks: finalPriceBlocks.slice(0, 5)
@@ -231,7 +230,9 @@ export const generateCODCopies = async (
       primeiroTitulo: result.titles[0],
       snippetVariations: result.snippetValues.length,
       promotionVariations: result.promotions.length,
-      priceVariations: result.priceBlocks.length
+      priceVariations: result.priceBlocks.length,
+      usps: result.usps.length,
+      sitelinks: result.sitelinks.length
     });
 
     return result;
@@ -259,8 +260,8 @@ export const generateCODCopies = async (
     return {
       titles: getRandomVariations(fallbackTitles, 30),
       descriptions: getRandomVariations(fallbackDescriptions, 30),
-      usps: getRandomVariations(fallbackUsps, 15),
-      sitelinks: getRandomVariations(fallbackSitelinks, 15),
+      usps: getRandomVariations(fallbackUsps, 30),
+      sitelinks: getRandomVariations(fallbackSitelinks, 30),
       snippetValues: snippetVariations.slice(0, 8),
       promotions: promotionVariations.slice(0, 8),
       priceBlocks: priceVariations.slice(0, 5)
@@ -619,7 +620,19 @@ const generateCopyfyUSPs = (product: string, price: string, country: string, lan
     `✓ Smart investment - ${product} at ${price} pays for itself`,
     `✓ Incredible value - ${product} normally sells for much more`,
     `✓ Cost-effective solution - ${product} saves money long-term`,
-    `✓ Budget-friendly option - premium ${product} at affordable ${price}`
+    `✓ Budget-friendly option - premium ${product} at affordable ${price}`,
+    
+    // Additional Benefits - New (expanding to 60+ total)
+    `✓ 24/7 customer service - ${product} support available always`,
+    `✓ Local delivery team - ${product} shipped by ${country} professionals`,
+    `✓ Same-day processing - ${product} order handled immediately`,
+    `✓ Eco-friendly packaging - ${product} delivered sustainably`,
+    `✓ Gift wrapping available - ${product} perfect for special occasions`,
+    `✓ Bulk order discounts - multiple ${product} units save money`,
+    `✓ Loyalty program included - ${product} customers get exclusive deals`,
+    `✓ Referral bonuses available - share ${product} and save`,
+    `✓ Holiday shipping guarantee - ${product} delivered on time`,
+    `✓ International warranty - ${product} covered worldwide`
   ];
 
   return baseTemplates;
@@ -717,7 +730,7 @@ const generateCopyfySitelinks = (product: string, price: string, country: string
       description2: `Limited time ${product} promotions`,
       url: "https://exemplo.com/deals"
     },
-    // New sitelinks for variety
+    // New sitelinks for variety (expanding to 50+ total)
     {
       title: `Express Delivery`,
       description1: `Same-day ${product} delivery available`,
@@ -777,6 +790,127 @@ const generateCopyfySitelinks = (product: string, price: string, country: string
       description1: `Watch real customers discuss ${product}`,
       description2: `Authentic video reviews and stories`,
       url: "https://exemplo.com/video-testimonials"
+    },
+    // Additional 20 sitelinks to ensure we have 45+ total
+    {
+      title: `Money Back Promise`,
+      description1: `${product} comes with satisfaction guarantee`,
+      description2: `30-day risk-free trial period`,
+      url: "https://exemplo.com/money-back"
+    },
+    {
+      title: `International Shipping`,
+      description1: `${product} delivered worldwide`,
+      description2: `Global COD service available`,
+      url: "https://exemplo.com/international"
+    },
+    {
+      title: `Wholesale Pricing`,
+      description1: `Bulk ${product} orders welcome`,
+      description2: `Special rates for resellers`,
+      url: "https://exemplo.com/wholesale"
+    },
+    {
+      title: `Gift Certificates`,
+      description1: `${product} perfect as a gift`,
+      description2: `Digital gift cards available`,
+      url: "https://exemplo.com/gifts"
+    },
+    {
+      title: `Mobile App`,
+      description1: `Order ${product} from your phone`,
+      description2: `Download our mobile application`,
+      url: "https://exemplo.com/mobile-app"
+    },
+    {
+      title: `Loyalty Program`,
+      description1: `Earn points with ${product} purchases`,
+      description2: `Exclusive rewards for members`,
+      url: "https://exemplo.com/loyalty"
+    },
+    {
+      title: `Live Chat Support`,
+      description1: `Instant help with ${product} questions`,
+      description2: `Real-time customer assistance`,
+      url: "https://exemplo.com/live-chat"
+    },
+    {
+      title: `Product Bundles`,
+      description1: `Complete ${product} packages available`,
+      description2: `Save more with combo deals`,
+      url: "https://exemplo.com/bundles"
+    },
+    {
+      title: `Authorized Dealers`,
+      description1: `Find ${product} retailers near you`,
+      description2: `Official distributor network`,
+      url: "https://exemplo.com/dealers"
+    },
+    {
+      title: `Training Resources`,
+      description1: `Learn how to use ${product} effectively`,
+      description2: `Free tutorials and guides`,
+      url: "https://exemplo.com/training"
+    },
+    {
+      title: `Community Forum`,
+      description1: `Connect with other ${product} users`,
+      description2: `Share experiences and tips`,
+      url: "https://exemplo.com/community"
+    },
+    {
+      title: `Press Coverage`,
+      description1: `${product} featured in major media`,
+      description2: `News articles and reviews`,
+      url: "https://exemplo.com/press"
+    },
+    {
+      title: `Partnership Program`,
+      description1: `Become a ${product} affiliate`,
+      description2: `Earn commissions promoting products`,
+      url: "https://exemplo.com/partners"
+    },
+    {
+      title: `Environmental Impact`,
+      description1: `${product} eco-friendly initiatives`,
+      description2: `Sustainable business practices`,
+      url: "https://exemplo.com/environment"
+    },
+    {
+      title: `Company History`,
+      description1: `Learn about our ${product} journey`,
+      description2: `Years of innovation and growth`,
+      url: "https://exemplo.com/history"
+    },
+    {
+      title: `Quality Certifications`,
+      description1: `${product} meets international standards`,
+      description2: `ISO and quality certifications`,
+      url: "https://exemplo.com/certifications"
+    },
+    {
+      title: `Customer Portal`,
+      description1: `Manage your ${product} account`,
+      description2: `Order history and preferences`,
+      url: "https://exemplo.com/customer-portal"
+    },
+    {
+      title: `Technical Support`,
+      description1: `Expert help with ${product} setup`,
+      description2: `Technical assistance available`,
+      url: "https://exemplo.com/technical-support"
+    },
+    {
+      title: `Return Policy`,
+      description1: `Easy ${product} returns process`,
+      description2: `Hassle-free exchange policy`,
+      url: "https://exemplo.com/returns"
+    },
+    {
+      title: `Warranty Service`,
+      description1: `${product} warranty coverage details`,
+      description2: `Extended protection plans available`,
+      url: "https://exemplo.com/warranty"
     }
   ];
 
