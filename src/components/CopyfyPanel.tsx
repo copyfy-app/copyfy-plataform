@@ -90,11 +90,39 @@ export const CopyfyPanel = () => {
     setShowManualModal(true);
   };
 
+  const handleUpgradeNow = () => {
+    window.open('https://pay.hotmart.com/Q100328287K?checkoutMode=6', '_blank');
+  };
+
   // Check if user can generate campaigns
   const canGenerate = isAdmin || isTrialActive;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
+      {/* Fullscreen upgrade popup for expired trials */}
+      {!isAdmin && !isTrialActive && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center shadow-2xl">
+            <div className="mb-6">
+              <div className="text-6xl mb-4">⏰</div>
+              <h2 className="text-2xl font-bold text-gray-800 mb-3">
+                Your free trial has expired
+              </h2>
+              <p className="text-gray-600 leading-relaxed">
+                To continue using Copyfy and access all campaign generation features, please purchase a subscription plan.
+              </p>
+            </div>
+            
+            <Button 
+              onClick={handleUpgradeNow}
+              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-6 rounded-lg text-lg shadow-lg"
+            >
+              Upgrade Now
+            </Button>
+          </div>
+        </div>
+      )}
+
       <div className="container mx-auto px-4 py-8">
         {/* Header com botão voltar, manual e título */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
@@ -105,8 +133,8 @@ export const CopyfyPanel = () => {
                 className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 md:px-6 py-3 rounded-lg flex items-center gap-2 text-sm md:text-base"
               >
                 <ArrowLeft className="w-4 h-4" />
-                <span className="hidden sm:inline">Voltar ao Dashboard</span>
-                <span className="sm:hidden">Voltar</span>
+                <span className="hidden sm:inline">Back to Dashboard</span>
+                <span className="sm:hidden">Back</span>
               </Button>
               <Button 
                 onClick={handleOpenManual}

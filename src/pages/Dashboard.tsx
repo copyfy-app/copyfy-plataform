@@ -45,10 +45,43 @@ const Dashboard = () => {
     window.open('https://pay.hotmart.com/Q100328287K', '_blank');
   };
 
-  // Load campaign data from localStorage
+  // Load campaign data from localStorage with proper user-specific key
   React.useEffect(() => {
     const loadCampaignData = () => {
-      const history = JSON.parse(localStorage.getItem("historicoCampanhas") || "[]");
+      if (!user?.id) return;
+      
+      const storageKey = `historicoCampanhas_${user.id}`;
+      const history = JSON.parse(localStorage.getItem(storageKey) || "[]");
+      
+      // Also check for old format campaigns and migrate them
+      if (history.length === 0) {
+        const oldHistory = JSON.parse(localStorage.getItem("historicoCampanhas") || "[]");
+        if (oldHistory.length > 0) {
+          localStorage.setItem(storageKey, JSON.stringify(oldHistory));
+          setCampaignCount(oldHistory.length);
+          
+          if (oldHistory.length > 0) {
+            try {
+              const latestCampaign = JSON.parse(oldHistory[0]);
+              setLastCampaign(latestCampaign.product || '');
+
+              // Get last 5 campaigns for display
+              const campaigns = oldHistory.slice(0, 5).map((campaignStr: string) => {
+                try {
+                  return JSON.parse(campaignStr);
+                } catch (error) {
+                  return null;
+                }
+              }).filter(Boolean);
+              setRecentCampaigns(campaigns);
+            } catch (error) {
+              console.error('Error parsing campaign data:', error);
+            }
+          }
+          return;
+        }
+      }
+      
       setCampaignCount(history.length);
       if (history.length > 0) {
         try {
@@ -76,7 +109,7 @@ const Dashboard = () => {
     // Set up interval to check for updates every 2 seconds
     const interval = setInterval(loadCampaignData, 2000);
     return () => clearInterval(interval);
-  }, []);
+  }, [user?.id]);
 
   React.useEffect(() => {
     // Script para ativar o dropdown do profile
