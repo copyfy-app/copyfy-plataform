@@ -17,135 +17,108 @@ const ManualModal = ({ open, onOpenChange }: ManualModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-black via-zinc-900 to-black border border-zinc-700">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center mb-6">
-            <span className="text-yellow-500">Copyfy</span> <span className="text-white">User Manual</span>
+          <DialogTitle className="text-3xl font-bold text-center mb-8">
+            <span className="text-yellow-500">How to Use Copyfy</span> <span className="text-white">– Step by Step</span>
           </DialogTitle>
         </DialogHeader>
         
-        <div className="space-y-6 text-white">
-          {/* Introduction */}
-          <div className="bg-gradient-to-r from-yellow-900/20 to-black p-6 rounded-lg border border-yellow-500/30">
-            <p className="text-lg leading-relaxed text-gray-100">
-              Welcome to <span className="text-yellow-500 font-semibold">Copyfy</span>, the platform that creates high-converting Google Ads campaigns with automatic translation for over 100 countries. Follow the steps below to use the tool correctly:
-            </p>
-          </div>
-
+        <div className="space-y-8 text-white px-4">
           {/* Step 1 */}
-          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-lg border border-zinc-600">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold">1</div>
-              <h3 className="text-xl font-bold text-yellow-500">Select Your Country</h3>
+          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-xl border border-zinc-600">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold text-lg">1</div>
+              <h3 className="text-2xl font-bold text-yellow-500">Choose a Country</h3>
             </div>
-            <p className="text-gray-200 leading-relaxed">
-              Choose your target country from the dropdown list. This will define the language and structure of the campaign.
+            <p className="text-gray-200 leading-relaxed text-lg">
+              Select your country from the dropdown. The copies will be translated automatically.
             </p>
           </div>
 
           {/* Step 2 */}
-          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-lg border border-zinc-600">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold">2</div>
-              <h3 className="text-xl font-bold text-yellow-500">Enter Product Name and Price</h3>
+          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-xl border border-zinc-600">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold text-lg">2</div>
+              <h3 className="text-2xl font-bold text-yellow-500">Enter Product and Price</h3>
             </div>
-            <p className="text-gray-200 leading-relaxed mb-4">
-              Fill in the name of your product and the price (only the number, without currency symbol). 
+            <p className="text-gray-200 leading-relaxed text-lg mb-4">
+              For example:
             </p>
             <div className="bg-black/40 p-4 rounded-lg border border-zinc-700">
-              <p className="text-yellow-400 font-semibold mb-2">Example:</p>
-              <p className="text-gray-300">Product: <span className="text-white">Detox Tea</span></p>
-              <p className="text-gray-300">Price: <span className="text-white">29</span></p>
+              <p className="text-yellow-400 font-semibold mb-2">• Product: <span className="text-white">SlimBoost</span></p>
+              <p className="text-yellow-400 font-semibold">• Price: <span className="text-white">$49,90</span></p>
             </div>
           </div>
 
           {/* Step 3 */}
-          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-lg border border-zinc-600">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold">3</div>
-              <h3 className="text-xl font-bold text-yellow-500">Choose Funnel Strategy</h3>
+          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-xl border border-zinc-600">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold text-lg">3</div>
+              <h3 className="text-2xl font-bold text-yellow-500">Select Funnel Strategy</h3>
             </div>
-            <p className="text-gray-200 leading-relaxed mb-4">
-              Select the campaign strategy:
-            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-black/40 p-4 rounded-lg border border-zinc-700">
-                <p className="text-yellow-400 font-semibold">• COD (Cash on Delivery)</p>
+                <p className="text-yellow-400 font-semibold">• COD</p>
               </div>
               <div className="bg-black/40 p-4 rounded-lg border border-zinc-700">
-                <p className="text-yellow-400 font-semibold">• Top of Funnel</p>
+                <p className="text-yellow-400 font-semibold">• BOFU (Bottom of Funnel)</p>
               </div>
               <div className="bg-black/40 p-4 rounded-lg border border-zinc-700">
-                <p className="text-yellow-400 font-semibold">• Middle of Funnel</p>
+                <p className="text-yellow-400 font-semibold">• MOFU (Middle of Funnel)</p>
               </div>
               <div className="bg-black/40 p-4 rounded-lg border border-zinc-700">
-                <p className="text-yellow-400 font-semibold">• Bottom of Funnel</p>
+                <p className="text-yellow-400 font-semibold">• TOFU (Top of Funnel)</p>
               </div>
             </div>
-            <p className="text-gray-300 mt-4">
-              This helps customize your campaign copy for the correct stage of the buyer journey.
-            </p>
           </div>
 
           {/* Step 4 */}
-          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-lg border border-zinc-600">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold">4</div>
-              <h3 className="text-xl font-bold text-yellow-500">Click "Generate Campaign"</h3>
+          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-xl border border-zinc-600">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold text-lg">4</div>
+              <h3 className="text-2xl font-bold text-yellow-500">Click "Generate Campaign"</h3>
             </div>
-            <p className="text-gray-200 leading-relaxed mb-4">
-              The system will automatically generate the full ad set, including:
+            <p className="text-gray-200 leading-relaxed text-lg mb-4">
+              It will generate:
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <span className="text-gray-300">Titles</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span className="text-gray-300 text-lg">Titles</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <span className="text-gray-300">Descriptions</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span className="text-gray-300 text-lg">Descriptions</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <span className="text-gray-300">Sitelinks (30 copies)</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span className="text-gray-300 text-lg">Sitelinks (30)</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <span className="text-gray-300">Snippets</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span className="text-gray-300 text-lg">Highlights (30)</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <span className="text-gray-300">Highlights (30 features)</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span className="text-gray-300 text-lg">Snippets</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                <span className="text-gray-300">Price Extensions</span>
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <span className="text-gray-300 text-lg">Price Extensions</span>
               </div>
             </div>
-            <p className="text-gray-300 mt-4">
-              Everything will be translated to the correct language of the selected country.
+            <p className="text-gray-300 mt-4 text-lg">
+              —all fully translated.
             </p>
           </div>
 
           {/* Step 5 */}
-          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-lg border border-zinc-600">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold">5</div>
-              <h3 className="text-xl font-bold text-yellow-500">Save the Campaign</h3>
+          <div className="bg-gradient-to-r from-zinc-800/50 to-black p-6 rounded-xl border border-zinc-600">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 bg-yellow-500 text-black rounded-full flex items-center justify-center font-bold text-lg">5</div>
+              <h3 className="text-2xl font-bold text-yellow-500">Click "Save" to store your campaigns</h3>
             </div>
-            <p className="text-gray-200 leading-relaxed">
-              Click "Save Campaign" to store your generated ad set under your current login. 
-              Saved campaigns are only visible to your own account.
-            </p>
-          </div>
-
-          {/* Support Section */}
-          <div className="bg-gradient-to-r from-blue-900/20 to-black p-6 rounded-lg border border-blue-500/30">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">📧</div>
-              <h3 className="text-xl font-bold text-blue-400">Support</h3>
-            </div>
-            <p className="text-gray-200 leading-relaxed">
-              Need help? Click Support in the sidebar or contact: 
-              <span className="text-blue-400 font-semibold ml-2">inspiranegociosonline@gmail.com</span>
+            <p className="text-gray-200 leading-relaxed text-lg">
+              Your saved campaigns will be stored securely in your account for future access.
             </p>
           </div>
         </div>

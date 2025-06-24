@@ -52,15 +52,15 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
   };
 
   return (
-    <div className="max-w-full lg:max-w-6xl mx-auto px-4">
-      <div className="border border-zinc-700 shadow-xl p-4 md:p-8 lg:p-12 rounded-3xl bg-gradient-to-br from-black via-yellow-900/15 to-black">
-        <h2 className="text-lg md:text-xl lg:text-2xl font-bold text-white mb-6 md:mb-8 text-center">
+    <div className="w-full max-w-6xl mx-auto px-2 sm:px-4">
+      <div className="border border-zinc-700 shadow-xl p-4 sm:p-6 md:p-8 lg:p-12 rounded-3xl bg-gradient-to-br from-black via-yellow-900/15 to-black">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-6 md:mb-8 text-center">
           Create Your High-Converting Campaign
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
           <div className="space-y-2">
-            <Label htmlFor="country" className="text-white font-medium">Select Country</Label>
+            <Label htmlFor="country" className="text-white font-medium text-sm md:text-base">Select Country</Label>
             <Select value={country} onValueChange={setCountry}>
               <SelectTrigger className="w-full p-3 md:p-4 rounded-lg bg-white text-black border-none text-sm md:text-base shadow-sm">
                 <SelectValue placeholder="Choose a country" />
@@ -76,7 +76,7 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="funnel" className="text-white font-medium">
+            <Label htmlFor="funnel" className="text-white font-medium text-sm md:text-base">
               Funnel Strategy
             </Label>
             <Select value={funnel} onValueChange={setFunnel}>
@@ -94,7 +94,7 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="product" className="text-white font-medium">
+            <Label htmlFor="product" className="text-white font-medium text-sm md:text-base">
               Product Name
             </Label>
             <Input 
@@ -107,7 +107,7 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="price" className="text-white font-medium">
+            <Label htmlFor="price" className="text-white font-medium text-sm md:text-base">
               Price
             </Label>
             <Input 
@@ -122,14 +122,14 @@ const CampaignForm = ({ onGenerate, isGenerating, canGenerate }: CampaignFormPro
 
         <div className="mt-6 md:mt-8 text-center">
           <Button 
-            className="w-full md:w-auto bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-base md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105" 
+            className="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-600 text-black font-bold text-sm sm:text-base md:text-lg py-3 md:py-4 px-6 md:px-8 rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 min-h-[48px]" 
             onClick={handleSubmit} 
             disabled={isGenerating || !canGenerate || !country || !product || !price || !funnel}
           >
             {isGenerating ? "Generating Campaign..." : "Generate Campaign"}
           </Button>
           {!canGenerate && (
-            <p className="text-red-400 mt-4 text-sm">
+            <p className="text-red-400 mt-4 text-xs sm:text-sm px-2">
               Your trial period has expired. Please contact support to continue using the service.
             </p>
           )}

@@ -173,23 +173,33 @@ export const generateCODCopies = async (
         translateTexts(baseUsps, targetLanguage)
       ]);
 
-      // Translate sitelinks content
-      const sitelinkTexts = baseSitelinks.flatMap(sitelink => [
-        sitelink.title,
-        sitelink.description1,
-        sitelink.description2
-      ]);
+      // ✅ FIX: Properly translate sitelinks content - each field separately
+      console.log('🔄 Starting sitelinks translation...');
+      const sitelinkTitles = baseSitelinks.map(sitelink => sitelink.title);
+      const sitelinkDesc1 = baseSitelinks.map(sitelink => sitelink.description1);
+      const sitelinkDesc2 = baseSitelinks.map(sitelink => sitelink.description2);
 
-      const translatedSitelinkTexts = await translateTexts(sitelinkTexts, targetLanguage);
+      const [translatedSitelinkTitles, translatedSitelinkDesc1, translatedSitelinkDesc2] = await Promise.all([
+        translateTexts(sitelinkTitles, targetLanguage),
+        translateTexts(sitelinkDesc1, targetLanguage),
+        translateTexts(sitelinkDesc2, targetLanguage)
+      ]);
       
       const translatedSitelinks = baseSitelinks.map((sitelink, index) => ({
         ...sitelink,
-        title: translatedSitelinkTexts[index * 3] || sitelink.title,
-        description1: translatedSitelinkTexts[index * 3 + 1] || sitelink.description1,
-        description2: translatedSitelinkTexts[index * 3 + 2] || sitelink.description2
+        title: translatedSitelinkTitles[index] || sitelink.title,
+        description1: translatedSitelinkDesc1[index] || sitelink.description1,
+        description2: translatedSitelinkDesc2[index] || sitelink.description2
       }));
 
-      // Translate extensions - THIS IS THE KEY FIX
+      console.log('✅ Sitelinks translation completed:', {
+        originalCount: baseSitelinks.length,
+        translatedCount: translatedSitelinks.length,
+        firstOriginalTitle: baseSitelinks[0]?.title,
+        firstTranslatedTitle: translatedSitelinks[0]?.title
+      });
+
+      // Translate extensions
       const [translatedSnippets, translatedPromotions, translatedPriceBlocks] = await Promise.all([
         translateTexts(baseSnippets, targetLanguage),
         translateTexts(basePromotions, targetLanguage),
@@ -204,7 +214,7 @@ export const generateCODCopies = async (
       finalPromotions = translatedPromotions;
       finalPriceBlocks = translatedPriceBlocks;
 
-      console.log('✅ Tradução concluída incluindo extensões');
+      console.log('✅ Tradução concluída incluindo sitelinks traduzidos');
     } else {
       console.log('⏩ Using English content - no translation needed');
     }
@@ -228,11 +238,12 @@ export const generateCODCopies = async (
       idioma: targetLanguage,
       titulos: result.titles.length,
       primeiroTitulo: result.titles[0],
+      sitelinks: result.sitelinks.length,
+      primeiroSitelinkTitulo: result.sitelinks[0]?.title,
       snippetVariations: result.snippetValues.length,
       promotionVariations: result.promotions.length,
       priceVariations: result.priceBlocks.length,
-      usps: result.usps.length,
-      sitelinks: result.sitelinks.length
+      usps: result.usps.length
     });
 
     return result;
@@ -791,7 +802,7 @@ const generateCopyfySitelinks = (product: string, price: string, country: string
       description2: `Authentic video reviews and stories`,
       url: "https://exemplo.com/video-testimonials"
     },
-    // Additional 20 sitelinks to ensure we have 45+ total
+    // Additional 15 sitelinks to ensure we have 45+ total
     {
       title: `Money Back Promise`,
       description1: `${product} comes with satisfaction guarantee`,
@@ -881,36 +892,6 @@ const generateCopyfySitelinks = (product: string, price: string, country: string
       description1: `Learn about our ${product} journey`,
       description2: `Years of innovation and growth`,
       url: "https://exemplo.com/history"
-    },
-    {
-      title: `Quality Certifications`,
-      description1: `${product} meets international standards`,
-      description2: `ISO and quality certifications`,
-      url: "https://exemplo.com/certifications"
-    },
-    {
-      title: `Customer Portal`,
-      description1: `Manage your ${product} account`,
-      description2: `Order history and preferences`,
-      url: "https://exemplo.com/customer-portal"
-    },
-    {
-      title: `Technical Support`,
-      description1: `Expert help with ${product} setup`,
-      description2: `Technical assistance available`,
-      url: "https://exemplo.com/technical-support"
-    },
-    {
-      title: `Return Policy`,
-      description1: `Easy ${product} returns process`,
-      description2: `Hassle-free exchange policy`,
-      url: "https://exemplo.com/returns"
-    },
-    {
-      title: `Warranty Service`,
-      description1: `${product} warranty coverage details`,
-      description2: `Extended protection plans available`,
-      url: "https://exemplo.com/warranty"
     }
   ];
 

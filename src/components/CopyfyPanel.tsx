@@ -5,6 +5,7 @@ import CampaignResults from './copyfy/CampaignResults';
 import { useCampaignGeneration } from '../hooks/useCampaignGeneration';
 import { useCampaignHistory } from '../hooks/useCampaignHistory';
 import HistoryModal from './modals/HistoryModal';
+import ManualModal from './modals/ManualModal';
 import { Button } from './ui/button';
 import { ArrowLeft, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +32,7 @@ export const CopyfyPanel = () => {
 
   const [campaignData, setCampaignData] = useState(null);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
+  const [showManualModal, setShowManualModal] = useState(false);
 
   const handleGenerateCampaign = async (data) => {
     setCampaignData(data);
@@ -85,7 +87,7 @@ export const CopyfyPanel = () => {
   };
 
   const handleOpenManual = () => {
-    window.open('https://docs.google.com/document/d/1Hj8K5rVvB9L2M8N3P4Q5R6S7T8U9V0W1X2Y3Z/edit', '_blank');
+    setShowManualModal(true);
   };
 
   // Check if user can generate campaigns
@@ -100,20 +102,22 @@ export const CopyfyPanel = () => {
             <div className="flex gap-4">
               <Button 
                 onClick={handleBackToDashboard}
-                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-4 md:px-6 py-3 rounded-lg flex items-center gap-2 text-sm md:text-base"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Voltar ao Dashboard
+                <span className="hidden sm:inline">Voltar ao Dashboard</span>
+                <span className="sm:hidden">Voltar</span>
               </Button>
               <Button 
                 onClick={handleOpenManual}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-3 md:px-6 py-3 rounded-lg flex items-center gap-2 text-sm md:text-base"
               >
                 <BookOpen className="w-4 h-4" />
-                📖 How to Use Manual
+                <span className="hidden sm:inline">📖 How to Use Manual</span>
+                <span className="sm:hidden">📖 Manual</span>
               </Button>
             </div>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center md:text-left">
+            <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-center md:text-left">
               <span className="text-yellow-500">Copy</span><span className="text-white">fy</span> - COD Campaign Generator
             </h1>
           </div>
@@ -143,6 +147,12 @@ export const CopyfyPanel = () => {
           campaignHistory={campaignHistory}
           onEditCampaign={handleEditCampaign}
           onDeleteCampaign={handleDeleteCampaign}
+        />
+
+        {/* Manual Modal */}
+        <ManualModal
+          open={showManualModal}
+          onOpenChange={setShowManualModal}
         />
       </div>
     </div>
