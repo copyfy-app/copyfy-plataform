@@ -6,7 +6,7 @@ import { useCampaignGeneration } from '../hooks/useCampaignGeneration';
 import { useCampaignHistory } from '../hooks/useCampaignHistory';
 import HistoryModal from './modals/HistoryModal';
 import { Button } from './ui/button';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -84,24 +84,37 @@ export const CopyfyPanel = () => {
     navigate('/dashboard');
   };
 
+  const handleOpenManual = () => {
+    window.open('https://docs.google.com/document/d/1Hj8K5rVvB9L2M8N3P4Q5R6S7T8U9V0W1X2Y3Z/edit', '_blank');
+  };
+
   // Check if user can generate campaigns
   const canGenerate = isAdmin || isTrialActive;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
       <div className="container mx-auto px-4 py-8">
-        {/* Header com botão voltar e título */}
+        {/* Header com botão voltar, manual e título */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-          <div className="flex items-center gap-4">
-            <Button 
-              onClick={handleBackToDashboard}
-              className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg flex items-center gap-2"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Voltar ao Dashboard
-            </Button>
-            <h1 className="text-3xl md:text-4xl font-bold text-yellow-500">
-              Copyf<span className="text-white">y</span> - COD Campaign Generator
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <div className="flex gap-4">
+              <Button 
+                onClick={handleBackToDashboard}
+                className="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Voltar ao Dashboard
+              </Button>
+              <Button 
+                onClick={handleOpenManual}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+              >
+                <BookOpen className="w-4 h-4" />
+                📖 How to Use Manual
+              </Button>
+            </div>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center md:text-left">
+              <span className="text-yellow-500">Copy</span><span className="text-white">fy</span> - COD Campaign Generator
             </h1>
           </div>
         </div>

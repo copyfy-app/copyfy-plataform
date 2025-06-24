@@ -188,12 +188,12 @@ const CampaignResults = ({
         </div>
       </div>
 
-      {/* Sitelinks - Movidos para último e em layout horizontal */}
+      {/* Sitelinks - Agora gerando 30 variações completas */}
       <div className="mt-6 md:mt-8">
         <div className="rounded-lg border border-zinc-700 p-4 md:p-6 bg-gradient-to-br from-black via-yellow-900/20 to-black">
           <h3 className="font-bold mb-4 text-lg md:text-xl text-yellow-500">🔗 Sitelinks (30 variations)</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {sitelinks.map((link, idx) => (
+            {sitelinks.slice(0, 30).map((link, idx) => (
               <div
                 key={idx}
                 className="bg-gradient-to-br from-black via-yellow-900/10 to-black p-4 rounded-lg border border-zinc-600 hover:border-yellow-500 transition-all cursor-pointer group min-h-[200px] flex flex-col justify-between"
