@@ -90,8 +90,8 @@ export const CopyfyPanel = () => {
     setShowManualModal(true);
   };
 
-  const handleUpgradeNow = () => {
-    window.open('https://pay.hotmart.com/Q100328287K?checkoutMode=6', '_blank');
+  const handleBuyNow = () => {
+    window.open('https://pay.hotmart.com/Q100328287K', '_blank');
   };
 
   // Check if user can generate campaigns
@@ -114,10 +114,10 @@ export const CopyfyPanel = () => {
             </div>
             
             <Button 
-              onClick={handleUpgradeNow}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-6 rounded-lg text-lg shadow-lg"
+              onClick={handleBuyNow}
+              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-6 rounded-lg text-lg shadow-lg mb-3"
             >
-              Upgrade Now
+              Buy Now and Get Full Access
             </Button>
           </div>
         </div>
