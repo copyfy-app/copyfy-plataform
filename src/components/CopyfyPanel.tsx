@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import CampaignForm from './copyfy/CampaignForm';
 import CampaignResults from './copyfy/CampaignResults';
 import { useCampaignGeneration } from '../hooks/useCampaignGeneration';
@@ -32,6 +33,25 @@ export const CopyfyPanel = () => {
   const [campaignData, setCampaignData] = useState(null);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showManualModal, setShowManualModal] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
+
+  // Countdown timer effect
+  useEffect(() => {
+    if (!isAdmin && !isTrialActive && timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft(prev => prev > 0 ? prev - 1 : 0);
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [isAdmin, isTrialActive, timeLeft]);
+
+  // Format time for display
+  const formatTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
 
   const handleGenerateCampaign = async (data) => {
     setCampaignData(data);
@@ -89,8 +109,8 @@ export const CopyfyPanel = () => {
     setShowManualModal(true);
   };
 
-  const handleBuyNow = () => {
-    window.open('https://hotm.art/copyfy_generate', '_blank');
+  const handleGetDiscount = () => {
+    window.open('https://pay.hotmart.com/Q100328287K?af=E100479695V&off=tkgky0li&checkoutMode=0&bid=1751064479124', '_blank');
   };
 
   // Check if user can generate campaigns
@@ -98,25 +118,34 @@ export const CopyfyPanel = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
-      {/* Fullscreen upgrade popup for expired trials */}
+      {/* New promotional popup for expired trials */}
       {!isAdmin && !isTrialActive && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center shadow-2xl">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-md sm:max-w-lg w-full text-center shadow-2xl">
+            {/* Blinking 15% OFF headline */}
             <div className="mb-6">
-              <div className="text-6xl mb-4">⏰</div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-3">
-                Your free trial has expired
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                To continue using Copyfy and access all campaign generation features, please purchase a subscription plan.
+              <h1 className="text-3xl sm:text-4xl font-bold mb-4 animate-pulse" style={{ color: '#FFD700' }}>
+                15% OFF
+              </h1>
+              
+              {/* Countdown timer */}
+              <div className="bg-red-600 text-white text-xl sm:text-2xl font-bold py-2 px-4 rounded-lg mb-6">
+                {formatTime(timeLeft)}
+              </div>
+              
+              <p className="text-gray-800 text-sm sm:text-base leading-relaxed mb-2">
+                Your free trial has ended. But you still have 30 minutes to unlock Copyfy with a 15% discount — exclusive for new users.
+              </p>
+              <p className="text-gray-800 text-sm sm:text-base leading-relaxed font-semibold">
+                Don't miss this chance to get full access and create unlimited ad copies with AI.
               </p>
             </div>
             
             <Button 
-              onClick={handleBuyNow}
-              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-6 rounded-lg text-lg shadow-lg mb-3"
+              onClick={handleGetDiscount}
+              className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-4 px-6 rounded-lg text-base sm:text-lg shadow-lg"
             >
-              Buy Now and Get Full Access
+              👉 Get 15% OFF Now
             </Button>
           </div>
         </div>
