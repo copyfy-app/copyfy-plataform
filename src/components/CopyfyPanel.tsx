@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import CampaignForm from './copyfy/CampaignForm';
 import CampaignResults from './copyfy/CampaignResults';
@@ -91,7 +90,7 @@ export const CopyfyPanel = () => {
   };
 
   const handleBuyNow = () => {
-    window.open('https://pay.hotmart.com/Q100328287K', '_blank');
+    window.open('https://hotm.art/copyfy_generate', '_blank');
   };
 
   // Check if user can generate campaigns
