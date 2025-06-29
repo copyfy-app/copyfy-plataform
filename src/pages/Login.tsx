@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -197,9 +196,9 @@ const Login = () => {
           </p>
         </div>
 
-        {/* Info cards melhorados */}
+        {/* Info cards improved - keeping only the tips section */}
         <div className="mt-6 space-y-3">
-          {/* Dica para usuários */}
+          {/* Tip for users */}
           <div className="p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-lg">
             <div className="flex items-start space-x-2">
               <CheckCircle className="h-4 w-4 text-yellow-500 mt-0.5 flex-shrink-0" />
@@ -211,20 +210,6 @@ const Login = () => {
               </div>
             </div>
           </div>
-
-          {/* Status de debug para desenvolvimento */}
-          {process.env.NODE_ENV === 'development' && (
-            <div className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-              <div className="flex items-start space-x-2">
-                <AlertCircle className="h-4 w-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                <div className="text-xs text-gray-300">
-                  <p className="font-semibold mb-1 text-blue-500">Debug Info:</p>
-                  <p className="mb-1">• Domínio: {window.location.hostname}</p>
-                  <p>• Verifique o console para logs detalhados</p>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
 
         <div className="mt-6 text-center">

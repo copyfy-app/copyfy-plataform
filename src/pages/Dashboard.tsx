@@ -209,10 +209,10 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        {/* Updated banner */}
+        {/* Updated banner with larger font */}
         <Alert className="mb-6 bg-blue-900/30 border-blue-500/30 text-blue-200">
           <Info className="h-4 w-4 text-blue-400" />
-          <AlertDescription className="text-blue-200">
+          <AlertDescription className="text-blue-200 text-base font-medium">
             ⚡ Get full access now and start generating high-converting ad campaigns with AI!
           </AlertDescription>
         </Alert>
