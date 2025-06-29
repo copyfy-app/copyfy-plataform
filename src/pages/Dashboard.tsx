@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,6 +36,11 @@ const Dashboard = () => {
   };
 
   const handleClearHistory = () => {
+    if (!user?.id) return;
+    
+    const storageKey = `historicoCampanhas_${user.id}`;
+    localStorage.removeItem(storageKey);
+    // Also remove old format for backward compatibility
     localStorage.removeItem("historicoCampanhas");
     setCampaignCount(0);
     setLastCampaign('');
@@ -212,7 +218,7 @@ const Dashboard = () => {
         {/* Updated banner with larger font */}
         <Alert className="mb-6 bg-blue-900/30 border-blue-500/30 text-blue-200">
           <Info className="h-4 w-4 text-blue-400" />
-          <AlertDescription className="text-blue-200 text-base font-medium">
+          <AlertDescription className="text-blue-200 text-lg font-semibold">
             ⚡ Get full access now and start generating high-converting ad campaigns with AI!
           </AlertDescription>
         </Alert>
@@ -238,10 +244,10 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">
-                {isAdmin ? 'Admin' : 'Active User'}
+                Active User
               </div>
               <p className="text-xs text-gray-400">
-                {isAdmin ? 'Full Access' : 'Ready to create campaigns'}
+                Ready to create campaigns
               </p>
             </CardContent>
           </Card>

@@ -107,7 +107,8 @@ export const CopyfyPanel = () => {
       localStorage.setItem(`welcomeShown_${user.id}`, 'true');
     }
     setShowWelcomePopup(false);
-    // Stay on current page (campaign generator) as requested
+    // Redirect to campaign generator
+    navigate('/copyfy');
   };
 
   // Check if user can generate campaigns
@@ -129,20 +130,18 @@ export const CopyfyPanel = () => {
                 color: '#FACC15',
                 textShadow: '0 0 20px rgba(250, 204, 21, 0.5)'
               }}>
-                🎉 Welcome to Copyfy!
+                🎉 Welcome to Copyfy Pro!
               </h1>
               
               {/* Welcome text */}
               <div className="text-white text-base sm:text-lg leading-relaxed space-y-4 mb-8">
                 <p>
-                  You're all set — your account is{' '}
-                  <span className="font-bold" style={{ color: '#FACC15' }}>active</span>{' '}
-                  and ready to go.
+                  You now have{' '}
+                  <span className="font-bold" style={{ color: '#FACC15' }}>full access</span>{' '}
+                  to generate high-converting campaigns using AI.
                 </p>
                 <p>
-                  Click the button below to begin creating{' '}
-                  <span className="font-bold" style={{ color: '#FACC15' }}>high-converting Google Ads campaigns</span>{' '}
-                  using AI.
+                  🚀 Click below to get started:
                 </p>
               </div>
             </div>
@@ -168,7 +167,7 @@ export const CopyfyPanel = () => {
                 target.style.transform = 'scale(1)';
               }}
             >
-              Start Now
+              Start Using Copyfy
             </button>
           </div>
         </div>
