@@ -13,7 +13,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 export const CopyfyPanel = () => {
   const navigate = useNavigate();
-  const { isTrialActive, isAdmin } = useAuth();
+  const { isTrialActive, isAdmin, user } = useAuth();
   const {
     isGenerating,
     campaignGenerated,
@@ -33,25 +33,17 @@ export const CopyfyPanel = () => {
   const [campaignData, setCampaignData] = useState(null);
   const [showHistoryModal, setShowHistoryModal] = useState(false);
   const [showManualModal, setShowManualModal] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(30 * 60); // 30 minutes in seconds
+  const [showWelcomePopup, setShowWelcomePopup] = useState(false);
 
-  // Countdown timer effect
+  // Check if welcome popup should be shown (only once after first login)
   useEffect(() => {
-    if (!isAdmin && !isTrialActive && timeLeft > 0) {
-      const timer = setInterval(() => {
-        setTimeLeft(prev => prev > 0 ? prev - 1 : 0);
-      }, 1000);
-      return () => clearInterval(timer);
+    if (user && (isAdmin || isTrialActive)) {
+      const welcomeShown = localStorage.getItem(`welcomeShown_${user.id}`);
+      if (!welcomeShown) {
+        setShowWelcomePopup(true);
+      }
     }
-  }, [isAdmin, isTrialActive, timeLeft]);
-
-  // Format time for display
-  const formatTime = (seconds) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-  };
+  }, [user, isAdmin, isTrialActive]);
 
   const handleGenerateCampaign = async (data) => {
     setCampaignData(data);
@@ -109,8 +101,13 @@ export const CopyfyPanel = () => {
     setShowManualModal(true);
   };
 
-  const handleGetDiscount = () => {
-    window.open('https://hotm.art/Copyfy-Ai', '_blank');
+  const handleWelcomeStart = () => {
+    // Mark welcome as shown
+    if (user) {
+      localStorage.setItem(`welcomeShown_${user.id}`, 'true');
+    }
+    setShowWelcomePopup(false);
+    // Stay on current page (campaign generator) as requested
   };
 
   // Check if user can generate campaigns
@@ -118,50 +115,42 @@ export const CopyfyPanel = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
-      {/* Enhanced promotional popup for expired trials */}
-      {!isAdmin && !isTrialActive && (
+      {/* Welcome popup for new users */}
+      {showWelcomePopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ backgroundColor: 'rgba(0, 0, 0, 0.95)' }}>
           <div className="bg-black rounded-xl p-6 sm:p-8 max-w-sm sm:max-w-md lg:max-w-lg w-full text-center border border-gray-800" style={{ 
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1)',
             borderRadius: '12px'
           }}>
             
-            {/* Blinking 15% OFF headline */}
+            {/* Welcome content */}
             <div className="mb-8">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 animate-pulse" style={{ 
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6" style={{ 
                 color: '#FACC15',
                 textShadow: '0 0 20px rgba(250, 204, 21, 0.5)'
               }}>
-                15% OFF
+                🎉 Welcome to Copyfy!
               </h1>
               
-              {/* Countdown timer */}
-              <div className="bg-red-600 text-white text-xl sm:text-2xl font-bold py-3 px-6 rounded-lg mb-6 mx-auto inline-block" style={{
-                boxShadow: '0 4px 12px rgba(239, 68, 68, 0.4)'
-              }}>
-                {formatTime(timeLeft)}
-              </div>
-              
-              {/* Enhanced text with yellow highlights */}
-              <div className="text-white text-sm sm:text-base leading-relaxed space-y-3">
+              {/* Welcome text */}
+              <div className="text-white text-base sm:text-lg leading-relaxed space-y-4 mb-8">
                 <p>
-                  Your free trial has ended. But you still have 30 minutes to unlock Copyfy with a{' '}
-                  <span className="font-bold" style={{ color: '#FACC15' }}>15% discount</span>{' '}
-                  — <span className="font-bold" style={{ color: '#FACC15' }}>exclusive for new users</span>.
+                  You're all set — your account is{' '}
+                  <span className="font-bold" style={{ color: '#FACC15' }}>active</span>{' '}
+                  and ready to go.
                 </p>
-                <p className="font-semibold">
-                  Don't miss this chance to get{' '}
-                  <span className="font-bold" style={{ color: '#FACC15' }}>full access</span>{' '}
-                  and create{' '}
-                  <span className="font-bold" style={{ color: '#FACC15' }}>unlimited ad copies with AI</span>.
+                <p>
+                  Click the button below to begin creating{' '}
+                  <span className="font-bold" style={{ color: '#FACC15' }}>high-converting Google Ads campaigns</span>{' '}
+                  using AI.
                 </p>
               </div>
             </div>
             
-            {/* Enhanced CTA button */}
+            {/* Start Now button */}
             <button
-              onClick={handleGetDiscount}
-              className="w-full font-bold py-4 px-6 rounded-lg text-base sm:text-lg transition-all duration-300 transform hover:scale-105 animate-pulse"
+              onClick={handleWelcomeStart}
+              className="w-full font-bold py-4 px-6 rounded-lg text-lg transition-all duration-300 transform hover:scale-105"
               style={{
                 backgroundColor: '#FACC15',
                 color: '#000',
@@ -179,7 +168,7 @@ export const CopyfyPanel = () => {
                 target.style.transform = 'scale(1)';
               }}
             >
-              👉 Get 15% OFF Now
+              Start Now
             </button>
           </div>
         </div>
