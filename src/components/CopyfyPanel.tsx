@@ -110,7 +110,7 @@ export const CopyfyPanel = () => {
   };
 
   const handleGetDiscount = () => {
-    window.open('https://pay.hotmart.com/Q100328287K?af=E100479695V&off=tkgky0li&checkoutMode=0&bid=1751064479124', '_blank');
+    window.open('https://hotm.art/Copyfy-Ai', '_blank');
   };
 
   // Check if user can generate campaigns
@@ -169,12 +169,14 @@ export const CopyfyPanel = () => {
                 borderRadius: '8px'
               }}
               onMouseEnter={(e) => {
-                e.target.style.boxShadow = '0 12px 35px rgba(250, 204, 21, 0.6)';
-                e.target.style.transform = 'scale(1.05)';
+                const target = e.target as HTMLButtonElement;
+                target.style.boxShadow = '0 12px 35px rgba(250, 204, 21, 0.6)';
+                target.style.transform = 'scale(1.05)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.boxShadow = '0 8px 25px rgba(250, 204, 21, 0.4)';
-                e.target.style.transform = 'scale(1)';
+                const target = e.target as HTMLButtonElement;
+                target.style.boxShadow = '0 8px 25px rgba(250, 204, 21, 0.4)';
+                target.style.transform = 'scale(1)';
               }}
             >
               👉 Get 15% OFF Now

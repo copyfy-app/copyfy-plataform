@@ -209,15 +209,13 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        {/* Trial Warning Alert */}
-        {!isAdmin && (
-          <Alert className="mb-6 bg-blue-900/30 border-blue-500/30 text-blue-200">
-            <Info className="h-4 w-4 text-blue-400" />
-            <AlertDescription className="text-blue-200">
-              Free 24-hour trial to explore everything the platform offers. Enjoy it!
-            </AlertDescription>
-          </Alert>
-        )}
+        {/* Updated banner */}
+        <Alert className="mb-6 bg-blue-900/30 border-blue-500/30 text-blue-200">
+          <Info className="h-4 w-4 text-blue-400" />
+          <AlertDescription className="text-blue-200">
+            ⚡ Get full access now and start generating high-converting ad campaigns with AI!
+          </AlertDescription>
+        </Alert>
 
         {/* Welcome Section */}
         <div className="mb-8">
@@ -240,10 +238,10 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white">
-                {isAdmin ? 'Admin' : isTrialActive ? 'Trial Active' : 'Trial Expired'}
+                {isAdmin ? 'Admin' : 'Active User'}
               </div>
               <p className="text-xs text-gray-400">
-                {isAdmin ? 'Full Access' : isTrialActive ? `${trialDaysRemaining} days remaining` : 'Subscribe to continue'}
+                {isAdmin ? 'Full Access' : 'Ready to create campaigns'}
               </p>
             </CardContent>
           </Card>
@@ -359,21 +357,21 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        {/* Trial Information */}
+        {/* Subscription prompt for non-admin users */}
         {!isAdmin && (
           <Card className="mt-8 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-500/30">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2">
-                    {isTrialActive ? 'Trial Account' : 'Trial Expired'}
+                    Unlock Full Access
                   </h3>
                   <p className="text-gray-300">
-                    {isTrialActive ? `You have ${trialDaysRemaining} days remaining in your free trial.` : 'Your free trial has expired. Subscribe to continue using Copyfy.'}
+                    Get unlimited access to all features and start creating high-converting campaigns.
                   </p>
                 </div>
                 <Button className="bg-yellow-500 text-black hover:bg-yellow-600" onClick={handleUpgrade}>
-                  {isTrialActive ? 'Upgrade Now' : 'Subscribe'}
+                  Subscribe Now
                 </Button>
               </div>
             </CardContent>
