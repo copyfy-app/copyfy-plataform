@@ -13,7 +13,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 export const CopyfyPanel = () => {
   const navigate = useNavigate();
-  const { isTrialActive, isAdmin, user } = useAuth();
+  const { user } = useAuth();
   const {
     isGenerating,
     campaignGenerated,
@@ -37,13 +37,13 @@ export const CopyfyPanel = () => {
 
   // Check if welcome popup should be shown (only once after first login)
   useEffect(() => {
-    if (user && (isAdmin || isTrialActive)) {
+    if (user) {
       const welcomeShown = localStorage.getItem(`welcomeShown_${user.id}`);
       if (!welcomeShown) {
         setShowWelcomePopup(true);
       }
     }
-  }, [user, isAdmin, isTrialActive]);
+  }, [user]);
 
   const handleGenerateCampaign = async (data) => {
     setCampaignData(data);
@@ -111,8 +111,8 @@ export const CopyfyPanel = () => {
     navigate('/copyfy');
   };
 
-  // Check if user can generate campaigns
-  const canGenerate = isAdmin || isTrialActive;
+  // All logged-in users can generate campaigns
+  const canGenerate = !!user;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-zinc-900 to-black">
