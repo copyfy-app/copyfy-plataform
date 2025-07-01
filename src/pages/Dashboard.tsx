@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -45,10 +44,6 @@ const Dashboard = () => {
     setCampaignCount(0);
     setLastCampaign('');
     setRecentCampaigns([]);
-  };
-
-  const handleUpgrade = () => {
-    window.open('https://hotm.art/copyfy_generate', '_blank');
   };
 
   // Load campaign data from localStorage with proper user-specific key
@@ -362,27 +357,6 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
-
-        {/* Subscription prompt for non-admin users */}
-        {!isAdmin && (
-          <Card className="mt-8 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border-yellow-500/30">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    Unlock Full Access
-                  </h3>
-                  <p className="text-gray-300">
-                    Get unlimited access to all features and start creating high-converting campaigns.
-                  </p>
-                </div>
-                <Button className="bg-yellow-500 text-black hover:bg-yellow-600" onClick={handleUpgrade}>
-                  Subscribe Now
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        )}
       </main>
 
       {/* Footer */}
