@@ -357,6 +357,21 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* Welcome Info Block */}
+        <div className="mt-8 w-full bg-gray-50 text-gray-800 text-center py-6 px-4 rounded-lg">
+          <div className="text-lg font-medium leading-relaxed">
+            <p className="mb-3">
+              Welcome to Copyfy — your AI-powered ad copy generator!
+            </p>
+            <p className="mb-3">
+              ✅ All set! Your access is active and ready to go.
+            </p>
+            <p>
+              Start creating high-converting campaigns effortlessly. If you need help, just reach out to our team anytime.
+            </p>
+          </div>
+        </div>
       </main>
 
       {/* Footer */}
