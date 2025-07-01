@@ -359,12 +359,12 @@ const Dashboard = () => {
         </div>
 
         {/* Welcome Info Block */}
-        <div className="mt-8 w-full bg-gray-50 text-gray-800 text-center py-6 px-4 rounded-lg">
-          <div className="text-lg font-medium leading-relaxed">
-            <p className="mb-3">
-              Welcome to Copyfy — your AI-powered ad copy generator!
+        <div className="mt-8 w-full bg-black text-yellow-500 text-center py-8 px-4 rounded-lg shadow-lg border border-yellow-500/20">
+          <div className="text-xl font-bold leading-relaxed">
+            <p className="mb-4">
+              🎉 Welcome to Copyfy — your AI-powered ad copy generator!
             </p>
-            <p className="mb-3">
+            <p className="mb-4">
               ✅ All set! Your access is active and ready to go.
             </p>
             <p>
