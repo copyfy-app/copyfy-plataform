@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Session, User } from "@supabase/supabase-js";
 import { toast } from "@/hooks/use-toast";
 import { cleanupAuthState, isAdminEmail } from "@/utils/authCleanup";
+import { trackUserLogin, trackUserLogout } from "@/hooks/useLoginTracking";
 
 type AuthContextType = {
   session: Session | null;
@@ -224,6 +225,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
           if (session?.user) {
             console.log("✅ Usuário autenticado:", session.user.email);
+            
+            // Track login for auth state changes (like Google OAuth callback)
+            if (event === 'SIGNED_IN') {
+              const loginMethod = session.user.app_metadata?.provider === 'google' ? 'google' : 'email';
+              trackUserLogin(session.user, loginMethod);
+            }
+            
             setTimeout(() => {
               loadUserInfo(session.user.id, session.user.email);
             }, 0);
@@ -273,8 +281,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         throw new Error(errorMessage);
       }
       
-      if (data.user && data.session) {
+        if (data.user && data.session) {
         console.log("✅ Login realizado com sucesso!");
+        
+        // Track the login
+        trackUserLogin(data.user, 'email');
         
         toast({
           title: "Login realizado!",
@@ -333,11 +344,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         throw new Error(errorMessage);
       }
 
-      if (data.user) {
+        if (data.user) {
         console.log("✅ Conta criada com sucesso!");
         
         if (data.session) {
           // Usuário já está logado (confirmação automática)
+          // Track the signup as a login
+          trackUserLogin(data.user, 'email');
+          
           toast({
             title: "Conta criada!",
             description: "Sua conta foi criada com sucesso.",
@@ -407,6 +421,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signOut = async () => {
     try {
       console.log("🚪 Fazendo logout...");
+      
+      // Track logout before clearing session
+      await trackUserLogout();
       
       cleanupAuthState();
       

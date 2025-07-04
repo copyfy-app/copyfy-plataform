@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { ArrowLeft, Zap, History, User, LogOut, Play, Trash2, Info } from 'lucide-react';
 import Footer from '@/components/Footer';
+import UserSessionsCard from '@/components/analytics/UserSessionsCard';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -300,7 +301,7 @@ const Dashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-gradient-to-br from-yellow-500/10 to-yellow-600/5 border-yellow-500/30">
             <CardHeader>
               <CardTitle className="text-xl text-white flex items-center">
@@ -357,6 +358,9 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         </div>
+
+        {/* User Analytics Section - Only for Admins */}
+        <UserSessionsCard />
 
         {/* Welcome Info Block */}
         <div className="mt-8 w-full bg-black text-yellow-500 text-center py-8 px-4 rounded-lg shadow-lg border border-yellow-500/20">

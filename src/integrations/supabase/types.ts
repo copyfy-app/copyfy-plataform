@@ -36,6 +36,54 @@ export type Database = {
         }
         Relationships: []
       }
+      user_sessions: {
+        Row: {
+          browser_info: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          email: string
+          id: string
+          ip_address: string | null
+          login_method: string
+          login_timestamp: string
+          logout_timestamp: string | null
+          session_duration: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          browser_info?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          ip_address?: string | null
+          login_method?: string
+          login_timestamp?: string
+          logout_timestamp?: string | null
+          session_duration?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          browser_info?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          ip_address?: string | null
+          login_method?: string
+          login_timestamp?: string
+          logout_timestamp?: string | null
+          session_duration?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
