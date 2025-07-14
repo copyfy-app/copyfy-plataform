@@ -174,12 +174,6 @@ export const CopyfyPanel = () => {
       )}
 
       <div className="container mx-auto px-4 py-8">
-        {/* Simple access confirmation message */}
-        <div className="mb-6 bg-amber-100 border border-amber-200 rounded-lg p-4 text-center">
-          <p className="text-amber-800 text-lg font-medium">
-            ✅ All set! Your Copyfy access is active.
-          </p>
-        </div>
 
         {/* Header com botão voltar, manual e título */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
